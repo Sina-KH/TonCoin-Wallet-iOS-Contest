@@ -20,16 +20,13 @@ class WAnimatedSticker: UIView {
     var replay: Bool = false
     
     @IBInspectable
-    var animationName: String = "" {
-        didSet {
-            setup(animationName: animationName)
-        }
-    }
+    var animationName: String = ""
     
     private var animatedSticker: AnimatedStickerNode? = nil
 
     override open func awakeFromNib() {
         super.awakeFromNib()
+        setup()
     }
     
     override open func prepareForInterfaceBuilder() {
@@ -37,7 +34,7 @@ class WAnimatedSticker: UIView {
     }
     
     // setup animation data
-    func setup(animationName: String) {
+    func setup() {
         // load the animation
         guard let path = Bundle(identifier: "org.ton.wallet")?.path(forResource: animationName, ofType: "tgs") else {
             return
