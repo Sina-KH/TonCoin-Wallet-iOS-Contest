@@ -26,6 +26,15 @@
 		274D3ED529D619BF007C47AE /* ToncoinWalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3ED429D619BF007C47AE /* ToncoinWalletTests.swift */; };
 		274D3EDF29D619BF007C47AE /* ToncoinWalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3EDE29D619BF007C47AE /* ToncoinWalletUITests.swift */; };
 		274D3EE129D619BF007C47AE /* ToncoinWalletUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3EE029D619BF007C47AE /* ToncoinWalletUITestsLaunchTests.swift */; };
+		275C577029E04E37002531AF /* WalletContextImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C576F29E04E37002531AF /* WalletContextImpl.swift */; };
+		275C585C29E051B6002531AF /* WalletCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275C57B729E04F79002531AF /* WalletCore.framework */; };
+		275C585D29E051B6002531AF /* WalletCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 275C57B729E04F79002531AF /* WalletCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		275C585E29E051B8002531AF /* SwiftSignalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275C585A29E051AB002531AF /* SwiftSignalKit.framework */; };
+		275C585F29E051B8002531AF /* SwiftSignalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 275C585A29E051AB002531AF /* SwiftSignalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		275C586029E051BA002531AF /* WalletUrl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275C585829E051A3002531AF /* WalletUrl.framework */; };
+		275C586129E051BA002531AF /* WalletUrl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 275C585829E051A3002531AF /* WalletUrl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		275C586629E05215002531AF /* WalletContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C586529E05215002531AF /* WalletContext.swift */; };
+		275C586829E05240002531AF /* WalletPresentationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C586729E05240002531AF /* WalletPresentationData.swift */; };
 		27A1280929E0402C002D030A /* UICreateWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3F8A29D639C5007C47AE /* UICreateWallet.framework */; };
 		27A1280A29E0402C002D030A /* UICreateWallet.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3F8A29D639C5007C47AE /* UICreateWallet.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -54,7 +63,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				275C585F29E051B8002531AF /* SwiftSignalKit.framework in Embed Frameworks */,
+				275C585D29E051B6002531AF /* WalletCore.framework in Embed Frameworks */,
 				27A1280A29E0402C002D030A /* UICreateWallet.framework in Embed Frameworks */,
+				275C586129E051BA002531AF /* WalletUrl.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -87,6 +99,12 @@
 		274D3EE029D619BF007C47AE /* ToncoinWalletUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToncoinWalletUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		274D3F2C29D62BF3007C47AE /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		274D3F8A29D639C5007C47AE /* UICreateWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UICreateWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		275C576F29E04E37002531AF /* WalletContextImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletContextImpl.swift; sourceTree = "<group>"; };
+		275C57B729E04F79002531AF /* WalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		275C585829E051A3002531AF /* WalletUrl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletUrl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		275C585A29E051AB002531AF /* SwiftSignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftSignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		275C586529E05215002531AF /* WalletContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletContext.swift; sourceTree = "<group>"; };
+		275C586729E05240002531AF /* WalletPresentationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletPresentationData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +112,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				275C585C29E051B6002531AF /* WalletCore.framework in Frameworks */,
 				27A1280929E0402C002D030A /* UICreateWallet.framework in Frameworks */,
+				275C585E29E051B8002531AF /* SwiftSignalKit.framework in Frameworks */,
+				275C586029E051BA002531AF /* WalletUrl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				273A60BB29E0351A007CA6F0 /* Resources */,
+				275C576E29E04E2A002531AF /* Sources */,
 				274D3EBD29D619BD007C47AE /* AppDelegate.swift */,
 				274D3EC629D619BF007C47AE /* Assets.xcassets */,
 				274D3EC829D619BF007C47AE /* LaunchScreen.storyboard */,
@@ -196,10 +218,23 @@
 		274D3F2B29D62BF3007C47AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				275C585A29E051AB002531AF /* SwiftSignalKit.framework */,
+				275C585829E051A3002531AF /* WalletUrl.framework */,
+				275C57B729E04F79002531AF /* WalletCore.framework */,
 				274D3F8A29D639C5007C47AE /* UICreateWallet.framework */,
 				274D3F2C29D62BF3007C47AE /* UIComponents.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		275C576E29E04E2A002531AF /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				275C576F29E04E37002531AF /* WalletContextImpl.swift */,
+				275C586529E05215002531AF /* WalletContext.swift */,
+				275C586729E05240002531AF /* WalletPresentationData.swift */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,7 +381,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				275C577029E04E37002531AF /* WalletContextImpl.swift in Sources */,
 				274D3EBE29D619BD007C47AE /* AppDelegate.swift in Sources */,
+				275C586829E05240002531AF /* WalletPresentationData.swift in Sources */,
+				275C586629E05215002531AF /* WalletContext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

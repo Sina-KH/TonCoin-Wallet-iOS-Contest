@@ -8,10 +8,15 @@
 import UIKit
 
 class WalletCreatedVC: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        navigationItem.hidesBackButton = true
     }
-
+    
+    @IBAction func proceedPressed(_ sender: Any) {
+        
+    }
+    
 }

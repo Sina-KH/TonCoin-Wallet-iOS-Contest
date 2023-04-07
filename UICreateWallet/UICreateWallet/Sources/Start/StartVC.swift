@@ -16,9 +16,9 @@ public class StartVC: UIViewController {
     }
 
     @IBAction func createWalletPressed(_ sender: Any) {
-        navigationController?.pushViewController(UIViewController(nibName: "WalletCreatedVC",
-                                                                  bundle: Bundle(identifier: "org.ton.wallet.UICreateWallet")),
-                                                 animated: true)
+        let walletCreatedVC = WalletCreatedVC(nibName: "WalletCreatedVC",
+                                              bundle: Bundle(identifier: "org.ton.wallet.UICreateWallet"))
+        navigationController?.pushViewController(walletCreatedVC, animated: true)
     }
     
     @IBAction func importWalletPressed(_ sender: Any) {
