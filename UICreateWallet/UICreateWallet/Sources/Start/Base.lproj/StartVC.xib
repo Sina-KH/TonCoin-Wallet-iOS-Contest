@@ -22,16 +22,27 @@
                     <rect key="frame" x="0.0" y="59" width="393" height="585"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ya9-Yp-prA" userLabel="CenterView">
-                            <rect key="frame" x="32" y="192.66666666666663" width="329" height="200"/>
+                            <rect key="frame" x="32" y="171.33333333333337" width="329" height="242.66666666666663"/>
                             <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6md-Oh-YhS" customClass="WAnimatedSticker" customModule="UIComponents">
+                                    <rect key="frame" x="102.66666666666666" y="0.0" width="124" height="124"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="124" id="8xU-TW-nj4"/>
+                                        <constraint firstAttribute="height" constant="124" id="bec-Z0-MGH"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="WalletIntroLoading"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TON Wallet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSj-A3-nfp">
-                                    <rect key="frame" x="0.0" y="93.333333333333343" width="329" height="33.666666666666657"/>
+                                    <rect key="frame" x="0.0" y="135.99999999999997" width="329" height="33.666666666666657"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqo-D2-PXO">
-                                    <rect key="frame" x="0.0" y="139.00000000000003" width="329" height="61"/>
+                                    <rect key="frame" x="0.0" y="181.66666666666666" width="329" height="61"/>
                                     <string key="text">TON Wallet allows you to make fast and
 secure blockchain-based payments
 without intermediaries.</string>
@@ -42,10 +53,12 @@ without intermediaries.</string>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
+                                <constraint firstItem="6md-Oh-YhS" firstAttribute="top" secondItem="Ya9-Yp-prA" secondAttribute="top" id="56X-Ls-yR8"/>
                                 <constraint firstItem="fqo-D2-PXO" firstAttribute="top" secondItem="WSj-A3-nfp" secondAttribute="bottom" constant="12" id="8Mf-Vz-c3i"/>
+                                <constraint firstItem="WSj-A3-nfp" firstAttribute="top" secondItem="6md-Oh-YhS" secondAttribute="bottom" constant="12" id="BYo-61-kEC"/>
                                 <constraint firstAttribute="bottom" secondItem="fqo-D2-PXO" secondAttribute="bottom" id="Pui-5H-Kry"/>
                                 <constraint firstItem="fqo-D2-PXO" firstAttribute="leading" secondItem="Ya9-Yp-prA" secondAttribute="leading" id="YxW-Qf-spW"/>
-                                <constraint firstAttribute="height" constant="200" id="cVc-vY-R2A"/>
+                                <constraint firstItem="6md-Oh-YhS" firstAttribute="centerX" secondItem="Ya9-Yp-prA" secondAttribute="centerX" id="jJt-3b-UoT"/>
                                 <constraint firstAttribute="trailing" secondItem="fqo-D2-PXO" secondAttribute="trailing" id="l0V-YL-2ys"/>
                                 <constraint firstAttribute="trailing" secondItem="WSj-A3-nfp" secondAttribute="trailing" id="vbZ-bA-fH7"/>
                                 <constraint firstItem="WSj-A3-nfp" firstAttribute="leading" secondItem="Ya9-Yp-prA" secondAttribute="leading" id="yCy-mN-ehR"/>

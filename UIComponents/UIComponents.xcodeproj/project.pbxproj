@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		273A5CB429E02000007CA6F0 /* WAnimatedSticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A5CB329E02000007CA6F0 /* WAnimatedSticker.swift */; };
 		273A5FDB29E02647007CA6F0 /* RLottieBinding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273A5FDA29E02647007CA6F0 /* RLottieBinding.framework */; };
+		273A5FF529E02929007CA6F0 /* GZip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273A5FF429E02929007CA6F0 /* GZip.framework */; };
+		273A5FF729E02E16007CA6F0 /* AnimatedStickerViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A5FF629E02E16007CA6F0 /* AnimatedStickerViews.swift */; };
+		273A604229E02EE1007CA6F0 /* SwiftSignalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273A604129E02EE1007CA6F0 /* SwiftSignalKit.framework */; };
+		273A608D29E030B5007CA6F0 /* SoftwareAnimationRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A608C29E030B5007CA6F0 /* SoftwareAnimationRenderer.swift */; };
+		273A608F29E030CA007CA6F0 /* AnimationRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A608E29E030CA007CA6F0 /* AnimationRenderer.swift */; };
+		273A609129E0310C007CA6F0 /* GenerateImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A609029E0310C007CA6F0 /* GenerateImage.swift */; };
+		273A60AE29E0316A007CA6F0 /* YuvConversion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273A60AD29E0316A007CA6F0 /* YuvConversion.framework */; };
+		273A60B129E0325B007CA6F0 /* UIColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A60B029E0325B007CA6F0 /* UIColorUtils.swift */; };
 		274D3EFD29D61CC4007C47AE /* UIComponents.docc in Sources */ = {isa = PBXBuildFile; fileRef = 274D3EFC29D61CC4007C47AE /* UIComponents.docc */; };
 		274D3F0329D61CC4007C47AE /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3EF829D61CC4007C47AE /* UIComponents.framework */; };
 		274D3F0829D61CC4007C47AE /* UIComponentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3F0729D61CC4007C47AE /* UIComponentsTests.swift */; };
@@ -31,6 +39,14 @@
 		273A5CB329E02000007CA6F0 /* WAnimatedSticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WAnimatedSticker.swift; sourceTree = "<group>"; };
 		273A5CB629E02014007CA6F0 /* RLottie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RLottie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		273A5FDA29E02647007CA6F0 /* RLottieBinding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RLottieBinding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		273A5FF429E02929007CA6F0 /* GZip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GZip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		273A5FF629E02E16007CA6F0 /* AnimatedStickerViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedStickerViews.swift; sourceTree = "<group>"; };
+		273A604129E02EE1007CA6F0 /* SwiftSignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftSignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		273A608C29E030B5007CA6F0 /* SoftwareAnimationRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareAnimationRenderer.swift; sourceTree = "<group>"; };
+		273A608E29E030CA007CA6F0 /* AnimationRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationRenderer.swift; sourceTree = "<group>"; };
+		273A609029E0310C007CA6F0 /* GenerateImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateImage.swift; sourceTree = "<group>"; };
+		273A60AD29E0316A007CA6F0 /* YuvConversion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = YuvConversion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		273A60B029E0325B007CA6F0 /* UIColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorUtils.swift; sourceTree = "<group>"; };
 		274D3EF829D61CC4007C47AE /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		274D3EFB29D61CC4007C47AE /* UIComponents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIComponents.h; sourceTree = "<group>"; };
 		274D3EFC29D61CC4007C47AE /* UIComponents.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = UIComponents.docc; sourceTree = "<group>"; };
@@ -45,6 +61,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				273A604229E02EE1007CA6F0 /* SwiftSignalKit.framework in Frameworks */,
+				273A60AE29E0316A007CA6F0 /* YuvConversion.framework in Frameworks */,
+				273A5FF529E02929007CA6F0 /* GZip.framework in Frameworks */,
 				273A5FDB29E02647007CA6F0 /* RLottieBinding.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -64,6 +83,10 @@
 			isa = PBXGroup;
 			children = (
 				273A5CB329E02000007CA6F0 /* WAnimatedSticker.swift */,
+				273A5FF629E02E16007CA6F0 /* AnimatedStickerViews.swift */,
+				273A608E29E030CA007CA6F0 /* AnimationRenderer.swift */,
+				273A608C29E030B5007CA6F0 /* SoftwareAnimationRenderer.swift */,
+				273A609029E0310C007CA6F0 /* GenerateImage.swift */,
 			);
 			path = AnimatedSticker;
 			sourceTree = "<group>";
@@ -71,10 +94,21 @@
 		273A5CB529E02014007CA6F0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				273A60AD29E0316A007CA6F0 /* YuvConversion.framework */,
+				273A604129E02EE1007CA6F0 /* SwiftSignalKit.framework */,
+				273A5FF429E02929007CA6F0 /* GZip.framework */,
 				273A5FDA29E02647007CA6F0 /* RLottieBinding.framework */,
 				273A5CB629E02014007CA6F0 /* RLottie.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		273A60AF29E0324D007CA6F0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				273A60B029E0325B007CA6F0 /* UIColorUtils.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		274D3EEE29D61CC4007C47AE = {
@@ -119,6 +153,7 @@
 			children = (
 				273A5CB229E01FE5007CA6F0 /* AnimatedSticker */,
 				274D3F2229D626F6007C47AE /* Buttons */,
+				273A60AF29E0324D007CA6F0 /* Utils */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -242,9 +277,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				273A5CB429E02000007CA6F0 /* WAnimatedSticker.swift in Sources */,
+				273A608F29E030CA007CA6F0 /* AnimationRenderer.swift in Sources */,
 				274D3F2829D628E4007C47AE /* WButtonPrimary.swift in Sources */,
+				273A5FF729E02E16007CA6F0 /* AnimatedStickerViews.swift in Sources */,
+				273A609129E0310C007CA6F0 /* GenerateImage.swift in Sources */,
 				274D3EFD29D61CC4007C47AE /* UIComponents.docc in Sources */,
+				273A608D29E030B5007CA6F0 /* SoftwareAnimationRenderer.swift in Sources */,
 				274D3F2F29D636A3007C47AE /* WButtonSecondary.swift in Sources */,
+				273A60B129E0325B007CA6F0 /* UIColorUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,4 +13,13 @@
    <FileRef
       location = "group:RLottieBinding/RLottieBinding.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:GZip/GZip.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SwiftSignalKit/SwiftSignalKit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:YuvConversion/YuvConversion.xcodeproj">
+   </FileRef>
 </Workspace>

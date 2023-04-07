@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		273A60CA29E0353C007CA6F0 /* WalletApologiesAccepted.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 273A60BD29E0353B007CA6F0 /* WalletApologiesAccepted.tgs */; };
+		273A60CB29E0353C007CA6F0 /* WalletInitializing.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 273A60BE29E0353B007CA6F0 /* WalletInitializing.tgs */; };
+		273A60CC29E0353C007CA6F0 /* WalletNotAvailable.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 273A60BF29E0353B007CA6F0 /* WalletNotAvailable.tgs */; };
+		273A60CD29E0353C007CA6F0 /* WalletKeyLock.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 273A60C029E0353B007CA6F0 /* WalletKeyLock.tgs */; };
+		273A60CE29E0353C007CA6F0 /* WalletCreated.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 273A60C129E0353B007CA6F0 /* WalletCreated.tgs */; };
+		273A60CF29E0353C007CA6F0 /* WalletWordList.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 273A60C229E0353B007CA6F0 /* WalletWordList.tgs */; };
+		273A60D029E0353C007CA6F0 /* WalletDone.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 273A60C329E0353B007CA6F0 /* WalletDone.tgs */; };
+		273A60D129E0353C007CA6F0 /* WalletIntroLoading.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 273A60C429E0353C007CA6F0 /* WalletIntroLoading.tgs */; };
+		273A60D229E0353C007CA6F0 /* WalletWordCheck.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 273A60C529E0353C007CA6F0 /* WalletWordCheck.tgs */; };
+		273A60D329E0353C007CA6F0 /* WalletEmpty.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 273A60C629E0353C007CA6F0 /* WalletEmpty.tgs */; };
+		273A60D429E0353C007CA6F0 /* WalletSynchronization.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 273A60C729E0353C007CA6F0 /* WalletSynchronization.tgs */; };
+		273A60D529E0353C007CA6F0 /* WalletIntroStatic.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 273A60C829E0353C007CA6F0 /* WalletIntroStatic.tgs */; };
+		273A60D629E0353C007CA6F0 /* SendingGrams.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 273A60C929E0353C007CA6F0 /* SendingGrams.tgs */; };
 		274D3EBE29D619BD007C47AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3EBD29D619BD007C47AE /* AppDelegate.swift */; };
 		274D3EC729D619BF007C47AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 274D3EC629D619BF007C47AE /* Assets.xcassets */; };
 		274D3ECA29D619BF007C47AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 274D3EC829D619BF007C47AE /* LaunchScreen.storyboard */; };
@@ -34,6 +47,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		273A60BD29E0353B007CA6F0 /* WalletApologiesAccepted.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = WalletApologiesAccepted.tgs; sourceTree = "<group>"; };
+		273A60BE29E0353B007CA6F0 /* WalletInitializing.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = WalletInitializing.tgs; sourceTree = "<group>"; };
+		273A60BF29E0353B007CA6F0 /* WalletNotAvailable.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = WalletNotAvailable.tgs; sourceTree = "<group>"; };
+		273A60C029E0353B007CA6F0 /* WalletKeyLock.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = WalletKeyLock.tgs; sourceTree = "<group>"; };
+		273A60C129E0353B007CA6F0 /* WalletCreated.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = WalletCreated.tgs; sourceTree = "<group>"; };
+		273A60C229E0353B007CA6F0 /* WalletWordList.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = WalletWordList.tgs; sourceTree = "<group>"; };
+		273A60C329E0353B007CA6F0 /* WalletDone.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = WalletDone.tgs; sourceTree = "<group>"; };
+		273A60C429E0353C007CA6F0 /* WalletIntroLoading.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = WalletIntroLoading.tgs; sourceTree = "<group>"; };
+		273A60C529E0353C007CA6F0 /* WalletWordCheck.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = WalletWordCheck.tgs; sourceTree = "<group>"; };
+		273A60C629E0353C007CA6F0 /* WalletEmpty.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = WalletEmpty.tgs; sourceTree = "<group>"; };
+		273A60C729E0353C007CA6F0 /* WalletSynchronization.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = WalletSynchronization.tgs; sourceTree = "<group>"; };
+		273A60C829E0353C007CA6F0 /* WalletIntroStatic.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = WalletIntroStatic.tgs; sourceTree = "<group>"; };
+		273A60C929E0353C007CA6F0 /* SendingGrams.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = SendingGrams.tgs; sourceTree = "<group>"; };
 		274D3EBA29D619BD007C47AE /* ToncoinWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToncoinWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		274D3EBD29D619BD007C47AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		274D3EC629D619BF007C47AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,6 +100,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		273A60BB29E0351A007CA6F0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				273A60BC29E03520007CA6F0 /* Animations */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		273A60BC29E03520007CA6F0 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				273A60C929E0353C007CA6F0 /* SendingGrams.tgs */,
+				273A60BD29E0353B007CA6F0 /* WalletApologiesAccepted.tgs */,
+				273A60C129E0353B007CA6F0 /* WalletCreated.tgs */,
+				273A60C329E0353B007CA6F0 /* WalletDone.tgs */,
+				273A60C629E0353C007CA6F0 /* WalletEmpty.tgs */,
+				273A60BE29E0353B007CA6F0 /* WalletInitializing.tgs */,
+				273A60C429E0353C007CA6F0 /* WalletIntroLoading.tgs */,
+				273A60C829E0353C007CA6F0 /* WalletIntroStatic.tgs */,
+				273A60C029E0353B007CA6F0 /* WalletKeyLock.tgs */,
+				273A60BF29E0353B007CA6F0 /* WalletNotAvailable.tgs */,
+				273A60C729E0353C007CA6F0 /* WalletSynchronization.tgs */,
+				273A60C529E0353C007CA6F0 /* WalletWordCheck.tgs */,
+				273A60C229E0353B007CA6F0 /* WalletWordList.tgs */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 		274D3EB129D619BD007C47AE = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +152,7 @@
 		274D3EBC29D619BD007C47AE /* ToncoinWallet */ = {
 			isa = PBXGroup;
 			children = (
+				273A60BB29E0351A007CA6F0 /* Resources */,
 				274D3EBD29D619BD007C47AE /* AppDelegate.swift */,
 				274D3EC629D619BF007C47AE /* Assets.xcassets */,
 				274D3EC829D619BF007C47AE /* LaunchScreen.storyboard */,
@@ -237,7 +292,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				274D3ECA29D619BF007C47AE /* LaunchScreen.storyboard in Resources */,
+				273A60D429E0353C007CA6F0 /* WalletSynchronization.tgs in Resources */,
+				273A60CA29E0353C007CA6F0 /* WalletApologiesAccepted.tgs in Resources */,
+				273A60D229E0353C007CA6F0 /* WalletWordCheck.tgs in Resources */,
+				273A60CD29E0353C007CA6F0 /* WalletKeyLock.tgs in Resources */,
+				273A60CC29E0353C007CA6F0 /* WalletNotAvailable.tgs in Resources */,
+				273A60CB29E0353C007CA6F0 /* WalletInitializing.tgs in Resources */,
+				273A60D129E0353C007CA6F0 /* WalletIntroLoading.tgs in Resources */,
+				273A60D529E0353C007CA6F0 /* WalletIntroStatic.tgs in Resources */,
+				273A60D329E0353C007CA6F0 /* WalletEmpty.tgs in Resources */,
+				273A60CE29E0353C007CA6F0 /* WalletCreated.tgs in Resources */,
+				273A60D629E0353C007CA6F0 /* SendingGrams.tgs in Resources */,
+				273A60D029E0353C007CA6F0 /* WalletDone.tgs in Resources */,
 				274D3EC729D619BF007C47AE /* Assets.xcassets in Resources */,
+				273A60CF29E0353C007CA6F0 /* WalletWordList.tgs in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
