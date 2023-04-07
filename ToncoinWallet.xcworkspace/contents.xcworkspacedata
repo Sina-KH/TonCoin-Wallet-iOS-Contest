@@ -20,13 +20,16 @@
       location = "group:TonBinding/TonBinding.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:/Users/sina/Documents/Projects/ToncoinWallet/SSignalKit/SSignalKit.xcodeproj">
+      location = "group:Ton/Ton.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:RLottieBinding/RLottieBinding.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:GZip/GZip.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/sina/Documents/Projects/ToncoinWallet/SSignalKit/SSignalKit.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:SwiftSignalKit/SwiftSignalKit.xcodeproj">
