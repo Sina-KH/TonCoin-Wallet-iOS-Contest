@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		273A60DB29E03BA1007CA6F0 /* WalletCreatedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A60D929E03BA1007CA6F0 /* WalletCreatedVC.swift */; };
+		273A60DC29E03BA1007CA6F0 /* WalletCreatedVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 273A60DA29E03BA1007CA6F0 /* WalletCreatedVC.xib */; };
 		274D3F6329D6380C007C47AE /* UICreateWallet.docc in Sources */ = {isa = PBXBuildFile; fileRef = 274D3F6229D6380C007C47AE /* UICreateWallet.docc */; };
 		274D3F6929D6380C007C47AE /* UICreateWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3F5E29D6380C007C47AE /* UICreateWallet.framework */; };
 		274D3F6E29D6380C007C47AE /* UICreateWalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3F6D29D6380C007C47AE /* UICreateWalletTests.swift */; };
@@ -27,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		273A60D929E03BA1007CA6F0 /* WalletCreatedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCreatedVC.swift; sourceTree = "<group>"; };
+		273A60DA29E03BA1007CA6F0 /* WalletCreatedVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalletCreatedVC.xib; sourceTree = "<group>"; };
 		274D3F5E29D6380C007C47AE /* UICreateWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UICreateWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		274D3F6129D6380C007C47AE /* UICreateWallet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICreateWallet.h; sourceTree = "<group>"; };
 		274D3F6229D6380C007C47AE /* UICreateWallet.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = UICreateWallet.docc; sourceTree = "<group>"; };
@@ -57,6 +61,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		273A60D829E03B73007CA6F0 /* WalletCreated */ = {
+			isa = PBXGroup;
+			children = (
+				273A60D929E03BA1007CA6F0 /* WalletCreatedVC.swift */,
+				273A60DA29E03BA1007CA6F0 /* WalletCreatedVC.xib */,
+			);
+			path = WalletCreated;
+			sourceTree = "<group>";
+		};
 		274D3F5429D6380C007C47AE = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				274D3F8929D638B0007C47AE /* Start */,
+				273A60D829E03B73007CA6F0 /* WalletCreated */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -211,6 +225,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				273A60DC29E03BA1007CA6F0 /* WalletCreatedVC.xib in Resources */,
 				274D3F8F29D63B5D007C47AE /* StartVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -231,6 +246,7 @@
 			files = (
 				274D3F6329D6380C007C47AE /* UICreateWallet.docc in Sources */,
 				274D3F8729D638A3007C47AE /* StartVC.swift in Sources */,
+				273A60DB29E03BA1007CA6F0 /* WalletCreatedVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

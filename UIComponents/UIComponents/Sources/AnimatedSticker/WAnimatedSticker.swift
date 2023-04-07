@@ -9,9 +9,16 @@ import UIKit
 import GZip
 import RLottieBinding
 
-@IBDesignable
 class WAnimatedSticker: UIView {
 
+    @IBInspectable
+    var animationWidth: Int = 248
+    @IBInspectable
+    var animationHeight: Int = 248
+    
+    @IBInspectable
+    var replay: Bool = false
+    
     @IBInspectable
     var animationName: String = "" {
         didSet {
@@ -44,7 +51,10 @@ class WAnimatedSticker: UIView {
         animatedSticker?.didLoad()
 
         // setup the animated sticker
-        animatedSticker?.setup(source: AnimatedStickerNodeLocalFileSource(path: path), width: 248, height: 248, mode: .direct)
+        animatedSticker?.setup(source: AnimatedStickerNodeLocalFileSource(path: path),
+                               width: 248, height: 248,
+                               playbackMode: replay ? .loop : .once,
+                               mode: .direct)
         animatedSticker?.play()
     }
     

@@ -22,7 +22,7 @@
                     <rect key="frame" x="0.0" y="59" width="393" height="585"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ya9-Yp-prA" userLabel="CenterView">
-                            <rect key="frame" x="32" y="171.33333333333337" width="329" height="242.66666666666663"/>
+                            <rect key="frame" x="32" y="167.33333333333337" width="329" height="250.66666666666663"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6md-Oh-YhS" customClass="WAnimatedSticker" customModule="UIComponents">
                                     <rect key="frame" x="102.66666666666666" y="0.0" width="124" height="124"/>
@@ -33,16 +33,23 @@
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="WalletIntroLoading"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="animationWidth">
+                                            <integer key="value" value="248"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="animationHeight">
+                                            <integer key="value" value="248"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="replay" value="YES"/>
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TON Wallet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSj-A3-nfp">
-                                    <rect key="frame" x="0.0" y="135.99999999999997" width="329" height="33.666666666666657"/>
+                                    <rect key="frame" x="0.0" y="143.99999999999997" width="329" height="33.666666666666657"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqo-D2-PXO">
-                                    <rect key="frame" x="0.0" y="181.66666666666666" width="329" height="61"/>
+                                    <rect key="frame" x="0.0" y="189.66666666666666" width="329" height="61"/>
                                     <string key="text">TON Wallet allows you to make fast and
 secure blockchain-based payments
 without intermediaries.</string>
@@ -55,7 +62,7 @@ without intermediaries.</string>
                             <constraints>
                                 <constraint firstItem="6md-Oh-YhS" firstAttribute="top" secondItem="Ya9-Yp-prA" secondAttribute="top" id="56X-Ls-yR8"/>
                                 <constraint firstItem="fqo-D2-PXO" firstAttribute="top" secondItem="WSj-A3-nfp" secondAttribute="bottom" constant="12" id="8Mf-Vz-c3i"/>
-                                <constraint firstItem="WSj-A3-nfp" firstAttribute="top" secondItem="6md-Oh-YhS" secondAttribute="bottom" constant="12" id="BYo-61-kEC"/>
+                                <constraint firstItem="WSj-A3-nfp" firstAttribute="top" secondItem="6md-Oh-YhS" secondAttribute="bottom" constant="20" id="BYo-61-kEC"/>
                                 <constraint firstAttribute="bottom" secondItem="fqo-D2-PXO" secondAttribute="bottom" id="Pui-5H-Kry"/>
                                 <constraint firstItem="fqo-D2-PXO" firstAttribute="leading" secondItem="Ya9-Yp-prA" secondAttribute="leading" id="YxW-Qf-spW"/>
                                 <constraint firstItem="6md-Oh-YhS" firstAttribute="centerX" secondItem="Ya9-Yp-prA" secondAttribute="centerX" id="jJt-3b-UoT"/>
@@ -80,11 +87,17 @@ without intermediaries.</string>
                             <rect key="frame" x="0.0" y="0.0" width="297" height="50"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" title="Create my wallet"/>
+                            <connections>
+                                <action selector="createWalletPressed:" destination="-1" eventType="touchUpInside" id="XlQ-Ra-Idm"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rze-Vl-ik2" customClass="WButtonSecondary" customModule="UIComponents">
                             <rect key="frame" x="0.0" y="66" width="297" height="50"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" title="Import existing wallet"/>
+                            <connections>
+                                <action selector="importWalletPressed:" destination="-1" eventType="touchUpInside" id="UNF-JP-mXZ"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
