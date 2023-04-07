@@ -10,4 +10,7 @@
    <FileRef
       location = "group:ToncoinWallet/../UIComponents/UIComponents.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:RLottieBinding/RLottieBinding.xcodeproj">
+   </FileRef>
 </Workspace>

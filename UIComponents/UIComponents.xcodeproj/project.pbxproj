@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		273A5CB429E02000007CA6F0 /* WAnimatedSticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A5CB329E02000007CA6F0 /* WAnimatedSticker.swift */; };
+		273A5FDB29E02647007CA6F0 /* RLottieBinding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273A5FDA29E02647007CA6F0 /* RLottieBinding.framework */; };
 		274D3EFD29D61CC4007C47AE /* UIComponents.docc in Sources */ = {isa = PBXBuildFile; fileRef = 274D3EFC29D61CC4007C47AE /* UIComponents.docc */; };
 		274D3F0329D61CC4007C47AE /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3EF829D61CC4007C47AE /* UIComponents.framework */; };
 		274D3F0829D61CC4007C47AE /* UIComponentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3F0729D61CC4007C47AE /* UIComponentsTests.swift */; };
@@ -26,6 +28,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		273A5CB329E02000007CA6F0 /* WAnimatedSticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WAnimatedSticker.swift; sourceTree = "<group>"; };
+		273A5CB629E02014007CA6F0 /* RLottie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RLottie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		273A5FDA29E02647007CA6F0 /* RLottieBinding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RLottieBinding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		274D3EF829D61CC4007C47AE /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		274D3EFB29D61CC4007C47AE /* UIComponents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIComponents.h; sourceTree = "<group>"; };
 		274D3EFC29D61CC4007C47AE /* UIComponents.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = UIComponents.docc; sourceTree = "<group>"; };
@@ -40,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				273A5FDB29E02647007CA6F0 /* RLottieBinding.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,12 +60,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		273A5CB229E01FE5007CA6F0 /* AnimatedSticker */ = {
+			isa = PBXGroup;
+			children = (
+				273A5CB329E02000007CA6F0 /* WAnimatedSticker.swift */,
+			);
+			path = AnimatedSticker;
+			sourceTree = "<group>";
+		};
+		273A5CB529E02014007CA6F0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				273A5FDA29E02647007CA6F0 /* RLottieBinding.framework */,
+				273A5CB629E02014007CA6F0 /* RLottie.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		274D3EEE29D61CC4007C47AE = {
 			isa = PBXGroup;
 			children = (
 				274D3EFA29D61CC4007C47AE /* UIComponents */,
 				274D3F0629D61CC4007C47AE /* UIComponentsTests */,
 				274D3EF929D61CC4007C47AE /* Products */,
+				273A5CB529E02014007CA6F0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,6 +117,7 @@
 		274D3F2129D626F6007C47AE /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				273A5CB229E01FE5007CA6F0 /* AnimatedSticker */,
 				274D3F2229D626F6007C47AE /* Buttons */,
 			);
 			path = Sources;
@@ -216,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				273A5CB429E02000007CA6F0 /* WAnimatedSticker.swift in Sources */,
 				274D3F2829D628E4007C47AE /* WButtonPrimary.swift in Sources */,
 				274D3EFD29D61CC4007C47AE /* UIComponents.docc in Sources */,
 				274D3F2F29D636A3007C47AE /* WButtonSecondary.swift in Sources */,
