@@ -14,8 +14,9 @@
 		274D3F6E29D6380C007C47AE /* UICreateWalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3F6D29D6380C007C47AE /* UICreateWalletTests.swift */; };
 		274D3F6F29D6380C007C47AE /* UICreateWallet.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D3F6129D6380C007C47AE /* UICreateWallet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		274D3F8729D638A3007C47AE /* StartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3F8529D638A3007C47AE /* StartVC.swift */; };
-		274D3F8E29D639D0007C47AE /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3F8D29D639D0007C47AE /* UIComponents.framework */; };
 		274D3F8F29D63B5D007C47AE /* StartVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 274D3F9129D63B5D007C47AE /* StartVC.xib */; };
+		27A1281529E04042002D030A /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3F8D29D639D0007C47AE /* UIComponents.framework */; };
+		27A1281629E04042002D030A /* UIComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3F8D29D639D0007C47AE /* UIComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +28,20 @@
 			remoteInfo = UICreateWallet;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		27A1281729E04042002D030A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				27A1281629E04042002D030A /* UIComponents.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		273A60D929E03BA1007CA6F0 /* WalletCreatedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCreatedVC.swift; sourceTree = "<group>"; };
@@ -46,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				274D3F8E29D639D0007C47AE /* UIComponents.framework in Frameworks */,
+				27A1281529E04042002D030A /* UIComponents.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +170,7 @@
 				274D3F5A29D6380C007C47AE /* Sources */,
 				274D3F5B29D6380C007C47AE /* Frameworks */,
 				274D3F5C29D6380C007C47AE /* Resources */,
+				27A1281729E04042002D030A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

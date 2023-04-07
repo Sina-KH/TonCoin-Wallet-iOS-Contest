@@ -26,7 +26,8 @@
 		274D3ED529D619BF007C47AE /* ToncoinWalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3ED429D619BF007C47AE /* ToncoinWalletTests.swift */; };
 		274D3EDF29D619BF007C47AE /* ToncoinWalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3EDE29D619BF007C47AE /* ToncoinWalletUITests.swift */; };
 		274D3EE129D619BF007C47AE /* ToncoinWalletUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3EE029D619BF007C47AE /* ToncoinWalletUITestsLaunchTests.swift */; };
-		274D3F8B29D639C5007C47AE /* UICreateWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3F8A29D639C5007C47AE /* UICreateWallet.framework */; };
+		27A1280929E0402C002D030A /* UICreateWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3F8A29D639C5007C47AE /* UICreateWallet.framework */; };
+		27A1280A29E0402C002D030A /* UICreateWallet.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3F8A29D639C5007C47AE /* UICreateWallet.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,20 @@
 			remoteInfo = ToncoinWallet;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		27A1280B29E0402C002D030A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				27A1280A29E0402C002D030A /* UICreateWallet.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		273A60BD29E0353B007CA6F0 /* WalletApologiesAccepted.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = WalletApologiesAccepted.tgs; sourceTree = "<group>"; };
@@ -79,7 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				274D3F8B29D639C5007C47AE /* UICreateWallet.framework in Frameworks */,
+				27A1280929E0402C002D030A /* UICreateWallet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +212,7 @@
 				274D3EB629D619BD007C47AE /* Sources */,
 				274D3EB729D619BD007C47AE /* Frameworks */,
 				274D3EB829D619BD007C47AE /* Resources */,
+				27A1280B29E0402C002D030A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
