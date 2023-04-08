@@ -20,9 +20,6 @@
       location = "group:TonBinding/TonBinding.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Ton/Ton.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:RLottieBinding/RLottieBinding.xcodeproj">
    </FileRef>
    <FileRef
