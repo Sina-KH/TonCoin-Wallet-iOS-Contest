@@ -14,7 +14,7 @@
       location = "group:WalletCore/WalletCore.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:/Users/sina/Documents/Projects/ToncoinWallet/WalletURL/WalletUrl.xcodeproj">
+      location = "group:WalletURL/WalletUrl.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:TonBinding/TonBinding.xcodeproj">
@@ -26,7 +26,7 @@
       location = "group:GZip/GZip.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:/Users/sina/Documents/Projects/ToncoinWallet/SSignalKit/SSignalKit.xcodeproj">
+      location = "group:SSignalKit/SSignalKit.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:SwiftSignalKit/SwiftSignalKit.xcodeproj">
