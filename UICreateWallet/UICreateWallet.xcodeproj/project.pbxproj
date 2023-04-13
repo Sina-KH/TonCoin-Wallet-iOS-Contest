@@ -17,6 +17,11 @@
 		274D3F8F29D63B5D007C47AE /* StartVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 274D3F9129D63B5D007C47AE /* StartVC.xib */; };
 		2786FB5429E872380023FE21 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB5229E872380023FE21 /* SplashVC.swift */; };
 		2786FB5529E872380023FE21 /* SplashVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2786FB5329E872380023FE21 /* SplashVC.xib */; };
+		2786FB5D29E879520023FE21 /* WalletContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB5C29E879520023FE21 /* WalletContext.swift */; };
+		2786FB6129E87AFE0023FE21 /* StringPluralization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB6029E87AFE0023FE21 /* StringPluralization.swift */; };
+		2786FB6329E87C590023FE21 /* WalletStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB6229E87C590023FE21 /* WalletStrings.swift */; };
+		2786FB6729E87D500023FE21 /* WalletPresentationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB6629E87D500023FE21 /* WalletPresentationData.swift */; };
+		2786FB6B29E87DBB0023FE21 /* StringPluralization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB6A29E87DBB0023FE21 /* StringPluralization.swift */; };
 		27A1281529E04042002D030A /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3F8D29D639D0007C47AE /* UIComponents.framework */; };
 		27A1281629E04042002D030A /* UIComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3F8D29D639D0007C47AE /* UIComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -58,6 +63,11 @@
 		274D3F9029D63B5D007C47AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/StartVC.xib; sourceTree = "<group>"; };
 		2786FB5229E872380023FE21 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		2786FB5329E872380023FE21 /* SplashVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashVC.xib; sourceTree = "<group>"; };
+		2786FB5C29E879520023FE21 /* WalletContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletContext.swift; sourceTree = "<group>"; };
+		2786FB6029E87AFE0023FE21 /* StringPluralization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringPluralization.swift; sourceTree = "<group>"; };
+		2786FB6229E87C590023FE21 /* WalletStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletStrings.swift; sourceTree = "<group>"; };
+		2786FB6629E87D500023FE21 /* WalletPresentationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletPresentationData.swift; sourceTree = "<group>"; };
+		2786FB6A29E87DBB0023FE21 /* StringPluralization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringPluralization.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,9 +139,8 @@
 		274D3F8229D63832007C47AE /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				2786FB4F29E871A20023FE21 /* SplashScreen */,
-				274D3F8929D638B0007C47AE /* Start */,
-				273A60D829E03B73007CA6F0 /* WalletCreated */,
+				2786FB6929E87D790023FE21 /* WalletContext */,
+				2786FB6829E87D680023FE21 /* ViewControllers */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -160,6 +169,28 @@
 				2786FB5329E872380023FE21 /* SplashVC.xib */,
 			);
 			path = SplashScreen;
+			sourceTree = "<group>";
+		};
+		2786FB6829E87D680023FE21 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2786FB4F29E871A20023FE21 /* SplashScreen */,
+				274D3F8929D638B0007C47AE /* Start */,
+				273A60D829E03B73007CA6F0 /* WalletCreated */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		2786FB6929E87D790023FE21 /* WalletContext */ = {
+			isa = PBXGroup;
+			children = (
+				2786FB6A29E87DBB0023FE21 /* StringPluralization.swift */,
+				2786FB5C29E879520023FE21 /* WalletContext.swift */,
+				2786FB6029E87AFE0023FE21 /* StringPluralization.swift */,
+				2786FB6629E87D500023FE21 /* WalletPresentationData.swift */,
+				2786FB6229E87C590023FE21 /* WalletStrings.swift */,
+			);
+			path = WalletContext;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,9 +306,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2786FB6129E87AFE0023FE21 /* StringPluralization.swift in Sources */,
+				2786FB6329E87C590023FE21 /* WalletStrings.swift in Sources */,
+				2786FB5D29E879520023FE21 /* WalletContext.swift in Sources */,
+				2786FB6B29E87DBB0023FE21 /* StringPluralization.swift in Sources */,
 				274D3F6329D6380C007C47AE /* UICreateWallet.docc in Sources */,
 				2786FB5429E872380023FE21 /* SplashVC.swift in Sources */,
 				274D3F8729D638A3007C47AE /* StartVC.swift in Sources */,
+				2786FB6729E87D500023FE21 /* WalletPresentationData.swift in Sources */,
 				273A60DB29E03BA1007CA6F0 /* WalletCreatedVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

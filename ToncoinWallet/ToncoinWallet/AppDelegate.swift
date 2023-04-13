@@ -251,7 +251,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 } else {
                     if publicKey != nil {
-                        let startVC = StartVC(nibName: "StartVC", bundle: Bundle(identifier: "org.ton.wallet.UICreateWallet"))
+                        let startVC = StartVC(walletContext: walletContext,
+                                              nibName: "StartVC",
+                                              bundle: Bundle(identifier: "org.ton.wallet.UICreateWallet"))
 //                        let splashScreen = WalletSplashScreen(context: walletContext, blockchainNetwork: initialResolvedConfig.activeNetwork, mode: .intro, walletCreatedPreloadState: nil)
                         beginWithController(startVC)
                     } else {

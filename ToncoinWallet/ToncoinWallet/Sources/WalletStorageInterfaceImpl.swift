@@ -2,6 +2,7 @@ import SwiftSignalKit
 import WalletCore
 import UIKit
 import AVFoundation
+import UICreateWallet
 
 final class WalletStorageInterfaceImpl: WalletStorageInterface {
     private let storage: FileBackedStorage
