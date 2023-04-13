@@ -34,4 +34,7 @@
    <FileRef
       location = "group:YuvConversion/YuvConversion.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:NumberPluralizationForm/NumberPluralizationForm.xcodeproj">
+   </FileRef>
 </Workspace>

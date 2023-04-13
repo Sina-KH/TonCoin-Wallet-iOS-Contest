@@ -19,6 +19,9 @@
 		274D3F0929D61CC4007C47AE /* UIComponents.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D3EFB29D61CC4007C47AE /* UIComponents.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		274D3F2829D628E4007C47AE /* WButtonPrimary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3F2329D626F6007C47AE /* WButtonPrimary.swift */; };
 		274D3F2F29D636A3007C47AE /* WButtonSecondary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3F2E29D636A3007C47AE /* WButtonSecondary.swift */; };
+		2786FB5729E874060023FE21 /* CAAnimationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB5629E874060023FE21 /* CAAnimationUtils.swift */; };
+		2786FB5929E874A80023FE21 /* UIKitUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB5829E874A80023FE21 /* UIKitUtils.swift */; };
+		2786FB5B29E876420023FE21 /* UIKitRuntimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB5A29E876420023FE21 /* UIKitRuntimeUtils.swift */; };
 		27A1280C29E0403C002D030A /* GZip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273A5FF429E02929007CA6F0 /* GZip.framework */; };
 		27A1280D29E0403C002D030A /* GZip.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 273A5FF429E02929007CA6F0 /* GZip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		27A1280F29E0403D002D030A /* RLottieBinding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273A5FDA29E02647007CA6F0 /* RLottieBinding.framework */; };
@@ -75,6 +78,9 @@
 		274D3F0729D61CC4007C47AE /* UIComponentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponentsTests.swift; sourceTree = "<group>"; };
 		274D3F2329D626F6007C47AE /* WButtonPrimary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WButtonPrimary.swift; sourceTree = "<group>"; };
 		274D3F2E29D636A3007C47AE /* WButtonSecondary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WButtonSecondary.swift; sourceTree = "<group>"; };
+		2786FB5629E874060023FE21 /* CAAnimationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAAnimationUtils.swift; sourceTree = "<group>"; };
+		2786FB5829E874A80023FE21 /* UIKitUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitUtils.swift; sourceTree = "<group>"; };
+		2786FB5A29E876420023FE21 /* UIKitRuntimeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitRuntimeUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +134,9 @@
 			isa = PBXGroup;
 			children = (
 				273A60B029E0325B007CA6F0 /* UIColorUtils.swift */,
+				2786FB5629E874060023FE21 /* CAAnimationUtils.swift */,
+				2786FB5829E874A80023FE21 /* UIKitUtils.swift */,
+				2786FB5A29E876420023FE21 /* UIKitRuntimeUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -306,6 +315,9 @@
 				274D3EFD29D61CC4007C47AE /* UIComponents.docc in Sources */,
 				273A608D29E030B5007CA6F0 /* SoftwareAnimationRenderer.swift in Sources */,
 				274D3F2F29D636A3007C47AE /* WButtonSecondary.swift in Sources */,
+				2786FB5729E874060023FE21 /* CAAnimationUtils.swift in Sources */,
+				2786FB5B29E876420023FE21 /* UIKitRuntimeUtils.swift in Sources */,
+				2786FB5929E874A80023FE21 /* UIKitUtils.swift in Sources */,
 				273A60B129E0325B007CA6F0 /* UIColorUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

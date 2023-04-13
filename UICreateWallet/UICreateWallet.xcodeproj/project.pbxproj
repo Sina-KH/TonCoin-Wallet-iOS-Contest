@@ -15,6 +15,8 @@
 		274D3F6F29D6380C007C47AE /* UICreateWallet.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D3F6129D6380C007C47AE /* UICreateWallet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		274D3F8729D638A3007C47AE /* StartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3F8529D638A3007C47AE /* StartVC.swift */; };
 		274D3F8F29D63B5D007C47AE /* StartVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 274D3F9129D63B5D007C47AE /* StartVC.xib */; };
+		2786FB5429E872380023FE21 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB5229E872380023FE21 /* SplashVC.swift */; };
+		2786FB5529E872380023FE21 /* SplashVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2786FB5329E872380023FE21 /* SplashVC.xib */; };
 		27A1281529E04042002D030A /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3F8D29D639D0007C47AE /* UIComponents.framework */; };
 		27A1281629E04042002D030A /* UIComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3F8D29D639D0007C47AE /* UIComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -54,6 +56,8 @@
 		274D3F8529D638A3007C47AE /* StartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartVC.swift; sourceTree = "<group>"; };
 		274D3F8D29D639D0007C47AE /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		274D3F9029D63B5D007C47AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/StartVC.xib; sourceTree = "<group>"; };
+		2786FB5229E872380023FE21 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
+		2786FB5329E872380023FE21 /* SplashVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +129,7 @@
 		274D3F8229D63832007C47AE /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				2786FB4F29E871A20023FE21 /* SplashScreen */,
 				274D3F8929D638B0007C47AE /* Start */,
 				273A60D829E03B73007CA6F0 /* WalletCreated */,
 			);
@@ -146,6 +151,15 @@
 				274D3F8D29D639D0007C47AE /* UIComponents.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2786FB4F29E871A20023FE21 /* SplashScreen */ = {
+			isa = PBXGroup;
+			children = (
+				2786FB5229E872380023FE21 /* SplashVC.swift */,
+				2786FB5329E872380023FE21 /* SplashVC.xib */,
+			);
+			path = SplashScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,6 +255,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2786FB5529E872380023FE21 /* SplashVC.xib in Resources */,
 				273A60DC29E03BA1007CA6F0 /* WalletCreatedVC.xib in Resources */,
 				274D3F8F29D63B5D007C47AE /* StartVC.xib in Resources */,
 			);
@@ -261,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				274D3F6329D6380C007C47AE /* UICreateWallet.docc in Sources */,
+				2786FB5429E872380023FE21 /* SplashVC.swift in Sources */,
 				274D3F8729D638A3007C47AE /* StartVC.swift in Sources */,
 				273A60DB29E03BA1007CA6F0 /* WalletCreatedVC.swift in Sources */,
 			);
