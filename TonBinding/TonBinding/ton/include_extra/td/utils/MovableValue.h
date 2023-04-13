@@ -18,24 +18,37 @@
 */
 #pragma once
 
-#include "tonlib/tonlibjson_export.h"
+namespace td {
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+template <class T, T empty_val = T()>
+class MovableValue {
+ public:
+  MovableValue() = default;
+  MovableValue(T val) : val_(val) {
+  }
+  MovableValue(MovableValue &&other) : val_(other.val_) {
+    other.clear();
+  }
+  MovableValue &operator=(MovableValue &&other) {
+    if (this != &other) {
+      val_ = other.val_;
+      other.clear();
+    }
+    return *this;
+  }
+  MovableValue(const MovableValue &) = delete;
+  MovableValue &operator=(const MovableValue &) = delete;
+  ~MovableValue() = default;
 
-TONLIBJSON_EXPORT void *tonlib_client_json_create();
+  void clear() {
+    val_ = empty_val;
+  }
+  const T &get() const {
+    return val_;
+  }
 
-TONLIBJSON_EXPORT void tonlib_client_set_verbosity_level(int verbosity_level);
+ private:
+  T val_ = empty_val;
+};
 
-TONLIBJSON_EXPORT void tonlib_client_json_send(void *client, const char *request);
-
-TONLIBJSON_EXPORT const char *tonlib_client_json_receive(void *client, double timeout);
-
-TONLIBJSON_EXPORT const char *tonlib_client_json_execute(void *client, const char *request);
-
-TONLIBJSON_EXPORT void tonlib_client_json_destroy(void *client);
-
-#ifdef __cplusplus
-}  // extern "C"
-#endif
+}  // namespace td

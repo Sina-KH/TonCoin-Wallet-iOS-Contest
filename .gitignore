@@ -104,3 +104,7 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+
+# Built Libs
+TonBinding/TonBinding/ton/lib/*.a
+TonBinding/TonBinding/openssl/lib/*.a

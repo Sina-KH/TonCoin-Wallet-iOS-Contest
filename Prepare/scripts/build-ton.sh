@@ -5,15 +5,15 @@ SOURCE_PATH="ton"
 
 
 
-#cd $SOURCE_PATH
-#rm -rf build
-#mkdir build
-#cd build
-#cmake ..
-#cmake --build . --target prepare_cross_compiling
-#cd ..
-#rm -rf build
-#cd ..
+cd $SOURCE_PATH
+rm -rf build
+mkdir build
+cd build
+cmake ..
+cmake --build . --target prepare_cross_compiling
+cd ..
+rm -rf build
+cd ..
 
 
 
@@ -33,4 +33,8 @@ cp -R "$SOURCE_PATH" "$BUILD_DIR/"
 sh $BUILD_DIR/build-ton-arch.sh "$BUILD_DIR_ARM64" "$BUILD_DIR" "$OPENSSL" arm64 12.0
 sh $BUILD_DIR/build-ton-arch.sh "$BUILD_DIR_X86_64" "$BUILD_DIR" "$OPENSSL" x86_64 12.0
 
-lipo 
+mkdir -p $(pwd)/build/ton_universal/lib
+for entry in $(pwd)/build/ton_x86_64/build/out/lib/*.a;do; \
+	entryFileName=`basename "$entry"`; \
+	lipo $entry $(pwd)/build/ton_arm64/build/out/lib/$entryFileName -create -output $(pwd)/build/ton_universal/lib/$entryFileName ;\
+done

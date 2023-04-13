@@ -6,6 +6,7 @@
 
 #include <string>
 #include "td/utils/SharedSlice.h"
+#include "crypto/common/bitstring.h"
 
 #include <cstdint>
 #include <memory>
@@ -60,6 +61,8 @@ class bip39Hints;
 
 class config;
 
+class configInfo;
+
 class data;
 
 class error;
@@ -100,6 +103,26 @@ class unpackedAccountAddress;
 
 class Update;
 
+class blocks_accountTransactionId;
+
+class blocks_blockLinkBack;
+
+class blocks_blockSignatures;
+
+class blocks_header;
+
+class blocks_masterchainInfo;
+
+class blocks_shardBlockLink;
+
+class blocks_shardBlockProof;
+
+class blocks_shards;
+
+class blocks_signature;
+
+class blocks_transactions;
+
 class dns_Action;
 
 class dns_entry;
@@ -113,6 +136,8 @@ class ton_blockId;
 class internal_transactionId;
 
 class liteServer_info;
+
+class blocks_shortTxId;
 
 class msg_Data;
 
@@ -142,6 +167,8 @@ class query_fees;
 
 class query_info;
 
+class raw_extMessageInfo;
+
 class raw_fullAccountState;
 
 class raw_message;
@@ -157,6 +184,10 @@ class rwallet_config;
 class rwallet_limit;
 
 class smc_info;
+
+class smc_libraryEntry;
+
+class smc_libraryResult;
 
 class smc_MethodId;
 
@@ -501,6 +532,22 @@ class config final : public Object {
   config(std::string const &config_, std::string const &blockchain_name_, bool use_callbacks_for_network_, bool ignore_cache_);
 
   static const std::int32_t ID = -1538391496;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class configInfo final : public Object {
+ public:
+  object_ptr<tvm_cell> config_;
+
+  configInfo();
+
+  explicit configInfo(object_ptr<tvm_cell> &&config_);
+
+  static const std::int32_t ID = 687887871;
   std::int32_t get_id() const final {
     return ID;
   }
@@ -1053,6 +1100,201 @@ class updateSyncState final : public Update {
   void store(td::TlStorerToString &s, const char *field_name) const final;
 };
 
+class blocks_accountTransactionId final : public Object {
+ public:
+  std::string account_;
+  std::int64_t lt_;
+
+  blocks_accountTransactionId();
+
+  blocks_accountTransactionId(std::string const &account_, std::int64_t lt_);
+
+  static const std::int32_t ID = -872996220;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class blocks_blockLinkBack final : public Object {
+ public:
+  bool to_key_block_;
+  object_ptr<ton_blockIdExt> from_;
+  object_ptr<ton_blockIdExt> to_;
+  std::string dest_proof_;
+  std::string proof_;
+  std::string state_proof_;
+
+  blocks_blockLinkBack();
+
+  blocks_blockLinkBack(bool to_key_block_, object_ptr<ton_blockIdExt> &&from_, object_ptr<ton_blockIdExt> &&to_, std::string const &dest_proof_, std::string const &proof_, std::string const &state_proof_);
+
+  static const std::int32_t ID = 1099726901;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class blocks_blockSignatures final : public Object {
+ public:
+  object_ptr<ton_blockIdExt> id_;
+  std::vector<object_ptr<blocks_signature>> signatures_;
+
+  blocks_blockSignatures();
+
+  blocks_blockSignatures(object_ptr<ton_blockIdExt> &&id_, std::vector<object_ptr<blocks_signature>> &&signatures_);
+
+  static const std::int32_t ID = -402531429;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class blocks_header final : public Object {
+ public:
+  object_ptr<ton_blockIdExt> id_;
+  std::int32_t global_id_;
+  std::int32_t version_;
+  std::int32_t flags_;
+  bool after_merge_;
+  bool after_split_;
+  bool before_split_;
+  bool want_merge_;
+  bool want_split_;
+  std::int32_t validator_list_hash_short_;
+  std::int32_t catchain_seqno_;
+  std::int32_t min_ref_mc_seqno_;
+  bool is_key_block_;
+  std::int32_t prev_key_block_seqno_;
+  std::int64_t start_lt_;
+  std::int64_t end_lt_;
+  std::int64_t gen_utime_;
+  std::int32_t vert_seqno_;
+  std::vector<object_ptr<ton_blockIdExt>> prev_blocks_;
+
+  blocks_header();
+
+  blocks_header(object_ptr<ton_blockIdExt> &&id_, std::int32_t global_id_, std::int32_t version_, std::int32_t flags_, bool after_merge_, bool after_split_, bool before_split_, bool want_merge_, bool want_split_, std::int32_t validator_list_hash_short_, std::int32_t catchain_seqno_, std::int32_t min_ref_mc_seqno_, bool is_key_block_, std::int32_t prev_key_block_seqno_, std::int64_t start_lt_, std::int64_t end_lt_, std::int64_t gen_utime_, std::int32_t vert_seqno_, std::vector<object_ptr<ton_blockIdExt>> &&prev_blocks_);
+
+  static const std::int32_t ID = 1479116386;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class blocks_masterchainInfo final : public Object {
+ public:
+  object_ptr<ton_blockIdExt> last_;
+  std::string state_root_hash_;
+  object_ptr<ton_blockIdExt> init_;
+
+  blocks_masterchainInfo();
+
+  blocks_masterchainInfo(object_ptr<ton_blockIdExt> &&last_, std::string const &state_root_hash_, object_ptr<ton_blockIdExt> &&init_);
+
+  static const std::int32_t ID = 835339083;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class blocks_shardBlockLink final : public Object {
+ public:
+  object_ptr<ton_blockIdExt> id_;
+  std::string proof_;
+
+  blocks_shardBlockLink();
+
+  blocks_shardBlockLink(object_ptr<ton_blockIdExt> &&id_, std::string const &proof_);
+
+  static const std::int32_t ID = -1495263895;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class blocks_shardBlockProof final : public Object {
+ public:
+  object_ptr<ton_blockIdExt> from_;
+  object_ptr<ton_blockIdExt> mc_id_;
+  std::vector<object_ptr<blocks_shardBlockLink>> links_;
+  std::vector<object_ptr<blocks_blockLinkBack>> mc_proof_;
+
+  blocks_shardBlockProof();
+
+  blocks_shardBlockProof(object_ptr<ton_blockIdExt> &&from_, object_ptr<ton_blockIdExt> &&mc_id_, std::vector<object_ptr<blocks_shardBlockLink>> &&links_, std::vector<object_ptr<blocks_blockLinkBack>> &&mc_proof_);
+
+  static const std::int32_t ID = -69836973;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class blocks_shards final : public Object {
+ public:
+  std::vector<object_ptr<ton_blockIdExt>> shards_;
+
+  blocks_shards();
+
+  explicit blocks_shards(std::vector<object_ptr<ton_blockIdExt>> &&shards_);
+
+  static const std::int32_t ID = 2069473610;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class blocks_signature final : public Object {
+ public:
+  td::Bits256 node_id_short_;
+  std::string signature_;
+
+  blocks_signature();
+
+  blocks_signature(td::Bits256 const &node_id_short_, std::string const &signature_);
+
+  static const std::int32_t ID = -1223522111;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class blocks_transactions final : public Object {
+ public:
+  object_ptr<ton_blockIdExt> id_;
+  std::int32_t req_count_;
+  bool incomplete_;
+  std::vector<object_ptr<blocks_shortTxId>> transactions_;
+
+  blocks_transactions();
+
+  blocks_transactions(object_ptr<ton_blockIdExt> &&id_, std::int32_t req_count_, bool incomplete_, std::vector<object_ptr<blocks_shortTxId>> &&transactions_);
+
+  static const std::int32_t ID = -1922305900;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
 class dns_Action: public Object {
  public:
 };
@@ -1073,13 +1315,13 @@ class dns_actionDeleteAll final : public dns_Action {
 class dns_actionDelete final : public dns_Action {
  public:
   std::string name_;
-  std::int32_t category_;
+  td::Bits256 category_;
 
   dns_actionDelete();
 
-  dns_actionDelete(std::string const &name_, std::int32_t category_);
+  dns_actionDelete(std::string const &name_, td::Bits256 const &category_);
 
-  static const std::int32_t ID = 775206882;
+  static const std::int32_t ID = 1141342033;
   std::int32_t get_id() const final {
     return ID;
   }
@@ -1106,14 +1348,14 @@ class dns_actionSet final : public dns_Action {
 class dns_entry final : public Object {
  public:
   std::string name_;
-  std::int32_t category_;
+  td::Bits256 category_;
   object_ptr<dns_EntryData> entry_;
 
   dns_entry();
 
-  dns_entry(std::string const &name_, std::int32_t category_, object_ptr<dns_EntryData> &&entry_);
+  dns_entry(std::string const &name_, td::Bits256 const &category_, object_ptr<dns_EntryData> &&entry_);
 
-  static const std::int32_t ID = -1842435400;
+  static const std::int32_t ID = 505104294;
   std::int32_t get_id() const final {
     return ID;
   }
@@ -1205,6 +1447,22 @@ class dns_entryDataAdnlAddress final : public dns_EntryData {
   void store(td::TlStorerToString &s, const char *field_name) const final;
 };
 
+class dns_entryDataStorageAddress final : public dns_EntryData {
+ public:
+  td::Bits256 bag_id_;
+
+  dns_entryDataStorageAddress();
+
+  explicit dns_entryDataStorageAddress(td::Bits256 const &bag_id_);
+
+  static const std::int32_t ID = -1751100388;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
 class dns_resolved final : public Object {
  public:
   std::vector<object_ptr<dns_entry>> entries_;
@@ -1267,6 +1525,26 @@ class liteServer_info final : public Object {
   liteServer_info(std::int64_t now_, std::int32_t version_, std::int64_t capabilities_);
 
   static const std::int32_t ID = -1250165133;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class blocks_shortTxId final : public Object {
+ public:
+  std::int32_t mode_;
+  std::string account_;
+  std::int64_t lt_;
+  std::string hash_;
+  enum Flags : std::int32_t {ACCOUNT_MASK = 1, LT_MASK = 2, HASH_MASK = 4};
+
+  blocks_shortTxId();
+
+  blocks_shortTxId(std::int32_t mode_, std::string const &account_, std::int64_t lt_, std::string const &hash_);
+
+  static const std::int32_t ID = 487976773;
   std::int32_t get_id() const final {
     return ID;
   }
@@ -1415,12 +1693,13 @@ class msg_message final : public Object {
   std::string public_key_;
   std::int64_t amount_;
   object_ptr<msg_Data> data_;
+  std::int32_t send_mode_;
 
   msg_message();
 
-  msg_message(object_ptr<accountAddress> &&destination_, std::string const &public_key_, std::int64_t amount_, object_ptr<msg_Data> &&data_);
+  msg_message(object_ptr<accountAddress> &&destination_, std::string const &public_key_, std::int64_t amount_, object_ptr<msg_Data> &&data_, std::int32_t send_mode_);
 
-  static const std::int32_t ID = -2110533580;
+  static const std::int32_t ID = 807907444;
   std::int32_t get_id() const final {
     return ID;
   }
@@ -1658,6 +1937,22 @@ class query_info final : public Object {
   void store(td::TlStorerToString &s, const char *field_name) const final;
 };
 
+class raw_extMessageInfo final : public Object {
+ public:
+  std::string hash_;
+
+  raw_extMessageInfo();
+
+  explicit raw_extMessageInfo(std::string const &hash_);
+
+  static const std::int32_t ID = 874086318;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
 class raw_fullAccountState final : public Object {
  public:
   std::int64_t balance_;
@@ -1802,6 +2097,39 @@ class smc_info final : public Object {
   explicit smc_info(std::int64_t id_);
 
   static const std::int32_t ID = 1134270012;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class smc_libraryEntry final : public Object {
+ public:
+  td::Bits256 hash_;
+  std::string data_;
+
+  smc_libraryEntry();
+
+  smc_libraryEntry(td::Bits256 const &hash_, std::string const &data_);
+
+  static const std::int32_t ID = -1546268148;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class smc_libraryResult final : public Object {
+ public:
+  std::vector<object_ptr<smc_libraryEntry>> result_;
+
+  smc_libraryResult();
+
+  explicit smc_libraryResult(std::vector<object_ptr<smc_libraryEntry>> &&result_);
+
+  static const std::int32_t ID = 203930622;
   std::int32_t get_id() const final {
     return ID;
   }
@@ -2079,6 +2407,141 @@ class addLogMessage final : public Function {
   void store(td::TlStorerToString &s, const char *field_name) const final;
 };
 
+class blocks_getBlockHeader final : public Function {
+ public:
+  object_ptr<ton_blockIdExt> id_;
+
+  blocks_getBlockHeader();
+
+  explicit blocks_getBlockHeader(object_ptr<ton_blockIdExt> &&id_);
+
+  static const std::int32_t ID = 1915102018;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  using ReturnType = object_ptr<blocks_header>;
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class blocks_getMasterchainBlockSignatures final : public Function {
+ public:
+  std::int32_t seqno_;
+
+  blocks_getMasterchainBlockSignatures();
+
+  explicit blocks_getMasterchainBlockSignatures(std::int32_t seqno_);
+
+  static const std::int32_t ID = 1616913876;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  using ReturnType = object_ptr<blocks_blockSignatures>;
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class blocks_getMasterchainInfo final : public Function {
+ public:
+
+  blocks_getMasterchainInfo();
+
+  static const std::int32_t ID = -45493615;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  using ReturnType = object_ptr<blocks_masterchainInfo>;
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class blocks_getShardBlockProof final : public Function {
+ public:
+  object_ptr<ton_blockIdExt> id_;
+  std::int32_t mode_;
+  object_ptr<ton_blockIdExt> from_;
+  enum Flags : std::int32_t {FROM_MASK = 1};
+  mutable std::int32_t var0;
+
+  blocks_getShardBlockProof();
+
+  blocks_getShardBlockProof(object_ptr<ton_blockIdExt> &&id_, std::int32_t mode_, object_ptr<ton_blockIdExt> &&from_);
+
+  static const std::int32_t ID = 435003111;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  using ReturnType = object_ptr<blocks_shardBlockProof>;
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class blocks_getShards final : public Function {
+ public:
+  object_ptr<ton_blockIdExt> id_;
+
+  blocks_getShards();
+
+  explicit blocks_getShards(object_ptr<ton_blockIdExt> &&id_);
+
+  static const std::int32_t ID = 2072773677;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  using ReturnType = object_ptr<blocks_shards>;
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class blocks_getTransactions final : public Function {
+ public:
+  object_ptr<ton_blockIdExt> id_;
+  std::int32_t mode_;
+  std::int32_t count_;
+  object_ptr<blocks_accountTransactionId> after_;
+  mutable std::int32_t var0;
+  mutable std::int32_t var1;
+
+  blocks_getTransactions();
+
+  blocks_getTransactions(object_ptr<ton_blockIdExt> &&id_, std::int32_t mode_, std::int32_t count_, object_ptr<blocks_accountTransactionId> &&after_);
+
+  static const std::int32_t ID = -896152271;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  using ReturnType = object_ptr<blocks_transactions>;
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class blocks_lookupBlock final : public Function {
+ public:
+  std::int32_t mode_;
+  object_ptr<ton_blockId> id_;
+  std::int64_t lt_;
+  std::int32_t utime_;
+
+  blocks_lookupBlock();
+
+  blocks_lookupBlock(std::int32_t mode_, object_ptr<ton_blockId> &&id_, std::int64_t lt_, std::int32_t utime_);
+
+  static const std::int32_t ID = 1418484659;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  using ReturnType = object_ptr<ton_blockIdExt>;
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
 class changeLocalPassword final : public Function {
  public:
   object_ptr<InputKey> input_key_;
@@ -2211,14 +2674,14 @@ class dns_resolve final : public Function {
  public:
   object_ptr<accountAddress> account_address_;
   std::string name_;
-  std::int32_t category_;
+  td::Bits256 category_;
   std::int32_t ttl_;
 
   dns_resolve();
 
-  dns_resolve(object_ptr<accountAddress> &&account_address_, std::string const &name_, std::int32_t category_, std::int32_t ttl_);
+  dns_resolve(object_ptr<accountAddress> &&account_address_, std::string const &name_, td::Bits256 const &category_, std::int32_t ttl_);
 
-  static const std::int32_t ID = -149238065;
+  static const std::int32_t ID = 1791399222;
   std::int32_t get_id() const final {
     return ID;
   }
@@ -2359,6 +2822,25 @@ class getAccountState final : public Function {
   void store(td::TlStorerToString &s, const char *field_name) const final;
 };
 
+class getAccountStateByTransaction final : public Function {
+ public:
+  object_ptr<accountAddress> account_address_;
+  object_ptr<internal_transactionId> transaction_id_;
+
+  getAccountStateByTransaction();
+
+  getAccountStateByTransaction(object_ptr<accountAddress> &&account_address_, object_ptr<internal_transactionId> &&transaction_id_);
+
+  static const std::int32_t ID = 756813774;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  using ReturnType = object_ptr<fullAccountState>;
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
 class getBip39Hints final : public Function {
  public:
   std::string prefix_;
@@ -2373,6 +2855,46 @@ class getBip39Hints final : public Function {
   }
 
   using ReturnType = object_ptr<bip39Hints>;
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class getConfigAll final : public Function {
+ public:
+  std::int32_t mode_;
+  mutable std::int32_t var0;
+
+  getConfigAll();
+
+  explicit getConfigAll(std::int32_t mode_);
+
+  static const std::int32_t ID = 484522064;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  using ReturnType = object_ptr<configInfo>;
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class getConfigParam final : public Function {
+ public:
+  std::int32_t mode_;
+  std::int32_t param_;
+  mutable std::int32_t var0;
+  mutable std::int32_t var1;
+
+  getConfigParam();
+
+  getConfigParam(std::int32_t mode_, std::int32_t param_);
+
+  static const std::int32_t ID = -234421517;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  using ReturnType = object_ptr<configInfo>;
 
   void store(td::TlStorerToString &s, const char *field_name) const final;
 };
@@ -2436,6 +2958,43 @@ class getLogVerbosityLevel final : public Function {
   }
 
   using ReturnType = object_ptr<logVerbosityLevel>;
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class getShardAccountCell final : public Function {
+ public:
+  object_ptr<accountAddress> account_address_;
+
+  getShardAccountCell();
+
+  explicit getShardAccountCell(object_ptr<accountAddress> &&account_address_);
+
+  static const std::int32_t ID = -1734437861;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  using ReturnType = object_ptr<tvm_cell>;
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class getShardAccountCellByTransaction final : public Function {
+ public:
+  object_ptr<accountAddress> account_address_;
+  object_ptr<internal_transactionId> transaction_id_;
+
+  getShardAccountCellByTransaction();
+
+  getShardAccountCellByTransaction(object_ptr<accountAddress> &&account_address_, object_ptr<internal_transactionId> &&transaction_id_);
+
+  static const std::int32_t ID = 406971329;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  using ReturnType = object_ptr<tvm_cell>;
 
   void store(td::TlStorerToString &s, const char *field_name) const final;
 };
@@ -2946,6 +3505,25 @@ class raw_getAccountState final : public Function {
   void store(td::TlStorerToString &s, const char *field_name) const final;
 };
 
+class raw_getAccountStateByTransaction final : public Function {
+ public:
+  object_ptr<accountAddress> account_address_;
+  object_ptr<internal_transactionId> transaction_id_;
+
+  raw_getAccountStateByTransaction();
+
+  raw_getAccountStateByTransaction(object_ptr<accountAddress> &&account_address_, object_ptr<internal_transactionId> &&transaction_id_);
+
+  static const std::int32_t ID = 714199203;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  using ReturnType = object_ptr<raw_fullAccountState>;
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
 class raw_getTransactions final : public Function {
  public:
   object_ptr<InputKey> private_key_;
@@ -2957,6 +3535,29 @@ class raw_getTransactions final : public Function {
   raw_getTransactions(object_ptr<InputKey> &&private_key_, object_ptr<accountAddress> &&account_address_, object_ptr<internal_transactionId> &&from_transaction_id_);
 
   static const std::int32_t ID = 1029612317;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  using ReturnType = object_ptr<raw_transactions>;
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class raw_getTransactionsV2 final : public Function {
+ public:
+  object_ptr<InputKey> private_key_;
+  object_ptr<accountAddress> account_address_;
+  object_ptr<internal_transactionId> from_transaction_id_;
+  std::int32_t count_;
+  bool try_decode_messages_;
+  mutable std::int32_t var0;
+
+  raw_getTransactionsV2();
+
+  raw_getTransactionsV2(object_ptr<InputKey> &&private_key_, object_ptr<accountAddress> &&account_address_, object_ptr<internal_transactionId> &&from_transaction_id_, std::int32_t count_, bool try_decode_messages_);
+
+  static const std::int32_t ID = -566264666;
   std::int32_t get_id() const final {
     return ID;
   }
@@ -2980,6 +3581,24 @@ class raw_sendMessage final : public Function {
   }
 
   using ReturnType = object_ptr<ok>;
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class raw_sendMessageReturnHash final : public Function {
+ public:
+  std::string body_;
+
+  raw_sendMessageReturnHash();
+
+  explicit raw_sendMessageReturnHash(std::string const &body_);
+
+  static const std::int32_t ID = -1228445927;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  using ReturnType = object_ptr<raw_extMessageInfo>;
 
   void store(td::TlStorerToString &s, const char *field_name) const final;
 };
@@ -3057,6 +3676,24 @@ class setLogVerbosityLevel final : public Function {
   void store(td::TlStorerToString &s, const char *field_name) const final;
 };
 
+class smc_forget final : public Function {
+ public:
+  std::int64_t id_;
+
+  smc_forget();
+
+  explicit smc_forget(std::int64_t id_);
+
+  static const std::int32_t ID = 911028710;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  using ReturnType = object_ptr<ok>;
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
 class smc_getCode final : public Function {
  public:
   std::int64_t id_;
@@ -3093,6 +3730,24 @@ class smc_getData final : public Function {
   void store(td::TlStorerToString &s, const char *field_name) const final;
 };
 
+class smc_getLibraries final : public Function {
+ public:
+  std::vector<td::Bits256> library_list_;
+
+  smc_getLibraries();
+
+  explicit smc_getLibraries(std::vector<td::Bits256> &&library_list_);
+
+  static const std::int32_t ID = 814345749;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  using ReturnType = object_ptr<smc_libraryResult>;
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
 class smc_getState final : public Function {
  public:
   std::int64_t id_;
@@ -3120,6 +3775,25 @@ class smc_load final : public Function {
   explicit smc_load(object_ptr<accountAddress> &&account_address_);
 
   static const std::int32_t ID = -903491521;
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+  using ReturnType = object_ptr<smc_info>;
+
+  void store(td::TlStorerToString &s, const char *field_name) const final;
+};
+
+class smc_loadByTransaction final : public Function {
+ public:
+  object_ptr<accountAddress> account_address_;
+  object_ptr<internal_transactionId> transaction_id_;
+
+  smc_loadByTransaction();
+
+  smc_loadByTransaction(object_ptr<accountAddress> &&account_address_, object_ptr<internal_transactionId> &&transaction_id_);
+
+  static const std::int32_t ID = -2019210447;
   std::int32_t get_id() const final {
     return ID;
   }
