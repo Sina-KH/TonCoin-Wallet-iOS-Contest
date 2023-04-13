@@ -22,6 +22,7 @@
 		2786FB5729E874060023FE21 /* CAAnimationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB5629E874060023FE21 /* CAAnimationUtils.swift */; };
 		2786FB5929E874A80023FE21 /* UIKitUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB5829E874A80023FE21 /* UIKitUtils.swift */; };
 		2786FB5B29E876420023FE21 /* UIKitRuntimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB5A29E876420023FE21 /* UIKitRuntimeUtils.swift */; };
+		2786FB6D29E882550023FE21 /* UIViewControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB6C29E882550023FE21 /* UIViewControllerUtils.swift */; };
 		27A1280C29E0403C002D030A /* GZip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273A5FF429E02929007CA6F0 /* GZip.framework */; };
 		27A1280D29E0403C002D030A /* GZip.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 273A5FF429E02929007CA6F0 /* GZip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		27A1280F29E0403D002D030A /* RLottieBinding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273A5FDA29E02647007CA6F0 /* RLottieBinding.framework */; };
@@ -81,6 +82,7 @@
 		2786FB5629E874060023FE21 /* CAAnimationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAAnimationUtils.swift; sourceTree = "<group>"; };
 		2786FB5829E874A80023FE21 /* UIKitUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitUtils.swift; sourceTree = "<group>"; };
 		2786FB5A29E876420023FE21 /* UIKitRuntimeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitRuntimeUtils.swift; sourceTree = "<group>"; };
+		2786FB6C29E882550023FE21 /* UIViewControllerUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 				2786FB5629E874060023FE21 /* CAAnimationUtils.swift */,
 				2786FB5829E874A80023FE21 /* UIKitUtils.swift */,
 				2786FB5A29E876420023FE21 /* UIKitRuntimeUtils.swift */,
+				2786FB6C29E882550023FE21 /* UIViewControllerUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				273A609129E0310C007CA6F0 /* GenerateImage.swift in Sources */,
 				274D3EFD29D61CC4007C47AE /* UIComponents.docc in Sources */,
 				273A608D29E030B5007CA6F0 /* SoftwareAnimationRenderer.swift in Sources */,
+				2786FB6D29E882550023FE21 /* UIViewControllerUtils.swift in Sources */,
 				274D3F2F29D636A3007C47AE /* WButtonSecondary.swift in Sources */,
 				2786FB5729E874060023FE21 /* CAAnimationUtils.swift in Sources */,
 				2786FB5B29E876420023FE21 /* UIKitRuntimeUtils.swift in Sources */,

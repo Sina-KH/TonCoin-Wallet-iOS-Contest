@@ -8,12 +8,15 @@
 import UIKit
 import SwiftSignalKit
 import WalletCore
+import UIComponents
 
 public class StartVC: UIViewController {
 
     var walletContext: WalletContext
 
-    public init(walletContext: WalletContext, nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    public init(walletContext: WalletContext,
+                nibName nibNameOrNil: String?,
+                bundle nibBundleOrNil: Bundle?) {
         self.walletContext = walletContext
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -50,23 +53,33 @@ public class StartVC: UIViewController {
                                   tonInstance: walletContext.tonInstance,
                                   keychain: walletContext.keychain,
                                   localPassword: serverSalt)
-            |> deliverOnMainQueue).start(next: { walletInfo, wordList in
-                print(walletInfo)
-                print(wordList)
-//                controller.dismiss()
-//                (strongSelf.navigationController as? NavigationController)?.replaceController(strongSelf, with: WalletSplashScreen(context: strongSelf.context, blockchainNetwork: strongSelf.blockchainNetwork, mode: .created(walletInfo: walletInfo, words: wordList), walletCreatedPreloadState: nil), animated: true)
-            }, error: { _ in
-//                displayError()
-            })
-        }, error: { _ in
-//            displayError()
-        })
+            |> deliverOnMainQueue).start(next: { [weak self] walletInfo, wordList in
+                guard let self else { return }
 
-        let walletCreatedVC = WalletCreatedVC(nibName: "WalletCreatedVC",
-                                              bundle: Bundle(identifier: "org.ton.wallet.UICreateWallet"))
-        navigationController?.pushViewController(walletCreatedVC, animated: true)
+                let walletCreatedVC = WalletCreatedVC(walletContext: walletContext,
+                                                      walletInfo: walletInfo,
+                                                      wordList: wordList,
+                                                      nibName: "WalletCreatedVC",
+                                                      bundle: Bundle(identifier: "org.ton.wallet.UICreateWallet"))
+                navigationController?.pushViewController(walletCreatedVC, animated: true)
+
+            }, error: { [weak self] _ in
+                guard let self else  { return }
+                showError()
+            })
+        }, error: { [weak self] _ in
+            guard let self else  { return }
+            showError()
+        })
     }
     
     @IBAction func importWalletPressed(_ sender: Any) {
+    }
+    
+    func showError() {
+        // TODO:: Check strings
+        showError(title: walletContext.presentationData.strings.Wallet_Intro_CreateErrorTitle,
+                  text: walletContext.presentationData.strings.Wallet_Intro_CreateErrorText,
+                  button: walletContext.presentationData.strings.Wallet_Alert_OK)
     }
 }
