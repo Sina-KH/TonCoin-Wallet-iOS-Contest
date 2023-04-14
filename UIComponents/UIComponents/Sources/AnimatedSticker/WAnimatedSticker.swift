@@ -9,24 +9,19 @@ import UIKit
 import GZip
 import RLottieBinding
 
-class WAnimatedSticker: UIView {
+public class WAnimatedSticker: UIView {
 
     @IBInspectable
-    var animationWidth: Int = 248
-    @IBInspectable
-    var animationHeight: Int = 248
+    public var replay: Bool = false
     
     @IBInspectable
-    var replay: Bool = false
-    
-    @IBInspectable
-    var animationName: String = ""
+    public var animationName: String = ""
     
     private var animatedSticker: AnimatedStickerNode? = nil
 
     override open func awakeFromNib() {
         super.awakeFromNib()
-        setup()
+        setup(width: Int(frame.width), height: Int(frame.height))
     }
     
     override open func prepareForInterfaceBuilder() {
@@ -34,22 +29,22 @@ class WAnimatedSticker: UIView {
     }
     
     // setup animation data
-    func setup() {
+    public func setup(width: Int, height: Int) {
         // load the animation
-        guard let path = Bundle(identifier: "org.ton.wallet")?.path(forResource: animationName, ofType: "tgs") else {
+        guard let path = Bundle.main.path(forResource: animationName, ofType: "tgs") else {
             return
         }
 
         // add animated sticker to the view
         animatedSticker = AnimatedStickerNode()
         animatedSticker?.translatesAutoresizingMaskIntoConstraints = false
-        animatedSticker?.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.width)
+        animatedSticker?.frame = CGRect(x: 0, y: 0, width: width, height: width)
         addSubview(animatedSticker!)
         animatedSticker?.didLoad()
 
         // setup the animated sticker
         animatedSticker?.setup(source: AnimatedStickerNodeLocalFileSource(path: path),
-                               width: 248, height: 248,
+                               width: width * 2, height: height * 2,
                                playbackMode: replay ? .loop : .once,
                                mode: .direct)
         animatedSticker?.play()

@@ -6,12 +6,8 @@
 //
 
 import UIKit
+import UIComponents
 
-public class SplashVC: UIViewController {
-
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
+public class SplashVC: WViewController {
 
 }

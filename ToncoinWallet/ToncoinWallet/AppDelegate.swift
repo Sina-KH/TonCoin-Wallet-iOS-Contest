@@ -10,6 +10,7 @@ import UICreateWallet
 import SwiftSignalKit
 import WalletCore
 import UIComponents
+import WalletContext
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,12 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
 
-        // set window background color
-        if #available(iOS 13.0, *) {
-            window?.backgroundColor = .systemBackground
-        } else {
-            window?.backgroundColor = .white
-        }
+        window?.backgroundColor = currentTheme.background
 
         // StartVC for users who are using the app for the first time
         let startVC = SplashVC(nibName: "SplashVC", bundle: Bundle(identifier: "org.ton.wallet.UICreateWallet"))
@@ -35,24 +31,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = navigationController
 
         self.window?.makeKeyAndVisible()
-        
-        // get wallet data and present correct page on the navigation controller
+
         startApp(on: navigationController)
         
         return true
     }
-
+    
+    // get wallet data and present correct page on the navigation controller
     func startApp(on navigationController: UINavigationController) {
-        let presentationData = WalletPresentationData(strings: WalletStrings(
-                primaryComponent: WalletStringsComponent(
-                    languageCode: "en",
-                    localizedName: "English",
-                    pluralizationRulesCode: "en",
-                    dict: [:]
-                ),
-                secondaryComponent: nil,
-                groupingSeparator: " "
-            ), dateTimeFormat: WalletPresentationDateTimeFormat(
+        let presentationData = WalletPresentationData(
+//            strings: WalletStrings(
+//                primaryComponent: WalletStringsComponent(
+//                    languageCode: "en",
+//                    localizedName: "English",
+//                    pluralizationRulesCode: "en",
+//                    dict: [:]
+//                ),
+//                secondaryComponent: nil,
+//                groupingSeparator: " "
+//            ),
+            dateTimeFormat: WalletPresentationDateTimeFormat(
                 timeFormat: .regular,
                 dateFormat: .dayFirst,
                 dateSeparator: ".",
@@ -233,8 +231,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                                        infoScreen.present(sendScreen, in: .current)
 //                                    }
                                 } else {
+                                    let walletCreatedVC = WalletCreatedVC(walletContext: walletContext,
+                                                                          walletInfo: info,
+                                                                          wordList: [])
 //                                    let createdScreen = WalletSplashScreen(context: walletContext, blockchainNetwork: initialResolvedConfig.activeNetwork, mode: .created(walletInfo: info, words: nil), walletCreatedPreloadState: nil)
-//                                    beginWithController(createdScreen)
+                                    beginWithController(walletCreatedVC)
                                 }
                             case let .imported(info):
                                 print(".imported")
@@ -251,11 +252,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 } else {
                     if publicKey != nil {
-                        let startVC = StartVC(walletContext: walletContext,
-                                              nibName: "StartVC",
-                                              bundle: Bundle(identifier: "org.ton.wallet.UICreateWallet"))
+                        let introVC = IntroVC(walletContext: walletContext)
 //                        let splashScreen = WalletSplashScreen(context: walletContext, blockchainNetwork: initialResolvedConfig.activeNetwork, mode: .intro, walletCreatedPreloadState: nil)
-                        beginWithController(startVC)
+                        beginWithController(introVC)
                     } else {
                         print("secure storage not available")
 //                        let splashScreen = WalletSplashScreen(context: walletContext, blockchainNetwork: initialResolvedConfig.activeNetwork, mode: .secureStorageNotAvailable, walletCreatedPreloadState: nil)

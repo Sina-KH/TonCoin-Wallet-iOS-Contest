@@ -28,117 +28,117 @@ public struct WalletPresentationDateTimeFormat: Equatable {
     }
 }
 
-public final class WalletInfoTheme {
-    public let buttonBackgroundColor: UIColor
-    public let buttonTextColor: UIColor
-    public let incomingFundsTitleColor: UIColor
-    public let outgoingFundsTitleColor: UIColor
-    
-    public init(
-        buttonBackgroundColor: UIColor,
-        buttonTextColor: UIColor,
-        incomingFundsTitleColor: UIColor,
-        outgoingFundsTitleColor: UIColor
-    ) {
-        self.buttonBackgroundColor = buttonBackgroundColor
-        self.buttonTextColor = buttonTextColor
-        self.incomingFundsTitleColor = incomingFundsTitleColor
-        self.outgoingFundsTitleColor = outgoingFundsTitleColor
-    }
-}
-
-public final class WalletTransactionTheme {
-    public let descriptionBackgroundColor: UIColor
-    public let descriptionTextColor: UIColor
-    
-    public init(
-        descriptionBackgroundColor: UIColor,
-        descriptionTextColor: UIColor
-    ) {
-        self.descriptionBackgroundColor = descriptionBackgroundColor
-        self.descriptionTextColor = descriptionTextColor
-    }
-}
-
-public final class WalletSetupTheme {
-    public let buttonFillColor: UIColor
-    public let buttonForegroundColor: UIColor
-    public let inputBackgroundColor: UIColor
-    public let inputPlaceholderColor: UIColor
-    public let inputTextColor: UIColor
-    public let inputClearButtonColor: UIColor
-    
-    public init(
-        buttonFillColor: UIColor,
-        buttonForegroundColor: UIColor,
-        inputBackgroundColor: UIColor,
-        inputPlaceholderColor: UIColor,
-        inputTextColor: UIColor,
-        inputClearButtonColor: UIColor
-    ) {
-        self.buttonFillColor = buttonFillColor
-        self.buttonForegroundColor = buttonForegroundColor
-        self.inputBackgroundColor = inputBackgroundColor
-        self.inputPlaceholderColor = inputPlaceholderColor
-        self.inputTextColor = inputTextColor
-        self.inputClearButtonColor = inputClearButtonColor
-    }
-}
-
-public final class WalletListTheme {
-    public let itemPrimaryTextColor: UIColor
-    public let itemSecondaryTextColor: UIColor
-    public let itemPlaceholderTextColor: UIColor
-    public let itemDestructiveColor: UIColor
-    public let itemAccentColor: UIColor
-    public let itemDisabledTextColor: UIColor
-    public let plainBackgroundColor: UIColor
-    public let blocksBackgroundColor: UIColor
-    public let itemPlainSeparatorColor: UIColor
-    public let itemBlocksBackgroundColor: UIColor
-    public let itemBlocksSeparatorColor: UIColor
-    public let itemHighlightedBackgroundColor: UIColor
-    public let sectionHeaderTextColor: UIColor
-    public let freeTextColor: UIColor
-    public let freeTextErrorColor: UIColor
-    public let inputClearButtonColor: UIColor
-    
-    public init(
-        itemPrimaryTextColor: UIColor,
-        itemSecondaryTextColor: UIColor,
-        itemPlaceholderTextColor: UIColor,
-        itemDestructiveColor: UIColor,
-        itemAccentColor: UIColor,
-        itemDisabledTextColor: UIColor,
-        plainBackgroundColor: UIColor,
-        blocksBackgroundColor: UIColor,
-        itemPlainSeparatorColor: UIColor,
-        itemBlocksBackgroundColor: UIColor,
-        itemBlocksSeparatorColor: UIColor,
-        itemHighlightedBackgroundColor: UIColor,
-        sectionHeaderTextColor: UIColor,
-        freeTextColor: UIColor,
-        freeTextErrorColor: UIColor,
-        inputClearButtonColor: UIColor
-    ) {
-        self.itemPrimaryTextColor = itemPrimaryTextColor
-        self.itemSecondaryTextColor = itemSecondaryTextColor
-        self.itemPlaceholderTextColor = itemPlaceholderTextColor
-        self.itemDestructiveColor = itemDestructiveColor
-        self.itemAccentColor = itemAccentColor
-        self.itemDisabledTextColor = itemDisabledTextColor
-        self.plainBackgroundColor = plainBackgroundColor
-        self.blocksBackgroundColor = blocksBackgroundColor
-        self.itemPlainSeparatorColor = itemPlainSeparatorColor
-        self.itemBlocksBackgroundColor = itemBlocksBackgroundColor
-        self.itemBlocksSeparatorColor = itemBlocksSeparatorColor
-        self.itemHighlightedBackgroundColor = itemHighlightedBackgroundColor
-        self.sectionHeaderTextColor = sectionHeaderTextColor
-        self.freeTextColor = freeTextColor
-        self.freeTextErrorColor = freeTextErrorColor
-        self.inputClearButtonColor = inputClearButtonColor
-    }
-}
+//public final class WalletInfoTheme {
+//    public let buttonBackgroundColor: UIColor
+//    public let buttonTextColor: UIColor
+//    public let incomingFundsTitleColor: UIColor
+//    public let outgoingFundsTitleColor: UIColor
+//
+//    public init(
+//        buttonBackgroundColor: UIColor,
+//        buttonTextColor: UIColor,
+//        incomingFundsTitleColor: UIColor,
+//        outgoingFundsTitleColor: UIColor
+//    ) {
+//        self.buttonBackgroundColor = buttonBackgroundColor
+//        self.buttonTextColor = buttonTextColor
+//        self.incomingFundsTitleColor = incomingFundsTitleColor
+//        self.outgoingFundsTitleColor = outgoingFundsTitleColor
+//    }
+//}
+//
+//public final class WalletTransactionTheme {
+//    public let descriptionBackgroundColor: UIColor
+//    public let descriptionTextColor: UIColor
+//
+//    public init(
+//        descriptionBackgroundColor: UIColor,
+//        descriptionTextColor: UIColor
+//    ) {
+//        self.descriptionBackgroundColor = descriptionBackgroundColor
+//        self.descriptionTextColor = descriptionTextColor
+//    }
+//}
+//
+//public final class WalletSetupTheme {
+//    public let buttonFillColor: UIColor
+//    public let buttonForegroundColor: UIColor
+//    public let inputBackgroundColor: UIColor
+//    public let inputPlaceholderColor: UIColor
+//    public let inputTextColor: UIColor
+//    public let inputClearButtonColor: UIColor
+//
+//    public init(
+//        buttonFillColor: UIColor,
+//        buttonForegroundColor: UIColor,
+//        inputBackgroundColor: UIColor,
+//        inputPlaceholderColor: UIColor,
+//        inputTextColor: UIColor,
+//        inputClearButtonColor: UIColor
+//    ) {
+//        self.buttonFillColor = buttonFillColor
+//        self.buttonForegroundColor = buttonForegroundColor
+//        self.inputBackgroundColor = inputBackgroundColor
+//        self.inputPlaceholderColor = inputPlaceholderColor
+//        self.inputTextColor = inputTextColor
+//        self.inputClearButtonColor = inputClearButtonColor
+//    }
+//}
+//
+//public final class WalletListTheme {
+//    public let itemPrimaryTextColor: UIColor
+//    public let itemSecondaryTextColor: UIColor
+//    public let itemPlaceholderTextColor: UIColor
+//    public let itemDestructiveColor: UIColor
+//    public let itemAccentColor: UIColor
+//    public let itemDisabledTextColor: UIColor
+//    public let plainBackgroundColor: UIColor
+//    public let blocksBackgroundColor: UIColor
+//    public let itemPlainSeparatorColor: UIColor
+//    public let itemBlocksBackgroundColor: UIColor
+//    public let itemBlocksSeparatorColor: UIColor
+//    public let itemHighlightedBackgroundColor: UIColor
+//    public let sectionHeaderTextColor: UIColor
+//    public let freeTextColor: UIColor
+//    public let freeTextErrorColor: UIColor
+//    public let inputClearButtonColor: UIColor
+//
+//    public init(
+//        itemPrimaryTextColor: UIColor,
+//        itemSecondaryTextColor: UIColor,
+//        itemPlaceholderTextColor: UIColor,
+//        itemDestructiveColor: UIColor,
+//        itemAccentColor: UIColor,
+//        itemDisabledTextColor: UIColor,
+//        plainBackgroundColor: UIColor,
+//        blocksBackgroundColor: UIColor,
+//        itemPlainSeparatorColor: UIColor,
+//        itemBlocksBackgroundColor: UIColor,
+//        itemBlocksSeparatorColor: UIColor,
+//        itemHighlightedBackgroundColor: UIColor,
+//        sectionHeaderTextColor: UIColor,
+//        freeTextColor: UIColor,
+//        freeTextErrorColor: UIColor,
+//        inputClearButtonColor: UIColor
+//    ) {
+//        self.itemPrimaryTextColor = itemPrimaryTextColor
+//        self.itemSecondaryTextColor = itemSecondaryTextColor
+//        self.itemPlaceholderTextColor = itemPlaceholderTextColor
+//        self.itemDestructiveColor = itemDestructiveColor
+//        self.itemAccentColor = itemAccentColor
+//        self.itemDisabledTextColor = itemDisabledTextColor
+//        self.plainBackgroundColor = plainBackgroundColor
+//        self.blocksBackgroundColor = blocksBackgroundColor
+//        self.itemPlainSeparatorColor = itemPlainSeparatorColor
+//        self.itemBlocksBackgroundColor = itemBlocksBackgroundColor
+//        self.itemBlocksSeparatorColor = itemBlocksSeparatorColor
+//        self.itemHighlightedBackgroundColor = itemHighlightedBackgroundColor
+//        self.sectionHeaderTextColor = sectionHeaderTextColor
+//        self.freeTextColor = freeTextColor
+//        self.freeTextErrorColor = freeTextErrorColor
+//        self.inputClearButtonColor = inputClearButtonColor
+//    }
+//}
 
 //public final class WalletTheme: Equatable {
 //    public let info: WalletInfoTheme

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		273521CD29E94D4E007C4E96 /* WViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521CC29E94D4E007C4E96 /* WViewController.swift */; };
+		2735220829E98EDB007C4E96 /* WalletContext.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2735220729E98EDB007C4E96 /* WalletContext.framework */; };
+		2735220929E98EDB007C4E96 /* WalletContext.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2735220729E98EDB007C4E96 /* WalletContext.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		273A5CB429E02000007CA6F0 /* WAnimatedSticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A5CB329E02000007CA6F0 /* WAnimatedSticker.swift */; };
 		273A5FF729E02E16007CA6F0 /* AnimatedStickerViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A5FF629E02E16007CA6F0 /* AnimatedStickerViews.swift */; };
 		273A608D29E030B5007CA6F0 /* SoftwareAnimationRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A608C29E030B5007CA6F0 /* SoftwareAnimationRenderer.swift */; };
@@ -51,6 +54,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				27A1281229E0403E002D030A /* SwiftSignalKit.framework in Embed Frameworks */,
+				2735220929E98EDB007C4E96 /* WalletContext.framework in Embed Frameworks */,
 				27A1281429E04040002D030A /* YuvConversion.framework in Embed Frameworks */,
 				27A1281029E0403D002D030A /* RLottieBinding.framework in Embed Frameworks */,
 				27A1280D29E0403C002D030A /* GZip.framework in Embed Frameworks */,
@@ -61,6 +65,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		273521CC29E94D4E007C4E96 /* WViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WViewController.swift; sourceTree = "<group>"; };
+		2735220729E98EDB007C4E96 /* WalletContext.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletContext.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		273A5CB329E02000007CA6F0 /* WAnimatedSticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WAnimatedSticker.swift; sourceTree = "<group>"; };
 		273A5CB629E02014007CA6F0 /* RLottie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RLottie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		273A5FDA29E02647007CA6F0 /* RLottieBinding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RLottieBinding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +97,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27A1280C29E0403C002D030A /* GZip.framework in Frameworks */,
+				2735220829E98EDB007C4E96 /* WalletContext.framework in Frameworks */,
 				27A1281329E04040002D030A /* YuvConversion.framework in Frameworks */,
 				27A1280F29E0403D002D030A /* RLottieBinding.framework in Frameworks */,
 				27A1281129E0403E002D030A /* SwiftSignalKit.framework in Frameworks */,
@@ -108,6 +115,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		273521CB29E94D3B007C4E96 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				273521CC29E94D4E007C4E96 /* WViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		273A5CB229E01FE5007CA6F0 /* AnimatedSticker */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +138,7 @@
 		273A5CB529E02014007CA6F0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2735220729E98EDB007C4E96 /* WalletContext.framework */,
 				273A60AD29E0316A007CA6F0 /* YuvConversion.framework */,
 				273A604129E02EE1007CA6F0 /* SwiftSignalKit.framework */,
 				273A5FF429E02929007CA6F0 /* GZip.framework */,
@@ -187,6 +203,7 @@
 				273A5CB229E01FE5007CA6F0 /* AnimatedSticker */,
 				274D3F2229D626F6007C47AE /* Buttons */,
 				273A60AF29E0324D007CA6F0 /* Utils */,
+				273521CB29E94D3B007C4E96 /* ViewController */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -310,6 +327,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				273521CD29E94D4E007C4E96 /* WViewController.swift in Sources */,
 				273A5CB429E02000007CA6F0 /* WAnimatedSticker.swift in Sources */,
 				273A608F29E030CA007CA6F0 /* AnimationRenderer.swift in Sources */,
 				274D3F2829D628E4007C47AE /* WButtonPrimary.swift in Sources */,

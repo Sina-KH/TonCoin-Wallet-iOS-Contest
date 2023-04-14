@@ -7,23 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		273521CF29E95666007C4E96 /* WordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521CE29E95666007C4E96 /* WordListView.swift */; };
+		273521D129E9586B007C4E96 /* WordListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521D029E9586B007C4E96 /* WordListItemView.swift */; };
+		273521D629E95D97007C4E96 /* WalletCreatedVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521D529E95D97007C4E96 /* WalletCreatedVM.swift */; };
+		2735220029E9880A007C4E96 /* WalletContext.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273521FF29E9880A007C4E96 /* WalletContext.framework */; };
+		2735220129E9880A007C4E96 /* WalletContext.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 273521FF29E9880A007C4E96 /* WalletContext.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		273A60DB29E03BA1007CA6F0 /* WalletCreatedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A60D929E03BA1007CA6F0 /* WalletCreatedVC.swift */; };
-		273A60DC29E03BA1007CA6F0 /* WalletCreatedVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 273A60DA29E03BA1007CA6F0 /* WalletCreatedVC.xib */; };
 		274D3F6329D6380C007C47AE /* UICreateWallet.docc in Sources */ = {isa = PBXBuildFile; fileRef = 274D3F6229D6380C007C47AE /* UICreateWallet.docc */; };
 		274D3F6929D6380C007C47AE /* UICreateWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3F5E29D6380C007C47AE /* UICreateWallet.framework */; };
 		274D3F6E29D6380C007C47AE /* UICreateWalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3F6D29D6380C007C47AE /* UICreateWalletTests.swift */; };
 		274D3F6F29D6380C007C47AE /* UICreateWallet.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D3F6129D6380C007C47AE /* UICreateWallet.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		274D3F8729D638A3007C47AE /* StartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3F8529D638A3007C47AE /* StartVC.swift */; };
-		274D3F8F29D63B5D007C47AE /* StartVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 274D3F9129D63B5D007C47AE /* StartVC.xib */; };
+		274D3F8729D638A3007C47AE /* IntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3F8529D638A3007C47AE /* IntroVC.swift */; };
 		2786FB5429E872380023FE21 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB5229E872380023FE21 /* SplashVC.swift */; };
 		2786FB5529E872380023FE21 /* SplashVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2786FB5329E872380023FE21 /* SplashVC.xib */; };
-		2786FB5D29E879520023FE21 /* WalletContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB5C29E879520023FE21 /* WalletContext.swift */; };
-		2786FB6129E87AFE0023FE21 /* StringPluralization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB6029E87AFE0023FE21 /* StringPluralization.swift */; };
-		2786FB6329E87C590023FE21 /* WalletStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB6229E87C590023FE21 /* WalletStrings.swift */; };
-		2786FB6729E87D500023FE21 /* WalletPresentationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB6629E87D500023FE21 /* WalletPresentationData.swift */; };
-		2786FB6B29E87DBB0023FE21 /* StringPluralization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB6A29E87DBB0023FE21 /* StringPluralization.swift */; };
 		27A1281529E04042002D030A /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3F8D29D639D0007C47AE /* UIComponents.framework */; };
 		27A1281629E04042002D030A /* UIComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3F8D29D639D0007C47AE /* UIComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		27BB29A529E8B5E1009F5DD7 /* WordDisplayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BB29A429E8B5E1009F5DD7 /* WordDisplayVC.swift */; };
+		27BB29A829E8B60E009F5DD7 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BB29A729E8B60E009F5DD7 /* HeaderView.swift */; };
+		27BB29AA29E8B8E8009F5DD7 /* BottomActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BB29A929E8B8E8009F5DD7 /* BottomActionsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				27A1281629E04042002D030A /* UIComponents.framework in Embed Frameworks */,
+				2735220129E9880A007C4E96 /* WalletContext.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -51,23 +53,23 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		273521CE29E95666007C4E96 /* WordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListView.swift; sourceTree = "<group>"; };
+		273521D029E9586B007C4E96 /* WordListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListItemView.swift; sourceTree = "<group>"; };
+		273521D529E95D97007C4E96 /* WalletCreatedVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCreatedVM.swift; sourceTree = "<group>"; };
+		273521FF29E9880A007C4E96 /* WalletContext.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletContext.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		273A60D929E03BA1007CA6F0 /* WalletCreatedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCreatedVC.swift; sourceTree = "<group>"; };
-		273A60DA29E03BA1007CA6F0 /* WalletCreatedVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalletCreatedVC.xib; sourceTree = "<group>"; };
 		274D3F5E29D6380C007C47AE /* UICreateWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UICreateWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		274D3F6129D6380C007C47AE /* UICreateWallet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICreateWallet.h; sourceTree = "<group>"; };
 		274D3F6229D6380C007C47AE /* UICreateWallet.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = UICreateWallet.docc; sourceTree = "<group>"; };
 		274D3F6829D6380C007C47AE /* UICreateWalletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UICreateWalletTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		274D3F6D29D6380C007C47AE /* UICreateWalletTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICreateWalletTests.swift; sourceTree = "<group>"; };
-		274D3F8529D638A3007C47AE /* StartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartVC.swift; sourceTree = "<group>"; };
+		274D3F8529D638A3007C47AE /* IntroVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroVC.swift; sourceTree = "<group>"; };
 		274D3F8D29D639D0007C47AE /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		274D3F9029D63B5D007C47AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/StartVC.xib; sourceTree = "<group>"; };
 		2786FB5229E872380023FE21 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		2786FB5329E872380023FE21 /* SplashVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashVC.xib; sourceTree = "<group>"; };
-		2786FB5C29E879520023FE21 /* WalletContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletContext.swift; sourceTree = "<group>"; };
-		2786FB6029E87AFE0023FE21 /* StringPluralization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringPluralization.swift; sourceTree = "<group>"; };
-		2786FB6229E87C590023FE21 /* WalletStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletStrings.swift; sourceTree = "<group>"; };
-		2786FB6629E87D500023FE21 /* WalletPresentationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletPresentationData.swift; sourceTree = "<group>"; };
-		2786FB6A29E87DBB0023FE21 /* StringPluralization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringPluralization.swift; sourceTree = "<group>"; };
+		27BB29A429E8B5E1009F5DD7 /* WordDisplayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDisplayVC.swift; sourceTree = "<group>"; };
+		27BB29A729E8B60E009F5DD7 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		27BB29A929E8B8E8009F5DD7 /* BottomActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomActionsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27A1281529E04042002D030A /* UIComponents.framework in Frameworks */,
+				2735220029E9880A007C4E96 /* WalletContext.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,7 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				273A60D929E03BA1007CA6F0 /* WalletCreatedVC.swift */,
-				273A60DA29E03BA1007CA6F0 /* WalletCreatedVC.xib */,
+				273521D529E95D97007C4E96 /* WalletCreatedVM.swift */,
 			);
 			path = WalletCreated;
 			sourceTree = "<group>";
@@ -139,24 +142,24 @@
 		274D3F8229D63832007C47AE /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				2786FB6929E87D790023FE21 /* WalletContext */,
+				27BB29A629E8B601009F5DD7 /* CommonViews */,
 				2786FB6829E87D680023FE21 /* ViewControllers */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		274D3F8929D638B0007C47AE /* Start */ = {
+		274D3F8929D638B0007C47AE /* Intro */ = {
 			isa = PBXGroup;
 			children = (
-				274D3F8529D638A3007C47AE /* StartVC.swift */,
-				274D3F9129D63B5D007C47AE /* StartVC.xib */,
+				274D3F8529D638A3007C47AE /* IntroVC.swift */,
 			);
-			path = Start;
+			path = Intro;
 			sourceTree = "<group>";
 		};
 		274D3F8C29D639D0007C47AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				273521FF29E9880A007C4E96 /* WalletContext.framework */,
 				274D3F8D29D639D0007C47AE /* UIComponents.framework */,
 			);
 			name = Frameworks;
@@ -175,22 +178,30 @@
 			isa = PBXGroup;
 			children = (
 				2786FB4F29E871A20023FE21 /* SplashScreen */,
-				274D3F8929D638B0007C47AE /* Start */,
+				274D3F8929D638B0007C47AE /* Intro */,
 				273A60D829E03B73007CA6F0 /* WalletCreated */,
+				27BB29A329E8B374009F5DD7 /* WordDisplay */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		2786FB6929E87D790023FE21 /* WalletContext */ = {
+		27BB29A329E8B374009F5DD7 /* WordDisplay */ = {
 			isa = PBXGroup;
 			children = (
-				2786FB6A29E87DBB0023FE21 /* StringPluralization.swift */,
-				2786FB5C29E879520023FE21 /* WalletContext.swift */,
-				2786FB6029E87AFE0023FE21 /* StringPluralization.swift */,
-				2786FB6629E87D500023FE21 /* WalletPresentationData.swift */,
-				2786FB6229E87C590023FE21 /* WalletStrings.swift */,
+				27BB29A429E8B5E1009F5DD7 /* WordDisplayVC.swift */,
+				273521CE29E95666007C4E96 /* WordListView.swift */,
+				273521D029E9586B007C4E96 /* WordListItemView.swift */,
 			);
-			path = WalletContext;
+			path = WordDisplay;
+			sourceTree = "<group>";
+		};
+		27BB29A629E8B601009F5DD7 /* CommonViews */ = {
+			isa = PBXGroup;
+			children = (
+				27BB29A729E8B60E009F5DD7 /* HeaderView.swift */,
+				27BB29A929E8B8E8009F5DD7 /* BottomActionsView.swift */,
+			);
+			path = CommonViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,8 +298,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2786FB5529E872380023FE21 /* SplashVC.xib in Resources */,
-				273A60DC29E03BA1007CA6F0 /* WalletCreatedVC.xib in Resources */,
-				274D3F8F29D63B5D007C47AE /* StartVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,14 +315,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2786FB6129E87AFE0023FE21 /* StringPluralization.swift in Sources */,
-				2786FB6329E87C590023FE21 /* WalletStrings.swift in Sources */,
-				2786FB5D29E879520023FE21 /* WalletContext.swift in Sources */,
-				2786FB6B29E87DBB0023FE21 /* StringPluralization.swift in Sources */,
+				273521CF29E95666007C4E96 /* WordListView.swift in Sources */,
+				273521D629E95D97007C4E96 /* WalletCreatedVM.swift in Sources */,
+				27BB29AA29E8B8E8009F5DD7 /* BottomActionsView.swift in Sources */,
 				274D3F6329D6380C007C47AE /* UICreateWallet.docc in Sources */,
 				2786FB5429E872380023FE21 /* SplashVC.swift in Sources */,
-				274D3F8729D638A3007C47AE /* StartVC.swift in Sources */,
-				2786FB6729E87D500023FE21 /* WalletPresentationData.swift in Sources */,
+				274D3F8729D638A3007C47AE /* IntroVC.swift in Sources */,
+				27BB29A829E8B60E009F5DD7 /* HeaderView.swift in Sources */,
+				27BB29A529E8B5E1009F5DD7 /* WordDisplayVC.swift in Sources */,
+				273521D129E9586B007C4E96 /* WordListItemView.swift in Sources */,
 				273A60DB29E03BA1007CA6F0 /* WalletCreatedVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -335,17 +345,6 @@
 			targetProxy = 274D3F6A29D6380C007C47AE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		274D3F9129D63B5D007C47AE /* StartVC.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				274D3F9029D63B5D007C47AE /* Base */,
-			);
-			name = StartVC.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		274D3F7029D6380C007C47AE /* Debug */ = {

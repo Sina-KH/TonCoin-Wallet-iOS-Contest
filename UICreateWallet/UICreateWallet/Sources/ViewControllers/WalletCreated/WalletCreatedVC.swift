@@ -7,32 +7,99 @@
 
 import UIKit
 import WalletCore
+import WalletContext
+import UIComponents
 
-class WalletCreatedVC: UIViewController {
+public class WalletCreatedVC: WViewController {
     
     var walletContext: WalletContext
+    var walletInfo: WalletInfo
+    var wordList: [String]
+
+    lazy var walletCreatedVM = WalletCreatedVM(walletCreatedVMDelegate: self)
 
     public init(walletContext: WalletContext,
                 walletInfo: WalletInfo,
-                wordList: [String],
-                nibName nibNameOrNil: String?,
-                bundle nibBundleOrNil: Bundle?) {
+                wordList: [String]) {
         self.walletContext = walletContext
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.walletInfo = walletInfo
+        self.wordList = wordList
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    public override func loadView() {
+        super.loadView()
+        setupViews()
+    }
+
+    func setupViews() {
         navigationItem.hidesBackButton = true
-    }
-    
-    @IBAction func proceedPressed(_ sender: Any) {
+
+        let proceedAction = BottomAction(
+            title: WStrings.Wallet_Created_Proceed.localized,
+            onPress: {
+                self.proceedPressed()
+            }
+        )
         
+        let bottomActionsView = BottomActionsView(primaryAction: proceedAction)
+        view.addSubview(bottomActionsView)
+        NSLayoutConstraint.activate([
+            bottomActionsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -58),
+            bottomActionsView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 48),
+            bottomActionsView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -48),
+        ])
+        
+        let topView = UIView()
+        topView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(topView)
+        NSLayoutConstraint.activate([
+            topView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            topView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            topView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            topView.bottomAnchor.constraint(equalTo: bottomActionsView.topAnchor)
+        ])
+
+        let headerView = HeaderView(animationName: "WalletCreated",
+                                    animationWidth: 125, animationHeight: 125,
+                                    animationReply: false,
+                                    title: WStrings.Wallet_Created_Title.localized,
+                                    description: WStrings.Wallet_Created_Text.localized)
+        topView.addSubview(headerView)
+        NSLayoutConstraint.activate([
+            headerView.leftAnchor.constraint(equalTo: topView.leftAnchor, constant: 32),
+            headerView.rightAnchor.constraint(equalTo: topView.rightAnchor, constant: -32),
+            headerView.centerYAnchor.constraint(equalTo: topView.centerYAnchor)
+        ])
+    }
+
+    func proceedPressed() {
+        if wordList.isEmpty {
+            walletCreatedVM.loadWords(walletContext: walletContext, walletInfo: walletInfo)
+            return
+        }
+        let wordDisplayVC = WordDisplayVC(walletContext: walletContext,
+                                          walletInfo: walletInfo,
+                                          wordList: wordList)
+        navigationController?.pushViewController(wordDisplayVC, animated: true)
     }
     
+}
+
+extension WalletCreatedVC: WalletCreatedVMDelegate {
+    func wordsLoaded(words: [String]) {
+        self.wordList = words
+        proceedPressed()
+    }
+    
+    func errorOccured() {
+        showError(title: WStrings.Wallet_Created_ExportErrorTitle.localized,
+                  text: WStrings.Wallet_Created_ExportErrorText.localized,
+                  button: WStrings.Wallet_Alert_OK.localized)
+    }
+
 }

@@ -10,7 +10,7 @@ import UIKit
 fileprivate let _height = 50.0
 
 @IBDesignable
-class WButtonSecondary: UIButton {
+public class WButtonSecondary: UIButton {
 
     override open func awakeFromNib() {
         super.awakeFromNib()
@@ -22,7 +22,7 @@ class WButtonSecondary: UIButton {
         setup()
     }
     
-    func setup() {
+    public func setup() {
         // set height anchor as default value
         heightAnchor.constraint(equalToConstant: _height).isActive = true
     }

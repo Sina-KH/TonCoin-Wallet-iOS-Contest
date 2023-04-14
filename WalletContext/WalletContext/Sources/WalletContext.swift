@@ -6,11 +6,11 @@ import UIKit
 
 public final class WalletPresentationData {
 //    public let theme: WalletTheme
-    public let strings: WalletStrings
+//    public let strings: WalletStrings
     public let dateTimeFormat: WalletPresentationDateTimeFormat
     
-    public init(strings: WalletStrings, dateTimeFormat: WalletPresentationDateTimeFormat) {
-        self.strings = strings
+    public init(dateTimeFormat: WalletPresentationDateTimeFormat) {
+//        self.strings = strings
         self.dateTimeFormat = dateTimeFormat
     }
 }
