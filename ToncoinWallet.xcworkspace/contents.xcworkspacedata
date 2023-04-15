@@ -8,6 +8,9 @@
       location = "group:ToncoinWallet/ToncoinWallet/../../UICreateWallet/UICreateWallet.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:UIPasscode/UIPasscode.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:ToncoinWallet/../UIComponents/UIComponents.xcodeproj">
    </FileRef>
    <FileRef

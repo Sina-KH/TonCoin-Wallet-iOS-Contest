@@ -20,6 +20,8 @@
 		274D3F6F29D6380C007C47AE /* UICreateWallet.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D3F6129D6380C007C47AE /* UICreateWallet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		274D3F8729D638A3007C47AE /* IntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3F8529D638A3007C47AE /* IntroVC.swift */; };
 		2777555C29EB455C0098DE68 /* CompletedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2777555B29EB455C0098DE68 /* CompletedVC.swift */; };
+		2777558A29EB51B20098DE68 /* UIPasscode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2777558929EB51B20098DE68 /* UIPasscode.framework */; };
+		2777558B29EB51B20098DE68 /* UIPasscode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2777558929EB51B20098DE68 /* UIPasscode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2786FB5429E872380023FE21 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB5229E872380023FE21 /* SplashVC.swift */; };
 		2786FB5529E872380023FE21 /* SplashVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2786FB5329E872380023FE21 /* SplashVC.xib */; };
 		27A1281529E04042002D030A /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3F8D29D639D0007C47AE /* UIComponents.framework */; };
@@ -46,6 +48,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				2777558B29EB51B20098DE68 /* UIPasscode.framework in Embed Frameworks */,
 				27A1281629E04042002D030A /* UIComponents.framework in Embed Frameworks */,
 				2735220129E9880A007C4E96 /* WalletContext.framework in Embed Frameworks */,
 			);
@@ -69,6 +72,7 @@
 		274D3F8529D638A3007C47AE /* IntroVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroVC.swift; sourceTree = "<group>"; };
 		274D3F8D29D639D0007C47AE /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2777555B29EB455C0098DE68 /* CompletedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedVC.swift; sourceTree = "<group>"; };
+		2777558929EB51B20098DE68 /* UIPasscode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIPasscode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2786FB5229E872380023FE21 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		2786FB5329E872380023FE21 /* SplashVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashVC.xib; sourceTree = "<group>"; };
 		27BB29A429E8B5E1009F5DD7 /* WordDisplayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDisplayVC.swift; sourceTree = "<group>"; };
@@ -81,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2777558A29EB51B20098DE68 /* UIPasscode.framework in Frameworks */,
 				27A1281529E04042002D030A /* UIComponents.framework in Frameworks */,
 				2735220029E9880A007C4E96 /* WalletContext.framework in Frameworks */,
 			);
@@ -171,6 +176,7 @@
 		274D3F8C29D639D0007C47AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2777558929EB51B20098DE68 /* UIPasscode.framework */,
 				273521FF29E9880A007C4E96 /* WalletContext.framework */,
 				274D3F8D29D639D0007C47AE /* UIComponents.framework */,
 			);

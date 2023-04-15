@@ -126,15 +126,7 @@ class WordCheckVC: WViewController {
         view.endEditing(true)
         for (i, index) in wordIndices.enumerated() {
             if wordInputs[i].textField.text?.lowercased() != wordList[index] {
-                // a word is incorrect.
-                showAlert(title: WStrings.Wallet_WordCheck_IncorrectHeader.localized,
-                          text: WStrings.Wallet_WordCheck_IncorrectText.localized,
-                          button: WStrings.Wallet_WordCheck_TryAgain.localized,
-                          secondaryButton: WStrings.Wallet_WordCheck_ViewWords.localized,
-                          secondaryButtonPressed: { [weak self] in
-                    // see words pressed
-                    self?.navigationController?.popViewController(animated: true)
-                }, preferPrimary: false)
+                showAlert()
                 return
             }
         }
@@ -142,6 +134,17 @@ class WordCheckVC: WViewController {
         navigationController?.pushViewController(CompletedVC(walletContext: walletContext, walletInfo: walletInfo), animated: true)
     }
     
+    private func showAlert() {
+        // a word is incorrect.
+        showAlert(title: WStrings.Wallet_WordCheck_IncorrectHeader.localized,
+                  text: WStrings.Wallet_WordCheck_IncorrectText.localized,
+                  button: WStrings.Wallet_WordCheck_TryAgain.localized,
+                  secondaryButton: WStrings.Wallet_WordCheck_ViewWords.localized,
+                  secondaryButtonPressed: { [weak self] in
+            // see words pressed
+            self?.navigationController?.popViewController(animated: true)
+        }, preferPrimary: false)
+    }
 }
 
 extension WordCheckVC: WKeyboardObserverDelegate {
