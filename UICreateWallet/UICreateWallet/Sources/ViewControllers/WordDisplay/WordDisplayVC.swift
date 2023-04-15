@@ -21,7 +21,9 @@ class WordDisplayVC: WViewController {
 
     // User tried to skip too fast, already, or not.
     var notDoneErrorShown = false
-    
+
+    var scrollView: UIScrollView!
+
     public init(walletContext: WalletContext,
                 walletInfo: WalletInfo,
                 wordList: [String]) {
@@ -44,7 +46,7 @@ class WordDisplayVC: WViewController {
     
     func setupViews() {
         // parent scrollView
-        let scrollView = UIScrollView()
+        scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(scrollView)
         NSLayoutConstraint.activate([
@@ -65,7 +67,7 @@ class WordDisplayVC: WViewController {
                                     description: WStrings.Wallet_Words_Text.localized)
         scrollView.addSubview(headerView)
         NSLayoutConstraint.activate([
-            headerView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor, constant: 26),
+            headerView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor, constant: 0),
             headerView.leftAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.leftAnchor, constant: 32),
             headerView.rightAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.rightAnchor, constant: -32)
         ])
@@ -87,15 +89,25 @@ class WordDisplayVC: WViewController {
             }
         )
         
-        let bottomActionsView = BottomActionsView(primaryAction: proceedAction)
+        let bottomActionsView = BottomActionsView(primaryAction: proceedAction, reserveSecondaryActionHeight: false)
         scrollView.addSubview(bottomActionsView)
         NSLayoutConstraint.activate([
             bottomActionsView.topAnchor.constraint(equalTo: wordListView.bottomAnchor, constant: 52),
-            bottomActionsView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -44),
+            bottomActionsView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -8),
             bottomActionsView.leftAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.leftAnchor, constant: 48),
             bottomActionsView.rightAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.rightAnchor, constant: -48),
         ])
 
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // We don't consider additional space under bottomActionsView, to make it fixed without any scroll on bigger iOS devices,
+        //  and add this space on smaller devices to let button come up a little more and make user feel better :)
+        let isDeviceHeightEnoughForAllContent = UIScreen.main.bounds.height >= scrollView.contentSize.height
+        if !isDeviceHeightEnoughForAllContent {
+            scrollView.contentInset.bottom = BottomActionsView.reserveHeight
+        }
     }
     
     // called on done button press
@@ -103,7 +115,7 @@ class WordDisplayVC: WViewController {
         let deltaTime = Date().timeIntervalSince1970 - startTime
         let minimalTimeout: Double
         #if DEBUG
-        minimalTimeout = 15.0
+        minimalTimeout = 5.0
         #else
         minimalTimeout = 30.0
         #endif
@@ -111,7 +123,7 @@ class WordDisplayVC: WViewController {
             // it's too soon! show error!
             if !notDoneErrorShown {
                 // it's first time, don't show skip button
-                showError(title: WStrings.Wallet_Words_NotDoneTitle.localized,
+                showAlert(title: WStrings.Wallet_Words_NotDoneTitle.localized,
                           text: WStrings.Wallet_Words_NotDoneText.localized,
                           button: WStrings.Wallet_Words_NotDoneOk.localized, buttonPressed:  { [weak self] in
                     self?.displayApologiesAcceptedToast()
@@ -119,7 +131,7 @@ class WordDisplayVC: WViewController {
                 notDoneErrorShown = true
             } else {
                 // it's second time; let's have a skip button
-                showError(title: WStrings.Wallet_Words_NotDoneTitle.localized,
+                showAlert(title: WStrings.Wallet_Words_NotDoneTitle.localized,
                           text: WStrings.Wallet_Words_NotDoneText.localized,
                           button: WStrings.Wallet_Words_NotDoneOk.localized, buttonPressed: { [weak self] in
                     self?.displayApologiesAcceptedToast()
@@ -145,6 +157,11 @@ class WordDisplayVC: WViewController {
         wordIndices.sort()
         
         // pass words to WordCheckVC
+        let wordCheckVC = WordCheckVC(walletContext: walletContext,
+                                      walletInfo: walletInfo,
+                                      wordList: wordList,
+                                      wordIndices: wordIndices)
+        navigationController?.pushViewController(wordCheckVC, animated: true)
 //            strongSelf.push(WalletWordCheckScreen(context: strongSelf.context, blockchainNetwork: strongSelf.blockchainNetwork, mode: .verify(strongSelf.walletInfo, strongSelf.wordList, wordIndices), walletCreatedPreloadState: strongSelf.walletCreatedPreloadState))
     }
 

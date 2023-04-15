@@ -27,10 +27,34 @@ public enum WStrings: String {
     case Wallet_Words_NotDoneOk = "Wallet.Words.NotDoneOk"
     case Wallet_Words_NotDoneResponse = "Wallet.Words.NotDoneResponse"
     case Wallet_Words_NotDoneSkip = "Wallet.Words.NotDoneSkip"
-    
+    case Wallet_WordCheck_Title = "Wallet.WordCheck.Title"
+    case Wallet_WordCheck_Text = "Wallet.WordCheck.Text"
+    case Wallet_WordCheck_Continue = "Wallet.WordCheck.Continue"
+    case Wallet_WordCheck_IncorrectHeader = "Wallet.WordCheck.IncorrectHeader"
+    case Wallet_WordCheck_IncorrectText = "Wallet.WordCheck.IncorrectText"
+    case Wallet_WordCheck_TryAgain = "Wallet.WordCheck.TryAgain"
+    case Wallet_WordCheck_ViewWords = "Wallet.WordCheck.ViewWords"
     case Wallet_Alert_OK = "Wallet.Alert.OK"
+    case Wallet_Completed_Title = "Wallet.Completed.Title"
+    case Wallet_Completed_Text = "Wallet.Completed.Text"
+    case Wallet_Completed_ViewWallet = "Wallet.Completed.ViewWallet"
 
     public var localized: String {
+        // we can cache strings in a dictionary, if some keys are being reused many times and it's required.
         return NSLocalizedString(rawValue, comment: "")
     }
+
+    public static func Wallet_WordCheck_ViewWords(wordIndices: [Int]) -> String {
+        return fillValues(WStrings.Wallet_WordCheck_Text.localized, values: wordIndices.map({ i in
+            return "\(i + 1)"
+        }))
+    }
+}
+
+fileprivate func fillValues(_ format: String, values: [String]) -> String {
+    var result = format
+    for (index, value) in values.enumerated() {
+        result = result.replacingOccurrences(of: "%\(index + 1)$@", with: value)
+    }
+    return result
 }

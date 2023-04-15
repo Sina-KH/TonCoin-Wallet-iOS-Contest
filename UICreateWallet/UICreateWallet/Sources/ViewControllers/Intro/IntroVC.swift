@@ -98,11 +98,11 @@ public class IntroVC: WViewController {
 
             }, error: { [weak self] _ in
                 guard let self else  { return }
-                showError()
+                showAlert()
             })
         }, error: { [weak self] _ in
             guard let self else  { return }
-            showError()
+            showAlert()
         })
     }
     
@@ -110,8 +110,8 @@ public class IntroVC: WViewController {
         // TODO::
     }
     
-    func showError() {
-        showError(title: WStrings.Wallet_Intro_CreateErrorTitle.localized,
+    func showAlert() {
+        showAlert(title: WStrings.Wallet_Intro_CreateErrorTitle.localized,
                   text: WStrings.Wallet_Intro_CreateErrorText.localized,
                   button: WStrings.Wallet_Alert_OK.localized)
     }

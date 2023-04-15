@@ -12,17 +12,23 @@ public struct WThemePrimaryButton {
     public var tint: UIColor
 }
 
+public struct WThemeWordInput {
+    public var background: UIColor
+}
+
 public struct WTheme {
     public var background: UIColor
     public var primaryButton: WThemePrimaryButton
+    public var wordInput: WThemeWordInput
     public var secondaryLabel: UIColor
 }
 
 // Current theme now supports both light and dark themes.
-//  If we need to support more themes, this variable should be changed and the app should be configured to call all .updateTheme() methods. (some components may need an update, to support this feature)
+//  If we need to support more themes, this variable should be changed and the app should be configured to call all .updateTheme() methods on theme change, real-time. (some components may need an update, to support this feature)
 public var currentTheme = WTheme(
     background: _systemBackground,
     primaryButton: WThemePrimaryButton(background: UIColor.systemBlue, tint: UIColor.white),
+    wordInput: WThemeWordInput(background: WColors.secondaryBackground.color),
     secondaryLabel: WColors.secondaryLabel.color
 )
 

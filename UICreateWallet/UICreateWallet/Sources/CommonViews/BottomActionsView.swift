@@ -15,9 +15,15 @@ struct BottomAction {
 
 class BottomActionsView: UIView {
 
-    init(primaryAction: BottomAction, secondaryAction: BottomAction? = nil) {
+    static let buttonsSpacing = CGFloat(16)
+    static let reserveHeight = WButtonSecondary.defaultHeight + BottomActionsView.buttonsSpacing
+
+    init(primaryAction: BottomAction,
+         secondaryAction: BottomAction? = nil,
+         // if `reserveSecondaryActionHeight` be true, on nil secondaryAction, the view will reserve the secondaryAction's height.
+         reserveSecondaryActionHeight: Bool = true) {
         super.init(frame: CGRect.zero)
-        setupView(primaryAction: primaryAction, secondaryAction: secondaryAction)
+        setupView(primaryAction: primaryAction, secondaryAction: secondaryAction, reserveSecondaryActionHeight: reserveSecondaryActionHeight)
     }
     
     override init(frame: CGRect) {
@@ -32,7 +38,8 @@ class BottomActionsView: UIView {
     private var secondaryAction: BottomAction? = nil
 
     private func setupView(primaryAction: BottomAction,
-                           secondaryAction: BottomAction? = nil) {
+                           secondaryAction: BottomAction? = nil,
+                           reserveSecondaryActionHeight: Bool = true) {
         self.primaryAction = primaryAction
         self.secondaryAction = secondaryAction
         
@@ -60,13 +67,14 @@ class BottomActionsView: UIView {
             secondaryButton.addTarget(self, action: #selector(secondaryPressed(_:)), for: .touchUpInside)
             addSubview(secondaryButton)
             NSLayoutConstraint.activate([
-             secondaryButton.topAnchor.constraint(equalTo: primaryButton.bottomAnchor, constant: 16),
-             secondaryButton.leftAnchor.constraint(equalTo: leftAnchor),
-             secondaryButton.rightAnchor.constraint(equalTo: rightAnchor),
-             secondaryButton.bottomAnchor.constraint(equalTo: bottomAnchor)
+                secondaryButton.topAnchor.constraint(equalTo: primaryButton.bottomAnchor, constant: BottomActionsView.buttonsSpacing),
+                secondaryButton.leftAnchor.constraint(equalTo: leftAnchor),
+                secondaryButton.rightAnchor.constraint(equalTo: rightAnchor),
+                secondaryButton.bottomAnchor.constraint(equalTo: bottomAnchor)
             ])
         } else {
-            primaryButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -66).isActive = true
+            primaryButton.bottomAnchor.constraint(equalTo: bottomAnchor,
+                                                  constant: reserveSecondaryActionHeight ? -BottomActionsView.reserveHeight : 0).isActive = true
         }
     }
     

@@ -37,7 +37,7 @@ class WordListView: UIView {
         // fill stack views with word items
         for (index, word) in words.enumerated() {
             let wordItemView = WordListItemView(index: index, word: word)
-            if index <= rowsCount {
+            if index < rowsCount {
                 leftStackView.addArrangedSubview(wordItemView)
             } else {
                 rightStackView.addArrangedSubview(wordItemView)

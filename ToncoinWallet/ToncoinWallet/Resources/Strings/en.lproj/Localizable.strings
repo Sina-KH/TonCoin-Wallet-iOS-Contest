@@ -1,16 +1,22 @@
-// new app
+// New App ///////////////
+
+// Intro
 "Wallet.Intro.ImportExisting" = "Import existing wallet";
 "Wallet.Intro.CreateErrorTitle" = "An Error Occurred";
 "Wallet.Intro.CreateErrorText" = "Sorry. Please try again.";
 "Wallet.Intro.Title" = "TON Wallet";
 "Wallet.Intro.Text" = "TON Wallet allows you to make fast and secure blockchain-based payments without intermediaries.";
 "Wallet.Intro.CreateWallet" = "Create my wallet";
+
+// Wallet Created
 "Wallet.Created.Title" = "Congratulations";
 "Wallet.Created.Text" = "Your TON Wallet has just been created. Only you control it.\n\nTo be able to always have access to it, please write down your secret words and\nset up a secure passcode.";
 "Wallet.Created.Proceed" = "Proceed";
 "Wallet.Created.ExportErrorTitle" = "Error";
 "Wallet.Created.ExportErrorText" = "Encryption error. Please make sure you have enabled a device passcode in iOS settings and try again.";
-"Wallet.Words.Title" = "Your Recovery Phrase";
+
+// Words List
+"Wallet.Words.Title" = "Your Recovery Phrase"; // Updated
 "Wallet.Words.Text" = "Write down these 24 words in this exact order and keep them in a secure place. Do not share this list with anyone. If you lose it, you will irrevocably lose access to your TON account.";
 "Wallet.Words.Done" = "Done";
 "Wallet.Words.NotDoneTitle" = "Sure Done?";
@@ -18,9 +24,26 @@
 "Wallet.Words.NotDoneOk" = "OK, Sorry";
 "Wallet.Words.NotDoneResponse" = "Apologies Accepted";
 "Wallet.Words.NotDoneSkip" = "Skip"; // NEW
-"Wallet.Alert.OK" = "OK";
 
-// original app
+// WordCheck
+"Wallet.WordCheck.Title" = "Test Time!";
+"Wallet.WordCheck.Text" = "Let’s check that you wrote them down correctly. Please enter the words\n%1$@, %2$@ and %3$@."; // Updated
+"Wallet.WordCheck.Continue" = "Continue";
+"Wallet.WordCheck.IncorrectHeader" = "Incorrect words";
+"Wallet.WordCheck.IncorrectText" = "The secret words you have entered do not match the ones in the list.";
+"Wallet.WordCheck.TryAgain" = "Try again";
+"Wallet.WordCheck.ViewWords" = "See words";
+
+// Completed
+"Wallet.Completed.Title" = "Ready to go!";
+"Wallet.Completed.Text" = "You’re all set. Now you have a wallet that only you control - directly, without middlemen or bankers.";
+"Wallet.Completed.ViewWallet" = "View my wallet";
+
+// Alert
+"Wallet.Alert.OK" = "OK";
+//////////////////////////
+
+// Original App //////////
 "Wallet.Updated.JustNow" = "updated just now";
 "Wallet.Updated.MinutesAgo_0" = "%@ minutes ago"; //three to ten
 "Wallet.Updated.MinutesAgo_1" = "1 minute ago"; //one
@@ -94,9 +117,6 @@
 "Wallet.Settings.DeleteWalletInfo" = "This will disconnect the wallet from this app. You will be able to restore your wallet using 24 secret words – or import another wallet.\n\nTON Wallets are located in the decentralized TON Blockchain. If you want a wallet to be deleted, simply transfer all the TON from it and leave it empty.";
 "Wallet.Intro.NotNow" = "Not Now";
 "Wallet.Intro.Terms" = "By creating a wallet you accept the\n[Terms of Conditions]().";
-"Wallet.Completed.Title" = "Ready to go!";
-"Wallet.Completed.Text" = "You’re all set. Now you have a wallet that only you control - directly, without middlemen or bankers.";
-"Wallet.Completed.ViewWallet" = "View my wallet";
 "Wallet.RestoreFailed.Title" = "Too Bad";
 "Wallet.RestoreFailed.Text" = "Without the secret words, you can't\nrestore access to your wallet.";
 "Wallet.RestoreFailed.CreateWallet" = "Create a new wallet";
@@ -132,13 +152,6 @@
 "Wallet.TransactionInfo.StorageFeeInfoUrl" = "Blockchain validators collect a tiny fee for storing information about your decentralized wallet and processing your transactions. [More info]()";
 "Wallet.TransactionInfo.OtherFeeInfo" = "Blockchain validators collect a tiny fee for processing your decentralized transactions.";
 "Wallet.TransactionInfo.OtherFeeInfoUrl" = "Blockchain validators collect a tiny fee for processing your decentralized transactions. [More info]()";
-"Wallet.WordCheck.Title" = "Test Time!";
-"Wallet.WordCheck.Text" = "Let’s check that you wrote them down correctly. Please enter the words\n**%1$@**, **%2$@** and **%3$@**";
-"Wallet.WordCheck.Continue" = "Continue";
-"Wallet.WordCheck.IncorrectHeader" = "Incorrect words!";
-"Wallet.WordCheck.IncorrectText" = "The secret words you have entered do not match the ones in the list.";
-"Wallet.WordCheck.TryAgain" = "Try Again";
-"Wallet.WordCheck.ViewWords" = "View Words";
 "Wallet.WordImport.Title" = "24 Secret Words";
 "Wallet.WordImport.Text" = "Please restore access to your wallet by\nentering the 24 secret words you wrote down when creating the wallet.";
 "Wallet.WordImport.Continue" = "Continue";
