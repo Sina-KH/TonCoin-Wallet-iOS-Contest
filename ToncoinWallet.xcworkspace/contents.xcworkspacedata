@@ -26,6 +26,9 @@
       location = "group:TonBinding/TonBinding.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:BuildConfig/BuildConfig.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:RLottieBinding/RLottieBinding.xcodeproj">
    </FileRef>
    <FileRef

@@ -9,6 +9,7 @@ import UIKit
 import WalletContext
 
 protocol PasscodeInputViewDelegate: AnyObject {
+    func passcodeChanged(passcode: String)
     func passcodeSelected(passcode: String)
 }
 
@@ -86,6 +87,8 @@ class PasscodeInputView: UIStackView {
     }
     
     func textUpdated() {
+        delegate?.passcodeChanged(passcode: currentPasscode)
+
         // update circle colors
         let textLength = currentPasscode.count
         for i in 0 ..< maxPasscodeLength {

@@ -61,7 +61,7 @@ public class CompletedVC: WViewController {
 
         let headerView = HeaderView(animationName: "WalletDone",
                                     animationWidth: 130, animationHeight: 130,
-                                    animationReply: true,
+                                    animationPlaybackMode: .loop,
                                     title: WStrings.Wallet_Completed_Title.localized,
                                     description: WStrings.Wallet_Completed_Text.localized)
         topView.addSubview(headerView)

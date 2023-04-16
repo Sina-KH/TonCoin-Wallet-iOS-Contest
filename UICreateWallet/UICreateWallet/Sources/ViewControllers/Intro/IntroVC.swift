@@ -65,7 +65,7 @@ public class IntroVC: WViewController {
 
         let headerView = HeaderView(animationName: "WalletIntroLoading",
                                     animationWidth: 124, animationHeight: 124,
-                                    animationReply: true,
+                                    animationPlaybackMode: .loop,
                                     title: WStrings.Wallet_Intro_Title.localized,
                                     description: WStrings.Wallet_Intro_Text.localized)
         topView.addSubview(headerView)

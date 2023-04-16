@@ -6,48 +6,49 @@
 //
 
 import UIKit
-import UIComponents
 
-class HeaderView: UIView {
+public class HeaderView: UIView {
 
-    init(animationName: String,
-         animationWidth: Int,
-         animationHeight: Int,
-         animationReply: Bool,
-         title: String,
+    public var animatedSticker: WAnimatedSticker!
+
+    public init(animationName: String,
+                animationWidth: Int,
+                animationHeight: Int,
+                animationPlaybackMode: AnimatedStickerPlaybackMode,
+                title: String,
          description: String) {
         super.init(frame: CGRect.zero)
         setupView(animationName: animationName,
                   animationWidth: animationWidth,
                   animationHeight: animationHeight,
-                  animationReply: animationReply,
+                  animationPlaybackMode: animationPlaybackMode,
                   title: title,
                   description: description)
     }
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         fatalError()
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError()
     }
     
     private func setupView(animationName: String,
                            animationWidth: Int,
                            animationHeight: Int,
-                           animationReply: Bool,
+                           animationPlaybackMode: AnimatedStickerPlaybackMode,
                            title: String,
                            description: String) {
         translatesAutoresizingMaskIntoConstraints = false
         
         // add animated sticker
-        let animatedSticker = WAnimatedSticker()
+        animatedSticker = WAnimatedSticker()
         animatedSticker.animationName = animationName
-        animatedSticker.replay = animationReply
         animatedSticker.translatesAutoresizingMaskIntoConstraints = false
         animatedSticker.setup(width: animationWidth,
-                              height: animationHeight)
+                              height: animationHeight,
+                              playbackMode: animationPlaybackMode)
         addSubview(animatedSticker)
         NSLayoutConstraint.activate([
             animatedSticker.topAnchor.constraint(equalTo: topAnchor),

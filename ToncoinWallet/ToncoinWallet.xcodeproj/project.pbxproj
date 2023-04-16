@@ -54,7 +54,12 @@
 		2786FB4E29E86CA80023FE21 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB4D29E86CA80023FE21 /* Downloader.swift */; };
 		27A1280929E0402C002D030A /* UICreateWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3F8A29D639C5007C47AE /* UICreateWallet.framework */; };
 		27A1280A29E0402C002D030A /* UICreateWallet.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3F8A29D639C5007C47AE /* UICreateWallet.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		27B65D1329EC56F800D47112 /* Password.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27B65D1229EC56F800D47112 /* Password.tgs */; };
 		27BB29AE29E8CA0C009F5DD7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 27BB29AC29E8CA0C009F5DD7 /* Localizable.strings */; };
+		27DB29CC29EC6A6200988800 /* BuildConfig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29CB29EC6A6200988800 /* BuildConfig.framework */; };
+		27DB29CD29EC6A6200988800 /* BuildConfig.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29CB29EC6A6200988800 /* BuildConfig.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		27DB29CF29EC6AC700988800 /* UIPasscode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29CE29EC6AC700988800 /* UIPasscode.framework */; };
+		27DB29D029EC6AC700988800 /* UIPasscode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29CE29EC6AC700988800 /* UIPasscode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,10 +92,12 @@
 				275EC63929E8562700EE8B66 /* UIComponents.framework in Embed Frameworks */,
 				275C585D29E051B6002531AF /* WalletCore.framework in Embed Frameworks */,
 				27A1280A29E0402C002D030A /* UICreateWallet.framework in Embed Frameworks */,
+				27DB29D029EC6AC700988800 /* UIPasscode.framework in Embed Frameworks */,
 				275EC63C29E8574D00EE8B66 /* GZip.framework in Embed Frameworks */,
 				275EC63729E855A100EE8B66 /* SSignalKit.framework in Embed Frameworks */,
 				275EC63F29E857BC00EE8B66 /* YuvConversion.framework in Embed Frameworks */,
 				273521F929E9847A007C4E96 /* WalletContext.framework in Embed Frameworks */,
+				27DB29CD29EC6A6200988800 /* BuildConfig.framework in Embed Frameworks */,
 				275EC63429E8541E00EE8B66 /* TonBinding.framework in Embed Frameworks */,
 				275C586129E051BA002531AF /* WalletUrl.framework in Embed Frameworks */,
 			);
@@ -141,7 +148,10 @@
 		2786FB4929E866380023FE21 /* WalletStorageInterfaceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletStorageInterfaceImpl.swift; sourceTree = "<group>"; };
 		2786FB4B29E866670023FE21 /* FileBackedStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileBackedStorage.swift; sourceTree = "<group>"; };
 		2786FB4D29E86CA80023FE21 /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
+		27B65D1229EC56F800D47112 /* Password.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = Password.tgs; sourceTree = "<group>"; };
 		27BB29AD29E8CA0C009F5DD7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		27DB29CB29EC6A6200988800 /* BuildConfig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BuildConfig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27DB29CE29EC6AC700988800 /* UIPasscode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIPasscode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,10 +165,12 @@
 				275EC63829E8562700EE8B66 /* UIComponents.framework in Frameworks */,
 				27A1280929E0402C002D030A /* UICreateWallet.framework in Frameworks */,
 				275C585E29E051B8002531AF /* SwiftSignalKit.framework in Frameworks */,
+				27DB29CF29EC6AC700988800 /* UIPasscode.framework in Frameworks */,
 				275EC63B29E8574D00EE8B66 /* GZip.framework in Frameworks */,
 				275EC63629E855A100EE8B66 /* SSignalKit.framework in Frameworks */,
 				275EC63E29E857BC00EE8B66 /* YuvConversion.framework in Frameworks */,
 				273521F829E9847A007C4E96 /* WalletContext.framework in Frameworks */,
+				27DB29CC29EC6A6200988800 /* BuildConfig.framework in Frameworks */,
 				275EC63329E8541E00EE8B66 /* TonBinding.framework in Frameworks */,
 				275C586029E051BA002531AF /* WalletUrl.framework in Frameworks */,
 			);
@@ -206,6 +218,7 @@
 				273A60C729E0353C007CA6F0 /* WalletSynchronization.tgs */,
 				273A60C529E0353C007CA6F0 /* WalletWordCheck.tgs */,
 				273A60C229E0353B007CA6F0 /* WalletWordList.tgs */,
+				27B65D1229EC56F800D47112 /* Password.tgs */,
 			);
 			path = Animations;
 			sourceTree = "<group>";
@@ -264,6 +277,8 @@
 		274D3F2B29D62BF3007C47AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				27DB29CE29EC6AC700988800 /* UIPasscode.framework */,
+				27DB29CB29EC6A6200988800 /* BuildConfig.framework */,
 				273521F729E9847A007C4E96 /* WalletContext.framework */,
 				275EC68129E863F300EE8B66 /* NumberPluralizationForm.framework */,
 				275EC67E29E863D200EE8B66 /* NumberPluralizationForm.framework */,
@@ -411,6 +426,7 @@
 				273A60D429E0353C007CA6F0 /* WalletSynchronization.tgs in Resources */,
 				273A60CA29E0353C007CA6F0 /* WalletApologiesAccepted.tgs in Resources */,
 				273A60D229E0353C007CA6F0 /* WalletWordCheck.tgs in Resources */,
+				27B65D1329EC56F800D47112 /* Password.tgs in Resources */,
 				273A60CD29E0353C007CA6F0 /* WalletKeyLock.tgs in Resources */,
 				273A60CC29E0353C007CA6F0 /* WalletNotAvailable.tgs in Resources */,
 				273A60CB29E0353C007CA6F0 /* WalletInitializing.tgs in Resources */,

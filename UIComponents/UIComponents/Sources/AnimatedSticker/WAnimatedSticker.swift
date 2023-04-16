@@ -12,16 +12,12 @@ import RLottieBinding
 public class WAnimatedSticker: UIView {
 
     @IBInspectable
-    public var replay: Bool = false
-    
-    @IBInspectable
     public var animationName: String = ""
     
     private var animatedSticker: AnimatedStickerNode? = nil
 
     override open func awakeFromNib() {
         super.awakeFromNib()
-        setup(width: Int(frame.width), height: Int(frame.height))
     }
     
     override open func prepareForInterfaceBuilder() {
@@ -29,7 +25,7 @@ public class WAnimatedSticker: UIView {
     }
     
     // setup animation data
-    public func setup(width: Int, height: Int) {
+    public func setup(width: Int, height: Int, playbackMode: AnimatedStickerPlaybackMode) {
         // load the animation
         guard let path = Bundle.main.path(forResource: animationName, ofType: "tgs") else {
             return
@@ -45,9 +41,22 @@ public class WAnimatedSticker: UIView {
         // setup the animated sticker
         animatedSticker?.setup(source: AnimatedStickerNodeLocalFileSource(path: path),
                                width: width * 2, height: height * 2,
-                               playbackMode: replay ? .loop : .once,
+                               playbackMode: playbackMode,
                                mode: .direct)
         animatedSticker?.play()
     }
-    
+
+    public func toggle(_ on: Bool) {
+        switch animatedSticker!.playbackMode {
+            case .toggle(let toggleMode):
+                if toggleMode == on {
+                    return
+                }
+                break
+            default:
+                break
+        }
+        animatedSticker?.playbackMode = .toggle(on)
+        animatedSticker?.play()
+    }
 }

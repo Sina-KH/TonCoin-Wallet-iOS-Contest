@@ -34,10 +34,15 @@ public enum WStrings: String {
     case Wallet_WordCheck_IncorrectText = "Wallet.WordCheck.IncorrectText"
     case Wallet_WordCheck_TryAgain = "Wallet.WordCheck.TryAgain"
     case Wallet_WordCheck_ViewWords = "Wallet.WordCheck.ViewWords"
-    case Wallet_Alert_OK = "Wallet.Alert.OK"
     case Wallet_Completed_Title = "Wallet.Completed.Title"
     case Wallet_Completed_Text = "Wallet.Completed.Text"
     case Wallet_Completed_ViewWallet = "Wallet.Completed.ViewWallet"
+    case Wallet_SetPasscode_Title = "Wallet.SetPasscode.Title"
+    case Wallet_SetPasscode_Text = "Wallet.SetPasscode.Text"
+    case Wallet_SetPasscode_Options = "Wallet.SetPasscode.Options"
+    case Wallet_SetPasscode_FourDigitCode = "Wallet.SetPasscode.FourDigitCode"
+    case Wallet_SetPasscode_SixDigitCode = "Wallet.SetPasscode.SixDigitCode"
+    case Wallet_Alert_OK = "Wallet.Alert.OK"
 
     public var localized: String {
         // we can cache strings in a dictionary, if some keys are being reused many times and it's required.

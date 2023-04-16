@@ -9,6 +9,7 @@ import UIKit
 import WalletCore
 import WalletContext
 import UIComponents
+import UIPasscode
 
 public class WalletCreatedVC: WViewController {
     
@@ -66,7 +67,7 @@ public class WalletCreatedVC: WViewController {
 
         let headerView = HeaderView(animationName: "WalletCreated",
                                     animationWidth: 125, animationHeight: 125,
-                                    animationReply: false,
+                                    animationPlaybackMode: .once,
                                     title: WStrings.Wallet_Created_Title.localized,
                                     description: WStrings.Wallet_Created_Text.localized)
         topView.addSubview(headerView)
@@ -85,7 +86,7 @@ public class WalletCreatedVC: WViewController {
         let wordDisplayVC = WordDisplayVC(walletContext: walletContext,
                                           walletInfo: walletInfo,
                                           wordList: wordList)
-        navigationController?.pushViewController(wordDisplayVC, animated: true)
+        navigationController?.pushViewController(SetPasscodeVC(), animated: true)
     }
     
 }

@@ -4,6 +4,7 @@ import UIKit
 import AVFoundation
 import UICreateWallet
 import WalletContext
+import BuildConfig
 
 final class WalletStorageInterfaceImpl: WalletStorageInterface {
     private let storage: FileBackedStorage

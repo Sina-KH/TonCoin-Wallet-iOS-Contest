@@ -15,7 +15,29 @@
 		273521FE29E98514007C4E96 /* WStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521FD29E98514007C4E96 /* WStrings.swift */; };
 		2735220429E98972007C4E96 /* WColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2735220329E98972007C4E96 /* WColors.swift */; };
 		2735220629E98C1A007C4E96 /* WTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2735220529E98C1A007C4E96 /* WTheme.swift */; };
+		27DB29AC29EC696E00988800 /* SwiftSignalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29AB29EC696E00988800 /* SwiftSignalKit.framework */; };
+		27DB29AD29EC696E00988800 /* SwiftSignalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29AB29EC696E00988800 /* SwiftSignalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		27DB29B329EC699600988800 /* NumberPluralizationForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29B229EC699600988800 /* NumberPluralizationForm.framework */; };
+		27DB29B429EC699600988800 /* NumberPluralizationForm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29B229EC699600988800 /* NumberPluralizationForm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		27DB29D229EC6E4200988800 /* WalletCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29D129EC6E4200988800 /* WalletCore.framework */; };
+		27DB29D329EC6E4200988800 /* WalletCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29D129EC6E4200988800 /* WalletCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		27DB29AE29EC696E00988800 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				27DB29B429EC699600988800 /* NumberPluralizationForm.framework in Embed Frameworks */,
+				27DB29D329EC6E4200988800 /* WalletCore.framework in Embed Frameworks */,
+				27DB29AD29EC696E00988800 /* SwiftSignalKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		273521E329E98434007C4E96 /* WalletContext.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WalletContext.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -27,6 +49,9 @@
 		273521FD29E98514007C4E96 /* WStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WStrings.swift; sourceTree = "<group>"; };
 		2735220329E98972007C4E96 /* WColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WColors.swift; sourceTree = "<group>"; };
 		2735220529E98C1A007C4E96 /* WTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTheme.swift; sourceTree = "<group>"; };
+		27DB29AB29EC696E00988800 /* SwiftSignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftSignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27DB29B229EC699600988800 /* NumberPluralizationForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NumberPluralizationForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27DB29D129EC6E4200988800 /* WalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +59,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27DB29B329EC699600988800 /* NumberPluralizationForm.framework in Frameworks */,
+				27DB29D229EC6E4200988800 /* WalletCore.framework in Frameworks */,
+				27DB29AC29EC696E00988800 /* SwiftSignalKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,6 +73,7 @@
 			children = (
 				273521E529E98434007C4E96 /* WalletContext */,
 				273521E429E98434007C4E96 /* Products */,
+				27DB29AA29EC696E00988800 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,6 +124,16 @@
 			path = Theme;
 			sourceTree = "<group>";
 		};
+		27DB29AA29EC696E00988800 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				27DB29D129EC6E4200988800 /* WalletCore.framework */,
+				27DB29B229EC699600988800 /* NumberPluralizationForm.framework */,
+				27DB29AB29EC696E00988800 /* SwiftSignalKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -117,6 +156,7 @@
 				273521DF29E98434007C4E96 /* Sources */,
 				273521E029E98434007C4E96 /* Frameworks */,
 				273521E129E98434007C4E96 /* Resources */,
+				27DB29AE29EC696E00988800 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

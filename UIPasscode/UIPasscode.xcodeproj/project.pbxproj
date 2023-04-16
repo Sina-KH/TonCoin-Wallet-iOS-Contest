@@ -13,6 +13,8 @@
 		2777557829EB4CA20098DE68 /* UIPasscode.h in Headers */ = {isa = PBXBuildFile; fileRef = 2777556A29EB4CA10098DE68 /* UIPasscode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2777558529EB4CEA0098DE68 /* SetPasscodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2777558429EB4CEA0098DE68 /* SetPasscodeVC.swift */; };
 		2777558829EB4D9E0098DE68 /* PasscodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2777558729EB4D9E0098DE68 /* PasscodeInputView.swift */; };
+		27B65D1629EC58DB00D47112 /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B65D1529EC58DB00D47112 /* UIComponents.framework */; };
+		27B65D1729EC58DB00D47112 /* UIComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27B65D1529EC58DB00D47112 /* UIComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,6 +27,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		27B65D1829EC58DB00D47112 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				27B65D1729EC58DB00D47112 /* UIComponents.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		2777556729EB4CA10098DE68 /* UIPasscode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIPasscode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2777556A29EB4CA10098DE68 /* UIPasscode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPasscode.h; sourceTree = "<group>"; };
@@ -33,6 +49,7 @@
 		2777557629EB4CA20098DE68 /* UIPasscodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPasscodeTests.swift; sourceTree = "<group>"; };
 		2777558429EB4CEA0098DE68 /* SetPasscodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasscodeVC.swift; sourceTree = "<group>"; };
 		2777558729EB4D9E0098DE68 /* PasscodeInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeInputView.swift; sourceTree = "<group>"; };
+		27B65D1529EC58DB00D47112 /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27B65D1629EC58DB00D47112 /* UIComponents.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +78,7 @@
 				2777556929EB4CA10098DE68 /* UIPasscode */,
 				2777557529EB4CA20098DE68 /* UIPasscodeTests */,
 				2777556829EB4CA10098DE68 /* Products */,
+				27B65D1429EC58DB00D47112 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,6 +142,14 @@
 			path = CommonViews;
 			sourceTree = "<group>";
 		};
+		27B65D1429EC58DB00D47112 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				27B65D1529EC58DB00D47112 /* UIComponents.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -145,6 +172,7 @@
 				2777556329EB4CA10098DE68 /* Sources */,
 				2777556429EB4CA10098DE68 /* Frameworks */,
 				2777556529EB4CA10098DE68 /* Resources */,
+				27B65D1829EC58DB00D47112 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

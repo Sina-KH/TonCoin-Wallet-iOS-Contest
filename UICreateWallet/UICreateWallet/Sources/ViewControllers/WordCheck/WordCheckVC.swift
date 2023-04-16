@@ -64,7 +64,7 @@ class WordCheckVC: WViewController {
         // header
         let headerView = HeaderView(animationName: "WalletWordCheck",
                                     animationWidth: 119, animationHeight: 119,
-                                    animationReply: false,
+                                    animationPlaybackMode: .once,
                                     title: WStrings.Wallet_WordCheck_Title.localized,
                                     description: WStrings.Wallet_WordCheck_ViewWords(wordIndices: wordIndices))
         scrollView.addSubview(headerView)

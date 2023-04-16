@@ -17,10 +17,18 @@ public enum AnimatedStickerPlaybackPosition {
     case end
 }
 
+// for animations like (Password) which contain 2 states, `on` (50% of the animation) and `off` (seek to 0%)
+public enum AnimatedStickerPlaybackToggle {
+    case on
+    case off
+}
+
 public enum AnimatedStickerPlaybackMode {
     case once
     case loop
     case still(AnimatedStickerPlaybackPosition)
+    // toggle mode let's animation player to make password animation possible
+    case toggle(Bool)
 }
 
 private final class AnimatedStickerFrame {
@@ -46,6 +54,9 @@ private final class AnimatedStickerFrame {
 private protocol AnimatedStickerFrameSource: AnyObject {
     var frameRate: Int { get }
     var frameCount: Int { get }
+    var frameIndex: Int { get }
+    // hold playback speed on frame source to make reverse playing possible
+    var playbackSpeed: Int { get set }
     
     func takeFrame() -> AnimatedStickerFrame?
     func skipToEnd()
@@ -72,12 +83,13 @@ private final class AnimatedStickerCachedFrameSource: AnimatedStickerFrameSource
     let height: Int
     let frameRate: Int
     let frameCount: Int
-    private var frameIndex: Int
+    var frameIndex: Int
     private let initialOffset: Int
     private var offset: Int
     var decodeBuffer: Data
     var frameBuffer: Data
-    
+    var playbackSpeed = 1
+
     init?(queue: Queue, data: Data, complete: Bool, notifyUpdated: @escaping () -> Void) {
         self.queue = queue
         self.data = data
@@ -198,7 +210,7 @@ private final class AnimatedStickerCachedFrameSource: AnimatedStickerFrameSource
                 }
             }
             
-            self.frameIndex += 1
+            self.frameIndex += playbackSpeed
             self.offset += Int(frameLength)
             if self.offset == dataLength && self.dataComplete {
                 isLastFrame = true
@@ -236,7 +248,11 @@ private final class AnimatedStickerDirectFrameSource: AnimatedStickerFrameSource
     let frameRate: Int
     private var currentFrame: Int
     private let animation: LottieInstance
-    
+
+    // hold frameIndex to handle toggle play mode
+    var frameIndex: Int = 0
+    var playbackSpeed = 1
+
     init?(queue: Queue, data: Data, width: Int, height: Int) {
         self.queue = queue
         self.data = data
@@ -258,8 +274,8 @@ private final class AnimatedStickerDirectFrameSource: AnimatedStickerFrameSource
     }
     
     func takeFrame() -> AnimatedStickerFrame? {
-        let frameIndex = self.currentFrame % self.frameCount
-        self.currentFrame += 1
+        frameIndex = self.currentFrame % self.frameCount
+        self.currentFrame += playbackSpeed
         var frameData = Data(count: self.bytesPerRow * self.height)
         frameData.withUnsafeMutableBytes { (bytes: UnsafeMutablePointer<UInt8>) -> Void in
             memset(bytes, 0, self.bytesPerRow * self.height)
@@ -367,7 +383,34 @@ final class AnimatedStickerNode: UIView {
     
     public var isPlaying: Bool = false
     private var canDisplayFirstFrame: Bool = false
-    private var playbackMode: AnimatedStickerPlaybackMode = .loop
+    var playbackMode: AnimatedStickerPlaybackMode = .loop {
+        didSet {
+            // we check if animation toggled and we can go to the desired mode faster, with reverse playback
+            let frameSource: AnimatedStickerFrameSource? = frameSource.with { $0 }?.syncWith { $0 }?.value
+            guard let frameSource else {return}
+            switch oldValue {
+            case .toggle(let on):
+                switch playbackMode {
+                case .toggle(let newOn):
+                    // reverse playback if makes transition to the desired state, faster.
+                    if on != newOn {
+                        if (newOn && frameSource.frameIndex > frameSource.frameCount / 2) ||
+                            (!newOn && frameSource.frameIndex < frameSource.frameCount / 2) {
+                            frameSource.playbackSpeed = -1
+                        } else {
+                            frameSource.playbackSpeed = 1
+                        }
+                    }
+                    return
+                default:
+                    break
+                }
+            default:
+                break
+            }
+            frameSource.playbackSpeed = 1
+        }
+    }
     
     private let playbackStatus = Promise<AnimatedStickerStatus>()
     public var status: Signal<AnimatedStickerStatus, NoError> {
@@ -576,7 +619,16 @@ final class AnimatedStickerNode: UIView {
                                 strongSelf.stop()
                                 strongSelf.isPlaying = false
                             }
-                            
+                            // check if mode is `toggle`, and we are in the desired state. If so, pause!
+                            if case .toggle(true) = strongSelf.playbackMode, frameSource.frameIndex == frameSource.frameCount / 2 {
+                                strongSelf.pause()
+                                strongSelf.isPlaying = false
+                            }
+                            if case .toggle(false) = strongSelf.playbackMode, frameSource.frameIndex == 1 { // == 1 means it rendered frame 0
+                                strongSelf.pause()
+                                strongSelf.isPlaying = false
+                            }
+
                             let timestamp: Double = frameRate > 0 ? Double(frame.index) / Double(frameRate) : 0
                             strongSelf.playbackStatus.set(.single(AnimatedStickerStatus(playing: strongSelf.isPlaying, duration: duration, timestamp: timestamp)))
                         }
@@ -645,6 +697,15 @@ final class AnimatedStickerNode: UIView {
                             
                             if case .once = strongSelf.playbackMode, frame.isLastFrame {
                                 strongSelf.stop()
+                                strongSelf.isPlaying = false
+                            }
+                            // check if mode is `toggle`, and we are in the desired state. If so, pause!
+                            if case .toggle(true) = strongSelf.playbackMode, frameSource.frameIndex == frameSource.frameCount / 2 {
+                                strongSelf.pause()
+                                strongSelf.isPlaying = false
+                            }
+                            if case .toggle(false) = strongSelf.playbackMode, frameSource.frameIndex == 2 { // == 1 means it rendered frame 0, but first time it's 2 here!
+                                strongSelf.pause()
                                 strongSelf.isPlaying = false
                             }
                             

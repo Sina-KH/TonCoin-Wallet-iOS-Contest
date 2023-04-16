@@ -39,6 +39,13 @@
 "Wallet.Completed.Text" = "You’re all set. Now you have a wallet that only you control - directly, without middlemen or bankers.";
 "Wallet.Completed.ViewWallet" = "View my wallet";
 
+// SetPasscode
+"Wallet.SetPasscode.Title" = "Set a Passcode"; // NEW
+"Wallet.SetPasscode.Text" = "Enter the 4 digits in the passcode."; // NEW
+"Wallet.SetPasscode.Options" = "Passcode options"; // NEW
+"Wallet.SetPasscode.FourDigitCode" = "4-digit code"; // NEW
+"Wallet.SetPasscode.SixDigitCode" = "6-digit code"; // NEW
+
 // Alert
 "Wallet.Alert.OK" = "OK";
 //////////////////////////

@@ -7,140 +7,99 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		275C577F29E04E82002531AF /* WalletCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 275C577E29E04E82002531AF /* WalletCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		275C578629E04E9D002531AF /* WalletCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C578529E04E9D002531AF /* WalletCore.swift */; };
-		275C586B29E052F6002531AF /* TonBinding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275C57B529E04F51002531AF /* TonBinding.framework */; };
-		275C586C29E052F6002531AF /* TonBinding.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 275C57B529E04F51002531AF /* TonBinding.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		275C586F29E052F7002531AF /* SSignalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 275C586929E052F1002531AF /* SSignalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		27DB29B029EC697E00988800 /* SwiftSignalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29AF29EC697E00988800 /* SwiftSignalKit.framework */; };
-		27DB29B129EC697E00988800 /* SwiftSignalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29AF29EC697E00988800 /* SwiftSignalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		27DB29C329EC6A0100988800 /* BuildConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DB29C229EC6A0100988800 /* BuildConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		27DB29CA29EC6A2D00988800 /* BuildConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DB29C929EC6A2D00988800 /* BuildConfig.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		275C586D29E052F6002531AF /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				27DB29B129EC697E00988800 /* SwiftSignalKit.framework in Embed Frameworks */,
-				275C586C29E052F6002531AF /* TonBinding.framework in Embed Frameworks */,
-				275C586F29E052F7002531AF /* SSignalKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		2747981529E0540900330D0C /* SignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		275C577B29E04E82002531AF /* WalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		275C577E29E04E82002531AF /* WalletCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletCore.h; sourceTree = "<group>"; };
-		275C578529E04E9D002531AF /* WalletCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCore.swift; sourceTree = "<group>"; };
-		275C57B529E04F51002531AF /* TonBinding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TonBinding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		275C586929E052F1002531AF /* SSignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SSignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		27DB29AF29EC697E00988800 /* SwiftSignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftSignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27DB29BF29EC6A0100988800 /* BuildConfig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BuildConfig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27DB29C229EC6A0100988800 /* BuildConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuildConfig.h; sourceTree = "<group>"; };
+		27DB29C929EC6A2D00988800 /* BuildConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuildConfig.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		275C577829E04E82002531AF /* Frameworks */ = {
+		27DB29BC29EC6A0100988800 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				275C586B29E052F6002531AF /* TonBinding.framework in Frameworks */,
-				27DB29B029EC697E00988800 /* SwiftSignalKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		275C577129E04E82002531AF = {
+		27DB29B529EC6A0100988800 = {
 			isa = PBXGroup;
 			children = (
-				275C577D29E04E82002531AF /* WalletCore */,
-				275C577C29E04E82002531AF /* Products */,
-				275C57B429E04F51002531AF /* Frameworks */,
+				27DB29C129EC6A0100988800 /* BuildConfig */,
+				27DB29C029EC6A0100988800 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		275C577C29E04E82002531AF /* Products */ = {
+		27DB29C029EC6A0100988800 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				275C577B29E04E82002531AF /* WalletCore.framework */,
+				27DB29BF29EC6A0100988800 /* BuildConfig.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		275C577D29E04E82002531AF /* WalletCore */ = {
+		27DB29C129EC6A0100988800 /* BuildConfig */ = {
 			isa = PBXGroup;
 			children = (
-				275C577E29E04E82002531AF /* WalletCore.h */,
-				275C578529E04E9D002531AF /* WalletCore.swift */,
+				27DB29C229EC6A0100988800 /* BuildConfig.h */,
+				27DB29C929EC6A2D00988800 /* BuildConfig.m */,
 			);
-			path = WalletCore;
-			sourceTree = "<group>";
-		};
-		275C57B429E04F51002531AF /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				27DB29AF29EC697E00988800 /* SwiftSignalKit.framework */,
-				2747981529E0540900330D0C /* SignalKit.framework */,
-				275C586929E052F1002531AF /* SSignalKit.framework */,
-				275C57B529E04F51002531AF /* TonBinding.framework */,
-			);
-			name = Frameworks;
+			path = BuildConfig;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		275C577629E04E82002531AF /* Headers */ = {
+		27DB29BA29EC6A0100988800 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				275C577F29E04E82002531AF /* WalletCore.h in Headers */,
+				27DB29C329EC6A0100988800 /* BuildConfig.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		275C577A29E04E82002531AF /* WalletCore */ = {
+		27DB29BE29EC6A0100988800 /* BuildConfig */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 275C578229E04E82002531AF /* Build configuration list for PBXNativeTarget "WalletCore" */;
+			buildConfigurationList = 27DB29C629EC6A0100988800 /* Build configuration list for PBXNativeTarget "BuildConfig" */;
 			buildPhases = (
-				275C577629E04E82002531AF /* Headers */,
-				275C577729E04E82002531AF /* Sources */,
-				275C577829E04E82002531AF /* Frameworks */,
-				275C577929E04E82002531AF /* Resources */,
-				275C586D29E052F6002531AF /* Embed Frameworks */,
+				27DB29BA29EC6A0100988800 /* Headers */,
+				27DB29BB29EC6A0100988800 /* Sources */,
+				27DB29BC29EC6A0100988800 /* Frameworks */,
+				27DB29BD29EC6A0100988800 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = WalletCore;
-			productName = WalletCore;
-			productReference = 275C577B29E04E82002531AF /* WalletCore.framework */;
+			name = BuildConfig;
+			productName = BuildConfig;
+			productReference = 27DB29BF29EC6A0100988800 /* BuildConfig.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		275C577229E04E82002531AF /* Project object */ = {
+		27DB29B629EC6A0100988800 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
-					275C577A29E04E82002531AF = {
-						CreatedOnToolsVersion = 14.2;
-						LastSwiftMigration = 1420;
+					27DB29BE29EC6A0100988800 = {
+						CreatedOnToolsVersion = 14.3;
 					};
 				};
 			};
-			buildConfigurationList = 275C577529E04E82002531AF /* Build configuration list for PBXProject "WalletCore" */;
+			buildConfigurationList = 27DB29B929EC6A0100988800 /* Build configuration list for PBXProject "BuildConfig" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -148,18 +107,18 @@
 				en,
 				Base,
 			);
-			mainGroup = 275C577129E04E82002531AF;
-			productRefGroup = 275C577C29E04E82002531AF /* Products */;
+			mainGroup = 27DB29B529EC6A0100988800;
+			productRefGroup = 27DB29C029EC6A0100988800 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				275C577A29E04E82002531AF /* WalletCore */,
+				27DB29BE29EC6A0100988800 /* BuildConfig */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		275C577929E04E82002531AF /* Resources */ = {
+		27DB29BD29EC6A0100988800 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -169,18 +128,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		275C577729E04E82002531AF /* Sources */ = {
+		27DB29BB29EC6A0100988800 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				275C578629E04E9D002531AF /* WalletCore.swift in Sources */,
+				27DB29CA29EC6A2D00988800 /* BuildConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		275C578029E04E82002531AF /* Debug */ = {
+		27DB29C429EC6A0100988800 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -231,19 +190,17 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		275C578129E04E82002531AF /* Release */ = {
+		27DB29C529EC6A0100988800 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -288,28 +245,26 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		275C578329E04E82002531AF /* Debug */ = {
+		27DB29C729EC6A0100988800 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -320,26 +275,26 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.ton.wallet.WalletCore;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = org.ton.wallet.BuildConfig;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		275C578429E04E82002531AF /* Release */ = {
+		27DB29C829EC6A0100988800 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -350,11 +305,12 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.ton.wallet.WalletCore;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = org.ton.wallet.BuildConfig;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -362,25 +318,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		275C577529E04E82002531AF /* Build configuration list for PBXProject "WalletCore" */ = {
+		27DB29B929EC6A0100988800 /* Build configuration list for PBXProject "BuildConfig" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				275C578029E04E82002531AF /* Debug */,
-				275C578129E04E82002531AF /* Release */,
+				27DB29C429EC6A0100988800 /* Debug */,
+				27DB29C529EC6A0100988800 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		275C578229E04E82002531AF /* Build configuration list for PBXNativeTarget "WalletCore" */ = {
+		27DB29C629EC6A0100988800 /* Build configuration list for PBXNativeTarget "BuildConfig" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				275C578329E04E82002531AF /* Debug */,
-				275C578429E04E82002531AF /* Release */,
+				27DB29C729EC6A0100988800 /* Debug */,
+				27DB29C829EC6A0100988800 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 275C577229E04E82002531AF /* Project object */;
+	rootObject = 27DB29B629EC6A0100988800 /* Project object */;
 }
