@@ -13,6 +13,9 @@ public class SetPasscodeVC: WViewController {
 
     var headerView: HeaderView!
     var passcodeInputView: PasscodeInputView!
+    var bottomConstraint: NSLayoutConstraint!
+
+    public static let passcodeOptionsFromBottom = CGFloat(8)
 
     public init() {
         super.init(nibName: nil, bundle: nil)
@@ -61,7 +64,26 @@ public class SetPasscodeVC: WViewController {
         passcodeInputView.becomeFirstResponder()
         
         // setup passcode options button
-        
+        let passcodeOptionsButton = WButtonSecondary(type: .system)
+        passcodeOptionsButton.translatesAutoresizingMaskIntoConstraints = false
+        passcodeOptionsButton.setup()
+        passcodeOptionsButton.setTitle(WStrings.Wallet_SetPasscode_Options.localized, for: .normal)
+        passcodeOptionsButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        passcodeOptionsButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(passcodeOptionsButton)
+        bottomConstraint = passcodeOptionsButton.bottomAnchor.constraint(equalTo: view.bottomAnchor,
+                                                                         constant: -SetPasscodeVC.passcodeOptionsFromBottom)
+        NSLayoutConstraint.activate([
+            bottomConstraint,
+            passcodeOptionsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+
+        // listen for keyboard
+        WKeyboardObserver.observeKeyboard(delegate: self)
+    }
+    
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
 
 }
@@ -72,5 +94,15 @@ extension SetPasscodeVC: PasscodeInputViewDelegate {
     }
     func passcodeSelected(passcode: String) {
         
+    }
+}
+
+extension SetPasscodeVC: WKeyboardObserverDelegate {
+    public func keyboardWillShow(height: CGFloat) {
+        bottomConstraint.constant = -height - SetPasscodeVC.passcodeOptionsFromBottom
+    }
+    
+    public func keyboardWillHide() {
+        bottomConstraint.constant = -SetPasscodeVC.passcodeOptionsFromBottom
     }
 }

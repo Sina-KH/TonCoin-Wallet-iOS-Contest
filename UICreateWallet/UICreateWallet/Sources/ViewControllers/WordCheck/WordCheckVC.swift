@@ -148,11 +148,11 @@ class WordCheckVC: WViewController {
 }
 
 extension WordCheckVC: WKeyboardObserverDelegate {
-    func keyboardDidShow(height: CGFloat) {
+    func keyboardWillShow(height: CGFloat) {
         scrollView.contentInset.bottom = height + 20
     }
     
-    func keyboardDidHide() {
+    func keyboardWillHide() {
         scrollView.contentInset.bottom = 0
     }
 }
