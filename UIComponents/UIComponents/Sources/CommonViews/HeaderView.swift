@@ -10,6 +10,7 @@ import UIKit
 public class HeaderView: UIView {
 
     public var animatedSticker: WAnimatedSticker!
+    public var lblDescription: UILabel!
 
     public init(animationName: String,
                 animationWidth: Int,
@@ -72,7 +73,7 @@ public class HeaderView: UIView {
         ])
 
         // description
-        let lblDescription = UILabel()
+        lblDescription = UILabel()
         lblDescription.translatesAutoresizingMaskIntoConstraints = false
         lblDescription.text = description
         lblDescription.font = UIFont.systemFont(ofSize: 17)

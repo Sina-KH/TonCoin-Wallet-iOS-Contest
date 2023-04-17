@@ -1,15 +1,18 @@
 //
-//  SetPasscodeVC.swift
+//  ConfirmPasscodeVC.swift
 //  UIPasscode
 //
-//  Created by Sina on 4/16/23.
+//  Created by Sina on 4/17/23.
 //
 
 import UIKit
 import UIComponents
 import WalletContext
 
-public class SetPasscodeVC: WViewController {
+public class ConfirmPasscodeVC: WViewController {
+
+    private var selectedPasscode: String!
+    private weak var setPasscodeVC: SetPasscodeVC? = nil
 
     var headerView: HeaderView!
     var passcodeInputView: PasscodeInputView!
@@ -18,8 +21,10 @@ public class SetPasscodeVC: WViewController {
 
     public static let passcodeOptionsFromBottom = CGFloat(8)
 
-    public init() {
+    public init(setPasscodeVC: SetPasscodeVC, selectedPasscode: String) {
         super.init(nibName: nil, bundle: nil)
+        self.setPasscodeVC = setPasscodeVC
+        self.selectedPasscode = selectedPasscode
     }
     
     required init?(coder: NSCoder) {
@@ -45,9 +50,9 @@ public class SetPasscodeVC: WViewController {
         headerView = HeaderView(animationName: "Password",
                                     animationWidth: 124, animationHeight: 124,
                                     animationPlaybackMode: .toggle(false),
-                                    title: WStrings.Wallet_SetPasscode_Title.localized,
-                                    description: WStrings.Wallet_SetPasscode_Text(digits:
-                                                                                  PasscodeInputView.defaultPasscodeLength))
+                                    title: WStrings.Wallet_ConfirmPasscode_Title.localized,
+                                    description: WStrings.Wallet_ConfirmPasscode_Text(digits:
+                                                                                      PasscodeInputView.defaultPasscodeLength))
         topView.addSubview(headerView)
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: topView.topAnchor, constant: 46),
@@ -82,15 +87,6 @@ public class SetPasscodeVC: WViewController {
 
         // listen for keyboard
         WKeyboardObserver.observeKeyboard(delegate: self)
-
-        // passcode options view
-        passcodeOptionsView = PasscodeOptionsView(delegate: self)
-        view.addSubview(passcodeOptionsView)
-        NSLayoutConstraint.activate([
-            passcodeOptionsView.bottomAnchor.constraint(equalTo: passcodeOptionsButton.topAnchor),
-            passcodeOptionsView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backgroundPressed)))
     }
 
     public override func viewDidAppear(_ animated: Bool) {
@@ -106,43 +102,29 @@ public class SetPasscodeVC: WViewController {
             passcodeOptionsView.toggle()
         }
     }
-    
-    // Called from ConfirmPasscodeVC when passcode is wrong
-    func passcodesDoNotMatch() {
-        headerView.lblDescription.text = WStrings.Wallet_SetPasscode_PasscodesDoNotMatch.localized
-        passcodeInputView.becomeFirstResponder()
-    }
 }
 
-extension SetPasscodeVC: PasscodeInputViewDelegate {
+extension ConfirmPasscodeVC: PasscodeInputViewDelegate {
     func passcodeChanged(passcode: String) {
         headerView.animatedSticker.toggle(!passcode.isEmpty)
     }
     func passcodeSelected(passcode: String) {
-        // push `ConfirmPasscode` view controller
-        let confirmPasscodeVC = ConfirmPasscodeVC(setPasscodeVC: self, selectedPasscode: passcode)
-        navigationController?.pushViewController(confirmPasscodeVC,
-                                                 animated: true,
-                                                 completion: { [weak self] in
-            // make passcode empty on completion
-            self?.passcodeInputView.currentPasscode = ""
-        })
+        if passcode != selectedPasscode {
+            // wrong passcode, return to setPasscodeVC
+            setPasscodeVC?.passcodesDoNotMatch()
+            navigationController?.popViewController(animated: true)
+            return
+        }
+        navigationController?.pushViewController(ActivateBiometricVC(), animated: true)
     }
 }
 
-extension SetPasscodeVC: WKeyboardObserverDelegate {
+extension ConfirmPasscodeVC: WKeyboardObserverDelegate {
     public func keyboardWillShow(height: CGFloat) {
         bottomConstraint.constant = -height - SetPasscodeVC.passcodeOptionsFromBottom
     }
     
     public func keyboardWillHide() {
         bottomConstraint.constant = -SetPasscodeVC.passcodeOptionsFromBottom
-    }
-}
-
-extension SetPasscodeVC: PasscodeOptionsViewDelegate {
-    func passcodeOptionsDigitSelected(digits: Int) {
-        passcodeInputView.setCirclesCount(to: digits)
-        headerView.lblDescription.text = WStrings.Wallet_SetPasscode_Text(digits: digits)
     }
 }

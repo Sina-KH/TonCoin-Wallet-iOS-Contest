@@ -35,8 +35,9 @@ class PasscodeInputView: UIStackView {
             textUpdated()
         }
     }
+    static let defaultPasscodeLength = 4
     var maxPasscodeLength = 6
-    var passcodeLength = 6
+    var passcodeLength = PasscodeInputView.defaultPasscodeLength
 
     init(delegate: PasscodeInputViewDelegate) {
         self.delegate = delegate
@@ -59,22 +60,27 @@ class PasscodeInputView: UIStackView {
         spacing = 16
 
         // create circles
-        for _ in 0 ..< maxPasscodeLength {
+        for i in 0 ..< maxPasscodeLength {
             let circle = UIView()
             circle.translatesAutoresizingMaskIntoConstraints = false
             circle.layer.cornerRadius = 8
             circle.layer.borderColor = currentTheme.border.cgColor
             circle.layer.borderWidth = 1
-            circles.append(circle)
-            addArrangedSubview(circle)
             NSLayoutConstraint.activate([
                 circle.widthAnchor.constraint(equalToConstant: 16),
                 circle.heightAnchor.constraint(equalToConstant: 16)
             ])
+            circles.append(circle)
+            if i < passcodeLength {
+                addArrangedSubview(circle)
+            }
         }
     }
 
     func setCirclesCount(to num: Int) {
+        if passcodeLength == num {
+            return
+        }
         currentPasscode = ""
         if num < 1 || num > maxPasscodeLength {
             return

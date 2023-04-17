@@ -16,6 +16,8 @@
 		27B65D1629EC58DB00D47112 /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B65D1529EC58DB00D47112 /* UIComponents.framework */; };
 		27B65D1729EC58DB00D47112 /* UIComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27B65D1529EC58DB00D47112 /* UIComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		27EBE5A529EDC19D006ECFFB /* PasscodeOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EBE5A429EDC19D006ECFFB /* PasscodeOptionsView.swift */; };
+		27EBE5A829EDE345006ECFFB /* ConfirmPasscodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EBE5A729EDE345006ECFFB /* ConfirmPasscodeVC.swift */; };
+		27EBE5AF29EDE92D006ECFFB /* ActivateBiometricVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EBE5AE29EDE92D006ECFFB /* ActivateBiometricVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		2777558729EB4D9E0098DE68 /* PasscodeInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeInputView.swift; sourceTree = "<group>"; };
 		27B65D1529EC58DB00D47112 /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27EBE5A429EDC19D006ECFFB /* PasscodeOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeOptionsView.swift; sourceTree = "<group>"; };
+		27EBE5A729EDE345006ECFFB /* ConfirmPasscodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPasscodeVC.swift; sourceTree = "<group>"; };
+		27EBE5AE29EDE92D006ECFFB /* ActivateBiometricVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivateBiometricVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +128,8 @@
 			isa = PBXGroup;
 			children = (
 				2777558329EB4CDA0098DE68 /* SetPasscodeVC */,
+				27EBE5A629EDE2FC006ECFFB /* ConfirmPasscodeVC */,
+				27EBE5AD29EDE91B006ECFFB /* ActivateBiometricVC */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -151,6 +157,22 @@
 				27B65D1529EC58DB00D47112 /* UIComponents.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		27EBE5A629EDE2FC006ECFFB /* ConfirmPasscodeVC */ = {
+			isa = PBXGroup;
+			children = (
+				27EBE5A729EDE345006ECFFB /* ConfirmPasscodeVC.swift */,
+			);
+			path = ConfirmPasscodeVC;
+			sourceTree = "<group>";
+		};
+		27EBE5AD29EDE91B006ECFFB /* ActivateBiometricVC */ = {
+			isa = PBXGroup;
+			children = (
+				27EBE5AE29EDE92D006ECFFB /* ActivateBiometricVC.swift */,
+			);
+			path = ActivateBiometricVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,10 +285,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27EBE5AF29EDE92D006ECFFB /* ActivateBiometricVC.swift in Sources */,
 				2777556C29EB4CA10098DE68 /* UIPasscode.docc in Sources */,
 				27EBE5A529EDC19D006ECFFB /* PasscodeOptionsView.swift in Sources */,
 				2777558829EB4D9E0098DE68 /* PasscodeInputView.swift in Sources */,
 				2777558529EB4CEA0098DE68 /* SetPasscodeVC.swift in Sources */,
+				27EBE5A829EDE345006ECFFB /* ConfirmPasscodeVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

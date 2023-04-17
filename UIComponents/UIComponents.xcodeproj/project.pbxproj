@@ -37,6 +37,7 @@
 		27A1281329E04040002D030A /* YuvConversion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273A60AD29E0316A007CA6F0 /* YuvConversion.framework */; };
 		27A1281429E04040002D030A /* YuvConversion.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 273A60AD29E0316A007CA6F0 /* YuvConversion.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		27B65D1129EC567A00D47112 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B65D1029EC567A00D47112 /* HeaderView.swift */; };
+		27EBE5AA29EDE6C9006ECFFB /* UINavigationControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EBE5A929EDE6C9006ECFFB /* UINavigationControllerUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		2786FB5A29E876420023FE21 /* UIKitRuntimeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitRuntimeUtils.swift; sourceTree = "<group>"; };
 		2786FB6C29E882550023FE21 /* UIViewControllerUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerUtils.swift; sourceTree = "<group>"; };
 		27B65D1029EC567A00D47112 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		27EBE5A929EDE6C9006ECFFB /* UINavigationControllerUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 				2786FB5829E874A80023FE21 /* UIKitUtils.swift */,
 				2786FB5A29E876420023FE21 /* UIKitRuntimeUtils.swift */,
 				2786FB6C29E882550023FE21 /* UIViewControllerUtils.swift */,
+				27EBE5A929EDE6C9006ECFFB /* UINavigationControllerUtils.swift */,
 				2777555829EB37660098DE68 /* WKeyboardObserver.swift */,
 			);
 			path = Utils;
@@ -361,6 +364,7 @@
 				27B65D1129EC567A00D47112 /* HeaderView.swift in Sources */,
 				274D3EFD29D61CC4007C47AE /* UIComponents.docc in Sources */,
 				273A608D29E030B5007CA6F0 /* SoftwareAnimationRenderer.swift in Sources */,
+				27EBE5AA29EDE6C9006ECFFB /* UINavigationControllerUtils.swift in Sources */,
 				2735220F29E9C359007C4E96 /* WWordInput.swift in Sources */,
 				2786FB6D29E882550023FE21 /* UIViewControllerUtils.swift in Sources */,
 				2777555929EB37660098DE68 /* WKeyboardObserver.swift in Sources */,

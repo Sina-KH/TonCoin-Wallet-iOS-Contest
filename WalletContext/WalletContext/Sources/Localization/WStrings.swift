@@ -42,6 +42,9 @@ public enum WStrings: String {
     case Wallet_SetPasscode_Options = "Wallet.SetPasscode.Options"
     case Wallet_SetPasscode_FourDigitCode = "Wallet.SetPasscode.FourDigitCode"
     case Wallet_SetPasscode_SixDigitCode = "Wallet.SetPasscode.SixDigitCode"
+    case Wallet_SetPasscode_PasscodesDoNotMatch = "Wallet.SetPasscode.PasscodesDoNotMatch"
+    case Wallet_ConfirmPasscode_Title = "Wallet.ConfirmPasscode.Title"
+    case Wallet_ConfirmPasscode_Text = "Wallet.ConfirmPasscode.Text"
     case Wallet_Alert_OK = "Wallet.Alert.OK"
 
     public var localized: String {
@@ -53,6 +56,13 @@ public enum WStrings: String {
         return fillValues(WStrings.Wallet_WordCheck_Text.localized, values: wordIndices.map({ i in
             return "\(i + 1)"
         }))
+    }
+    
+    public static func Wallet_SetPasscode_Text(digits: Int) -> String {
+        return fillValues(WStrings.Wallet_SetPasscode_Text.localized, values: ["\(digits)"])
+    }
+    public static func Wallet_ConfirmPasscode_Text(digits: Int) -> String {
+        return fillValues(WStrings.Wallet_ConfirmPasscode_Text.localized, values: ["\(digits)"])
     }
 }
 

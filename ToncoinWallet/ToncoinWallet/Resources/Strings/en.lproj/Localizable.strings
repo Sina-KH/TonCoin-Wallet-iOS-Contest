@@ -41,10 +41,15 @@
 
 // SetPasscode
 "Wallet.SetPasscode.Title" = "Set a Passcode"; // NEW
-"Wallet.SetPasscode.Text" = "Enter the 4 digits in the passcode."; // NEW
+"Wallet.SetPasscode.Text" = "Enter the %1$@ digits in the passcode."; // NEW
 "Wallet.SetPasscode.Options" = "Passcode options"; // NEW
 "Wallet.SetPasscode.FourDigitCode" = "4-digit code"; // NEW
 "Wallet.SetPasscode.SixDigitCode" = "6-digit code"; // NEW
+"Wallet.SetPasscode.PasscodesDoNotMatch" = "Passcodes don't match. Please try again."; // NEW
+
+// ConfirmPasscode
+"Wallet.ConfirmPasscode.Title" = "Confirm a Passcode"; // NEW
+"Wallet.ConfirmPasscode.Text" = "Enter the %1$@ digits in the passcode."; // NEW
 
 // Alert
 "Wallet.Alert.OK" = "OK";
