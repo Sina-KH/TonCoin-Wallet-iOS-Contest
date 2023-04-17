@@ -13,6 +13,7 @@ public class SetPasscodeVC: WViewController {
 
     var headerView: HeaderView!
     var passcodeInputView: PasscodeInputView!
+    var passcodeOptionsView: PasscodeOptionsView!
     var bottomConstraint: NSLayoutConstraint!
 
     public static let passcodeOptionsFromBottom = CGFloat(8)
@@ -69,7 +70,7 @@ public class SetPasscodeVC: WViewController {
         passcodeOptionsButton.setup()
         passcodeOptionsButton.setTitle(WStrings.Wallet_SetPasscode_Options.localized, for: .normal)
         passcodeOptionsButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
-        passcodeOptionsButton.translatesAutoresizingMaskIntoConstraints = false
+        passcodeOptionsButton.addTarget(self, action: #selector(passcodeOptionsPressed), for: .touchUpInside)
         view.addSubview(passcodeOptionsButton)
         bottomConstraint = passcodeOptionsButton.bottomAnchor.constraint(equalTo: view.bottomAnchor,
                                                                          constant: -SetPasscodeVC.passcodeOptionsFromBottom)
@@ -80,12 +81,30 @@ public class SetPasscodeVC: WViewController {
 
         // listen for keyboard
         WKeyboardObserver.observeKeyboard(delegate: self)
+
+        // passcode options view
+        passcodeOptionsView = PasscodeOptionsView(delegate: self)
+        view.addSubview(passcodeOptionsView)
+        NSLayoutConstraint.activate([
+            passcodeOptionsView.bottomAnchor.constraint(equalTo: passcodeOptionsButton.topAnchor),
+            passcodeOptionsView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backgroundPressed)))
     }
-    
+
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
 
+    @objc func passcodeOptionsPressed() {
+        passcodeOptionsView.toggle()
+    }
+    
+    @objc func backgroundPressed() {
+        if passcodeOptionsView.visibility {
+            passcodeOptionsView.toggle()
+        }
+    }
 }
 
 extension SetPasscodeVC: PasscodeInputViewDelegate {
@@ -104,5 +123,11 @@ extension SetPasscodeVC: WKeyboardObserverDelegate {
     
     public func keyboardWillHide() {
         bottomConstraint.constant = -SetPasscodeVC.passcodeOptionsFromBottom
+    }
+}
+
+extension SetPasscodeVC: PasscodeOptionsViewDelegate {
+    func passcodeOptionsDigitSelected(digits: Int) {
+        passcodeInputView.setCirclesCount(to: digits)
     }
 }

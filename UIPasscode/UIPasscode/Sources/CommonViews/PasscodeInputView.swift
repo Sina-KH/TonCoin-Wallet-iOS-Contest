@@ -30,7 +30,11 @@ class PasscodeInputView: UIStackView {
     weak var delegate: PasscodeInputViewDelegate?
 
     var circles = [UIView]()
-    var currentPasscode = String()
+    var currentPasscode = String() {
+        didSet {
+            textUpdated()
+        }
+    }
     var maxPasscodeLength = 6
     var passcodeLength = 6
 
@@ -71,6 +75,7 @@ class PasscodeInputView: UIStackView {
     }
 
     func setCirclesCount(to num: Int) {
+        currentPasscode = ""
         if num < 1 || num > maxPasscodeLength {
             return
         }
@@ -79,7 +84,7 @@ class PasscodeInputView: UIStackView {
                 addArrangedSubview(circles[i])
             }
         }
-        for i in num - 1 ..< maxPasscodeLength {
+        for i in num ..< maxPasscodeLength {
             if circles[i].superview != nil {
                 circles[i].removeFromSuperview()
             }
@@ -107,12 +112,10 @@ extension PasscodeInputView: UIKeyInput {
     func insertText(_ text: String) {
         if currentPasscode.count < passcodeLength {
             currentPasscode += text
-            textUpdated()
         }
     }
     func deleteBackward() {
         currentPasscode = String(currentPasscode.dropLast(1))
-        textUpdated()
     }
     var keyboardType: UIKeyboardType {
         get {

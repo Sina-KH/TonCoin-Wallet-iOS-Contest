@@ -23,7 +23,7 @@ public enum AnimatedStickerPlaybackToggle {
     case off
 }
 
-public enum AnimatedStickerPlaybackMode {
+public enum AnimatedStickerPlaybackMode: Equatable {
     case once
     case loop
     case still(AnimatedStickerPlaybackPosition)
@@ -704,7 +704,7 @@ final class AnimatedStickerNode: UIView {
                                 strongSelf.pause()
                                 strongSelf.isPlaying = false
                             }
-                            if case .toggle(false) = strongSelf.playbackMode, frameSource.frameIndex == 2 { // == 1 means it rendered frame 0, but first time it's 2 here!
+                            if case .toggle(false) = strongSelf.playbackMode, frameSource.frameIndex == 1 { // == 1 means it rendered frame 0
                                 strongSelf.pause()
                                 strongSelf.isPlaying = false
                             }

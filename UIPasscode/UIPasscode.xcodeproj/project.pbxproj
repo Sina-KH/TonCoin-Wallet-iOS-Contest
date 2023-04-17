@@ -15,6 +15,7 @@
 		2777558829EB4D9E0098DE68 /* PasscodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2777558729EB4D9E0098DE68 /* PasscodeInputView.swift */; };
 		27B65D1629EC58DB00D47112 /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B65D1529EC58DB00D47112 /* UIComponents.framework */; };
 		27B65D1729EC58DB00D47112 /* UIComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27B65D1529EC58DB00D47112 /* UIComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		27EBE5A529EDC19D006ECFFB /* PasscodeOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EBE5A429EDC19D006ECFFB /* PasscodeOptionsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		2777558429EB4CEA0098DE68 /* SetPasscodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasscodeVC.swift; sourceTree = "<group>"; };
 		2777558729EB4D9E0098DE68 /* PasscodeInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeInputView.swift; sourceTree = "<group>"; };
 		27B65D1529EC58DB00D47112 /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27EBE5A429EDC19D006ECFFB /* PasscodeOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeOptionsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				2777558729EB4D9E0098DE68 /* PasscodeInputView.swift */,
+				27EBE5A429EDC19D006ECFFB /* PasscodeOptionsView.swift */,
 			);
 			path = CommonViews;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2777556C29EB4CA10098DE68 /* UIPasscode.docc in Sources */,
+				27EBE5A529EDC19D006ECFFB /* PasscodeOptionsView.swift in Sources */,
 				2777558829EB4D9E0098DE68 /* PasscodeInputView.swift in Sources */,
 				2777558529EB4CEA0098DE68 /* SetPasscodeVC.swift in Sources */,
 			);

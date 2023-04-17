@@ -43,7 +43,7 @@ public class WAnimatedSticker: UIView {
                                width: width * 2, height: height * 2,
                                playbackMode: playbackMode,
                                mode: .direct)
-        animatedSticker?.play()
+        animatedSticker?.play(firstFrame: playbackMode == .toggle(false))
     }
 
     public func toggle(_ on: Bool) {
