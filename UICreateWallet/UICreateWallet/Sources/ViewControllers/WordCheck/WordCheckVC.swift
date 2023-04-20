@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UIPasscode
 import UIComponents
 import WalletCore
 import WalletContext
@@ -125,13 +126,23 @@ class WordCheckVC: WViewController {
     func continuePressed() {
         view.endEditing(true)
         for (i, index) in wordIndices.enumerated() {
-            if wordInputs[i].textField.text?.lowercased() != wordList[index] {
+            if wordInputs[i].textField.text?.trimmingCharacters(in: .whitespaces).lowercased() != wordList[index] {
                 showAlert()
                 return
             }
         }
         // all the words are correct
-        navigationController?.pushViewController(CompletedVC(walletContext: walletContext, walletInfo: walletInfo), animated: true)
+        let nextVC = BiometricHelper.biometricType() == .none ?
+        CompletedVC(walletContext: walletContext, walletInfo: walletInfo) :
+        SetPasscodeVC(walletContext: walletContext, walletInfo: walletInfo, onCompletion: { [weak self] in
+            guard let self else {return}
+            // set passcode flow completion
+            // update wallet core state
+            _ = confirmWalletExported(storage: walletContext.storage, publicKey: walletInfo.publicKey).start()
+            // navigate to completed vc
+            navigationController?.pushViewController(CompletedVC(walletContext: walletContext, walletInfo: walletInfo), animated: true)
+        })
+        navigationController?.pushViewController(nextVC, animated: true)
     }
     
     private func showAlert() {

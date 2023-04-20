@@ -45,6 +45,18 @@ public enum WStrings: String {
     case Wallet_SetPasscode_PasscodesDoNotMatch = "Wallet.SetPasscode.PasscodesDoNotMatch"
     case Wallet_ConfirmPasscode_Title = "Wallet.ConfirmPasscode.Title"
     case Wallet_ConfirmPasscode_Text = "Wallet.ConfirmPasscode.Text"
+    case Wallet_Biometric_Reason = "Wallet.Biometric.Reason"
+    case Wallet_Biometric_NotAvailableTitle = "Wallet.Biometric.NotAvailableTitle"
+    case Wallet_Biometric_NotAvailableText = "Wallet.Biometric.NotAvailableText"
+    case Wallet_Biometric_FaceID_Title = "Wallet.Biometric.FaceID.Title"
+    case Wallet_Biometric_FaceID_Text = "Wallet.Biometric.FaceID.Text"
+    case Wallet_Biometric_FaceID_Enable = "Wallet.Biometric.FaceID.Enable"
+    case Wallet_Biometric_FaceID_Skip = "Wallet.Biometric.FaceID.Skip"
+    case Wallet_Biometric_TouchID_Title = "Wallet.Biometric.TouchID.Title"
+    case Wallet_Biometric_TouchID_Text = "Wallet.Biometric.TouchID.Text"
+    case Wallet_Biometric_TouchID_Enable = "Wallet.Biometric.TouchID.Enable"
+    case Wallet_Biometric_TouchID_Skip = "Wallet.Biometric.TouchID.Skip"
+
     case Wallet_Alert_OK = "Wallet.Alert.OK"
 
     public var localized: String {

@@ -86,7 +86,7 @@ public class WalletCreatedVC: WViewController {
         let wordDisplayVC = WordDisplayVC(walletContext: walletContext,
                                           walletInfo: walletInfo,
                                           wordList: wordList)
-        navigationController?.pushViewController(SetPasscodeVC(), animated: true)
+        navigationController?.pushViewController(wordDisplayVC, animated: true)
     }
     
 }

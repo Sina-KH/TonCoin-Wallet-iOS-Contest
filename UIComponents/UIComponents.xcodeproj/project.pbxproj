@@ -23,6 +23,7 @@
 		274D3F0929D61CC4007C47AE /* UIComponents.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D3EFB29D61CC4007C47AE /* UIComponents.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		274D3F2829D628E4007C47AE /* WButtonPrimary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3F2329D626F6007C47AE /* WButtonPrimary.swift */; };
 		274D3F2F29D636A3007C47AE /* WButtonSecondary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3F2E29D636A3007C47AE /* WButtonSecondary.swift */; };
+		27764E5029F13BC700A45DAF /* BottomActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27764E4F29F13BC700A45DAF /* BottomActionsView.swift */; };
 		2777555929EB37660098DE68 /* WKeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2777555829EB37660098DE68 /* WKeyboardObserver.swift */; };
 		2786FB5729E874060023FE21 /* CAAnimationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB5629E874060023FE21 /* CAAnimationUtils.swift */; };
 		2786FB5929E874A80023FE21 /* UIKitUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB5829E874A80023FE21 /* UIKitUtils.swift */; };
@@ -90,6 +91,7 @@
 		274D3F0729D61CC4007C47AE /* UIComponentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponentsTests.swift; sourceTree = "<group>"; };
 		274D3F2329D626F6007C47AE /* WButtonPrimary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WButtonPrimary.swift; sourceTree = "<group>"; };
 		274D3F2E29D636A3007C47AE /* WButtonSecondary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WButtonSecondary.swift; sourceTree = "<group>"; };
+		27764E4F29F13BC700A45DAF /* BottomActionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomActionsView.swift; sourceTree = "<group>"; };
 		2777555829EB37660098DE68 /* WKeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKeyboardObserver.swift; sourceTree = "<group>"; };
 		2786FB5629E874060023FE21 /* CAAnimationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAAnimationUtils.swift; sourceTree = "<group>"; };
 		2786FB5829E874A80023FE21 /* UIKitUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitUtils.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				27B65D1029EC567A00D47112 /* HeaderView.swift */,
+				27764E4F29F13BC700A45DAF /* BottomActionsView.swift */,
 			);
 			path = CommonViews;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				273A608F29E030CA007CA6F0 /* AnimationRenderer.swift in Sources */,
 				274D3F2829D628E4007C47AE /* WButtonPrimary.swift in Sources */,
 				273A5FF729E02E16007CA6F0 /* AnimatedStickerViews.swift in Sources */,
+				27764E5029F13BC700A45DAF /* BottomActionsView.swift in Sources */,
 				273A609129E0310C007CA6F0 /* GenerateImage.swift in Sources */,
 				27B65D1129EC567A00D47112 /* HeaderView.swift in Sources */,
 				274D3EFD29D61CC4007C47AE /* UIComponents.docc in Sources */,

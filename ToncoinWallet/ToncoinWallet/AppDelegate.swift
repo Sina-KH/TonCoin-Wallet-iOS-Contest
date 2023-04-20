@@ -7,10 +7,11 @@
 
 import UIKit
 import UICreateWallet
-import SwiftSignalKit
-import WalletCore
+import UIWalletHome
 import UIComponents
 import WalletContext
+import WalletCore
+import SwiftSignalKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -220,6 +221,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             case let .ready(info, exportCompleted, _):
                                 print(".ready")
                                 if exportCompleted {
+                                    beginWithController(WalletHomeVC())
 //                                    let infoScreen = WalletInfoScreen(context: walletContext, walletInfo: info, blockchainNetwork: initialResolvedConfig.activeNetwork, enableDebugActions: false)
 //                                    beginWithController(infoScreen)
 //                                    if let url = launchOptions?[UIApplication.LaunchOptionsKey.url] as? URL {

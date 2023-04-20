@@ -47,6 +47,8 @@
 		275EC63F29E857BC00EE8B66 /* YuvConversion.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 275EC63D29E857BC00EE8B66 /* YuvConversion.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		275EC64129E857D300EE8B66 /* RLottieBinding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275EC64029E857D300EE8B66 /* RLottieBinding.framework */; };
 		275EC64229E857D300EE8B66 /* RLottieBinding.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 275EC64029E857D300EE8B66 /* RLottieBinding.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		27764E4B29F135F600A45DAF /* UIWalletHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27764E4A29F135F600A45DAF /* UIWalletHome.framework */; };
+		27764E4C29F135F600A45DAF /* UIWalletHome.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27764E4A29F135F600A45DAF /* UIWalletHome.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2786FB4629E8641D0023FE21 /* NumberPluralizationForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275EC68129E863F300EE8B66 /* NumberPluralizationForm.framework */; };
 		2786FB4729E8641D0023FE21 /* NumberPluralizationForm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 275EC68129E863F300EE8B66 /* NumberPluralizationForm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2786FB4A29E866380023FE21 /* WalletStorageInterfaceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB4929E866380023FE21 /* WalletStorageInterfaceImpl.swift */; };
@@ -87,6 +89,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				2786FB4729E8641D0023FE21 /* NumberPluralizationForm.framework in Embed Frameworks */,
+				27764E4C29F135F600A45DAF /* UIWalletHome.framework in Embed Frameworks */,
 				275EC64229E857D300EE8B66 /* RLottieBinding.framework in Embed Frameworks */,
 				275C585F29E051B8002531AF /* SwiftSignalKit.framework in Embed Frameworks */,
 				275EC63929E8562700EE8B66 /* UIComponents.framework in Embed Frameworks */,
@@ -145,6 +148,7 @@
 		275EC67529E8616D00EE8B66 /* NumberPluralizationForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NumberPluralizationForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		275EC67E29E863D200EE8B66 /* NumberPluralizationForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NumberPluralizationForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		275EC68129E863F300EE8B66 /* NumberPluralizationForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NumberPluralizationForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27764E4A29F135F600A45DAF /* UIWalletHome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIWalletHome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2786FB4929E866380023FE21 /* WalletStorageInterfaceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletStorageInterfaceImpl.swift; sourceTree = "<group>"; };
 		2786FB4B29E866670023FE21 /* FileBackedStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileBackedStorage.swift; sourceTree = "<group>"; };
 		2786FB4D29E86CA80023FE21 /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2786FB4629E8641D0023FE21 /* NumberPluralizationForm.framework in Frameworks */,
+				27764E4B29F135F600A45DAF /* UIWalletHome.framework in Frameworks */,
 				275EC64129E857D300EE8B66 /* RLottieBinding.framework in Frameworks */,
 				275C585C29E051B6002531AF /* WalletCore.framework in Frameworks */,
 				275EC63829E8562700EE8B66 /* UIComponents.framework in Frameworks */,
@@ -277,6 +282,7 @@
 		274D3F2B29D62BF3007C47AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				27764E4A29F135F600A45DAF /* UIWalletHome.framework */,
 				27DB29CE29EC6AC700988800 /* UIPasscode.framework */,
 				27DB29CB29EC6A6200988800 /* BuildConfig.framework */,
 				273521F729E9847A007C4E96 /* WalletContext.framework */,
@@ -649,7 +655,7 @@
 				DEVELOPMENT_TEAM = NV933FT9S4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ToncoinWallet/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Toncoin Wallet Contest";
+				INFOPLIST_KEY_CFBundleDisplayName = "TON Wallet";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -681,7 +687,7 @@
 				DEVELOPMENT_TEAM = NV933FT9S4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ToncoinWallet/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Toncoin Wallet Contest";
+				INFOPLIST_KEY_CFBundleDisplayName = "TON Wallet";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";

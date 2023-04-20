@@ -51,6 +51,23 @@
 "Wallet.ConfirmPasscode.Title" = "Confirm a Passcode"; // NEW
 "Wallet.ConfirmPasscode.Text" = "Enter the %1$@ digits in the passcode."; // NEW
 
+// Biometric
+"Wallet.Biometric.Reason" = "TON Wallet uses biometric authentication to authorize transactions"; // NEW
+"Wallet.Biometric.NotAvailableTitle" = "Biometric authentication not available."; // NEW
+"Wallet.Biometric.NotAvailableText" = "Please set a passcode on your device, and then try to use biometric authentication."; // NEW
+
+// FaceID
+"Wallet.Biometric.FaceID.Title" = "Enable Face ID"; // NEW
+"Wallet.Biometric.FaceID.Text" = "Face ID allows you to open your wallet faster without having to enter your password."; // NEW
+"Wallet.Biometric.FaceID.Enable" = "Enable Face ID"; // NEW
+"Wallet.Biometric.FaceID.Skip" = "Skip"; // NEW
+
+// Touch ID
+"Wallet.Biometric.TouchID.Title" = "Enable Touch ID"; // NEW
+"Wallet.Biometric.TouchID.Text" = "Touch ID allows you to open your wallet faster without having to enter your password."; // NEW
+"Wallet.Biometric.TouchID.Enable" = "Enable Touch ID"; // NEW
+"Wallet.Biometric.TouchID.Skip" = "Skip"; // NEW
+
 // Alert
 "Wallet.Alert.OK" = "OK";
 //////////////////////////

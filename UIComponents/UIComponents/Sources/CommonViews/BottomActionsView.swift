@@ -6,19 +6,22 @@
 //
 
 import UIKit
-import UIComponents
 
-struct BottomAction {
+public struct BottomAction {
     var title: String
     var onPress: () -> ()
+    public init(title: String, onPress: @escaping () -> Void) {
+        self.title = title
+        self.onPress = onPress
+    }
 }
 
-class BottomActionsView: UIView {
+public class BottomActionsView: UIView {
 
     static let buttonsSpacing = CGFloat(16)
-    static let reserveHeight = WButtonSecondary.defaultHeight + BottomActionsView.buttonsSpacing
+    public static let reserveHeight = WButtonSecondary.defaultHeight + BottomActionsView.buttonsSpacing
 
-    init(primaryAction: BottomAction,
+    public init(primaryAction: BottomAction,
          secondaryAction: BottomAction? = nil,
          // if `reserveSecondaryActionHeight` be true, on nil secondaryAction, the view will reserve the secondaryAction's height.
          reserveSecondaryActionHeight: Bool = true) {
@@ -64,6 +67,7 @@ class BottomActionsView: UIView {
             secondaryButton.translatesAutoresizingMaskIntoConstraints = false
             secondaryButton.setup()
             secondaryButton.setTitle(secondaryAction.title, for: .normal)
+            secondaryButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
             secondaryButton.addTarget(self, action: #selector(secondaryPressed(_:)), for: .touchUpInside)
             addSubview(secondaryButton)
             NSLayoutConstraint.activate([

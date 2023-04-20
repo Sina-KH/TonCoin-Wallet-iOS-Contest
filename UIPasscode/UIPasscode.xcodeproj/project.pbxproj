@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27764E5329F13D4C00A45DAF /* BiometricHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27764E5229F13D4C00A45DAF /* BiometricHelper.swift */; };
 		2777556C29EB4CA10098DE68 /* UIPasscode.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2777556B29EB4CA10098DE68 /* UIPasscode.docc */; };
 		2777557229EB4CA20098DE68 /* UIPasscode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2777556729EB4CA10098DE68 /* UIPasscode.framework */; };
 		2777557729EB4CA20098DE68 /* UIPasscodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2777557629EB4CA20098DE68 /* UIPasscodeTests.swift */; };
@@ -45,6 +46,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		27764E4729F135EE00A45DAF /* UIWalletHome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIWalletHome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27764E5229F13D4C00A45DAF /* BiometricHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricHelper.swift; sourceTree = "<group>"; };
 		2777556729EB4CA10098DE68 /* UIPasscode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIPasscode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2777556A29EB4CA10098DE68 /* UIPasscode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPasscode.h; sourceTree = "<group>"; };
 		2777556B29EB4CA10098DE68 /* UIPasscode.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = UIPasscode.docc; sourceTree = "<group>"; };
@@ -78,6 +81,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27764E5129F13D3A00A45DAF /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				27764E5229F13D4C00A45DAF /* BiometricHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		2777555D29EB4CA10098DE68 = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +129,7 @@
 		2777558129EB4CAF0098DE68 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				27764E5129F13D3A00A45DAF /* Helpers */,
 				2777558629EB4D860098DE68 /* CommonViews */,
 				2777558229EB4CB50098DE68 /* ViewControllers */,
 			);
@@ -154,6 +166,7 @@
 		27B65D1429EC58DB00D47112 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				27764E4729F135EE00A45DAF /* UIWalletHome.framework */,
 				27B65D1529EC58DB00D47112 /* UIComponents.framework */,
 			);
 			name = Frameworks;
@@ -286,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27EBE5AF29EDE92D006ECFFB /* ActivateBiometricVC.swift in Sources */,
+				27764E5329F13D4C00A45DAF /* BiometricHelper.swift in Sources */,
 				2777556C29EB4CA10098DE68 /* UIPasscode.docc in Sources */,
 				27EBE5A529EDC19D006ECFFB /* PasscodeOptionsView.swift in Sources */,
 				2777558829EB4D9E0098DE68 /* PasscodeInputView.swift in Sources */,

@@ -27,7 +27,6 @@
 		27A1281529E04042002D030A /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3F8D29D639D0007C47AE /* UIComponents.framework */; };
 		27A1281629E04042002D030A /* UIComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3F8D29D639D0007C47AE /* UIComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		27BB29A529E8B5E1009F5DD7 /* WordDisplayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BB29A429E8B5E1009F5DD7 /* WordDisplayVC.swift */; };
-		27BB29AA29E8B8E8009F5DD7 /* BottomActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BB29A929E8B8E8009F5DD7 /* BottomActionsView.swift */; };
 		27DB29A829EC696100988800 /* WalletCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29A729EC696100988800 /* WalletCore.framework */; };
 		27DB29A929EC696100988800 /* WalletCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29A729EC696100988800 /* WalletCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -78,7 +77,6 @@
 		2786FB5229E872380023FE21 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		2786FB5329E872380023FE21 /* SplashVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashVC.xib; sourceTree = "<group>"; };
 		27BB29A429E8B5E1009F5DD7 /* WordDisplayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDisplayVC.swift; sourceTree = "<group>"; };
-		27BB29A929E8B8E8009F5DD7 /* BottomActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomActionsView.swift; sourceTree = "<group>"; };
 		27DB29A729EC696100988800 /* WalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -162,7 +160,6 @@
 		274D3F8229D63832007C47AE /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				27BB29A629E8B601009F5DD7 /* CommonViews */,
 				2786FB6829E87D680023FE21 /* ViewControllers */,
 			);
 			path = Sources;
@@ -225,14 +222,6 @@
 				273521D029E9586B007C4E96 /* WordListItemView.swift */,
 			);
 			path = WordDisplay;
-			sourceTree = "<group>";
-		};
-		27BB29A629E8B601009F5DD7 /* CommonViews */ = {
-			isa = PBXGroup;
-			children = (
-				27BB29A929E8B8E8009F5DD7 /* BottomActionsView.swift */,
-			);
-			path = CommonViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -349,7 +338,6 @@
 				273521CF29E95666007C4E96 /* WordListView.swift in Sources */,
 				2735220C29E9C24F007C4E96 /* WordCheckVC.swift in Sources */,
 				273521D629E95D97007C4E96 /* WalletCreatedVM.swift in Sources */,
-				27BB29AA29E8B8E8009F5DD7 /* BottomActionsView.swift in Sources */,
 				274D3F6329D6380C007C47AE /* UICreateWallet.docc in Sources */,
 				2786FB5429E872380023FE21 /* SplashVC.swift in Sources */,
 				274D3F8729D638A3007C47AE /* IntroVC.swift in Sources */,

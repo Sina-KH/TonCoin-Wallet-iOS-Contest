@@ -7,18 +7,21 @@
 
 import UIKit
 import UIComponents
+import WalletCore
 import WalletContext
 
 public class SetPasscodeVC: WViewController {
+    
+    var walletContext: WalletContext
+    var walletInfo: WalletInfo
+    var onCompletion: () -> Void
 
-    var headerView: HeaderView!
-    var passcodeInputView: PasscodeInputView!
-    var passcodeOptionsView: PasscodeOptionsView!
-    var bottomConstraint: NSLayoutConstraint!
-
-    public static let passcodeOptionsFromBottom = CGFloat(8)
-
-    public init() {
+    public init(walletContext: WalletContext,
+                walletInfo: WalletInfo,
+                onCompletion: @escaping () -> Void) {
+        self.walletContext = walletContext
+        self.walletInfo = walletInfo
+        self.onCompletion = onCompletion
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -26,6 +29,13 @@ public class SetPasscodeVC: WViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    var headerView: HeaderView!
+    var passcodeInputView: PasscodeInputView!
+    var passcodeOptionsView: PasscodeOptionsView!
+    var bottomConstraint: NSLayoutConstraint!
+
+    public static let passcodeOptionsFromBottom = CGFloat(8)
+    
     public override func loadView() {
         super.loadView()
         setupViews()
@@ -120,7 +130,11 @@ extension SetPasscodeVC: PasscodeInputViewDelegate {
     }
     func passcodeSelected(passcode: String) {
         // push `ConfirmPasscode` view controller
-        let confirmPasscodeVC = ConfirmPasscodeVC(setPasscodeVC: self, selectedPasscode: passcode)
+        let confirmPasscodeVC = ConfirmPasscodeVC(walletContext: walletContext,
+                                                  walletInfo: walletInfo,
+                                                  onCompletion: onCompletion,
+                                                  setPasscodeVC: self,
+                                                  selectedPasscode: passcode)
         navigationController?.pushViewController(confirmPasscodeVC,
                                                  animated: true,
                                                  completion: { [weak self] in

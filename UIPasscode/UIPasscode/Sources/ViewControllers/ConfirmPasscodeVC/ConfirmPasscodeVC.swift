@@ -7,9 +7,31 @@
 
 import UIKit
 import UIComponents
+import WalletCore
 import WalletContext
 
 public class ConfirmPasscodeVC: WViewController {
+    
+    var walletContext: WalletContext
+    var walletInfo: WalletInfo
+    var onCompletion: () -> Void
+
+    public init(walletContext: WalletContext,
+                walletInfo: WalletInfo,
+                onCompletion: @escaping () -> Void,
+                setPasscodeVC: SetPasscodeVC,
+                selectedPasscode: String) {
+        self.walletContext = walletContext
+        self.walletInfo = walletInfo
+        self.onCompletion = onCompletion
+        self.setPasscodeVC = setPasscodeVC
+        self.selectedPasscode = selectedPasscode
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     private var selectedPasscode: String!
     private weak var setPasscodeVC: SetPasscodeVC? = nil
@@ -20,16 +42,6 @@ public class ConfirmPasscodeVC: WViewController {
     var bottomConstraint: NSLayoutConstraint!
 
     public static let passcodeOptionsFromBottom = CGFloat(8)
-
-    public init(setPasscodeVC: SetPasscodeVC, selectedPasscode: String) {
-        super.init(nibName: nil, bundle: nil)
-        self.setPasscodeVC = setPasscodeVC
-        self.selectedPasscode = selectedPasscode
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     public override func loadView() {
         super.loadView()
@@ -69,24 +81,6 @@ public class ConfirmPasscodeVC: WViewController {
             passcodeInputView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         passcodeInputView.becomeFirstResponder()
-        
-        // setup passcode options button
-        let passcodeOptionsButton = WButtonSecondary(type: .system)
-        passcodeOptionsButton.translatesAutoresizingMaskIntoConstraints = false
-        passcodeOptionsButton.setup()
-        passcodeOptionsButton.setTitle(WStrings.Wallet_SetPasscode_Options.localized, for: .normal)
-        passcodeOptionsButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
-        passcodeOptionsButton.addTarget(self, action: #selector(passcodeOptionsPressed), for: .touchUpInside)
-        view.addSubview(passcodeOptionsButton)
-        bottomConstraint = passcodeOptionsButton.bottomAnchor.constraint(equalTo: view.bottomAnchor,
-                                                                         constant: -SetPasscodeVC.passcodeOptionsFromBottom)
-        NSLayoutConstraint.activate([
-            bottomConstraint,
-            passcodeOptionsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
-
-        // listen for keyboard
-        WKeyboardObserver.observeKeyboard(delegate: self)
     }
 
     public override func viewDidAppear(_ animated: Bool) {
@@ -115,16 +109,9 @@ extension ConfirmPasscodeVC: PasscodeInputViewDelegate {
             navigationController?.popViewController(animated: true)
             return
         }
-        navigationController?.pushViewController(ActivateBiometricVC(), animated: true)
-    }
-}
-
-extension ConfirmPasscodeVC: WKeyboardObserverDelegate {
-    public func keyboardWillShow(height: CGFloat) {
-        bottomConstraint.constant = -height - SetPasscodeVC.passcodeOptionsFromBottom
-    }
-    
-    public func keyboardWillHide() {
-        bottomConstraint.constant = -SetPasscodeVC.passcodeOptionsFromBottom
+        navigationController?.pushViewController(ActivateBiometricVC(walletContext: walletContext,
+                                                                     walletInfo: walletInfo,
+                                                                     onCompletion: onCompletion,
+                                                                     selectedPasscode: selectedPasscode), animated: true)
     }
 }

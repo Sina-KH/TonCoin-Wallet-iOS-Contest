@@ -6,10 +6,11 @@
 //
 
 import UIKit
-import SwiftSignalKit
-import WalletCore
+import UIWalletHome
 import UIComponents
 import WalletContext
+import WalletCore
+import SwiftSignalKit
 
 public class CompletedVC: WViewController {
 
@@ -59,7 +60,7 @@ public class CompletedVC: WViewController {
             topView.bottomAnchor.constraint(equalTo: bottomActionsView.topAnchor)
         ])
 
-        let headerView = HeaderView(animationName: "WalletDone",
+        let headerView = HeaderView(animationName: "WalletIntroLoading",
                                     animationWidth: 130, animationHeight: 130,
                                     animationPlaybackMode: .loop,
                                     title: WStrings.Wallet_Completed_Title.localized,
@@ -73,7 +74,7 @@ public class CompletedVC: WViewController {
     }
 
     func viewWalletPressed() {
-        // TODO::
+        navigationController?.pushViewController(WalletHomeVC(), animated: true)
     }
     
     func showAlert() {
