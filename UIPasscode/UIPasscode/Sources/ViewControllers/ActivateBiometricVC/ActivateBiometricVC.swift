@@ -10,7 +10,6 @@ import UIComponents
 import WalletContext
 import WalletCore
 import LocalAuthentication
-import UIWalletHome
 
 public class ActivateBiometricVC: WViewController {
     

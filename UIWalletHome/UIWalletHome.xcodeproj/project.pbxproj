@@ -12,6 +12,8 @@
 		27764E3929F134F000A45DAF /* UIWalletHomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27764E3829F134F000A45DAF /* UIWalletHomeTests.swift */; };
 		27764E3A29F134F000A45DAF /* UIWalletHome.h in Headers */ = {isa = PBXBuildFile; fileRef = 27764E2C29F134F000A45DAF /* UIWalletHome.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27764E4629F1357000A45DAF /* WalletHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27764E4529F1357000A45DAF /* WalletHomeVC.swift */; };
+		27764E5C29F1750A00A45DAF /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27764E5B29F1750A00A45DAF /* UIComponents.framework */; };
+		27764E5D29F1750A00A45DAF /* UIComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27764E5B29F1750A00A45DAF /* UIComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,6 +26,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		27764E5E29F1750A00A45DAF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				27764E5D29F1750A00A45DAF /* UIComponents.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		27764E2929F134F000A45DAF /* UIWalletHome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIWalletHome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27764E2C29F134F000A45DAF /* UIWalletHome.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIWalletHome.h; sourceTree = "<group>"; };
@@ -31,6 +47,7 @@
 		27764E3329F134F000A45DAF /* UIWalletHomeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UIWalletHomeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27764E3829F134F000A45DAF /* UIWalletHomeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWalletHomeTests.swift; sourceTree = "<group>"; };
 		27764E4529F1357000A45DAF /* WalletHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletHomeVC.swift; sourceTree = "<group>"; };
+		27764E5B29F1750A00A45DAF /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27764E5C29F1750A00A45DAF /* UIComponents.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +76,7 @@
 				27764E2B29F134F000A45DAF /* UIWalletHome */,
 				27764E3729F134F000A45DAF /* UIWalletHomeTests */,
 				27764E2A29F134F000A45DAF /* Products */,
+				27764E5A29F1750A00A45DAF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,6 +123,14 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		27764E5A29F1750A00A45DAF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				27764E5B29F1750A00A45DAF /* UIComponents.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -126,6 +153,7 @@
 				27764E2529F134F000A45DAF /* Sources */,
 				27764E2629F134F000A45DAF /* Frameworks */,
 				27764E2729F134F000A45DAF /* Resources */,
+				27764E5E29F1750A00A45DAF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
