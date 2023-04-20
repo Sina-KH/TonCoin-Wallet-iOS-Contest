@@ -106,5 +106,5 @@ fastlane/test_output
 iOSInjectionProject/
 
 # Built Libs
-TonBinding/TonBinding/ton/lib/*.a
-TonBinding/TonBinding/openssl/lib/*.a
+SubModules/TonBinding/TonBinding/ton/lib/*.a
+SubModules/TonBinding/TonBinding/openssl/lib/*.a

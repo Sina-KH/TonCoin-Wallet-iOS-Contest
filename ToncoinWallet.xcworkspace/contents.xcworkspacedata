@@ -5,48 +5,48 @@
       location = "group:ToncoinWallet/ToncoinWallet.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:ToncoinWallet/ToncoinWallet/../../UICreateWallet/UICreateWallet.xcodeproj">
+      location = "group:SubModules/UICreateWallet/UICreateWallet.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:UIPasscode/UIPasscode.xcodeproj">
+      location = "group:SubModules/UIPasscode/UIPasscode.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:UIWalletHome/UIWalletHome.xcodeproj">
+      location = "group:SubModules/UIWalletHome/UIWalletHome.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:ToncoinWallet/../UIComponents/UIComponents.xcodeproj">
+      location = "group:SubModules/UIComponents/UIComponents.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:WalletContext/WalletContext.xcodeproj">
+      location = "group:SubModules/WalletContext/WalletContext.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:WalletCore/WalletCore.xcodeproj">
+      location = "group:SubModules/WalletCore/WalletCore.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:WalletURL/WalletUrl.xcodeproj">
+      location = "group:SubModules/WalletURL/WalletUrl.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:TonBinding/TonBinding.xcodeproj">
+      location = "group:SubModules/TonBinding/TonBinding.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:BuildConfig/BuildConfig.xcodeproj">
+      location = "group:SubModules/BuildConfig/BuildConfig.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:RLottieBinding/RLottieBinding.xcodeproj">
+      location = "group:SubModules/RLottieBinding/RLottieBinding.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:GZip/GZip.xcodeproj">
+      location = "group:SubModules/GZip/GZip.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:SSignalKit/SSignalKit.xcodeproj">
+      location = "group:SubModules/SSignalKit/SSignalKit.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:SwiftSignalKit/SwiftSignalKit.xcodeproj">
+      location = "group:SubModules/SwiftSignalKit/SwiftSignalKit.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:YuvConversion/YuvConversion.xcodeproj">
+      location = "group:SubModules/YuvConversion/YuvConversion.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:NumberPluralizationForm/NumberPluralizationForm.xcodeproj">
+      location = "group:SubModules/NumberPluralizationForm/NumberPluralizationForm.xcodeproj">
    </FileRef>
 </Workspace>

@@ -55,6 +55,7 @@
 		2786FB4A29E866380023FE21 /* WalletStorageInterfaceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB4929E866380023FE21 /* WalletStorageInterfaceImpl.swift */; };
 		2786FB4C29E866670023FE21 /* FileBackedStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB4B29E866670023FE21 /* FileBackedStorage.swift */; };
 		2786FB4E29E86CA80023FE21 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB4D29E86CA80023FE21 /* Downloader.swift */; };
+		278C3A1429F1839C00BD16E8 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27764E5729F16E6E00A45DAF /* SplashVC.swift */; };
 		27A1280929E0402C002D030A /* UICreateWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3F8A29D639C5007C47AE /* UICreateWallet.framework */; };
 		27A1280A29E0402C002D030A /* UICreateWallet.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3F8A29D639C5007C47AE /* UICreateWallet.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		27B65D1329EC56F800D47112 /* Password.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27B65D1229EC56F800D47112 /* Password.tgs */; };
@@ -482,6 +483,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				278C3A1429F1839C00BD16E8 /* SplashVC.swift in Sources */,
 				274D3EBE29D619BD007C47AE /* AppDelegate.swift in Sources */,
 				2786FB4C29E866670023FE21 /* FileBackedStorage.swift in Sources */,
 				2786FB4A29E866380023FE21 /* WalletStorageInterfaceImpl.swift in Sources */,
@@ -669,7 +671,7 @@
 				DEVELOPMENT_TEAM = NV933FT9S4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ToncoinWallet/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "TON Wallet";
+				INFOPLIST_KEY_CFBundleDisplayName = "Toncoin Wallet";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -701,7 +703,7 @@
 				DEVELOPMENT_TEAM = NV933FT9S4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ToncoinWallet/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "TON Wallet";
+				INFOPLIST_KEY_CFBundleDisplayName = "Toncoin Wallet";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
