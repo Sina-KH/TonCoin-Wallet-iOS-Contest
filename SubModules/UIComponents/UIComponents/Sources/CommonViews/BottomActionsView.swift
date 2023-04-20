@@ -19,7 +19,7 @@ public struct BottomAction {
 public class BottomActionsView: UIView {
 
     static let buttonsSpacing = CGFloat(16)
-    public static let reserveHeight = WButtonSecondary.defaultHeight + BottomActionsView.buttonsSpacing
+    public static let reserveHeight = WButton.defaultHeight + BottomActionsView.buttonsSpacing
 
     public init(primaryAction: BottomAction,
          secondaryAction: BottomAction? = nil,
@@ -49,9 +49,8 @@ public class BottomActionsView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         
         // add primary action
-        let primaryButton = WButtonPrimary(type: .system)
+        let primaryButton = WButton.setupInstance(.primary)
         primaryButton.translatesAutoresizingMaskIntoConstraints = false
-        primaryButton.setup()
         primaryButton.setTitle(primaryAction.title, for: .normal)
         primaryButton.addTarget(self, action: #selector(primaryPressed(_:)), for: .touchUpInside)
         addSubview(primaryButton)
@@ -63,9 +62,8 @@ public class BottomActionsView: UIView {
 
         // secondary button
         if let secondaryAction {
-            let secondaryButton = WButtonSecondary(type: .system)
+            let secondaryButton = WButton.setupInstance(.secondary)
             secondaryButton.translatesAutoresizingMaskIntoConstraints = false
-            secondaryButton.setup()
             secondaryButton.setTitle(secondaryAction.title, for: .normal)
             secondaryButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
             secondaryButton.addTarget(self, action: #selector(secondaryPressed(_:)), for: .touchUpInside)

@@ -76,9 +76,8 @@ public class SetPasscodeVC: WViewController {
         passcodeInputView.becomeFirstResponder()
         
         // setup passcode options button
-        let passcodeOptionsButton = WButtonSecondary(type: .system)
+        let passcodeOptionsButton = WButton.setupInstance(.secondary)
         passcodeOptionsButton.translatesAutoresizingMaskIntoConstraints = false
-        passcodeOptionsButton.setup()
         passcodeOptionsButton.setTitle(WStrings.Wallet_SetPasscode_Options.localized, for: .normal)
         passcodeOptionsButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         passcodeOptionsButton.addTarget(self, action: #selector(passcodeOptionsPressed), for: .touchUpInside)

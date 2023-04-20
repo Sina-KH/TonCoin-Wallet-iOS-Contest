@@ -68,6 +68,13 @@
 "Wallet.Biometric.TouchID.Enable" = "Enable Touch ID"; // NEW
 "Wallet.Biometric.TouchID.Skip" = "Skip"; // NEW
 
+// Home (Info in the original version)
+"Wallet.Home.Receive" = "Receive"; // Renamed
+"Wallet.Home.Send" = "Send"; // Renamed
+"Wallet.Home.RefreshErrorTitle" = "No network"; // Renamed
+"Wallet.Home.RefreshErrorText" = "Couldn't refresh balance. Please make sure your internet connection is working and try again."; // Renamed
+"Wallet.Home.RefreshErrorNetworkText" = "Wallet state can not be retrieved at this time. Please try again later."; // Renamed
+
 // Alert
 "Wallet.Alert.OK" = "OK";
 //////////////////////////
@@ -93,12 +100,7 @@
 "Wallet.Info.WalletCreated" = "Wallet Created";
 "Wallet.Info.Address" = "Your wallet address";
 "Wallet.Info.YourBalance" = "your balance";
-"Wallet.Info.Receive" = "Receive";
 "Wallet.Info.ReceiveGrams" = "Receive TON";
-"Wallet.Info.Send" = "Send";
-"Wallet.Info.RefreshErrorTitle" = "No network";
-"Wallet.Info.RefreshErrorText" = "Couldn't refresh balance. Please make sure your internet connection is working and try again.";
-"Wallet.Info.RefreshErrorNetworkText" = "Wallet state can not be retrieved at this time. Please try again later.";
 "Wallet.Info.UnknownTransaction" = "Empty Transaction";
 "Wallet.Info.TransactionTo" = "to";
 "Wallet.Info.TransactionFrom" = "from";

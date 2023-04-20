@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2719622B29F1D9A400B5B59F /* WalletUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719622A29F1D9A400B5B59F /* WalletUtils.swift */; };
 		273521E729E98434007C4E96 /* WalletContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 273521E629E98434007C4E96 /* WalletContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		273521F229E98449007C4E96 /* WalletStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521F029E98449007C4E96 /* WalletStrings.swift */; };
 		273521F329E98449007C4E96 /* StringPluralization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521EE29E98449007C4E96 /* StringPluralization.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2719622A29F1D9A400B5B59F /* WalletUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletUtils.swift; sourceTree = "<group>"; };
 		273521E329E98434007C4E96 /* WalletContext.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WalletContext.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		273521E629E98434007C4E96 /* WalletContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletContext.h; sourceTree = "<group>"; };
 		273521ED29E98448007C4E96 /* WalletPresentationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletPresentationData.swift; sourceTree = "<group>"; };
@@ -70,6 +72,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2719622929F1D99200B5B59F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2719622A29F1D9A400B5B59F /* WalletUtils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		273521D929E98434007C4E96 = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +112,7 @@
 				27764E5429F1460D00A45DAF /* Keychain */,
 				2735220229E98968007C4E96 /* Theme */,
 				273521FA29E984D1007C4E96 /* Localization */,
+				2719622929F1D99200B5B59F /* Utils */,
 				273521F129E98449007C4E96 /* WalletContext.swift */,
 				273521EE29E98449007C4E96 /* StringPluralization.swift */,
 				273521ED29E98448007C4E96 /* WalletPresentationData.swift */,
@@ -228,6 +239,7 @@
 				273521FE29E98514007C4E96 /* WStrings.swift in Sources */,
 				273521F229E98449007C4E96 /* WalletStrings.swift in Sources */,
 				273521F329E98449007C4E96 /* StringPluralization.swift in Sources */,
+				2719622B29F1D9A400B5B59F /* WalletUtils.swift in Sources */,
 				27764E5629F1461A00A45DAF /* KeychainHelper.swift in Sources */,
 				273521F529E98449007C4E96 /* WalletPresentationData.swift in Sources */,
 				273521F429E98449007C4E96 /* WalletContext.swift in Sources */,

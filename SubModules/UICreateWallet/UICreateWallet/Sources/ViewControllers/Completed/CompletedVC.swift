@@ -74,7 +74,7 @@ public class CompletedVC: WViewController {
     }
 
     func viewWalletPressed() {
-        navigationController?.pushViewController(WalletHomeVC(), animated: true)
+        navigationController?.pushViewController(WalletHomeVC(walletContext: walletContext, walletInfo: walletInfo), animated: true)
     }
     
     func showAlert() {

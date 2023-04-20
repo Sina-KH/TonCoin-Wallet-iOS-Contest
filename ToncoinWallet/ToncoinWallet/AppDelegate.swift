@@ -221,7 +221,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             case let .ready(info, exportCompleted, _):
                                 print(".ready")
                                 if exportCompleted {
-                                    beginWithController(WalletHomeVC())
+                                    beginWithController(WalletHomeVC(walletContext: walletContext, walletInfo: info))
 //                                    let infoScreen = WalletInfoScreen(context: walletContext, walletInfo: info, blockchainNetwork: initialResolvedConfig.activeNetwork, enableDebugActions: false)
 //                                    beginWithController(infoScreen)
 //                                    if let url = launchOptions?[UIApplication.LaunchOptionsKey.url] as? URL {

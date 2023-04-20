@@ -56,6 +56,11 @@ public enum WStrings: String {
     case Wallet_Biometric_TouchID_Text = "Wallet.Biometric.TouchID.Text"
     case Wallet_Biometric_TouchID_Enable = "Wallet.Biometric.TouchID.Enable"
     case Wallet_Biometric_TouchID_Skip = "Wallet.Biometric.TouchID.Skip"
+    case Wallet_Home_Receive = "Wallet.Home.Receive"
+    case Wallet_Home_Send = "Wallet.Home.Send"
+    case Wallet_Home_RefreshErrorTitle = "Wallet.Home.RefreshErrorTitle"
+    case Wallet_Home_RefreshErrorText = "Wallet.Home.RefreshErrorText"
+    case Wallet_Home_RefreshErrorNetworkText = "Wallet.Home.RefreshErrorNetworkText"
 
     case Wallet_Alert_OK = "Wallet.Alert.OK"
 

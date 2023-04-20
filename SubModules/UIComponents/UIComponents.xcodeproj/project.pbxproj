@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2719622029F1BD6F00B5B59F /* WAmountLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719621F29F1BD6F00B5B59F /* WAmountLabel.swift */; };
 		273521CD29E94D4E007C4E96 /* WViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521CC29E94D4E007C4E96 /* WViewController.swift */; };
 		2735220829E98EDB007C4E96 /* WalletContext.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2735220729E98EDB007C4E96 /* WalletContext.framework */; };
 		2735220929E98EDB007C4E96 /* WalletContext.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2735220729E98EDB007C4E96 /* WalletContext.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -21,8 +22,7 @@
 		274D3F0329D61CC4007C47AE /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3EF829D61CC4007C47AE /* UIComponents.framework */; };
 		274D3F0829D61CC4007C47AE /* UIComponentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3F0729D61CC4007C47AE /* UIComponentsTests.swift */; };
 		274D3F0929D61CC4007C47AE /* UIComponents.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D3EFB29D61CC4007C47AE /* UIComponents.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		274D3F2829D628E4007C47AE /* WButtonPrimary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3F2329D626F6007C47AE /* WButtonPrimary.swift */; };
-		274D3F2F29D636A3007C47AE /* WButtonSecondary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3F2E29D636A3007C47AE /* WButtonSecondary.swift */; };
+		274D3F2829D628E4007C47AE /* WButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3F2329D626F6007C47AE /* WButton.swift */; };
 		27764E5029F13BC700A45DAF /* BottomActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27764E4F29F13BC700A45DAF /* BottomActionsView.swift */; };
 		2777555929EB37660098DE68 /* WKeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2777555829EB37660098DE68 /* WKeyboardObserver.swift */; };
 		2786FB5729E874060023FE21 /* CAAnimationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB5629E874060023FE21 /* CAAnimationUtils.swift */; };
@@ -70,6 +70,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2719621F29F1BD6F00B5B59F /* WAmountLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WAmountLabel.swift; sourceTree = "<group>"; };
 		273521CC29E94D4E007C4E96 /* WViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WViewController.swift; sourceTree = "<group>"; };
 		2735220729E98EDB007C4E96 /* WalletContext.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletContext.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2735220E29E9C359007C4E96 /* WWordInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWordInput.swift; sourceTree = "<group>"; };
@@ -89,8 +90,7 @@
 		274D3EFC29D61CC4007C47AE /* UIComponents.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = UIComponents.docc; sourceTree = "<group>"; };
 		274D3F0229D61CC4007C47AE /* UIComponentsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UIComponentsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		274D3F0729D61CC4007C47AE /* UIComponentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponentsTests.swift; sourceTree = "<group>"; };
-		274D3F2329D626F6007C47AE /* WButtonPrimary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WButtonPrimary.swift; sourceTree = "<group>"; };
-		274D3F2E29D636A3007C47AE /* WButtonSecondary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WButtonSecondary.swift; sourceTree = "<group>"; };
+		274D3F2329D626F6007C47AE /* WButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WButton.swift; sourceTree = "<group>"; };
 		27764E4F29F13BC700A45DAF /* BottomActionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomActionsView.swift; sourceTree = "<group>"; };
 		2777555829EB37660098DE68 /* WKeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKeyboardObserver.swift; sourceTree = "<group>"; };
 		2786FB5629E874060023FE21 /* CAAnimationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAAnimationUtils.swift; sourceTree = "<group>"; };
@@ -125,6 +125,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2719621E29F1BD6200B5B59F /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				2719621F29F1BD6F00B5B59F /* WAmountLabel.swift */,
+			);
+			path = Label;
+			sourceTree = "<group>";
+		};
 		273521CB29E94D3B007C4E96 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +231,7 @@
 				27B65D0F29EC566C00D47112 /* CommonViews */,
 				273A5CB229E01FE5007CA6F0 /* AnimatedSticker */,
 				274D3F2229D626F6007C47AE /* Buttons */,
+				2719621E29F1BD6200B5B59F /* Label */,
 				2735220D29E9C342007C4E96 /* WordInput */,
 				273A60AF29E0324D007CA6F0 /* Utils */,
 				273521CB29E94D3B007C4E96 /* ViewController */,
@@ -233,8 +242,7 @@
 		274D3F2229D626F6007C47AE /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				274D3F2329D626F6007C47AE /* WButtonPrimary.swift */,
-				274D3F2E29D636A3007C47AE /* WButtonSecondary.swift */,
+				274D3F2329D626F6007C47AE /* WButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -361,9 +369,10 @@
 				273521CD29E94D4E007C4E96 /* WViewController.swift in Sources */,
 				273A5CB429E02000007CA6F0 /* WAnimatedSticker.swift in Sources */,
 				273A608F29E030CA007CA6F0 /* AnimationRenderer.swift in Sources */,
-				274D3F2829D628E4007C47AE /* WButtonPrimary.swift in Sources */,
+				274D3F2829D628E4007C47AE /* WButton.swift in Sources */,
 				273A5FF729E02E16007CA6F0 /* AnimatedStickerViews.swift in Sources */,
 				27764E5029F13BC700A45DAF /* BottomActionsView.swift in Sources */,
+				2719622029F1BD6F00B5B59F /* WAmountLabel.swift in Sources */,
 				273A609129E0310C007CA6F0 /* GenerateImage.swift in Sources */,
 				27B65D1129EC567A00D47112 /* HeaderView.swift in Sources */,
 				274D3EFD29D61CC4007C47AE /* UIComponents.docc in Sources */,
@@ -372,7 +381,6 @@
 				2735220F29E9C359007C4E96 /* WWordInput.swift in Sources */,
 				2786FB6D29E882550023FE21 /* UIViewControllerUtils.swift in Sources */,
 				2777555929EB37660098DE68 /* WKeyboardObserver.swift in Sources */,
-				274D3F2F29D636A3007C47AE /* WButtonSecondary.swift in Sources */,
 				2786FB5729E874060023FE21 /* CAAnimationUtils.swift in Sources */,
 				2786FB5B29E876420023FE21 /* UIKitRuntimeUtils.swift in Sources */,
 				2786FB5929E874A80023FE21 /* UIKitUtils.swift in Sources */,
