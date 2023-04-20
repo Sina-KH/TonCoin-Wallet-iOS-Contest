@@ -198,7 +198,8 @@
 				2786FB5229E872380023FE21 /* SplashVC.swift */,
 				2786FB5329E872380023FE21 /* SplashVC.xib */,
 			);
-			path = SplashScreen;
+			name = SplashScreen;
+			path = ../../../../ToncoinWallet/ToncoinWallet/Sources/SplashScreen;
 			sourceTree = "<group>";
 		};
 		2786FB6829E87D680023FE21 /* ViewControllers */ = {

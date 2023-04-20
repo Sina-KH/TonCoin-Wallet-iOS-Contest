@@ -100,7 +100,7 @@ public class ConfirmPasscodeVC: WViewController {
 
 extension ConfirmPasscodeVC: PasscodeInputViewDelegate {
     func passcodeChanged(passcode: String) {
-        headerView.animatedSticker.toggle(!passcode.isEmpty)
+        headerView.animatedSticker?.toggle(!passcode.isEmpty)
     }
     func passcodeSelected(passcode: String) {
         if passcode != selectedPasscode {

@@ -126,7 +126,7 @@ public class SetPasscodeVC: WViewController {
 
 extension SetPasscodeVC: PasscodeInputViewDelegate {
     func passcodeChanged(passcode: String) {
-        headerView.animatedSticker.toggle(!passcode.isEmpty)
+        headerView.animatedSticker?.toggle(!passcode.isEmpty)
     }
     func passcodeSelected(passcode: String) {
         // push `ConfirmPasscode` view controller

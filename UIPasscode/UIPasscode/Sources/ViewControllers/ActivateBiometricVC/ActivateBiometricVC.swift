@@ -49,13 +49,16 @@ public class ActivateBiometricVC: WViewController {
     func setupViews() {
         let biometricType = BiometricHelper.biometricType()
         
+        let topImage: UIImage
         let titleString, descriptionString, enableString, skipString: String
         if biometricType == .face {
+            topImage = UIImage(named: "FaceIDIcon")!
             titleString = WStrings.Wallet_Biometric_FaceID_Title.localized
             descriptionString = WStrings.Wallet_Biometric_TouchID_Text.localized
             enableString = WStrings.Wallet_Biometric_FaceID_Enable.localized
             skipString = WStrings.Wallet_Biometric_FaceID_Skip.localized
         } else {
+            topImage = UIImage(named: "TouchIDIcon")!
             titleString = WStrings.Wallet_Biometric_TouchID_Title.localized
             descriptionString = WStrings.Wallet_Biometric_TouchID_Text.localized
             enableString = WStrings.Wallet_Biometric_TouchID_Enable.localized
@@ -95,9 +98,9 @@ public class ActivateBiometricVC: WViewController {
             topView.bottomAnchor.constraint(equalTo: bottomActionsView.topAnchor)
         ])
 
-        let headerView = HeaderView(animationName: "WalletIntroLoading",
-                                    animationWidth: 124, animationHeight: 124,
-                                    animationPlaybackMode: .loop,
+        let headerView = HeaderView(icon: topImage,
+                                    iconWidth: 124, iconHeight: 124,
+                                    iconTintColor: currentTheme.tint,
                                     title: titleString,
                                     description: descriptionString)
         topView.addSubview(headerView)

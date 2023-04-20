@@ -25,6 +25,7 @@ public struct WTheme {
     public var secondaryLabel: UIColor
     public var border: UIColor
     public var separator: UIColor
+    public var tint: UIColor
 }
 
 // Current theme now supports both light and dark themes.
@@ -37,7 +38,8 @@ public var currentTheme = WTheme(
     primaryLabel: _systemBackgroundReverse,
     secondaryLabel: WColors.secondaryLabel.color,
     border: _border,
-    separator: WColors.separator.color
+    separator: WColors.separator.color,
+    tint: .systemBlue
 )
 
 // if we want to use default iOS colors on dark/light mode, we define colors here, otherwise, for custom colors, we define then in WColors

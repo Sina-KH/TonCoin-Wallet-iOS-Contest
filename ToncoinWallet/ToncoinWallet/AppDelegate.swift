@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = currentTheme.background
 
         // StartVC for users who are using the app for the first time
-        let startVC = SplashVC(nibName: "SplashVC", bundle: Bundle(identifier: "org.ton.wallet.UICreateWallet"))
+        let startVC = SplashVC(nibName: "SplashVC", bundle: Bundle.main)
         let navigationController = UINavigationController(rootViewController: startVC)
         self.window?.rootViewController = navigationController
 

@@ -149,6 +149,8 @@
 		275EC67E29E863D200EE8B66 /* NumberPluralizationForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NumberPluralizationForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		275EC68129E863F300EE8B66 /* NumberPluralizationForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NumberPluralizationForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27764E4A29F135F600A45DAF /* UIWalletHome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIWalletHome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27764E5729F16E6E00A45DAF /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
+		27764E5829F16E6E00A45DAF /* SplashVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashVC.xib; sourceTree = "<group>"; };
 		2786FB4929E866380023FE21 /* WalletStorageInterfaceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletStorageInterfaceImpl.swift; sourceTree = "<group>"; };
 		2786FB4B29E866670023FE21 /* FileBackedStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileBackedStorage.swift; sourceTree = "<group>"; };
 		2786FB4D29E86CA80023FE21 /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
@@ -306,12 +308,22 @@
 		275C576E29E04E2A002531AF /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				27764E5929F16E6E00A45DAF /* SplashScreen */,
 				2786FB4D29E86CA80023FE21 /* Downloader.swift */,
 				275C586529E05215002531AF /* WalletConfiguration.swift */,
 				2786FB4929E866380023FE21 /* WalletStorageInterfaceImpl.swift */,
 				2786FB4B29E866670023FE21 /* FileBackedStorage.swift */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		27764E5929F16E6E00A45DAF /* SplashScreen */ = {
+			isa = PBXGroup;
+			children = (
+				27764E5729F16E6E00A45DAF /* SplashVC.swift */,
+				27764E5829F16E6E00A45DAF /* SplashVC.xib */,
+			);
+			path = SplashScreen;
 			sourceTree = "<group>";
 		};
 		27BB29AB29E8CA0C009F5DD7 /* Strings */ = {
