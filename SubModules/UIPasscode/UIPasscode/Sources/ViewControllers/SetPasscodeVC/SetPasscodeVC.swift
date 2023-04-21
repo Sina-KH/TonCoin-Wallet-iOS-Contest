@@ -53,7 +53,6 @@ public class SetPasscodeVC: WViewController {
         ])
 
         headerView = HeaderView(animationName: "Password",
-                                    animationWidth: 124, animationHeight: 124,
                                     animationPlaybackMode: .toggle(false),
                                     title: WStrings.Wallet_SetPasscode_Title.localized,
                                     description: WStrings.Wallet_SetPasscode_Text(digits:

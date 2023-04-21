@@ -1,32 +1,29 @@
 //
-//  WalletCreatedVC.swift
+//  ImportSuccessVC.swift
 //  UICreateWallet
 //
-//  Created by Sina on 4/7/23.
+//  Created by Sina on 4/21/23.
 //
 
 import UIKit
 import WalletCore
 import WalletContext
-import UIComponents
 import UIPasscode
+import UIWalletHome
+import UIComponents
 
-public class WalletCreatedVC: WViewController {
+public class ImportSuccessVC: WViewController {
     
     var walletContext: WalletContext
-    var walletInfo: WalletInfo
-    var wordList: [String]
-
-    lazy var walletCreatedVM = WalletCreatedVM(walletCreatedVMDelegate: self)
-
+    var importedWalletInfo: ImportedWalletInfo
     public init(walletContext: WalletContext,
-                walletInfo: WalletInfo,
-                wordList: [String]) {
+                importedWalletInfo: ImportedWalletInfo) {
         self.walletContext = walletContext
-        self.walletInfo = walletInfo
-        self.wordList = wordList
+        self.importedWalletInfo = importedWalletInfo
         super.init(nibName: nil, bundle: nil)
     }
+    
+    lazy var importSuccessVM = ImportSuccessVM(importSuccessVMDelegate: self)
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -67,8 +64,7 @@ public class WalletCreatedVC: WViewController {
 
         let headerView = HeaderView(animationName: "Congratulations",
                                     animationPlaybackMode: .once,
-                                    title: WStrings.Wallet_Created_Title.localized,
-                                    description: WStrings.Wallet_Created_Text.localized)
+                                    title: WStrings.Wallet_ImportSuccessful_Title.localized)
         topView.addSubview(headerView)
         NSLayoutConstraint.activate([
             headerView.leftAnchor.constraint(equalTo: topView.leftAnchor, constant: 32),
@@ -78,28 +74,28 @@ public class WalletCreatedVC: WViewController {
     }
 
     func proceedPressed() {
-        if wordList.isEmpty {
-            walletCreatedVM.loadWords(walletContext: walletContext, walletInfo: walletInfo)
-            return
-        }
-        let wordDisplayVC = WordDisplayVC(walletContext: walletContext,
-                                          walletInfo: walletInfo,
-                                          wordList: wordList)
-        navigationController?.pushViewController(wordDisplayVC, animated: true)
+        importSuccessVM.loadWalletInfo(walletContext: walletContext, importedInfo: importedWalletInfo)
     }
     
 }
 
-extension WalletCreatedVC: WalletCreatedVMDelegate {
-    func wordsLoaded(words: [String]) {
-        self.wordList = words
-        proceedPressed()
+extension ImportSuccessVC: ImportSuccessVMDelegate {
+    func importCompleted(walletInfo: WalletInfo) {
+        // all the words are correct
+        let nextVC = BiometricHelper.biometricType() == .none ?
+        CompletedVC(walletContext: walletContext, walletInfo: walletInfo) :
+        SetPasscodeVC(walletContext: walletContext, walletInfo: walletInfo, onCompletion: { [weak self] in
+            guard let self else {return}
+            // set passcode flow completion
+            // update wallet core state
+            _ = confirmWalletExported(storage: walletContext.storage, publicKey: walletInfo.publicKey).start()
+            // navigate to completed vc
+            navigationController?.pushViewController(CompletedVC(walletContext: walletContext, walletInfo: walletInfo), animated: true)
+        })
+        navigationController?.pushViewController(nextVC, animated: true)
     }
     
-    func errorOccured() {
-        showAlert(title: WStrings.Wallet_Created_ExportErrorTitle.localized,
-                  text: WStrings.Wallet_Created_ExportErrorText.localized,
-                  button: WStrings.Wallet_Alert_OK.localized)
+    public func errorOccured(text: String) {
+        // TODO::
     }
-
 }

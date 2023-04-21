@@ -60,7 +60,6 @@ public class ConfirmPasscodeVC: WViewController {
         ])
 
         headerView = HeaderView(animationName: "Password",
-                                    animationWidth: 124, animationHeight: 124,
                                     animationPlaybackMode: .toggle(false),
                                     title: WStrings.Wallet_ConfirmPasscode_Title.localized,
                                     description: WStrings.Wallet_ConfirmPasscode_Text(digits:

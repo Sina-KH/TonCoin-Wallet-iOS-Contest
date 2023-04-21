@@ -39,6 +39,23 @@
 "Wallet.Completed.Text" = "You’re all set. Now you have a wallet that only you control - directly, without middlemen or bankers.";
 "Wallet.Completed.ViewWallet" = "View my wallet";
 
+// WordImport
+"Wallet.WordImport.Title" = "24 Secret Words";
+"Wallet.WordImport.Text" = "You can restore access to your wallet by entering 24 words you wrote when down you creating the wallet.";
+"Wallet.WordImport.Continue" = "Continue";
+"Wallet.WordImport.CanNotRemember" = "I don't have those";
+"Wallet.WordImport.IncorrectTitle" = "Incorrect words";
+"Wallet.WordImport.IncorrectText" = "Sorry, you have entered incorrect secret words. Please double check and try again.";
+
+// Import Successful
+"Wallet.ImportSuccessful.Title" = "Your wallet has just been imported!"; // NEW
+
+// RestoreFailed
+"Wallet.RestoreFailed.Title" = "Too Bad!"; // UPDATED
+"Wallet.RestoreFailed.Text" = "Without the secret words you can't restore access to your wallet."; // UPDATED
+"Wallet.RestoreFailed.EnterWords" = "Enter 24 words"; // UPDATED
+"Wallet.RestoreFailed.CreateWallet" = "Create a new empty wallet instead"; // UPDATED
+
 // SetPasscode
 "Wallet.SetPasscode.Title" = "Set a Passcode"; // NEW
 "Wallet.SetPasscode.Text" = "Enter the %1$@ digits in the passcode."; // NEW
@@ -148,10 +165,6 @@
 "Wallet.Settings.DeleteWalletInfo" = "This will disconnect the wallet from this app. You will be able to restore your wallet using 24 secret words – or import another wallet.\n\nTON Wallets are located in the decentralized TON Blockchain. If you want a wallet to be deleted, simply transfer all the TON from it and leave it empty.";
 "Wallet.Intro.NotNow" = "Not Now";
 "Wallet.Intro.Terms" = "By creating a wallet you accept the\n[Terms of Conditions]().";
-"Wallet.RestoreFailed.Title" = "Too Bad";
-"Wallet.RestoreFailed.Text" = "Without the secret words, you can't\nrestore access to your wallet.";
-"Wallet.RestoreFailed.CreateWallet" = "Create a new wallet";
-"Wallet.RestoreFailed.EnterWords" = "Enter 24 words";
 "Wallet.Sending.Title" = "Sending TON";
 "Wallet.Sending.Text" = "Please wait a few seconds for your transaction to be processed...";
 "Wallet.Sending.Title" = "Sending TON";
@@ -183,12 +196,6 @@
 "Wallet.TransactionInfo.StorageFeeInfoUrl" = "Blockchain validators collect a tiny fee for storing information about your decentralized wallet and processing your transactions. [More info]()";
 "Wallet.TransactionInfo.OtherFeeInfo" = "Blockchain validators collect a tiny fee for processing your decentralized transactions.";
 "Wallet.TransactionInfo.OtherFeeInfoUrl" = "Blockchain validators collect a tiny fee for processing your decentralized transactions. [More info]()";
-"Wallet.WordImport.Title" = "24 Secret Words";
-"Wallet.WordImport.Text" = "Please restore access to your wallet by\nentering the 24 secret words you wrote down when creating the wallet.";
-"Wallet.WordImport.Continue" = "Continue";
-"Wallet.WordImport.CanNotRemember" = "I don't have them";
-"Wallet.WordImport.IncorrectTitle" = "Incorrect words";
-"Wallet.WordImport.IncorrectText" = "Sorry, you have entered incorrect secret words. Please double check and try again.";
 "Wallet.Send.NetworkErrorTitle" = "No network";
 "Wallet.Send.NetworkErrorText" = "Couldn't send TON. Please make sure your internet connection is working and try again.";
 "Wallet.Send.ErrorNotEnoughFundsTitle" = "Insufficient TON";

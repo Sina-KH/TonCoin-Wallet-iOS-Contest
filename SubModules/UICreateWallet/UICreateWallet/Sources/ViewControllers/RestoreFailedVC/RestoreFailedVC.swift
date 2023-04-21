@@ -1,8 +1,8 @@
 //
-//  StartVC.swift
+//  RestoreFailedVC.swift
 //  UICreateWallet
 //
-//  Created by Sina on 3/31/23.
+//  Created by Sina on 4/21/23.
 //
 
 import UIKit
@@ -11,7 +11,7 @@ import WalletCore
 import UIComponents
 import WalletContext
 
-public class IntroVC: WViewController {
+public class RestoreFailedVC: WViewController {
 
     var walletContext: WalletContext
 
@@ -30,22 +30,22 @@ public class IntroVC: WViewController {
     }
     
     func setupViews() {
+        let enterWordsButton = BottomAction(
+            title: WStrings.Wallet_RestoreFailed_EnterWords.localized,
+            onPress: {
+                self.navigationController?.popViewController(animated: true)
+            }
+        )
+        
         let createWalletButton = BottomAction(
-            title: WStrings.Wallet_Intro_CreateWallet.localized,
+            title: WStrings.Wallet_RestoreFailed_CreateWallet.localized,
             onPress: {
                 self.createWalletPressed()
             }
         )
         
-        let importExistingWalletButton = BottomAction(
-            title: WStrings.Wallet_Intro_ImportExisting.localized,
-            onPress: {
-                self.importWalletPressed()
-            }
-        )
-        
-        let bottomActionsView = BottomActionsView(primaryAction: createWalletButton,
-                                                  secondaryAction: importExistingWalletButton)
+        let bottomActionsView = BottomActionsView(primaryAction: enterWordsButton,
+                                                  secondaryAction: createWalletButton)
         view.addSubview(bottomActionsView)
         NSLayoutConstraint.activate([
             bottomActionsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -58),
@@ -63,10 +63,10 @@ public class IntroVC: WViewController {
             topView.bottomAnchor.constraint(equalTo: bottomActionsView.topAnchor)
         ])
 
-        let headerView = HeaderView(animationName: "Start",
-                                    animationPlaybackMode: .loop,
-                                    title: WStrings.Wallet_Intro_Title.localized,
-                                    description: WStrings.Wallet_Intro_Text.localized)
+        let headerView = HeaderView(animationName: "Too Bad",
+                                    animationPlaybackMode: .once,
+                                    title: WStrings.Wallet_RestoreFailed_Title.localized,
+                                    description: WStrings.Wallet_RestoreFailed_Text.localized)
         topView.addSubview(headerView)
         NSLayoutConstraint.activate([
             headerView.leftAnchor.constraint(equalTo: topView.leftAnchor, constant: 32),

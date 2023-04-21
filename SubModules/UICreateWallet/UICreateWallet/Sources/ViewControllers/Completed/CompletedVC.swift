@@ -60,8 +60,7 @@ public class CompletedVC: WViewController {
             topView.bottomAnchor.constraint(equalTo: bottomActionsView.topAnchor)
         ])
 
-        let headerView = HeaderView(animationName: "WalletIntroLoading",
-                                    animationWidth: 130, animationHeight: 130,
+        let headerView = HeaderView(animationName: "Start",
                                     animationPlaybackMode: .loop,
                                     title: WStrings.Wallet_Completed_Title.localized,
                                     description: WStrings.Wallet_Completed_Text.localized)
@@ -74,7 +73,9 @@ public class CompletedVC: WViewController {
     }
 
     func viewWalletPressed() {
-        navigationController?.pushViewController(WalletHomeVC(walletContext: walletContext, walletInfo: walletInfo), animated: true)
+        navigationController?.pushViewController(WalletHomeVC(walletContext: walletContext, walletInfo: walletInfo),
+                                                 animated: true,
+                                                 clearStack: true)
     }
     
     func showAlert() {

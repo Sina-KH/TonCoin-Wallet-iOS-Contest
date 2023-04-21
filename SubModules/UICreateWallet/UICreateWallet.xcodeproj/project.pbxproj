@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2719622D29F1DF3700B5B59F /* PossibleWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719622C29F1DF3700B5B59F /* PossibleWords.swift */; };
+		2719623029F1DF8800B5B59F /* ImportWalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719622F29F1DF8800B5B59F /* ImportWalletVC.swift */; };
+		2719624629F1E66400B5B59F /* ImportWalletVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719624529F1E66400B5B59F /* ImportWalletVM.swift */; };
 		273521CF29E95666007C4E96 /* WordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521CE29E95666007C4E96 /* WordListView.swift */; };
 		273521D129E9586B007C4E96 /* WordListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521D029E9586B007C4E96 /* WordListItemView.swift */; };
 		273521D629E95D97007C4E96 /* WalletCreatedVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521D529E95D97007C4E96 /* WalletCreatedVM.swift */; };
@@ -19,6 +22,9 @@
 		274D3F6E29D6380C007C47AE /* UICreateWalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3F6D29D6380C007C47AE /* UICreateWalletTests.swift */; };
 		274D3F6F29D6380C007C47AE /* UICreateWallet.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D3F6129D6380C007C47AE /* UICreateWallet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		274D3F8729D638A3007C47AE /* IntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3F8529D638A3007C47AE /* IntroVC.swift */; };
+		275783AB29F2757D004FBE88 /* ImportSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275783AA29F2757D004FBE88 /* ImportSuccessVC.swift */; };
+		275783AD29F27B2A004FBE88 /* ImportSuccessVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275783AC29F27B2A004FBE88 /* ImportSuccessVM.swift */; };
+		275783B029F2850A004FBE88 /* RestoreFailedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275783AF29F2850A004FBE88 /* RestoreFailedVC.swift */; };
 		2777555C29EB455C0098DE68 /* CompletedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2777555B29EB455C0098DE68 /* CompletedVC.swift */; };
 		2777558A29EB51B20098DE68 /* UIPasscode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2777558929EB51B20098DE68 /* UIPasscode.framework */; };
 		2777558B29EB51B20098DE68 /* UIPasscode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2777558929EB51B20098DE68 /* UIPasscode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -57,6 +63,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2719622C29F1DF3700B5B59F /* PossibleWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PossibleWords.swift; sourceTree = "<group>"; };
+		2719622F29F1DF8800B5B59F /* ImportWalletVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportWalletVC.swift; sourceTree = "<group>"; };
+		2719624529F1E66400B5B59F /* ImportWalletVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportWalletVM.swift; sourceTree = "<group>"; };
 		273521CE29E95666007C4E96 /* WordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListView.swift; sourceTree = "<group>"; };
 		273521D029E9586B007C4E96 /* WordListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListItemView.swift; sourceTree = "<group>"; };
 		273521D529E95D97007C4E96 /* WalletCreatedVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCreatedVM.swift; sourceTree = "<group>"; };
@@ -70,6 +79,9 @@
 		274D3F6D29D6380C007C47AE /* UICreateWalletTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICreateWalletTests.swift; sourceTree = "<group>"; };
 		274D3F8529D638A3007C47AE /* IntroVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroVC.swift; sourceTree = "<group>"; };
 		274D3F8D29D639D0007C47AE /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		275783AA29F2757D004FBE88 /* ImportSuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportSuccessVC.swift; sourceTree = "<group>"; };
+		275783AC29F27B2A004FBE88 /* ImportSuccessVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportSuccessVM.swift; sourceTree = "<group>"; };
+		275783AF29F2850A004FBE88 /* RestoreFailedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreFailedVC.swift; sourceTree = "<group>"; };
 		2777555B29EB455C0098DE68 /* CompletedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedVC.swift; sourceTree = "<group>"; };
 		2777558929EB51B20098DE68 /* UIPasscode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIPasscode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27BB29A429E8B5E1009F5DD7 /* WordDisplayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDisplayVC.swift; sourceTree = "<group>"; };
@@ -99,6 +111,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2719622E29F1DF7400B5B59F /* ImportWallet */ = {
+			isa = PBXGroup;
+			children = (
+				2719622F29F1DF8800B5B59F /* ImportWalletVC.swift */,
+				2719624529F1E66400B5B59F /* ImportWalletVM.swift */,
+			);
+			path = ImportWallet;
+			sourceTree = "<group>";
+		};
 		2735220A29E9C242007C4E96 /* WordCheck */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				2786FB6829E87D680023FE21 /* ViewControllers */,
+				2719622C29F1DF3700B5B59F /* PossibleWords.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -180,6 +202,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		275783A929F27505004FBE88 /* ImportSuccessVC */ = {
+			isa = PBXGroup;
+			children = (
+				275783AA29F2757D004FBE88 /* ImportSuccessVC.swift */,
+				275783AC29F27B2A004FBE88 /* ImportSuccessVM.swift */,
+			);
+			path = ImportSuccessVC;
+			sourceTree = "<group>";
+		};
+		275783AE29F284C7004FBE88 /* RestoreFailedVC */ = {
+			isa = PBXGroup;
+			children = (
+				275783AF29F2850A004FBE88 /* RestoreFailedVC.swift */,
+			);
+			path = RestoreFailedVC;
+			sourceTree = "<group>";
+		};
 		2777555A29EB450A0098DE68 /* Completed */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +234,9 @@
 				273A60D829E03B73007CA6F0 /* WalletCreated */,
 				27BB29A329E8B374009F5DD7 /* WordDisplay */,
 				2735220A29E9C242007C4E96 /* WordCheck */,
+				2719622E29F1DF7400B5B59F /* ImportWallet */,
+				275783A929F27505004FBE88 /* ImportSuccessVC */,
+				275783AE29F284C7004FBE88 /* RestoreFailedVC */,
 				2777555A29EB450A0098DE68 /* Completed */,
 			);
 			path = ViewControllers;
@@ -320,15 +362,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				275783AB29F2757D004FBE88 /* ImportSuccessVC.swift in Sources */,
 				273521CF29E95666007C4E96 /* WordListView.swift in Sources */,
 				2735220C29E9C24F007C4E96 /* WordCheckVC.swift in Sources */,
+				2719624629F1E66400B5B59F /* ImportWalletVM.swift in Sources */,
+				2719622D29F1DF3700B5B59F /* PossibleWords.swift in Sources */,
+				275783AD29F27B2A004FBE88 /* ImportSuccessVM.swift in Sources */,
 				273521D629E95D97007C4E96 /* WalletCreatedVM.swift in Sources */,
 				274D3F6329D6380C007C47AE /* UICreateWallet.docc in Sources */,
 				274D3F8729D638A3007C47AE /* IntroVC.swift in Sources */,
 				2777555C29EB455C0098DE68 /* CompletedVC.swift in Sources */,
+				2719623029F1DF8800B5B59F /* ImportWalletVC.swift in Sources */,
 				27BB29A529E8B5E1009F5DD7 /* WordDisplayVC.swift in Sources */,
 				273521D129E9586B007C4E96 /* WordListItemView.swift in Sources */,
 				273A60DB29E03BA1007CA6F0 /* WalletCreatedVC.swift in Sources */,
+				275783B029F2850A004FBE88 /* RestoreFailedVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

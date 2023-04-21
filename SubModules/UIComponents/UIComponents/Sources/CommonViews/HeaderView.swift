@@ -7,19 +7,17 @@
 
 import UIKit
 
+fileprivate let animationSize = 124
+
 public class HeaderView: UIView {
     
     // MARK: - Initializers
     public init(animationName: String,
-                animationWidth: Int,
-                animationHeight: Int,
                 animationPlaybackMode: AnimatedStickerPlaybackMode,
                 title: String,
-         description: String) {
+                description: String? = nil) {
         super.init(frame: CGRect.zero)
         setupView(animationName: animationName,
-                  animationWidth: animationWidth,
-                  animationHeight: animationHeight,
                   animationPlaybackMode: animationPlaybackMode,
                   title: title,
                   description: description)
@@ -30,7 +28,7 @@ public class HeaderView: UIView {
                 iconHeight: Int,
                 iconTintColor: UIColor,
                 title: String,
-                description: String) {
+                description: String? = nil) {
         super.init(frame: CGRect.zero)
         setupView(icon: icon,
                   iconWidth: iconWidth,
@@ -54,26 +52,24 @@ public class HeaderView: UIView {
 
     // MARK: - HeaderView with animation
     private func setupView(animationName: String,
-                           animationWidth: Int,
-                           animationHeight: Int,
                            animationPlaybackMode: AnimatedStickerPlaybackMode,
                            title: String,
-                           description: String) {
+                           description: String? = nil) {
         translatesAutoresizingMaskIntoConstraints = false
         
         // add animated sticker
         animatedSticker = WAnimatedSticker()
         animatedSticker!.animationName = animationName
         animatedSticker!.translatesAutoresizingMaskIntoConstraints = false
-        animatedSticker!.setup(width: animationWidth,
-                              height: animationHeight,
+        animatedSticker!.setup(width: animationSize,
+                              height: animationSize,
                               playbackMode: animationPlaybackMode)
         addSubview(animatedSticker!)
         NSLayoutConstraint.activate([
             animatedSticker!.topAnchor.constraint(equalTo: topAnchor),
             animatedSticker!.centerXAnchor.constraint(equalTo: centerXAnchor),
-            animatedSticker!.widthAnchor.constraint(equalToConstant: CGFloat(animationWidth)),
-            animatedSticker!.heightAnchor.constraint(equalToConstant: CGFloat(animationHeight))
+            animatedSticker!.widthAnchor.constraint(equalToConstant: CGFloat(animationSize)),
+            animatedSticker!.heightAnchor.constraint(equalToConstant: CGFloat(animationSize))
         ])
         
         addTitleAndDescription(topView: animatedSticker!, title: title, description: description)
@@ -85,7 +81,7 @@ public class HeaderView: UIView {
                            iconHeight: Int,
                            iconTintColor: UIColor,
                            title: String,
-                           description: String) {
+                           description: String? = nil) {
         translatesAutoresizingMaskIntoConstraints = false
         
         // add animated sticker
@@ -106,7 +102,7 @@ public class HeaderView: UIView {
     // MARK: - Shared functions to generate required views
     private func addTitleAndDescription(topView: UIView,
                                         title: String,
-                                        description: String) {
+                                        description: String? = nil) {
         // title
         let lblTitle = UILabel()
         lblTitle.translatesAutoresizingMaskIntoConstraints = false

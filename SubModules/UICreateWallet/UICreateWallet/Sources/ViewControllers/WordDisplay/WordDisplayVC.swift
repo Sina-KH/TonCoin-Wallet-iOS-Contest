@@ -60,8 +60,7 @@ class WordDisplayVC: WViewController {
         ])
 
         // header
-        let headerView = HeaderView(animationName: "WalletWordList",
-                                    animationWidth: 132, animationHeight: 132,
+        let headerView = HeaderView(animationName: "Recovery Phrase",
                                     animationPlaybackMode: .once,
                                     title: WStrings.Wallet_Words_Title.localized,
                                     description: WStrings.Wallet_Words_Text.localized)

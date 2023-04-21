@@ -1,8 +1,8 @@
 //
-//  WordCheckVC.swift
+//  ImportWalletVC.swift
 //  UICreateWallet
 //
-//  Created by Sina on 4/14/23.
+//  Created by Sina on 4/21/23.
 //
 
 import UIKit
@@ -11,24 +11,17 @@ import UIComponents
 import WalletCore
 import WalletContext
 
-class WordCheckVC: WViewController {
+class ImportWalletVC: WViewController {
 
     var walletContext: WalletContext
-    var walletInfo: WalletInfo
-    var wordList: [String]
-    var wordIndices: [Int]
 
     private var scrollView: UIScrollView!
     private var wordInputs: [WWordInput]!
 
-    public init(walletContext: WalletContext,
-                walletInfo: WalletInfo,
-                wordList: [String],
-                wordIndices: [Int]) {
+    lazy var importWalletVM = ImportWalletVM(importWalletVMDelegate: self)
+
+    public init(walletContext: WalletContext) {
         self.walletContext = walletContext
-        self.walletInfo = walletInfo
-        self.wordList = wordList
-        self.wordIndices = wordIndices
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -63,10 +56,10 @@ class WordCheckVC: WViewController {
         ])
 
         // header
-        let headerView = HeaderView(animationName: "Test Time",
+        let headerView = HeaderView(animationName: "Recovery Phrase",
                                     animationPlaybackMode: .once,
-                                    title: WStrings.Wallet_WordCheck_Title.localized,
-                                    description: WStrings.Wallet_WordCheck_ViewWords(wordIndices: wordIndices))
+                                    title: WStrings.Wallet_WordImport_Title.localized,
+                                    description: WStrings.Wallet_WordImport_Text.localized)
         scrollView.addSubview(headerView)
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor, constant: 0),
@@ -74,21 +67,43 @@ class WordCheckVC: WViewController {
             headerView.rightAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.rightAnchor, constant: -32)
         ])
 
-        // 3 word inputs
+        // `can not remember words` button
+        let forgotWordsButton = WButton.setupInstance(.secondary)
+        forgotWordsButton.translatesAutoresizingMaskIntoConstraints = false
+        forgotWordsButton.setTitle(WStrings.Wallet_WordImport_CanNotRemember.localized, for: .normal)
+        forgotWordsButton.addTarget(self, action: #selector(forgotWordsPressed), for: .touchUpInside)
+        scrollView.addSubview(forgotWordsButton)
+        NSLayoutConstraint.activate([
+            forgotWordsButton.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 12),
+            forgotWordsButton.leftAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leftAnchor, constant: 48),
+            forgotWordsButton.rightAnchor.constraint(equalTo: scrollView.contentLayoutGuide.rightAnchor, constant: -48)
+        ])
+
+        // 24 word inputs
         let wordsStackView = UIStackView()
         wordsStackView.translatesAutoresizingMaskIntoConstraints = false
         wordsStackView.axis = .vertical
         wordsStackView.spacing = 16
         scrollView.addSubview(wordsStackView)
         NSLayoutConstraint.activate([
-            wordsStackView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 36),
+            wordsStackView.topAnchor.constraint(equalTo: forgotWordsButton.bottomAnchor, constant: 36),
             wordsStackView.leftAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leftAnchor, constant: 48),
             wordsStackView.rightAnchor.constraint(equalTo: scrollView.contentLayoutGuide.rightAnchor, constant: -48)
         ])
-        let fieldsCount = 3
+        let fieldsCount = 24
         wordInputs = []
+        let sampleWallet: [String]
+        #if DEBUG
+        sampleWallet = ["meat", "away", "evoke", "enter", "umbrella", "word", "fly", "project", "unfold", "minor", "wall", "recall",
+                        "sadness", "fix", "thumb", "discover", "teach", "beach", "attract", "repeat", "east", "mushroom", "pink", "heart"]
+        #else
+        sampleWallet = []
+        #endif
         for i in 0 ..< fieldsCount {
-            let wordInput = WWordInput(wordNumber: wordIndices[i] + 1, delegate: self)
+            let wordInput = WWordInput(wordNumber: i + 1, delegate: self)
+            #if DEBUG
+            wordInput.textField.text = sampleWallet[i]
+            #endif
             if i < fieldsCount - 1 {
                 wordInput.textField.returnKeyType = .next
             } else {
@@ -111,7 +126,7 @@ class WordCheckVC: WViewController {
         scrollView.addSubview(bottomActionsView)
         NSLayoutConstraint.activate([
             bottomActionsView.topAnchor.constraint(equalTo: wordsStackView.bottomAnchor, constant: 16),
-            bottomActionsView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: 8),
+            bottomActionsView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -8),
             bottomActionsView.leftAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.leftAnchor, constant: 48),
             bottomActionsView.rightAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.rightAnchor, constant: -48),
         ])
@@ -120,42 +135,39 @@ class WordCheckVC: WViewController {
         WKeyboardObserver.observeKeyboard(delegate: self)
     }
     
+    @objc func forgotWordsPressed() {
+        navigationController?.pushViewController(RestoreFailedVC(walletContext: walletContext), animated: true)
+    }
+    
     func continuePressed() {
         view.endEditing(true)
-        for (i, index) in wordIndices.enumerated() {
-            if wordInputs[i].textField.text?.trimmingCharacters(in: .whitespaces).lowercased() != wordList[index] {
+
+        // check if all the words are in the possibleWordList
+        var words = [String]()
+        for wordInput in wordInputs {
+            guard let word = wordInput.textField.text?.trimmingCharacters(in: .whitespaces).lowercased() else {
                 showAlert()
                 return
             }
+            if !possibleWordList.contains(word) {
+                showAlert()
+                return
+            }
+            words.append(word)
         }
-        // all the words are correct
-        let nextVC = BiometricHelper.biometricType() == .none ?
-        CompletedVC(walletContext: walletContext, walletInfo: walletInfo) :
-        SetPasscodeVC(walletContext: walletContext, walletInfo: walletInfo, onCompletion: { [weak self] in
-            guard let self else {return}
-            // set passcode flow completion
-            // update wallet core state
-            _ = confirmWalletExported(storage: walletContext.storage, publicKey: walletInfo.publicKey).start()
-            // navigate to completed vc
-            navigationController?.pushViewController(CompletedVC(walletContext: walletContext, walletInfo: walletInfo), animated: true)
-        })
-        navigationController?.pushViewController(nextVC, animated: true)
+        
+        importWalletVM.importWallet(walletContext: walletContext, enteredWords: words)
     }
     
     private func showAlert() {
         // a word is incorrect.
-        showAlert(title: WStrings.Wallet_WordCheck_IncorrectHeader.localized,
-                  text: WStrings.Wallet_WordCheck_IncorrectText.localized,
-                  button: WStrings.Wallet_WordCheck_TryAgain.localized,
-                  secondaryButton: WStrings.Wallet_WordCheck_ViewWords.localized,
-                  secondaryButtonPressed: { [weak self] in
-            // see words pressed
-            self?.navigationController?.popViewController(animated: true)
-        }, preferPrimary: false)
+        showAlert(title: WStrings.Wallet_WordImport_IncorrectTitle.localized,
+                  text: WStrings.Wallet_WordImport_IncorrectText.localized,
+                  button: WStrings.Wallet_Alert_OK.localized)
     }
 }
 
-extension WordCheckVC: WKeyboardObserverDelegate {
+extension ImportWalletVC: WKeyboardObserverDelegate {
     func keyboardWillShow(height: CGFloat) {
         scrollView.contentInset.bottom = height + 20
     }
@@ -165,8 +177,18 @@ extension WordCheckVC: WKeyboardObserverDelegate {
     }
 }
 
-extension WordCheckVC: WWordInputDelegate {
+extension ImportWalletVC: WWordInputDelegate {
     func resignedFirstResponder() {
         continuePressed()
+    }
+}
+
+extension ImportWalletVC: ImportWalletVMDelegate {
+    func walletImported(walletInfo: ImportedWalletInfo) {
+        navigationController?.pushViewController(ImportSuccessVC(walletContext: walletContext, importedWalletInfo: walletInfo), animated: true)
+    }
+    
+    func errorOccured() {
+        showAlert()
     }
 }

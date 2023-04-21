@@ -8,24 +8,29 @@
 import UIKit
 import WalletContext
 
-public class WWordInput: UIStackView {
-    
-    public var wordNumber: Int = 0
+public protocol WWordInputDelegate: AnyObject {
+    func resignedFirstResponder()
+}
 
+public class WWordInput: UIStackView {
+    private var wordNumber: Int = 0
+    private weak var delegate: WWordInputDelegate? = nil
+    public init(wordNumber: Int, delegate: WWordInputDelegate) {
+        self.wordNumber = wordNumber
+        self.delegate = delegate
+        super.init(frame: CGRect.zero)
+        self.tag = wordNumber
+        setup()
+    }
+    
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     let numberLabel = UILabel()
     public let textField = UITextField()
 
-    public override func awakeFromNib() {
-        super.awakeFromNib()
-        setup()
-    }
-    
-    public override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        setup()
-    }
-    
-    public func setup() {
+    func setup() {
         axis = .horizontal
         spacing = 6
 
@@ -49,6 +54,7 @@ public class WWordInput: UIStackView {
         // add text field
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = .clear
+        textField.delegate = self
         addArrangedSubview(textField)
         
         updateTheme()
@@ -57,5 +63,17 @@ public class WWordInput: UIStackView {
     func updateTheme() {
         backgroundColor = currentTheme.wordInput.background
         numberLabel.textColor = currentTheme.secondaryLabel
+    }
+}
+
+extension WWordInput: UITextFieldDelegate {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let nextField = superview?.viewWithTag(tag + 1) as? WWordInput {
+            nextField.textField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+            delegate?.resignedFirstResponder()
+        }
+        return false
     }
 }
