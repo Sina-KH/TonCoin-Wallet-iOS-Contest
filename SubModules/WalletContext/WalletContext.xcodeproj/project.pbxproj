@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2719622B29F1D9A400B5B59F /* WalletUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719622A29F1D9A400B5B59F /* WalletUtils.swift */; };
 		273521E729E98434007C4E96 /* WalletContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 273521E629E98434007C4E96 /* WalletContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		273521F229E98449007C4E96 /* WalletStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521F029E98449007C4E96 /* WalletStrings.swift */; };
 		273521F329E98449007C4E96 /* StringPluralization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521EE29E98449007C4E96 /* StringPluralization.swift */; };
 		273521F429E98449007C4E96 /* WalletContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521F129E98449007C4E96 /* WalletContext.swift */; };
 		273521F529E98449007C4E96 /* WalletPresentationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521ED29E98448007C4E96 /* WalletPresentationData.swift */; };
@@ -48,7 +47,6 @@
 		273521E629E98434007C4E96 /* WalletContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletContext.h; sourceTree = "<group>"; };
 		273521ED29E98448007C4E96 /* WalletPresentationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletPresentationData.swift; sourceTree = "<group>"; };
 		273521EE29E98449007C4E96 /* StringPluralization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringPluralization.swift; sourceTree = "<group>"; };
-		273521F029E98449007C4E96 /* WalletStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletStrings.swift; sourceTree = "<group>"; };
 		273521F129E98449007C4E96 /* WalletContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletContext.swift; sourceTree = "<group>"; };
 		273521FD29E98514007C4E96 /* WStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WStrings.swift; sourceTree = "<group>"; };
 		2735220329E98972007C4E96 /* WColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WColors.swift; sourceTree = "<group>"; };
@@ -119,7 +117,6 @@
 				273521F129E98449007C4E96 /* WalletContext.swift */,
 				273521EE29E98449007C4E96 /* StringPluralization.swift */,
 				273521ED29E98448007C4E96 /* WalletPresentationData.swift */,
-				273521F029E98449007C4E96 /* WalletStrings.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -248,7 +245,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				273521FE29E98514007C4E96 /* WStrings.swift in Sources */,
-				273521F229E98449007C4E96 /* WalletStrings.swift in Sources */,
 				273521F329E98449007C4E96 /* StringPluralization.swift in Sources */,
 				2719622B29F1D9A400B5B59F /* WalletUtils.swift in Sources */,
 				27764E5629F1461A00A45DAF /* KeychainHelper.swift in Sources */,

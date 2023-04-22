@@ -81,6 +81,11 @@ public enum WStrings: String {
     case Wallet_Home_TransactionPendingHeader = "Wallet.Home.TransactionPendingHeader"
     case Wallet_Home_InitTransaction = "Wallet.Home.InitTransaction"
     case Wallet_Home_UnknownTransaction = "Wallet.Home.UnknownTransaction"
+    case Wallet_Receive_Title = "Wallet.Receive.Title"
+    case Wallet_Receive_Description = "Wallet.Receive.Description"
+    case Wallet_Receive_YourAddress = "Wallet.Receive.YourAddress"
+    case Wallet_Receive_ShareAddress = "Wallet.Receive.ShareAddress"
+    case Wallet_Receive_AddressCopied = "Wallet.Receive.AddressCopied"
     case Wallet_Alert_OK = "Wallet.Alert.OK"
 
     public var localized: String {

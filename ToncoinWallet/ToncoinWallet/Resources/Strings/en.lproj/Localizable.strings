@@ -101,6 +101,13 @@
 "Wallet.Home.InitTransaction" = "Wallet initialized"; // NEW
 "Wallet.Home.UnknownTransaction" = "Unknown"; // NEW
 
+// Receive
+"Wallet.Receive.Title" = "Receive Toncoin"; // Updated
+"Wallet.Receive.Description" = "Send only Toncoin (TON) to this address. Sending other coins may result in permanent loss."; // NEW
+"Wallet.Receive.YourAddress" = "Your wallet address"; // NEW
+"Wallet.Receive.ShareAddress" = "Share wallet address";
+"Wallet.Receive.AddressCopied" = "Address copied to clipboard.";
+
 // Alert
 "Wallet.Alert.OK" = "OK";
 //////////////////////////
@@ -125,21 +132,6 @@
 "Wallet.Updated.TodayAt" = "today at %@";
 "Wallet.Qr.ScanCode" = "Scan QR Code";
 "Wallet.Qr.Title" = "QR Code";
-"Wallet.Receive.Title" = "Receive TON";
-"Wallet.Receive.AddressHeader" = "YOUR WALLET ADDRESS";
-"Wallet.Receive.InvoiceUrlHeader" = "INVOICE URL";
-"Wallet.Receive.CopyAddress" = "Copy wallet address";
-"Wallet.Receive.CopyInvoiceUrl" = "Copy invoice URL";
-"Wallet.Receive.ShareAddress" = "Share wallet address";
-"Wallet.Receive.ShareInvoiceUrl" = "Share invoice URL";
-"Wallet.Receive.ShareUrlInfo" = "Share this link to receive TON.";
-"Wallet.Receive.AmountHeader" = "AMOUNT";
-"Wallet.Receive.AmountText" = "TON to receive";
-"Wallet.Receive.AmountInfo" = "You can specify the amount and purpose of the payment to save the sender some time.";
-"Wallet.Receive.CommentHeader" = "COMMENT (OPTIONAL)";
-"Wallet.Receive.CommentInfo" = "Description of the payment";
-"Wallet.Receive.AddressCopied" = "Address copied to clipboard.";
-"Wallet.Receive.InvoiceUrlCopied" = "Invoice URL copied to clipboard.";
 "Wallet.Send.Title" = "Send TON";
 "Wallet.Send.AddressHeader" = "RECIPIENT WALLET ADDRESS";
 "Wallet.Send.AddressText" = "Enter wallet address...";

@@ -9,6 +9,10 @@ import UIKit
 import UIComponents
 import WalletContext
 
+public protocol BalanceHeaderViewDelegate: AnyObject {
+    func receivePressed()
+}
+
 public class BalanceHeaderView: UIView {
     
     // minimum height to show collapsed mode
@@ -20,12 +24,14 @@ public class BalanceHeaderView: UIView {
 
     private static let minHeight = minHeightWithoutRadiusView + bottomRadiusViewHeight
     static let defaultHeight = contentHeight + bottomRadiusViewHeight
-    
+
+    private weak var delegate: BalanceHeaderViewDelegate!
     private var heightConstraint: NSLayoutConstraint!
     private var actionsStackView: UIStackView!
     private var balanceView: BalanceView!
 
-    public init() {
+    public init(delegate: BalanceHeaderViewDelegate) {
+        self.delegate = delegate
         super.init(frame: CGRect.zero)
         setupView()
     }
@@ -111,6 +117,7 @@ public class BalanceHeaderView: UIView {
         receiveButton.setTitle(WStrings.Wallet_Home_Receive.localized, for: .normal)
         receiveButton.setImage(UIImage(named: "ReceiveIcon")?.withRenderingMode(.alwaysTemplate), for: .normal)
         receiveButton.centerTextAndImage(spacing: 8)
+        receiveButton.addTarget(self, action: #selector(receivePressed), for: .touchUpInside)
         actionsStackView.addArrangedSubview(receiveButton)
 
         let sendButton = WButton.setupInstance(.accent)
@@ -150,5 +157,9 @@ public class BalanceHeaderView: UIView {
         } else {
             return hitView
         }
+    }
+
+    @objc func receivePressed() {
+        delegate.receivePressed()
     }
 }

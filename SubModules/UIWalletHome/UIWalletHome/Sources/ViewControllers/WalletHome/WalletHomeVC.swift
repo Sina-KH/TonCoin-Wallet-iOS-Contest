@@ -97,7 +97,7 @@ public class WalletHomeVC: WViewController {
         ])
 
         // balance header view
-        balanceHeaderView = BalanceHeaderView()
+        balanceHeaderView = BalanceHeaderView(delegate: self)
         view.addSubview(balanceHeaderView)
         NSLayoutConstraint.activate([
             balanceHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -280,5 +280,11 @@ extension WalletHomeVC: WalletHomeVMDelegate {
         showAlert(title: WStrings.Wallet_Home_RefreshErrorTitle.localized,
                   text: text,
                   button: WStrings.Wallet_Alert_OK.localized)
+    }
+}
+
+extension WalletHomeVC: BalanceHeaderViewDelegate {
+    public func receivePressed() {
+        present(ReceiveVC(walletContext: walletContext, walletInfo: walletInfo), animated: true)
     }
 }

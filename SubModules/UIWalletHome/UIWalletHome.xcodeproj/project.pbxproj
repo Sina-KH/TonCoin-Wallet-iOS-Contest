@@ -24,6 +24,7 @@
 		27764E5D29F1750A00A45DAF /* UIComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27764E5B29F1750A00A45DAF /* UIComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		278C3A1729F1875100BD16E8 /* BalanceHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278C3A1629F1875100BD16E8 /* BalanceHeaderView.swift */; };
 		27E643CA29F40719006B20FC /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643C929F40719006B20FC /* BubbleView.swift */; };
+		27E643CE29F40FF7006B20FC /* ReceiveVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643CD29F40FF7006B20FC /* ReceiveVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		27764E5B29F1750A00A45DAF /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		278C3A1629F1875100BD16E8 /* BalanceHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceHeaderView.swift; sourceTree = "<group>"; };
 		27E643C929F40719006B20FC /* BubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
+		27E643CD29F40FF7006B20FC /* ReceiveVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,9 +142,8 @@
 		27764E4429F1351500A45DAF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				27764E4529F1357000A45DAF /* WalletHomeVC.swift */,
-				2719622429F1C55F00B5B59F /* WalletHomeVM.swift */,
-				2719621C29F1BA7A00B5B59F /* WalletTransactionCell.swift */,
+				27E643CB29F40FBD006B20FC /* WalletHome */,
+				27E643CC29F40FDA006B20FC /* Receive */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -167,6 +168,24 @@
 				27E643C929F40719006B20FC /* BubbleView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		27E643CB29F40FBD006B20FC /* WalletHome */ = {
+			isa = PBXGroup;
+			children = (
+				27764E4529F1357000A45DAF /* WalletHomeVC.swift */,
+				2719622429F1C55F00B5B59F /* WalletHomeVM.swift */,
+				2719621C29F1BA7A00B5B59F /* WalletTransactionCell.swift */,
+			);
+			path = WalletHome;
+			sourceTree = "<group>";
+		};
+		27E643CC29F40FDA006B20FC /* Receive */ = {
+			isa = PBXGroup;
+			children = (
+				27E643CD29F40FF7006B20FC /* ReceiveVC.swift */,
+			);
+			path = Receive;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27E643CA29F40719006B20FC /* BubbleView.swift in Sources */,
+				27E643CE29F40FF7006B20FC /* ReceiveVC.swift in Sources */,
 				27764E4629F1357000A45DAF /* WalletHomeVC.swift in Sources */,
 				2719621D29F1BA7A00B5B59F /* WalletTransactionCell.swift in Sources */,
 				278C3A1729F1875100BD16E8 /* BalanceHeaderView.swift in Sources */,

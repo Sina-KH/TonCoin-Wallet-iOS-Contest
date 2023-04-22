@@ -202,21 +202,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		275783A929F27505004FBE88 /* ImportSuccessVC */ = {
+		275783A929F27505004FBE88 /* ImportSuccess */ = {
 			isa = PBXGroup;
 			children = (
 				275783AA29F2757D004FBE88 /* ImportSuccessVC.swift */,
 				275783AC29F27B2A004FBE88 /* ImportSuccessVM.swift */,
 			);
-			path = ImportSuccessVC;
+			path = ImportSuccess;
 			sourceTree = "<group>";
 		};
-		275783AE29F284C7004FBE88 /* RestoreFailedVC */ = {
+		275783AE29F284C7004FBE88 /* RestoreFailed */ = {
 			isa = PBXGroup;
 			children = (
 				275783AF29F2850A004FBE88 /* RestoreFailedVC.swift */,
 			);
-			path = RestoreFailedVC;
+			path = RestoreFailed;
 			sourceTree = "<group>";
 		};
 		2777555A29EB450A0098DE68 /* Completed */ = {
@@ -235,8 +235,8 @@
 				27BB29A329E8B374009F5DD7 /* WordDisplay */,
 				2735220A29E9C242007C4E96 /* WordCheck */,
 				2719622E29F1DF7400B5B59F /* ImportWallet */,
-				275783A929F27505004FBE88 /* ImportSuccessVC */,
-				275783AE29F284C7004FBE88 /* RestoreFailedVC */,
+				275783A929F27505004FBE88 /* ImportSuccess */,
+				275783AE29F284C7004FBE88 /* RestoreFailed */,
 				2777555A29EB450A0098DE68 /* Completed */,
 			);
 			path = ViewControllers;
