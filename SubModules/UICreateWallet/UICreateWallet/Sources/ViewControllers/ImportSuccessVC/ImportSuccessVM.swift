@@ -42,7 +42,7 @@ class ImportSuccessVM {
                         break
                     case let .imported(info):
                         if info.publicKey == importedInfo.publicKey {
-                            records[i].info = .ready(info: walletInfo, exportCompleted: false, state: nil)
+                            records[i].info = .ready(info: walletInfo, exportCompleted: .no(isImport: true), state: nil)
                         }
                     }
                 }

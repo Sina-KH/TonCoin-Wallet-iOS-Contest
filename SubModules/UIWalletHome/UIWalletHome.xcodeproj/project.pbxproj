@@ -11,6 +11,10 @@
 		2719622529F1C55F00B5B59F /* WalletHomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719622429F1C55F00B5B59F /* WalletHomeVM.swift */; };
 		2719622729F1C71600B5B59F /* SwiftSignalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2719622629F1C71600B5B59F /* SwiftSignalKit.framework */; };
 		2719622829F1C71700B5B59F /* SwiftSignalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2719622629F1C71600B5B59F /* SwiftSignalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2736AAA429F3298C009FFBE2 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2736AAA329F3298C009FFBE2 /* BalanceView.swift */; };
+		2772A87329F2E6010086F0A2 /* WalletCreatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A87229F2E6010086F0A2 /* WalletCreatedView.swift */; };
+		2772A87629F2EEE10086F0A2 /* WalletLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A87529F2EEE10086F0A2 /* WalletLoadingView.swift */; };
+		2772A87829F2F13A0086F0A2 /* EmptyWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A87729F2F13A0086F0A2 /* EmptyWalletView.swift */; };
 		27764E2E29F134F000A45DAF /* UIWalletHome.docc in Sources */ = {isa = PBXBuildFile; fileRef = 27764E2D29F134F000A45DAF /* UIWalletHome.docc */; };
 		27764E3429F134F000A45DAF /* UIWalletHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27764E2929F134F000A45DAF /* UIWalletHome.framework */; };
 		27764E3929F134F000A45DAF /* UIWalletHomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27764E3829F134F000A45DAF /* UIWalletHomeTests.swift */; };
@@ -19,6 +23,7 @@
 		27764E5C29F1750A00A45DAF /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27764E5B29F1750A00A45DAF /* UIComponents.framework */; };
 		27764E5D29F1750A00A45DAF /* UIComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27764E5B29F1750A00A45DAF /* UIComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		278C3A1729F1875100BD16E8 /* BalanceHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278C3A1629F1875100BD16E8 /* BalanceHeaderView.swift */; };
+		27E643CA29F40719006B20FC /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643C929F40719006B20FC /* BubbleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +55,10 @@
 		2719621C29F1BA7A00B5B59F /* WalletTransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTransactionCell.swift; sourceTree = "<group>"; };
 		2719622429F1C55F00B5B59F /* WalletHomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletHomeVM.swift; sourceTree = "<group>"; };
 		2719622629F1C71600B5B59F /* SwiftSignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftSignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2736AAA329F3298C009FFBE2 /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
+		2772A87229F2E6010086F0A2 /* WalletCreatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCreatedView.swift; sourceTree = "<group>"; };
+		2772A87529F2EEE10086F0A2 /* WalletLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletLoadingView.swift; sourceTree = "<group>"; };
+		2772A87729F2F13A0086F0A2 /* EmptyWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyWalletView.swift; sourceTree = "<group>"; };
 		27764E2929F134F000A45DAF /* UIWalletHome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIWalletHome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27764E2C29F134F000A45DAF /* UIWalletHome.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIWalletHome.h; sourceTree = "<group>"; };
 		27764E2D29F134F000A45DAF /* UIWalletHome.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = UIWalletHome.docc; sourceTree = "<group>"; };
@@ -58,6 +67,7 @@
 		27764E4529F1357000A45DAF /* WalletHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletHomeVC.swift; sourceTree = "<group>"; };
 		27764E5B29F1750A00A45DAF /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		278C3A1629F1875100BD16E8 /* BalanceHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceHeaderView.swift; sourceTree = "<group>"; };
+		27E643C929F40719006B20FC /* BubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +131,7 @@
 		27764E4329F1350400A45DAF /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				278C3A1529F1873F00BD16E8 /* CommonViews */,
+				278C3A1529F1873F00BD16E8 /* Views */,
 				27764E4429F1351500A45DAF /* ViewControllers */,
 			);
 			path = Sources;
@@ -131,8 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				27764E4529F1357000A45DAF /* WalletHomeVC.swift */,
-				2719621C29F1BA7A00B5B59F /* WalletTransactionCell.swift */,
 				2719622429F1C55F00B5B59F /* WalletHomeVM.swift */,
+				2719621C29F1BA7A00B5B59F /* WalletTransactionCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -146,12 +156,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		278C3A1529F1873F00BD16E8 /* CommonViews */ = {
+		278C3A1529F1873F00BD16E8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				278C3A1629F1875100BD16E8 /* BalanceHeaderView.swift */,
+				2736AAA329F3298C009FFBE2 /* BalanceView.swift */,
+				2772A87729F2F13A0086F0A2 /* EmptyWalletView.swift */,
+				2772A87529F2EEE10086F0A2 /* WalletLoadingView.swift */,
+				2772A87229F2E6010086F0A2 /* WalletCreatedView.swift */,
+				27E643C929F40719006B20FC /* BubbleView.swift */,
 			);
-			path = CommonViews;
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,10 +279,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27E643CA29F40719006B20FC /* BubbleView.swift in Sources */,
 				27764E4629F1357000A45DAF /* WalletHomeVC.swift in Sources */,
 				2719621D29F1BA7A00B5B59F /* WalletTransactionCell.swift in Sources */,
 				278C3A1729F1875100BD16E8 /* BalanceHeaderView.swift in Sources */,
+				2736AAA429F3298C009FFBE2 /* BalanceView.swift in Sources */,
+				2772A87829F2F13A0086F0A2 /* EmptyWalletView.swift in Sources */,
+				2772A87629F2EEE10086F0A2 /* WalletLoadingView.swift in Sources */,
 				27764E2E29F134F000A45DAF /* UIWalletHome.docc in Sources */,
+				2772A87329F2E6010086F0A2 /* WalletCreatedView.swift in Sources */,
 				2719622529F1C55F00B5B59F /* WalletHomeVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

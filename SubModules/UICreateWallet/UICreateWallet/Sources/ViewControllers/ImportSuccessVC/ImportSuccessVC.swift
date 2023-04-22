@@ -15,11 +15,18 @@ import UIComponents
 public class ImportSuccessVC: WViewController {
     
     var walletContext: WalletContext
-    var importedWalletInfo: ImportedWalletInfo
+    var importedWalletInfo: ImportedWalletInfo? = nil
+    var walletInfo: WalletInfo? = nil
     public init(walletContext: WalletContext,
                 importedWalletInfo: ImportedWalletInfo) {
         self.walletContext = walletContext
         self.importedWalletInfo = importedWalletInfo
+        super.init(nibName: nil, bundle: nil)
+    }
+    public init(walletContext: WalletContext,
+                walletInfo: WalletInfo) {
+        self.walletContext = walletContext
+        self.walletInfo = walletInfo
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -74,6 +81,13 @@ public class ImportSuccessVC: WViewController {
     }
 
     func proceedPressed() {
+        if let walletInfo {
+            // wallet info received before, just go to passcode setting
+            importCompleted(walletInfo: walletInfo)
+            return
+        }
+        // receive wallet info
+        guard let importedWalletInfo else {return}
         importSuccessVM.loadWalletInfo(walletContext: walletContext, importedInfo: importedWalletInfo)
     }
     
@@ -81,7 +95,8 @@ public class ImportSuccessVC: WViewController {
 
 extension ImportSuccessVC: ImportSuccessVMDelegate {
     func importCompleted(walletInfo: WalletInfo) {
-        // all the words are correct
+        self.walletInfo = walletInfo
+        // go to passcode setting
         let nextVC = BiometricHelper.biometricType() == .none ?
         CompletedVC(walletContext: walletContext, walletInfo: walletInfo) :
         SetPasscodeVC(walletContext: walletContext, walletInfo: walletInfo, onCompletion: { [weak self] in

@@ -9,6 +9,8 @@ import UIKit
 
 public struct WThemeBackgroundHeaderView {
     public var background: UIColor
+    public var headIcons: UIColor
+    public var balance: UIColor
 }
 
 public struct WThemePrimaryButton {
@@ -26,35 +28,41 @@ public struct WThemeWordInput {
 }
 
 public struct WTheme {
-    public var background: UIColor
-    public var backgroundReverse: UIColor
     public var primaryButton: WThemePrimaryButton
     public var accentButton: WThemeAccentButton
     public var wordInput: WThemeWordInput
+    public var balanceHeaderView: WThemeBackgroundHeaderView
+    public var background: UIColor
+    public var backgroundReverse: UIColor
+    public var groupedBackground: UIColor
     public var primaryLabel: UIColor
     public var secondaryLabel: UIColor
     public var border: UIColor
     public var separator: UIColor
     public var tint: UIColor
-    public var balanceHeaderView: WThemeBackgroundHeaderView
+    public var positiveAmount: UIColor
+    public var negativeAmount: UIColor
 }
 
 // Current theme now supports both light and dark themes.
 //  If we need to support more themes, `currentTheme` variable should be changed real-time and the app should be configured to call all .updateTheme() methods on theme change. (some components may need an update, to support this feature)
 public var currentTheme = WTheme(
-    background: _systemBackground,
-    backgroundReverse: _systemBackgroundReverse,
     primaryButton: WThemePrimaryButton(background: UIColor.systemBlue,
                                        tint: UIColor.white),
     accentButton: WThemeAccentButton(background: _accent,
                                      tint: UIColor.white),
     wordInput: WThemeWordInput(background: WColors.secondaryBackground.color),
+    balanceHeaderView: WThemeBackgroundHeaderView(background: .black, headIcons: .white, balance: .white),
+    background: _systemBackground,
+    backgroundReverse: _systemBackgroundReverse,
+    groupedBackground: _groupedBackground,
     primaryLabel: _systemBackgroundReverse,
     secondaryLabel: WColors.secondaryLabel.color,
     border: _border,
     separator: WColors.separator.color,
     tint: .systemBlue,
-    balanceHeaderView: WThemeBackgroundHeaderView(background: .black)
+    positiveAmount: .systemGreen,
+    negativeAmount: .systemRed
 )
 
 // if we want to use default iOS colors on dark/light mode (or a single UIColor), we define colors here, otherwise,
@@ -73,6 +81,14 @@ fileprivate var _systemBackgroundReverse: UIColor {
         return .label
     } else {
         return .black
+    }
+}
+
+fileprivate var _groupedBackground: UIColor {
+    if #available(iOS 13.0, *) {
+        return .systemGroupedBackground
+    } else {
+        return .groupTableViewBackground
     }
 }
 

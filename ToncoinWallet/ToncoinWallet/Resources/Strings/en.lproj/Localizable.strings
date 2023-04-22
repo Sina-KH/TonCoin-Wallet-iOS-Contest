@@ -91,6 +91,15 @@
 "Wallet.Home.RefreshErrorTitle" = "No network"; // Renamed
 "Wallet.Home.RefreshErrorText" = "Couldn't refresh balance. Please make sure your internet connection is working and try again."; // Renamed
 "Wallet.Home.RefreshErrorNetworkText" = "Wallet state can not be retrieved at this time. Please try again later."; // Renamed
+"Wallet.Home.WalletCreated" = "Wallet Created"; // Renamed
+"Wallet.Home.Address" = "Your wallet address"; // Renamed
+"Wallet.Home.TransactionTo" = "to"; // Renamed
+"Wallet.Home.TransactionFrom" = "from"; // Renamed
+"Wallet.Home.Updating" = "updating"; // Renamed
+"Wallet.Home.TransactionStorageFee" = "%1$@ storage fee"; // NEW
+"Wallet.Home.TransactionPendingHeader" = "Pending"; // Renamed
+"Wallet.Home.InitTransaction" = "Wallet initialized"; // NEW
+"Wallet.Home.UnknownTransaction" = "Unknown"; // NEW
 
 // Alert
 "Wallet.Alert.OK" = "OK";
@@ -114,16 +123,6 @@
 "Wallet.Updated.YesterdayAt" = "yesterday at %@";
 "Wallet.Updated.AtDate" = "%@";
 "Wallet.Updated.TodayAt" = "today at %@";
-"Wallet.Info.WalletCreated" = "Wallet Created";
-"Wallet.Info.Address" = "Your wallet address";
-"Wallet.Info.YourBalance" = "your balance";
-"Wallet.Info.ReceiveGrams" = "Receive TON";
-"Wallet.Info.UnknownTransaction" = "Empty Transaction";
-"Wallet.Info.TransactionTo" = "to";
-"Wallet.Info.TransactionFrom" = "from";
-"Wallet.Info.Updating" = "updating";
-"Wallet.Info.TransactionBlockchainFee" = "%@ blockchain fees";
-"Wallet.Info.TransactionPendingHeader" = "Pending";
 "Wallet.Qr.ScanCode" = "Scan QR Code";
 "Wallet.Qr.Title" = "QR Code";
 "Wallet.Receive.Title" = "Receive TON";

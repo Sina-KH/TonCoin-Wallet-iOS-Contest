@@ -27,6 +27,9 @@ class WalletHomeVM {
         self.walletHomeVMDelegate = walletHomeVMDelegate
     }
 
+    // MARK: - Wallet Public Variables
+    var transactions: [WalletTransaction]? = nil
+
     // MARK: - Wallet Logic Variables
     private let stateDisposable = MetaDisposable()
     private let transactionListDisposable = MetaDisposable()
@@ -112,6 +115,7 @@ class WalletHomeVM {
             strongSelf.reloadingState = !isUpdated
             
             // notify WalletHomeVC from latest combined state
+            strongSelf.transactions = combinedState?.topTransactions
             strongSelf.walletHomeVMDelegate?.updateCombinedState(combinedState: combinedState, isUpdated: isUpdated)
 
             strongSelf.updateStatePromise()

@@ -56,6 +56,7 @@ public class HeaderView: UIView {
                            title: String,
                            description: String? = nil) {
         translatesAutoresizingMaskIntoConstraints = false
+        isUserInteractionEnabled = false
         
         // add animated sticker
         animatedSticker = WAnimatedSticker()
@@ -83,6 +84,7 @@ public class HeaderView: UIView {
                            title: String,
                            description: String? = nil) {
         translatesAutoresizingMaskIntoConstraints = false
+        isUserInteractionEnabled = false
         
         // add animated sticker
         let iconImageView = UIImageView(image: icon.withRenderingMode(.alwaysTemplate))
@@ -99,6 +101,7 @@ public class HeaderView: UIView {
         
         addTitleAndDescription(topView: iconImageView, title: title, description: description)
     }
+
     // MARK: - Shared functions to generate required views
     private func addTitleAndDescription(topView: UIView,
                                         title: String,
@@ -126,7 +129,7 @@ public class HeaderView: UIView {
         lblDescription.textAlignment = .center
         addSubview(lblDescription)
         NSLayoutConstraint.activate([
-            lblDescription.topAnchor.constraint(equalTo: lblTitle.bottomAnchor, constant: 12),
+            lblDescription.topAnchor.constraint(equalTo: lblTitle.bottomAnchor, constant: description != nil ? 12 : 0),
             lblDescription.leftAnchor.constraint(equalTo: leftAnchor),
             lblDescription.rightAnchor.constraint(equalTo: rightAnchor),
             lblDescription.bottomAnchor.constraint(equalTo: bottomAnchor)

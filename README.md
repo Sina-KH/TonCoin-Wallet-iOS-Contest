@@ -6,7 +6,7 @@ re-using the best of the exiting, original codebase.
 ## :boom: Features
 
 :white_check_mark: **Backward-compatible:** All the `wallet storage logic` 
-is backward compatible and reused.
+is backward compatible and almost reused. Only a few changes applied to support new flows.
 
 :white_check_mark: **Updated tonlib:** The application is now using [the 
 new tonlib repository](https://github.com/ton-blockchain/ton), and the 
@@ -28,8 +28,7 @@ recommended.
 using `brew install libmicrohttpd`
 
 1. Clone the repository with submodules with
-`git clone https://github.com/Sina-KH/TonCoin-Wallet-iOS-Contest  
---recursive`
+`git clone https://github.com/Sina-KH/TonCoin-Wallet-iOS-Contest --recursive`
 
 1. Run the Prepare.sh script with `sh Prepare/prepare.sh`, ***This command 
 should run successfully with no errors.*** This script ***automatically*** 
@@ -51,7 +50,7 @@ least for me :)
 It's **super-easy** to work with, and **super-fast** in development and 
 building of this application.
 
-I've also added sub-modules as separate `.xcodeproj` files, so They are 
+I've also added sub-modules as separate `.xcodeproj` project files, so They are 
 easier to maintain and we can change their build-system, easier, if 
 required.
 

@@ -72,7 +72,15 @@ public enum WStrings: String {
     case Wallet_Home_RefreshErrorTitle = "Wallet.Home.RefreshErrorTitle"
     case Wallet_Home_RefreshErrorText = "Wallet.Home.RefreshErrorText"
     case Wallet_Home_RefreshErrorNetworkText = "Wallet.Home.RefreshErrorNetworkText"
-
+    case Wallet_Home_WalletCreated = "Wallet.Home.WalletCreated"
+    case Wallet_Home_Address = "Wallet.Home.Address"
+    case Wallet_Home_TransactionTo = "Wallet.Home.TransactionTo"
+    case Wallet_Home_TransactionFrom = "Wallet.Home.TransactionFrom"
+    case Wallet_Home_Updating = "Wallet.Home.Updating"
+    case Wallet_Home_TransactionStorageFee = "Wallet.Home.TransactionStorageFee"
+    case Wallet_Home_TransactionPendingHeader = "Wallet.Home.TransactionPendingHeader"
+    case Wallet_Home_InitTransaction = "Wallet.Home.InitTransaction"
+    case Wallet_Home_UnknownTransaction = "Wallet.Home.UnknownTransaction"
     case Wallet_Alert_OK = "Wallet.Alert.OK"
 
     public var localized: String {
@@ -91,6 +99,10 @@ public enum WStrings: String {
     }
     public static func Wallet_ConfirmPasscode_Text(digits: Int) -> String {
         return fillValues(WStrings.Wallet_ConfirmPasscode_Text.localized, values: ["\(digits)"])
+    }
+    
+    public static func Wallet_Home_TransactionStorageFee(storageFee: String) -> String {
+        return fillValues(WStrings.Wallet_Home_TransactionStorageFee.localized, values: [storageFee])
     }
 }
 

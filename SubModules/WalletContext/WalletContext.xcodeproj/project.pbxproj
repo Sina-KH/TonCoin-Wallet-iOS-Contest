@@ -16,6 +16,7 @@
 		273521FE29E98514007C4E96 /* WStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521FD29E98514007C4E96 /* WStrings.swift */; };
 		2735220429E98972007C4E96 /* WColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2735220329E98972007C4E96 /* WColors.swift */; };
 		2735220629E98C1A007C4E96 /* WTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2735220529E98C1A007C4E96 /* WTheme.swift */; };
+		2772A87A29F301510086F0A2 /* ScreenHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A87929F301510086F0A2 /* ScreenHelpers.swift */; };
 		27764E5629F1461A00A45DAF /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27764E5529F1461A00A45DAF /* KeychainHelper.swift */; };
 		27DB29AC29EC696E00988800 /* SwiftSignalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29AB29EC696E00988800 /* SwiftSignalKit.framework */; };
 		27DB29AD29EC696E00988800 /* SwiftSignalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29AB29EC696E00988800 /* SwiftSignalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -52,6 +53,7 @@
 		273521FD29E98514007C4E96 /* WStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WStrings.swift; sourceTree = "<group>"; };
 		2735220329E98972007C4E96 /* WColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WColors.swift; sourceTree = "<group>"; };
 		2735220529E98C1A007C4E96 /* WTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTheme.swift; sourceTree = "<group>"; };
+		2772A87929F301510086F0A2 /* ScreenHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenHelpers.swift; sourceTree = "<group>"; };
 		27764E5529F1461A00A45DAF /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		27DB29AB29EC696E00988800 /* SwiftSignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftSignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27DB29B229EC699600988800 /* NumberPluralizationForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NumberPluralizationForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +111,7 @@
 		273521F629E98461007C4E96 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				2772A87B29F301540086F0A2 /* Helpers */,
 				27764E5429F1460D00A45DAF /* Keychain */,
 				2735220229E98968007C4E96 /* Theme */,
 				273521FA29E984D1007C4E96 /* Localization */,
@@ -136,6 +139,14 @@
 				2735220329E98972007C4E96 /* WColors.swift */,
 			);
 			path = Theme;
+			sourceTree = "<group>";
+		};
+		2772A87B29F301540086F0A2 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2772A87929F301510086F0A2 /* ScreenHelpers.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		27764E5429F1460D00A45DAF /* Keychain */ = {
@@ -241,6 +252,7 @@
 				273521F329E98449007C4E96 /* StringPluralization.swift in Sources */,
 				2719622B29F1D9A400B5B59F /* WalletUtils.swift in Sources */,
 				27764E5629F1461A00A45DAF /* KeychainHelper.swift in Sources */,
+				2772A87A29F301510086F0A2 /* ScreenHelpers.swift in Sources */,
 				273521F529E98449007C4E96 /* WalletPresentationData.swift in Sources */,
 				273521F429E98449007C4E96 /* WalletContext.swift in Sources */,
 				2735220429E98972007C4E96 /* WColors.swift in Sources */,

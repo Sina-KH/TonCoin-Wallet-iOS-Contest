@@ -813,9 +813,15 @@ public struct WalletStateRecord: Codable, Equatable {
         case state
         case importedInfo
     }
-    
+
+    // exportCompleted has been changed into `ExportStatus` enum, to know which flow should be continued after app opens and export is not completed yet.
+    public enum ExportStatus: Codable, Equatable {
+        case yes
+        case no(isImport: Bool)
+    }
+
     public enum Info: Equatable {
-        case ready(info: WalletInfo, exportCompleted: Bool, state: CombinedWalletState?)
+        case ready(info: WalletInfo, exportCompleted: ExportStatus, state: CombinedWalletState?)
         case imported(info: ImportedWalletInfo)
     }
     
@@ -824,11 +830,22 @@ public struct WalletStateRecord: Codable, Equatable {
     public init(info: WalletStateRecord.Info) {
         self.info = info
     }
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Key.self)
         if let info = try? container.decode(WalletInfo.self, forKey: .info) {
-            self.info = .ready(info: info, exportCompleted: (try? container.decode(Bool.self, forKey: .exportCompleted)) ?? false, state: try? container.decode(Optional<CombinedWalletState>.self, forKey: .state))
+            
+            // to support original app version
+            let exportStatus: ExportStatus
+            let exportStatusEnum: ExportStatus? = try? container.decode(ExportStatus.self, forKey: .exportCompleted)
+            if (exportStatusEnum == nil) {
+                let exportStatusBool: Bool? = try? container.decode(Bool.self, forKey: .exportCompleted)
+                exportStatus = exportStatusBool == true ? ExportStatus.yes : ExportStatus.no(isImport: false)
+            } else {
+                exportStatus = exportStatusEnum!
+            }
+            
+            self.info = .ready(info: info, exportCompleted: exportStatus, state: try? container.decode(Optional<CombinedWalletState>.self, forKey: .state))
         } else if let info = try? container.decode(ImportedWalletInfo.self, forKey: .importedInfo) {
             self.info = .imported(info: info)
         } else {
@@ -865,7 +882,7 @@ public func createWallet(storage: WalletStorageInterface, tonInstance: TonInstan
     |> mapToSignal { walletInfo, wordList -> Signal<(WalletInfo, [String]), CreateWalletError> in
         return storage.updateWalletRecords({ records in
             var records = records
-            records.append(WalletStateRecord(info: .ready(info: walletInfo, exportCompleted: false, state: nil)))
+            records.append(WalletStateRecord(info: .ready(info: walletInfo, exportCompleted: .no(isImport: false), state: nil)))
             return records
         })
         |> map { _ -> (WalletInfo, [String]) in
@@ -882,7 +899,7 @@ public func confirmWalletExported(storage: WalletStorageInterface, publicKey: Wa
             switch records[i].info {
             case let .ready(info, _, state):
                 if info.publicKey == publicKey {
-                    records[i].info = .ready(info: info, exportCompleted: true, state: state)
+                    records[i].info = .ready(info: info, exportCompleted: .yes, state: state)
                 }
             case .imported:
                 break

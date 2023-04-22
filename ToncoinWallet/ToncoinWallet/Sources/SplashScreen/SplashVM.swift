@@ -20,8 +20,10 @@ protocol SplashVMDelegate: AnyObject {
     // called when the wallet is created, but not ready yet. user has to check the words, first.
     func navigateToWalletCreated(walletContext: WalletContext, walletInfo: WalletInfo)
 
-    // called when wallet was imported before but the flow didn't finish
+    // called when wallet was imported before but the flow didn't finish (left before importing walletInfo)
     func navigateToWalletImported(walletContext: WalletContext, importedWalletInfo: ImportedWalletInfo)
+    // called when wallet was imported before but the flow didn't finish (left before setting passcode)
+    func navigateToWalletImported(walletContext: WalletContext, walletInfo: WalletInfo)
 
     // called when the wallet data is complete and user should see wallet home screen (wallet info)
     func navigateToHome(walletContext: WalletContext, walletInfo: WalletInfo)
@@ -39,6 +41,7 @@ class SplashVM: NSObject {
     // get wallet data and present correct page on the navigation controller
     func startApp() {
         let presentationData = WalletPresentationData(
+            // TODO:: Move into WalletContext like WStrings and Theme
             dateTimeFormat: WalletPresentationDateTimeFormat(
                 timeFormat: .regular,
                 dateFormat: .dayFirst,
@@ -147,50 +150,36 @@ class SplashVM: NSObject {
             let walletContext = WalletContextImpl(basePath: documentsPath, storage: storage, config: initialResolvedConfig.config, blockchainName: initialResolvedConfig.networkName, presentationData: presentationData)
             self.walletContext = walletContext
 
-            // TODO:: Other logics should be checked also
-//            let beginWithController: (UIViewController) -> Void = { [weak self] controller in
-//                let begin: (Bool) -> Void = { animated in
-//                    self?.navigationController?.setViewControllers([controller], animated: false)
-//                    if animated {
-//                        self?.navigationController?.viewControllers.last?.view.layer.animateAlpha(from: 0.0, to: 1.0, duration: 0.3)
-//                    }
-//
-//                    var previousBlockchainName = initialResolvedConfig.networkName
-//
-//                    let _ = (updatedConfigValue
-//                    |> deliverOnMainQueue).start(next: { _, blockchainName, blockchainNetwork, config in
-//                        let _ = walletContext.tonInstance.validateConfig(config: config, blockchainName: blockchainName).start(error: { _ in
-//                        }, completed: {
-//                            walletContext.tonInstance.updateConfig(config: config, blockchainName: blockchainName)
-//
-//                            if previousBlockchainName != blockchainName {
-//                                previousBlockchainName = blockchainName
-//
-////                                let overlayController = OverlayStatusController(theme: presentationData.theme, type: .loading(cancelled: nil))
-////                                mainWindow.present(overlayController, on: .root)
-//
-////                                let _ = (deleteAllLocalWalletsData(storage: walletContext.storage, tonInstance: walletContext.tonInstance)
-////                                |> deliverOnMainQueue).start(error: { [weak overlayController] _ in
-////                                    overlayController?.dismiss()
-////                                }, completed: { [weak overlayController] in
-////                                    overlayController?.dismiss()
-//
-////                                    navigationController.setViewControllers([WalletSplashScreen(context: walletContext, blockchainNetwork: blockchainNetwork, mode: .intro, walletCreatedPreloadState: nil)], animated: true)
-////                                })
-//                            }
-//                        })
-//                    })
-//                }
+            func validateBlockchain(completion: @escaping () -> Void) {
+                completion()
 
-//                if let splashScreen = navigationController.viewControllers.first as? WalletApplicationSplashScreen, let _ = controller as? WalletSplashScreen {
-//                    splashScreen.animateOut(completion: {
-//                        begin(true)
-//                    })
-//                } else {
-//                    begin(false)
-//                }
-//            }
+                var previousBlockchainName = initialResolvedConfig.networkName
 
+                let _ = (updatedConfigValue
+                |> deliverOnMainQueue).start(next: { _, blockchainName, blockchainNetwork, config in
+                    let _ = walletContext.tonInstance.validateConfig(config: config, blockchainName: blockchainName).start(error: { _ in
+                    }, completed: {
+                        walletContext.tonInstance.updateConfig(config: config, blockchainName: blockchainName)
+
+                        if previousBlockchainName != blockchainName {
+                            previousBlockchainName = blockchainName
+
+                            let _ = (deleteAllLocalWalletsData(storage: walletContext.storage, tonInstance: walletContext.tonInstance)
+                            |> deliverOnMainQueue).start(error: { error in
+                                print(error)
+                                // Error happened!
+                                // TODO::
+                            }, completed: { [weak self] in
+                                // TODO:: Dismiss all other view controllers
+                                // start app again
+                                self?.walletContext = nil
+                                self?.startApp()
+                            })
+                        }
+                    })
+                })
+            }
+            
             let _ = (combineLatest(queue: .mainQueue(),
                 walletContext.storage.getWalletRecords(),
                 walletContext.keychain.encryptionPublicKey()
@@ -209,16 +198,26 @@ class SplashVM: NSObject {
                             switch record.info {
                             case let .ready(info, exportCompleted, _):
                                 print(".ready")
-                                if exportCompleted {
-                                    self?.splashVMDelegate?.navigateToHome(walletContext: walletContext, walletInfo: info)
+                                if exportCompleted == .yes {
+                                    validateBlockchain { [weak self] in
+                                        self?.splashVMDelegate?.navigateToHome(walletContext: walletContext, walletInfo: info)
+                                    }
                                     // TODO:: Handle deeplinks
                                 } else {
-                                    self?.splashVMDelegate?.navigateToWalletCreated(walletContext: walletContext, walletInfo: info)
+                                    validateBlockchain { [weak self] in
+                                        if exportCompleted == .no(isImport: false) {
+                                            self?.splashVMDelegate?.navigateToWalletCreated(walletContext: walletContext, walletInfo: info)
+                                        } else {
+                                            self?.splashVMDelegate?.navigateToWalletImported(walletContext: walletContext, walletInfo: info)
+                                        }
+                                    }
                                 }
                             case let .imported(info):
                                 print(".imported")
                                 
-                                self?.splashVMDelegate?.navigateToWalletImported(walletContext: walletContext, importedWalletInfo: info)
+                                validateBlockchain { [weak self] in
+                                    self?.splashVMDelegate?.navigateToWalletImported(walletContext: walletContext, importedWalletInfo: info)
+                                }
                             }
                         } else {
 //                            let splashScreen = WalletSplashScreen(context: walletContext, blockchainNetwork: initialResolvedConfig.activeNetwork, mode: .secureStorageReset(.changed), walletCreatedPreloadState: nil)
@@ -230,7 +229,9 @@ class SplashVM: NSObject {
                     }
                 } else {
                     if publicKey != nil {
-                        self?.splashVMDelegate?.navigateToIntro(walletContext: walletContext)
+                        validateBlockchain { [weak self] in
+                            self?.splashVMDelegate?.navigateToIntro(walletContext: walletContext)
+                        }
                     } else {
                         print("secure storage not available")
 //                        let splashScreen = WalletSplashScreen(context: walletContext, blockchainNetwork: initialResolvedConfig.activeNetwork, mode: .secureStorageNotAvailable, walletCreatedPreloadState: nil)

@@ -7,10 +7,13 @@
 
 import UIKit
 import UIComponents
+import WalletContext
+import WalletCore
 
 class WalletTransactionCell: UITableViewCell {
     
-    static let balanceGem = UIImage(named: "BalanceGem")!
+    private static let balanceGem = UIImage(named: "BalanceGem")!
+    private static let regular15Font = UIFont.systemFont(ofSize: 15, weight: .regular)
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -21,19 +24,33 @@ class WalletTransactionCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    private var verticalStackView = UIStackView()
+    private var amountLabel: WAmountLabel!
+    private var directionLabel: UILabel!
+    private var addressLabel: UILabel!
+    private var dateLabel: UILabel!
+    private var storageFeeLabel: UILabel!
+    private var bubbleView: BubbleView!
+
     private func setupViews() {
-        let verticalStackView = UIStackView()
+        // setup whole cell as a vertical stack view
+        verticalStackView = UIStackView()
+        verticalStackView.translatesAutoresizingMaskIntoConstraints = false
         verticalStackView.axis = .vertical
+        verticalStackView.alignment = .leading
         verticalStackView.spacing = 6
+        addSubview(verticalStackView)
+        NSLayoutConstraint.activate([
+            verticalStackView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            verticalStackView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
+            verticalStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+            verticalStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
+        ])
 
         // icon and amount stack view
         let iconAndAmountStackView = UIStackView()
         iconAndAmountStackView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(iconAndAmountStackView)
-        NSLayoutConstraint.activate([
-            iconAndAmountStackView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            iconAndAmountStackView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16)
-        ])
+        iconAndAmountStackView.spacing = 4
         // icon
         let iconImageView = UIImageView()
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,16 +58,148 @@ class WalletTransactionCell: UITableViewCell {
             iconImageView.widthAnchor.constraint(equalToConstant: 18),
             iconImageView.heightAnchor.constraint(equalToConstant: 18)
         ])
-        iconAndAmountStackView.addSubview(iconImageView)
+        iconAndAmountStackView.addArrangedSubview(iconImageView)
         iconImageView.image = WalletTransactionCell.balanceGem
         // amount
-        let amountLabel = WAmountLabel()
+        amountLabel = WAmountLabel()
         amountLabel.translatesAutoresizingMaskIntoConstraints = false
-        iconAndAmountStackView.addSubview(amountLabel)
+        iconAndAmountStackView.addArrangedSubview(amountLabel)
+        // direction (from/to string)
+        directionLabel = UILabel()
+        directionLabel.translatesAutoresizingMaskIntoConstraints = false
+        directionLabel.font = WalletTransactionCell.regular15Font
+        iconAndAmountStackView.addArrangedSubview(directionLabel)
+
+        // top line stack view including `icon and amount stack view` and `dateLabel`
+        let topLineStackView = UIStackView()
+        topLineStackView.distribution = .equalSpacing
+        topLineStackView.addArrangedSubview(iconAndAmountStackView)
+        dateLabel = UILabel()
+        dateLabel.font = WalletTransactionCell.regular15Font
+        topLineStackView.addArrangedSubview(dateLabel)
+        verticalStackView.addArrangedSubview(topLineStackView)
+        NSLayoutConstraint.activate([
+            topLineStackView.widthAnchor.constraint(equalTo: verticalStackView.widthAnchor)
+        ])
+
+        // address
+        addressLabel = UILabel()
+        addressLabel.translatesAutoresizingMaskIntoConstraints = false
+        addressLabel.font = WalletTransactionCell.regular15Font
+        addressLabel.numberOfLines = 0
+        verticalStackView.addArrangedSubview(addressLabel)
+        
+        // storage fee
+        storageFeeLabel = UILabel()
+        storageFeeLabel.translatesAutoresizingMaskIntoConstraints = false
+        storageFeeLabel.font = WalletTransactionCell.regular15Font
+        verticalStackView.addArrangedSubview(storageFeeLabel)
+
+        // bubble comment view
+        bubbleView = BubbleView()
+        storageFeeLabel.translatesAutoresizingMaskIntoConstraints = false
+        verticalStackView.addArrangedSubview(bubbleView)
+
+        // seaparator
+        let separatorView = UIView()
+        separatorView.translatesAutoresizingMaskIntoConstraints = false
+        separatorView.backgroundColor = currentTheme.separator
+        addSubview(separatorView)
+        NSLayoutConstraint.activate([
+            separatorView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            separatorView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            separatorView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            separatorView.heightAnchor.constraint(equalToConstant: 0.33)
+        ])
+
+        updateTheme()
     }
     
-    public func configure() {
+    func updateTheme() {
+        directionLabel.textColor = currentTheme.secondaryLabel
+        dateLabel.textColor = currentTheme.secondaryLabel
+        storageFeeLabel.textColor = currentTheme.secondaryLabel
+    }
+    
+    public func configure(with transaction: WalletTransaction) {
+        // TODO:: Pending and other types switch case required
+
+        // set amount
+        amountLabel.amount = transaction.transferredValueWithoutFees
+
+        // prepare address and description texts
+        var addressString = ""
+        var descriptionString = ""
+        var descriptionIsMonospace = false
+
+        if transaction.transferredValueWithoutFees < 0 {
+            // sent
+            if transaction.outMessages.isEmpty {
+                directionLabel.text = ""
+                if transaction.isInitialization {
+                    addressString = WStrings.Wallet_Home_InitTransaction.localized
+                } else {
+                    addressString = WStrings.Wallet_Home_UnknownTransaction.localized
+                }
+            } else {
+                directionLabel.text = WStrings.Wallet_Home_TransactionFrom.localized
+                for message in transaction.outMessages {
+                    if !addressString.isEmpty {
+                        addressString.append("\n")
+                    }
+                    addressString.append(formatAddress(message.destination))
+                    
+                    if !descriptionString.isEmpty {
+                        descriptionString.append("\n")
+                    }
+                    switch message.contents {
+                    case .raw:
+                        break
+                    case .encryptedText:
+                        descriptionIsMonospace = true
+                        break
+                    case let .plainText(text):
+                        descriptionString.append(text)
+                    }
+                }
+            }
+        } else {
+            // received
+            directionLabel.text = WStrings.Wallet_Home_TransactionFrom.localized
+            addressString = formatAddress(transaction.inMessage?.source ?? "")
+            if let contents = transaction.inMessage?.contents {
+                switch contents {
+                case .raw:
+                    descriptionString = ""
+                case .encryptedText:
+                    descriptionString = ""
+                    descriptionIsMonospace = true
+                case let .plainText(text):
+                    descriptionString = text
+                }
+            }
+        }
+
+        addressLabel.text = addressString
+
+        // datetime
+        dateLabel.text = stringForTimestamp(timestamp: Int32(clamping: transaction.timestamp))
         
+        // storage fee label
+        storageFeeLabel.text = WStrings.Wallet_Home_TransactionStorageFee(storageFee: formatBalanceText(transaction.storageFee))
+
+        // show comment (description string) in a bubble view
+        if descriptionString.count == 0 {
+            // remove from stackView to remove extra spacing
+            if bubbleView.superview != nil {
+                bubbleView.removeFromSuperview()
+            }
+        } else {
+            if bubbleView.superview == nil {
+                verticalStackView.addSubview(bubbleView)
+            }
+            bubbleView.text = descriptionString
+        }
     }
     
 }

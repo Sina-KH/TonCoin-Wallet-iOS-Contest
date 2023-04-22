@@ -41,7 +41,7 @@ public class ImportWalletVM {
             }, error: { [weak self] error in
                 self?.importWalletVMDelegate?.errorOccured()
             })
-        }, error: { [weak self] _ in
+        }, error: { [weak self] error in
             self?.importWalletVMDelegate?.errorOccured()
         })
         

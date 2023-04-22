@@ -46,6 +46,10 @@ extension SplashVC: SplashVMDelegate {
     func navigateToWalletImported(walletContext: WalletContext, importedWalletInfo: ImportedWalletInfo) {
         replaceVC(with: ImportSuccessVC(walletContext: walletContext, importedWalletInfo: importedWalletInfo))
     }
+    
+    func navigateToWalletImported(walletContext: WalletContext, walletInfo: WalletInfo) {
+        replaceVC(with: ImportSuccessVC(walletContext: walletContext, walletInfo: walletInfo))
+    }
 
     func navigateToHome(walletContext: WalletContext, walletInfo: WalletInfo) {
         replaceVC(with: WalletHomeVC(walletContext: walletContext, walletInfo: walletInfo))
