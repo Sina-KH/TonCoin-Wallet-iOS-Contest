@@ -36,8 +36,8 @@ public class ReceiveVC: WViewController {
     private func setupViews() {
         // add done button if it's root of a navigation controller
         if navigationController?.viewControllers.count == 1 {
-            let doneButton = UIBarButtonItem(title: WStrings.Wallet_Receive_Done.localized, style: .done, target: self, action: #selector(donePressed))
-            navigationItem.rightBarButtonItem = doneButton
+            let doneButton = UIBarButtonItem(title: WStrings.Wallet_Navigation_Done.localized, style: .done, target: self, action: #selector(donePressed))
+            navigationItem.leftBarButtonItem = doneButton
         }
         
         // The whole page can be a vertical stack view with spacing between items
@@ -48,7 +48,7 @@ public class ReceiveVC: WViewController {
         stackView.distribution = .equalSpacing
         view.addSubview(stackView)
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: isIPhone5s ? 16 : 30),
             stackView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 16),
             stackView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -16),
             stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8)

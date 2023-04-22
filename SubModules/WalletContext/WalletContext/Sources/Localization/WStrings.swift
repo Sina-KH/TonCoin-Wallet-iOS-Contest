@@ -86,7 +86,16 @@ public enum WStrings: String {
     case Wallet_Receive_Toncoin = "Wallet.Receive.Toncoin"
     case Wallet_Receive_YourAddress = "Wallet.Receive.YourAddress"
     case Wallet_Receive_ShareAddress = "Wallet.Receive.ShareAddress"
-    case Wallet_Receive_Done = "Wallet.Receive.Done"
+    case Wallet_Send_Title = "Wallet.Send.Title"
+    case Wallet_Send_AddressText = "Wallet.Send.AddressText"
+    case Wallet_Send_AddressInfo = "Wallet.Send.AddressInfo"
+    case Wallet_Send_Paste = "Wallet.Send.Paste"
+    case Wallet_Send_Scan = "Wallet.Send.Scan"
+    case Wallet_Send_Continue = "Wallet.Send.Continue"
+    case Wallet_Send_Recents = "Wallet.Send.Recents"
+    case Wallet_Send_Clear = "Wallet.Send.Clear"
+    case Wallet_Navigation_Done = "Wallet.Navigation.Done"
+    case Wallet_Navigation_Cancel = "Wallet.Navigation.Cancel"
     case Wallet_Alert_OK = "Wallet.Alert.OK"
 
     public var localized: String {

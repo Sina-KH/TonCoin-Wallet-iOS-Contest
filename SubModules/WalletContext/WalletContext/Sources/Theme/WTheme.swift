@@ -45,7 +45,14 @@ public struct WTheme {
 }
 
 // Current theme now supports both light and dark themes.
-//  If we need to support more themes, `currentTheme` variable should be changed real-time and the app should be configured to call all .updateTheme() methods on theme change. (some components may need an update, to support this feature)
+
+/* If we want to use default iOS colors on dark/light mode (like .systemBackground or just a single UIColor), we define colors in this file, otherwise,
+    for custom colors, we define them in WColors */
+
+/*  If we need to support more custom themes inside the app, and let user change it when using the app without restarting the app,
+    `currentTheme` variable should be changed real-time and the app should be configured to call all .updateTheme() methods on theme change event.
+        (some components may need an update, to support this feature by updating all colors inside updateTheme method.) */
+
 public var currentTheme = WTheme(
     primaryButton: WThemePrimaryButton(background: UIColor.systemBlue,
                                        tint: UIColor.white),
@@ -64,9 +71,6 @@ public var currentTheme = WTheme(
     positiveAmount: .systemGreen,
     negativeAmount: .systemRed
 )
-
-// if we want to use default iOS colors on dark/light mode (or a single UIColor), we define colors here, otherwise,
-//  for custom colors, we define then in WColors
 
 fileprivate var _systemBackground: UIColor {
     if #available(iOS 13.0, *) {

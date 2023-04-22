@@ -26,6 +26,8 @@
 		27E643CA29F40719006B20FC /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643C929F40719006B20FC /* BubbleView.swift */; };
 		27E643CE29F40FF7006B20FC /* ReceiveVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643CD29F40FF7006B20FC /* ReceiveVC.swift */; };
 		27E643E129F43BDE006B20FC /* QRCodeContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643E029F43BDE006B20FC /* QRCodeContainerView.swift */; };
+		27E643E529F44AB7006B20FC /* SendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643E429F44AB7006B20FC /* SendVC.swift */; };
+		27E643E729F454D5006B20FC /* TransactionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643E629F454D5006B20FC /* TransactionVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,8 @@
 		27E643C929F40719006B20FC /* BubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
 		27E643CD29F40FF7006B20FC /* ReceiveVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveVC.swift; sourceTree = "<group>"; };
 		27E643E029F43BDE006B20FC /* QRCodeContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeContainerView.swift; sourceTree = "<group>"; };
+		27E643E429F44AB7006B20FC /* SendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendVC.swift; sourceTree = "<group>"; };
+		27E643E629F454D5006B20FC /* TransactionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +149,8 @@
 			children = (
 				27E643CB29F40FBD006B20FC /* WalletHome */,
 				27E643CC29F40FDA006B20FC /* Receive */,
+				27E643E329F44AA9006B20FC /* Send */,
+				27E643E229F448AB006B20FC /* Transaction */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -205,6 +211,22 @@
 				27E643E029F43BDE006B20FC /* QRCodeContainerView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		27E643E229F448AB006B20FC /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+				27E643E629F454D5006B20FC /* TransactionVC.swift */,
+			);
+			path = Transaction;
+			sourceTree = "<group>";
+		};
+		27E643E329F44AA9006B20FC /* Send */ = {
+			isa = PBXGroup;
+			children = (
+				27E643E429F44AB7006B20FC /* SendVC.swift */,
+			);
+			path = Send;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,9 +346,11 @@
 				2719621D29F1BA7A00B5B59F /* WalletTransactionCell.swift in Sources */,
 				278C3A1729F1875100BD16E8 /* BalanceHeaderView.swift in Sources */,
 				2736AAA429F3298C009FFBE2 /* BalanceView.swift in Sources */,
+				27E643E529F44AB7006B20FC /* SendVC.swift in Sources */,
 				2772A87829F2F13A0086F0A2 /* EmptyWalletView.swift in Sources */,
 				2772A87629F2EEE10086F0A2 /* WalletLoadingView.swift in Sources */,
 				27764E2E29F134F000A45DAF /* UIWalletHome.docc in Sources */,
+				27E643E729F454D5006B20FC /* TransactionVC.swift in Sources */,
 				2772A87329F2E6010086F0A2 /* WalletCreatedView.swift in Sources */,
 				2719622529F1C55F00B5B59F /* WalletHomeVM.swift in Sources */,
 			);

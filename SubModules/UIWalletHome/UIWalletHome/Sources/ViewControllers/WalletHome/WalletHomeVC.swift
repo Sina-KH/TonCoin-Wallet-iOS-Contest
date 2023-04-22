@@ -291,4 +291,8 @@ extension WalletHomeVC: BalanceHeaderViewDelegate {
         let receiveVC = ReceiveVC(walletContext: walletContext, walletInfo: walletInfo)
         present(UINavigationController(rootViewController: receiveVC), animated: true)
     }
+    public func sendPressed() {
+        let sendVC = SendVC(walletContext: walletContext, walletInfo: walletInfo)
+        present(UINavigationController(rootViewController: sendVC), animated: true)
+    }
 }

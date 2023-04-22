@@ -107,7 +107,20 @@
 "Wallet.Receive.Toncoin" = "Toncoin (TON)"; // NEW
 "Wallet.Receive.YourAddress" = "Your wallet address"; // NEW
 "Wallet.Receive.ShareAddress" = "Share wallet address";
-"Wallet.Receive.Done" = "Done"; // NEW
+
+// Send
+"Wallet.Send.Title" = "Send TON";
+"Wallet.Send.AddressText" = "Enter Wallet Address or Domain..."; // UPDATED
+"Wallet.Send.AddressInfo" = "Paste the 24-letter wallet address of the recipient here or TON DNS."; // UPDATED
+"Wallet.Send.Paste" = "Paste"; // NEW
+"Wallet.Send.Scan" = "Scan"; // NEW
+"Wallet.Send.Continue" = "Continue"; // NEW
+"Wallet.Send.Recents" = "Recents"; // NEW
+"Wallet.Send.Clear" = "Clear"; // NEW
+
+// Navigation
+"Wallet.Navigation.Done" = "Done";
+"Wallet.Navigation.Cancel" = "Cancel";
 
 // Alert
 "Wallet.Alert.OK" = "OK";

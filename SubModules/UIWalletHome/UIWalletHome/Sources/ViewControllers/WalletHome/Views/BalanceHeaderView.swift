@@ -11,6 +11,7 @@ import WalletContext
 
 public protocol BalanceHeaderViewDelegate: AnyObject {
     func receivePressed()
+    func sendPressed()
 }
 
 public class BalanceHeaderView: UIView {
@@ -125,6 +126,7 @@ public class BalanceHeaderView: UIView {
         sendButton.setTitle(WStrings.Wallet_Home_Send.localized, for: .normal)
         sendButton.setImage(UIImage(named: "SendIcon")?.withRenderingMode(.alwaysTemplate), for: .normal)
         sendButton.centerTextAndImage(spacing: 8)
+        sendButton.addTarget(self, action: #selector(sendPressed), for: .touchUpInside)
         actionsStackView.addArrangedSubview(sendButton)
 
     }
@@ -161,5 +163,9 @@ public class BalanceHeaderView: UIView {
 
     @objc func receivePressed() {
         delegate.receivePressed()
+    }
+    
+    @objc func sendPressed() {
+        delegate.sendPressed()
     }
 }
