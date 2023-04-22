@@ -19,6 +19,37 @@ public func formatAddress(_ address: String) -> String {
     return address
 }
 
+public func walletInvoiceUrl(address: String, amount: String? = nil, comment: String? = nil) -> String {
+    var arguments = ""
+    if let amount = amount, !amount.isEmpty {
+        arguments += arguments.isEmpty ? "?" : "&"
+        arguments += "amount=\(amountValue(amount))"
+    }
+    if let comment = comment, !comment.isEmpty {
+        arguments += arguments.isEmpty ? "?" : "&"
+        arguments += "text=\(urlEncodedStringFromString(comment))"
+    }
+    return "ton://transfer/\(address)\(arguments)"
+}
+
+private let maxIntegral: Int64 = Int64.max / 1000000000
+
+func amountValue(_ string: String) -> Int64 {
+    let string = string.replacingOccurrences(of: ",", with: ".")
+    if let range = string.range(of: ".") {
+        let integralPart = String(string[..<range.lowerBound])
+        let fractionalPart = String(string[range.upperBound...])
+        let string = integralPart + fractionalPart + String(repeating: "0", count: max(0, 9 - fractionalPart.count))
+        return Int64(string) ?? 0
+    } else if let integral = Int64(string) {
+        if integral > maxIntegral {
+            return 0
+        }
+        return integral * 1000000000
+    }
+    return 0
+}
+
 public func formatBalanceText(_ value: Int64) -> String {
     var balanceText = "\(abs(value))"
     while balanceText.count < 10 {

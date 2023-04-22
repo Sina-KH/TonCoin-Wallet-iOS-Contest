@@ -103,10 +103,11 @@
 
 // Receive
 "Wallet.Receive.Title" = "Receive Toncoin"; // Updated
-"Wallet.Receive.Description" = "Send only Toncoin (TON) to this address. Sending other coins may result in permanent loss."; // NEW
+"Wallet.Receive.Description" = "Send only %1$@ to this address.\nSending other coins may result\nin permanent loss."; // NEW
+"Wallet.Receive.Toncoin" = "Toncoin (TON)"; // NEW
 "Wallet.Receive.YourAddress" = "Your wallet address"; // NEW
 "Wallet.Receive.ShareAddress" = "Share wallet address";
-"Wallet.Receive.AddressCopied" = "Address copied to clipboard.";
+"Wallet.Receive.Done" = "Done"; // NEW
 
 // Alert
 "Wallet.Alert.OK" = "OK";

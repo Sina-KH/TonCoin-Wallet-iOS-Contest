@@ -83,9 +83,10 @@ public enum WStrings: String {
     case Wallet_Home_UnknownTransaction = "Wallet.Home.UnknownTransaction"
     case Wallet_Receive_Title = "Wallet.Receive.Title"
     case Wallet_Receive_Description = "Wallet.Receive.Description"
+    case Wallet_Receive_Toncoin = "Wallet.Receive.Toncoin"
     case Wallet_Receive_YourAddress = "Wallet.Receive.YourAddress"
     case Wallet_Receive_ShareAddress = "Wallet.Receive.ShareAddress"
-    case Wallet_Receive_AddressCopied = "Wallet.Receive.AddressCopied"
+    case Wallet_Receive_Done = "Wallet.Receive.Done"
     case Wallet_Alert_OK = "Wallet.Alert.OK"
 
     public var localized: String {
@@ -108,6 +109,10 @@ public enum WStrings: String {
     
     public static func Wallet_Home_TransactionStorageFee(storageFee: String) -> String {
         return fillValues(WStrings.Wallet_Home_TransactionStorageFee.localized, values: [storageFee])
+    }
+    
+    public static func Wallet_Receive_Description(coin: String) -> String {
+        return fillValues(WStrings.Wallet_Receive_Description.localized, values: [coin])
     }
 }
 

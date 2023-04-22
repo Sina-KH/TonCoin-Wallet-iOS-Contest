@@ -13,7 +13,7 @@
 		2735220929E98EDB007C4E96 /* WalletContext.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2735220729E98EDB007C4E96 /* WalletContext.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2735220F29E9C359007C4E96 /* WWordInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2735220E29E9C359007C4E96 /* WWordInput.swift */; };
 		273A5CB429E02000007CA6F0 /* WAnimatedSticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A5CB329E02000007CA6F0 /* WAnimatedSticker.swift */; };
-		273A5FF729E02E16007CA6F0 /* AnimatedStickerViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A5FF629E02E16007CA6F0 /* AnimatedStickerViews.swift */; };
+		273A5FF729E02E16007CA6F0 /* AnimatedStickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A5FF629E02E16007CA6F0 /* AnimatedStickerView.swift */; };
 		273A608D29E030B5007CA6F0 /* SoftwareAnimationRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A608C29E030B5007CA6F0 /* SoftwareAnimationRenderer.swift */; };
 		273A608F29E030CA007CA6F0 /* AnimationRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A608E29E030CA007CA6F0 /* AnimationRenderer.swift */; };
 		273A609129E0310C007CA6F0 /* GenerateImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A609029E0310C007CA6F0 /* GenerateImage.swift */; };
@@ -38,6 +38,11 @@
 		27A1281329E04040002D030A /* YuvConversion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273A60AD29E0316A007CA6F0 /* YuvConversion.framework */; };
 		27A1281429E04040002D030A /* YuvConversion.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 273A60AD29E0316A007CA6F0 /* YuvConversion.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		27B65D1129EC567A00D47112 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B65D1029EC567A00D47112 /* HeaderView.swift */; };
+		27E643D129F41E0D006B20FC /* QrCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643D029F41E0D006B20FC /* QrCode.swift */; };
+		27E643D329F41E59006B20FC /* TransformImageArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643D229F41E59006B20FC /* TransformImageArguments.swift */; };
+		27E643D529F41E85006B20FC /* ImageCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643D429F41E85006B20FC /* ImageCorners.swift */; };
+		27E643D729F41FAC006B20FC /* TransformImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643D629F41FAC006B20FC /* TransformImageView.swift */; };
+		27E643D929F42269006B20FC /* WQrCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643D829F42269006B20FC /* WQrCode.swift */; };
 		27EBE5AA29EDE6C9006ECFFB /* UINavigationControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EBE5A929EDE6C9006ECFFB /* UINavigationControllerUtils.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,7 +83,7 @@
 		273A5CB629E02014007CA6F0 /* RLottie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RLottie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		273A5FDA29E02647007CA6F0 /* RLottieBinding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RLottieBinding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		273A5FF429E02929007CA6F0 /* GZip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GZip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		273A5FF629E02E16007CA6F0 /* AnimatedStickerViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedStickerViews.swift; sourceTree = "<group>"; };
+		273A5FF629E02E16007CA6F0 /* AnimatedStickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedStickerView.swift; sourceTree = "<group>"; };
 		273A604129E02EE1007CA6F0 /* SwiftSignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftSignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		273A608C29E030B5007CA6F0 /* SoftwareAnimationRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareAnimationRenderer.swift; sourceTree = "<group>"; };
 		273A608E29E030CA007CA6F0 /* AnimationRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationRenderer.swift; sourceTree = "<group>"; };
@@ -98,6 +103,11 @@
 		2786FB5A29E876420023FE21 /* UIKitRuntimeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitRuntimeUtils.swift; sourceTree = "<group>"; };
 		2786FB6C29E882550023FE21 /* UIViewControllerUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerUtils.swift; sourceTree = "<group>"; };
 		27B65D1029EC567A00D47112 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		27E643D029F41E0D006B20FC /* QrCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCode.swift; sourceTree = "<group>"; };
+		27E643D229F41E59006B20FC /* TransformImageArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformImageArguments.swift; sourceTree = "<group>"; };
+		27E643D429F41E85006B20FC /* ImageCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCorners.swift; sourceTree = "<group>"; };
+		27E643D629F41FAC006B20FC /* TransformImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformImageView.swift; sourceTree = "<group>"; };
+		27E643D829F42269006B20FC /* WQrCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WQrCode.swift; sourceTree = "<group>"; };
 		27EBE5A929EDE6C9006ECFFB /* UINavigationControllerUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,11 +162,8 @@
 		273A5CB229E01FE5007CA6F0 /* AnimatedSticker */ = {
 			isa = PBXGroup;
 			children = (
+				27E643DB29F42283006B20FC /* Sources */,
 				273A5CB329E02000007CA6F0 /* WAnimatedSticker.swift */,
-				273A5FF629E02E16007CA6F0 /* AnimatedStickerViews.swift */,
-				273A608E29E030CA007CA6F0 /* AnimationRenderer.swift */,
-				273A608C29E030B5007CA6F0 /* SoftwareAnimationRenderer.swift */,
-				273A609029E0310C007CA6F0 /* GenerateImage.swift */,
 			);
 			path = AnimatedSticker;
 			sourceTree = "<group>";
@@ -230,6 +237,7 @@
 			children = (
 				27B65D0F29EC566C00D47112 /* CommonViews */,
 				273A5CB229E01FE5007CA6F0 /* AnimatedSticker */,
+				27E643CF29F41E02006B20FC /* QR */,
 				274D3F2229D626F6007C47AE /* Buttons */,
 				2719621E29F1BD6200B5B59F /* Label */,
 				2735220D29E9C342007C4E96 /* WordInput */,
@@ -254,6 +262,37 @@
 				27764E4F29F13BC700A45DAF /* BottomActionsView.swift */,
 			);
 			path = CommonViews;
+			sourceTree = "<group>";
+		};
+		27E643CF29F41E02006B20FC /* QR */ = {
+			isa = PBXGroup;
+			children = (
+				27E643DA29F42271006B20FC /* Sources */,
+				27E643D829F42269006B20FC /* WQrCode.swift */,
+			);
+			path = QR;
+			sourceTree = "<group>";
+		};
+		27E643DA29F42271006B20FC /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				27E643D029F41E0D006B20FC /* QrCode.swift */,
+				27E643D629F41FAC006B20FC /* TransformImageView.swift */,
+				27E643D229F41E59006B20FC /* TransformImageArguments.swift */,
+				27E643D429F41E85006B20FC /* ImageCorners.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		27E643DB29F42283006B20FC /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				273A5FF629E02E16007CA6F0 /* AnimatedStickerView.swift */,
+				273A608E29E030CA007CA6F0 /* AnimationRenderer.swift */,
+				273A608C29E030B5007CA6F0 /* SoftwareAnimationRenderer.swift */,
+				273A609029E0310C007CA6F0 /* GenerateImage.swift */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,17 +407,22 @@
 			files = (
 				273521CD29E94D4E007C4E96 /* WViewController.swift in Sources */,
 				273A5CB429E02000007CA6F0 /* WAnimatedSticker.swift in Sources */,
+				27E643D329F41E59006B20FC /* TransformImageArguments.swift in Sources */,
 				273A608F29E030CA007CA6F0 /* AnimationRenderer.swift in Sources */,
 				274D3F2829D628E4007C47AE /* WButton.swift in Sources */,
-				273A5FF729E02E16007CA6F0 /* AnimatedStickerViews.swift in Sources */,
+				27E643D729F41FAC006B20FC /* TransformImageView.swift in Sources */,
+				273A5FF729E02E16007CA6F0 /* AnimatedStickerView.swift in Sources */,
 				27764E5029F13BC700A45DAF /* BottomActionsView.swift in Sources */,
 				2719622029F1BD6F00B5B59F /* WAmountLabel.swift in Sources */,
+				27E643D529F41E85006B20FC /* ImageCorners.swift in Sources */,
 				273A609129E0310C007CA6F0 /* GenerateImage.swift in Sources */,
 				27B65D1129EC567A00D47112 /* HeaderView.swift in Sources */,
+				27E643D929F42269006B20FC /* WQrCode.swift in Sources */,
 				274D3EFD29D61CC4007C47AE /* UIComponents.docc in Sources */,
 				273A608D29E030B5007CA6F0 /* SoftwareAnimationRenderer.swift in Sources */,
 				27EBE5AA29EDE6C9006ECFFB /* UINavigationControllerUtils.swift in Sources */,
 				2735220F29E9C359007C4E96 /* WWordInput.swift in Sources */,
+				27E643D129F41E0D006B20FC /* QrCode.swift in Sources */,
 				2786FB6D29E882550023FE21 /* UIViewControllerUtils.swift in Sources */,
 				2777555929EB37660098DE68 /* WKeyboardObserver.swift in Sources */,
 				2786FB5729E874060023FE21 /* CAAnimationUtils.swift in Sources */,

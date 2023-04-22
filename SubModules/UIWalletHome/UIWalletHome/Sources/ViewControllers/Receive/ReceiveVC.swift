@@ -9,6 +9,7 @@ import UIKit
 import UIComponents
 import WalletContext
 import WalletCore
+import SwiftSignalKit
 
 public class ReceiveVC: WViewController {
     
@@ -33,6 +34,12 @@ public class ReceiveVC: WViewController {
     private var yourWalletAddressLabel: UILabel!
 
     private func setupViews() {
+        // add done button if it's root of a navigation controller
+        if navigationController?.viewControllers.count == 1 {
+            let doneButton = UIBarButtonItem(title: WStrings.Wallet_Receive_Done.localized, style: .done, target: self, action: #selector(donePressed))
+            navigationItem.rightBarButtonItem = doneButton
+        }
+        
         // The whole page can be a vertical stack view with spacing between items
         //  This way we can support all variety of the devices easily :)
         let stackView = UIStackView()
@@ -62,11 +69,28 @@ public class ReceiveVC: WViewController {
         // description
         let descriptionLabel = UILabel()
         descriptionLabel.font = .systemFont(ofSize: 17, weight: .semibold)
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.textAlignment = .center
+        let descriptionString = WStrings.Wallet_Receive_Description(coin: WStrings.Wallet_Receive_Toncoin.localized)
+        let attributedDescriptionString = NSMutableAttributedString(
+            string: descriptionString,
+            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .regular)]
+        )
+        let boldFontAttribute = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .semibold)]
+        let range = (descriptionString as NSString).range(of: WStrings.Wallet_Receive_Toncoin.localized)
+        attributedDescriptionString.addAttributes(boldFontAttribute, range: range)
+        descriptionLabel.attributedText = attributedDescriptionString
         topInfoStackView.addArrangedSubview(descriptionLabel)
-        
-        // wallet qr code stack view
-        
-        
+
+        // wallet qr code view
+        let qrSize = CGFloat(isIPhone5s ? 180 : 220)
+        let qrCodeContainer = QRCodeContainerView(url: walletInvoiceUrl(address: walletInfo.address), size: qrSize, delegate: self)
+        qrCodeContainer.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            qrCodeContainer.heightAnchor.constraint(equalToConstant: qrSize)
+        ])
+        stackView.addArrangedSubview(qrCodeContainer)
+
         // wallet address stack view
         let addressStackView = UIStackView()
         addressStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -95,7 +119,8 @@ public class ReceiveVC: WViewController {
         yourWalletAddressLabel.font = .systemFont(ofSize: 17, weight: .regular)
         yourWalletAddressLabel.text = WStrings.Wallet_Receive_YourAddress.localized
         addressStackView.addArrangedSubview(yourWalletAddressLabel)
-        addressStackView.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+        // add gap to meet design requirements
+        addressStackView.layoutMargins = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
         addressStackView.isLayoutMarginsRelativeArrangement = true
 
         // bottom action
@@ -113,6 +138,32 @@ public class ReceiveVC: WViewController {
     }
     
     @objc func sharePressed() {
-        // TODO::
+        if let url = URL(string: walletInvoiceUrl(address: walletInfo.address)) {
+            present(UIActivityViewController(activityItems: [url], applicationActivities: nil), animated: true, completion: nil)
+        }
+    }
+    
+    @objc func donePressed() {
+        dismiss(animated: true)
+    }
+}
+
+extension ReceiveVC: QRCodeContainerViewDelegate {
+    public func qrCodePressed() {
+        let _ = (qrCode(string: walletInvoiceUrl(address: walletInfo.address),
+                        color: .black,
+                        backgroundColor: .white,
+                        icon: .custom(UIImage(named: "QrGem")))
+        |> map { _, generator -> UIImage? in
+            let imageSize = CGSize(width: 768.0, height: 768.0)
+            let context = generator(TransformImageArguments(corners: ImageCorners(), imageSize: imageSize, boundingSize: imageSize, intrinsicInsets: UIEdgeInsets(), scale: 1.0))
+            return context?.generateImage()
+        }
+        |> deliverOnMainQueue).start(next: { [weak self] image in
+            guard let self, let image = image else { return }
+            
+            let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+            present(activityController, animated: true)
+        })
     }
 }

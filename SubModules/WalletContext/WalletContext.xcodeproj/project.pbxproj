@@ -23,6 +23,7 @@
 		27DB29B429EC699600988800 /* NumberPluralizationForm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29B229EC699600988800 /* NumberPluralizationForm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		27DB29D229EC6E4200988800 /* WalletCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29D129EC6E4200988800 /* WalletCore.framework */; };
 		27DB29D329EC6E4200988800 /* WalletCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29D129EC6E4200988800 /* WalletCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		27E643DD29F425D4006B20FC /* UrlEscaping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643DC29F425D4006B20FC /* UrlEscaping.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -56,6 +57,7 @@
 		27DB29AB29EC696E00988800 /* SwiftSignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftSignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27DB29B229EC699600988800 /* NumberPluralizationForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NumberPluralizationForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27DB29D129EC6E4200988800 /* WalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27E643DC29F425D4006B20FC /* UrlEscaping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlEscaping.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				2772A87929F301510086F0A2 /* ScreenHelpers.swift */,
+				27E643DC29F425D4006B20FC /* UrlEscaping.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				273521FE29E98514007C4E96 /* WStrings.swift in Sources */,
 				273521F329E98449007C4E96 /* StringPluralization.swift in Sources */,
 				2719622B29F1D9A400B5B59F /* WalletUtils.swift in Sources */,
+				27E643DD29F425D4006B20FC /* UrlEscaping.swift in Sources */,
 				27764E5629F1461A00A45DAF /* KeychainHelper.swift in Sources */,
 				2772A87A29F301510086F0A2 /* ScreenHelpers.swift in Sources */,
 				273521F529E98449007C4E96 /* WalletPresentationData.swift in Sources */,

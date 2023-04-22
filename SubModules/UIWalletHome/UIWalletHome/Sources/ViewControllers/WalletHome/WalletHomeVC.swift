@@ -36,6 +36,9 @@ public class WalletHomeVC: WViewController {
         super.viewDidLoad()
         
         walletHomeVM.refreshTransactions()
+
+        let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        keyWindow?.backgroundColor = currentTheme.balanceHeaderView.background
     }
 
     public override func loadView() {
@@ -285,6 +288,7 @@ extension WalletHomeVC: WalletHomeVMDelegate {
 
 extension WalletHomeVC: BalanceHeaderViewDelegate {
     public func receivePressed() {
-        present(ReceiveVC(walletContext: walletContext, walletInfo: walletInfo), animated: true)
+        let receiveVC = ReceiveVC(walletContext: walletContext, walletInfo: walletInfo)
+        present(UINavigationController(rootViewController: receiveVC), animated: true)
     }
 }

@@ -26,9 +26,10 @@ public class BalanceView: UIStackView {
     
     private var balanceLabel: UILabel!
 
-    public var balance: Int64 = -1 {
+    // -2: not loaded, -1: empty
+    public var balance: Int64 = -2 {
         didSet {
-            if balance == -1 {
+            if balance == -2 {
                 if balanceLabel.superview != nil {
                     balanceLabel.removeFromSuperview()
                 }
@@ -38,7 +39,7 @@ public class BalanceView: UIStackView {
                 }
             }
             // TODO:: Balance label component required
-            let components = formatBalanceText(balance).components(separatedBy: ".")
+            let components = formatBalanceText(balance > -1 ? balance : 0).components(separatedBy: ".")
             let attr = NSMutableAttributedString(string: "\(components[0])", attributes: [
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 48, weight: .semibold),
                 NSAttributedString.Key.foregroundColor: currentTheme.balanceHeaderView.balance
