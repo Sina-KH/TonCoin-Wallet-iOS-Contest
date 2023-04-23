@@ -662,7 +662,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ToncoinWallet/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Toncoin Wallet";
-				INFOPLIST_KEY_NSFaceIDUsageDescription = "Face ID allows you to open your wallet faster without having to enter your password.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -695,7 +694,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ToncoinWallet/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Toncoin Wallet";
-				INFOPLIST_KEY_NSFaceIDUsageDescription = "Face ID allows you to open your wallet faster without having to enter your password.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";

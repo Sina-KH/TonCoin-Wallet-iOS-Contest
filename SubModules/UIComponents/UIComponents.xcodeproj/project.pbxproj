@@ -18,6 +18,9 @@
 		273A608F29E030CA007CA6F0 /* AnimationRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A608E29E030CA007CA6F0 /* AnimationRenderer.swift */; };
 		273A609129E0310C007CA6F0 /* GenerateImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A609029E0310C007CA6F0 /* GenerateImage.swift */; };
 		273A60B129E0325B007CA6F0 /* UIColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A60B029E0325B007CA6F0 /* UIColorUtils.swift */; };
+		2749340829F53D13009976B5 /* WAddressInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749340729F53D13009976B5 /* WAddressInput.swift */; };
+		2749340A29F54530009976B5 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749340929F54530009976B5 /* ToastView.swift */; };
+		2749340E29F5CB80009976B5 /* WAmountInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749340D29F5CB80009976B5 /* WAmountInput.swift */; };
 		274D3EFD29D61CC4007C47AE /* UIComponents.docc in Sources */ = {isa = PBXBuildFile; fileRef = 274D3EFC29D61CC4007C47AE /* UIComponents.docc */; };
 		274D3F0329D61CC4007C47AE /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3EF829D61CC4007C47AE /* UIComponents.framework */; };
 		274D3F0829D61CC4007C47AE /* UIComponentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3F0729D61CC4007C47AE /* UIComponentsTests.swift */; };
@@ -90,6 +93,9 @@
 		273A609029E0310C007CA6F0 /* GenerateImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateImage.swift; sourceTree = "<group>"; };
 		273A60AD29E0316A007CA6F0 /* YuvConversion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = YuvConversion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		273A60B029E0325B007CA6F0 /* UIColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorUtils.swift; sourceTree = "<group>"; };
+		2749340729F53D13009976B5 /* WAddressInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WAddressInput.swift; sourceTree = "<group>"; };
+		2749340929F54530009976B5 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		2749340D29F5CB80009976B5 /* WAmountInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WAmountInput.swift; sourceTree = "<group>"; };
 		274D3EF829D61CC4007C47AE /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		274D3EFB29D61CC4007C47AE /* UIComponents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIComponents.h; sourceTree = "<group>"; };
 		274D3EFC29D61CC4007C47AE /* UIComponents.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = UIComponents.docc; sourceTree = "<group>"; };
@@ -195,6 +201,15 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		2749340629F53CF9009976B5 /* TextInput */ = {
+			isa = PBXGroup;
+			children = (
+				2749340729F53D13009976B5 /* WAddressInput.swift */,
+				2749340D29F5CB80009976B5 /* WAmountInput.swift */,
+			);
+			path = TextInput;
+			sourceTree = "<group>";
+		};
 		274D3EEE29D61CC4007C47AE = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +256,7 @@
 				274D3F2229D626F6007C47AE /* Buttons */,
 				2719621E29F1BD6200B5B59F /* Label */,
 				2735220D29E9C342007C4E96 /* WordInput */,
+				2749340629F53CF9009976B5 /* TextInput */,
 				273A60AF29E0324D007CA6F0 /* Utils */,
 				273521CB29E94D3B007C4E96 /* ViewController */,
 			);
@@ -260,6 +276,7 @@
 			children = (
 				27B65D1029EC567A00D47112 /* HeaderView.swift */,
 				27764E4F29F13BC700A45DAF /* BottomActionsView.swift */,
+				2749340929F54530009976B5 /* ToastView.swift */,
 			);
 			path = CommonViews;
 			sourceTree = "<group>";
@@ -409,6 +426,7 @@
 				273A5CB429E02000007CA6F0 /* WAnimatedSticker.swift in Sources */,
 				27E643D329F41E59006B20FC /* TransformImageArguments.swift in Sources */,
 				273A608F29E030CA007CA6F0 /* AnimationRenderer.swift in Sources */,
+				2749340829F53D13009976B5 /* WAddressInput.swift in Sources */,
 				274D3F2829D628E4007C47AE /* WButton.swift in Sources */,
 				27E643D729F41FAC006B20FC /* TransformImageView.swift in Sources */,
 				273A5FF729E02E16007CA6F0 /* AnimatedStickerView.swift in Sources */,
@@ -424,9 +442,11 @@
 				2735220F29E9C359007C4E96 /* WWordInput.swift in Sources */,
 				27E643D129F41E0D006B20FC /* QrCode.swift in Sources */,
 				2786FB6D29E882550023FE21 /* UIViewControllerUtils.swift in Sources */,
+				2749340A29F54530009976B5 /* ToastView.swift in Sources */,
 				2777555929EB37660098DE68 /* WKeyboardObserver.swift in Sources */,
 				2786FB5729E874060023FE21 /* CAAnimationUtils.swift in Sources */,
 				2786FB5B29E876420023FE21 /* UIKitRuntimeUtils.swift in Sources */,
+				2749340E29F5CB80009976B5 /* WAmountInput.swift in Sources */,
 				2786FB5929E874A80023FE21 /* UIKitUtils.swift in Sources */,
 				273A60B129E0325B007CA6F0 /* UIColorUtils.swift in Sources */,
 			);

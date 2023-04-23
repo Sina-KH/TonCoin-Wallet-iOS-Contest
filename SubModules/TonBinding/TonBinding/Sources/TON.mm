@@ -2,8 +2,12 @@
 
 #import "tonlib/Client.h"
 
-// TODO:: What should we pass as `SEND_MODE` in the new TonLib version? (It's a new input in initializer)
+// MARK: - NEW Variable
+/*
+ From docs: we used mode 3 to take the incoming tons and send exactly as much as specified (amount) while paying commission from the contract balance and ignoring the errors. Mode 64 is needed to return all the tons received, subtracting the commission, and mode 128 will send the entire balance.
+ */
 td::int32 SEND_MODE = 3;
+//
 
 static td::SecureString makeSecureString(NSData * _Nonnull data) {
     if (data == nil || data.length == 0) {

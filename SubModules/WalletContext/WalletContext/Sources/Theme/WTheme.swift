@@ -16,6 +16,8 @@ public struct WThemeBackgroundHeaderView {
 public struct WThemePrimaryButton {
     public var background: UIColor
     public var tint: UIColor
+    public var disabledBackground: UIColor
+    public var disabledTint: UIColor
 }
 
 public struct WThemeAccentButton {
@@ -27,11 +29,17 @@ public struct WThemeWordInput {
     public var background: UIColor
 }
 
+public struct WThemeToastView {
+    public var background: UIColor
+    public var tint: UIColor
+}
+
 public struct WTheme {
     public var primaryButton: WThemePrimaryButton
     public var accentButton: WThemeAccentButton
     public var wordInput: WThemeWordInput
     public var balanceHeaderView: WThemeBackgroundHeaderView
+    public var toastView: WThemeToastView
     public var background: UIColor
     public var backgroundReverse: UIColor
     public var groupedBackground: UIColor
@@ -51,15 +59,19 @@ public struct WTheme {
 
 /*  If we need to support more custom themes inside the app, and let user change it when using the app without restarting the app,
     `currentTheme` variable should be changed real-time and the app should be configured to call all .updateTheme() methods on theme change event.
-        (some components may need an update, to support this feature by updating all colors inside updateTheme method.) */
+        (in that case, we have to make all views confirm to a protocol containing `updateTheme` method and call this method on all views and view controllers.)
+        (and also, some components may need an update, to support this feature by updating all colors inside updateTheme method.) */
 
 public var currentTheme = WTheme(
     primaryButton: WThemePrimaryButton(background: UIColor.systemBlue,
-                                       tint: UIColor.white),
+                                       tint: UIColor.white,
+                                       disabledBackground: _groupedBackground,
+                                       disabledTint: WColors.secondaryLabel.color),
     accentButton: WThemeAccentButton(background: _accent,
                                      tint: UIColor.white),
     wordInput: WThemeWordInput(background: WColors.secondaryBackground.color),
     balanceHeaderView: WThemeBackgroundHeaderView(background: .black, headIcons: .white, balance: .white),
+    toastView: WThemeToastView(background: _systemBackgroundReverse.withAlphaComponent(0.82), tint: _systemBackground),
     background: _systemBackground,
     backgroundReverse: _systemBackgroundReverse,
     groupedBackground: _groupedBackground,

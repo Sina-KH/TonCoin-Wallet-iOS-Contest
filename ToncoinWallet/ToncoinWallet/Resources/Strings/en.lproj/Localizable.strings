@@ -51,10 +51,10 @@
 "Wallet.ImportSuccessful.Title" = "Your wallet has just been imported!"; // NEW
 
 // RestoreFailed
-"Wallet.RestoreFailed.Title" = "Too Bad!"; // UPDATED
-"Wallet.RestoreFailed.Text" = "Without the secret words you can't restore access to your wallet."; // UPDATED
-"Wallet.RestoreFailed.EnterWords" = "Enter 24 words"; // UPDATED
-"Wallet.RestoreFailed.CreateWallet" = "Create a new empty wallet instead"; // UPDATED
+"Wallet.RestoreFailed.Title" = "Too Bad!"; // Updated
+"Wallet.RestoreFailed.Text" = "Without the secret words you can't restore access to your wallet."; // Updated
+"Wallet.RestoreFailed.EnterWords" = "Enter 24 words"; // Updated
+"Wallet.RestoreFailed.CreateWallet" = "Create a new empty wallet instead"; // Updated
 
 // SetPasscode
 "Wallet.SetPasscode.Title" = "Set a Passcode"; // NEW
@@ -110,15 +110,35 @@
 
 // Send
 "Wallet.Send.Title" = "Send TON";
-"Wallet.Send.AddressText" = "Enter Wallet Address or Domain..."; // UPDATED
-"Wallet.Send.AddressInfo" = "Paste the 24-letter wallet address of the recipient here or TON DNS."; // UPDATED
+"Wallet.Send.AddressText" = "Enter Wallet Address or Domain..."; // Updated
+"Wallet.Send.AddressInfo" = "Paste the 24-letter wallet address of the recipient here or TON DNS."; // Updated
 "Wallet.Send.Paste" = "Paste"; // NEW
 "Wallet.Send.Scan" = "Scan"; // NEW
 "Wallet.Send.Continue" = "Continue"; // NEW
 "Wallet.Send.Recents" = "Recents"; // NEW
 "Wallet.Send.Clear" = "Clear"; // NEW
+"Wallet.Send.ErrorInvalidAddressTitle" = "Invalid Address"; // NEW
+"Wallet.Send.ErrorInvalidAddressText" = "Address entered does not belong to TON"; // NEW
+
+// SendAmount
+"Wallet.SendAmount.SendTo" = "Send to:"; // NEW
+"Wallet.SendAmount.SendAll" = "Send all"; // NEW
+"Wallet.SendAmount.Edit" = "Edit"; // NEW
+"Wallet.SendAmount.Continue" = "Continue"; // NEW
+
+// SendComment
+"Wallet.SendComment.CommentTitle" = "COMMENT (OPTIONAL)"; // NEW
+"Wallet.SendComment.CommentInfo" = "The comment is visible to everyone. You must include the note when sending to an exchange."; // NEW
+"Wallet.SendComment.CommentCharactersLeft" = "%1$@ characters left"; // NEW
+"Wallet.SendComment.CommentExceeded" = "Message size has been exceeded by %1$@ characters."; // NEW
+"Wallet.SendComment.Label" = "Label"; // NEW
+"Wallet.SendComment.Recipient" = "Recipient"; // NEW
+"Wallet.SendComment.Amount" = "Amount"; // NEW
+"Wallet.SendComment.Fee" = "Fee"; // NEW
+"Wallet.SendComment.ConfirmAndSend" = "Confirm and send"; // NEW
 
 // Navigation
+"Wallet.Navigation.Back" = "Back";
 "Wallet.Navigation.Done" = "Done";
 "Wallet.Navigation.Cancel" = "Cancel";
 
@@ -147,9 +167,6 @@
 "Wallet.Qr.ScanCode" = "Scan QR Code";
 "Wallet.Qr.Title" = "QR Code";
 "Wallet.Send.Title" = "Send TON";
-"Wallet.Send.AddressHeader" = "RECIPIENT WALLET ADDRESS";
-"Wallet.Send.AddressText" = "Enter wallet address...";
-"Wallet.Send.AddressInfo" = "Paste the 48-letter address of the recipient here or ask them to send you a ton:// link.";
 "Wallet.Send.Balance" = "Balance: %@";
 "Wallet.Send.AmountText" = "TON to send";
 "Wallet.Send.Confirmation" = "Confirmation";
@@ -205,7 +222,6 @@
 "Wallet.Send.NetworkErrorText" = "Couldn't send TON. Please make sure your internet connection is working and try again.";
 "Wallet.Send.ErrorNotEnoughFundsTitle" = "Insufficient TON";
 "Wallet.Send.ErrorNotEnoughFundsText" = "Unfortunately, your transfer couldn't be completed. You don't have enough TON.";
-"Wallet.Send.ErrorInvalidAddress" = "Invalid wallet address. Please correct and try again.";
 "Wallet.Send.ErrorDecryptionFailed" = "Please make sure that your device has a passcode set in iOS Settings and try again.";
 "Wallet.Send.UninitializedTitle" = "Warning";
 "Wallet.Send.UninitializedText" = "This address belongs to an empty wallet. Are you sure you want to transfer TON to it?";

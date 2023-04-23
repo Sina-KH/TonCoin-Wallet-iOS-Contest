@@ -12,6 +12,7 @@
 		2719622729F1C71600B5B59F /* SwiftSignalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2719622629F1C71600B5B59F /* SwiftSignalKit.framework */; };
 		2719622829F1C71700B5B59F /* SwiftSignalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2719622629F1C71600B5B59F /* SwiftSignalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2736AAA429F3298C009FFBE2 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2736AAA329F3298C009FFBE2 /* BalanceView.swift */; };
+		2749340C29F59AC2009976B5 /* SendVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749340B29F59AC2009976B5 /* SendVM.swift */; };
 		2772A87329F2E6010086F0A2 /* WalletCreatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A87229F2E6010086F0A2 /* WalletCreatedView.swift */; };
 		2772A87629F2EEE10086F0A2 /* WalletLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A87529F2EEE10086F0A2 /* WalletLoadingView.swift */; };
 		2772A87829F2F13A0086F0A2 /* EmptyWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A87729F2F13A0086F0A2 /* EmptyWalletView.swift */; };
@@ -28,6 +29,8 @@
 		27E643E129F43BDE006B20FC /* QRCodeContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643E029F43BDE006B20FC /* QRCodeContainerView.swift */; };
 		27E643E529F44AB7006B20FC /* SendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643E429F44AB7006B20FC /* SendVC.swift */; };
 		27E643E729F454D5006B20FC /* TransactionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643E629F454D5006B20FC /* TransactionVC.swift */; };
+		27E643EA29F4902C006B20FC /* TransactionAddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643E929F4902C006B20FC /* TransactionAddressCell.swift */; };
+		27E643ED29F4A212006B20FC /* SendAmountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643EC29F4A212006B20FC /* SendAmountVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +63,7 @@
 		2719622429F1C55F00B5B59F /* WalletHomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletHomeVM.swift; sourceTree = "<group>"; };
 		2719622629F1C71600B5B59F /* SwiftSignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftSignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2736AAA329F3298C009FFBE2 /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
+		2749340B29F59AC2009976B5 /* SendVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendVM.swift; sourceTree = "<group>"; };
 		2772A87229F2E6010086F0A2 /* WalletCreatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCreatedView.swift; sourceTree = "<group>"; };
 		2772A87529F2EEE10086F0A2 /* WalletLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletLoadingView.swift; sourceTree = "<group>"; };
 		2772A87729F2F13A0086F0A2 /* EmptyWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyWalletView.swift; sourceTree = "<group>"; };
@@ -76,6 +80,8 @@
 		27E643E029F43BDE006B20FC /* QRCodeContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeContainerView.swift; sourceTree = "<group>"; };
 		27E643E429F44AB7006B20FC /* SendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendVC.swift; sourceTree = "<group>"; };
 		27E643E629F454D5006B20FC /* TransactionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionVC.swift; sourceTree = "<group>"; };
+		27E643E929F4902C006B20FC /* TransactionAddressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionAddressCell.swift; sourceTree = "<group>"; };
+		27E643EC29F4A212006B20FC /* SendAmountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendAmountVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +156,7 @@
 				27E643CB29F40FBD006B20FC /* WalletHome */,
 				27E643CC29F40FDA006B20FC /* Receive */,
 				27E643E329F44AA9006B20FC /* Send */,
+				27E643EB29F4A203006B20FC /* SendAmount */,
 				27E643E229F448AB006B20FC /* Transaction */,
 			);
 			path = ViewControllers;
@@ -224,9 +231,27 @@
 		27E643E329F44AA9006B20FC /* Send */ = {
 			isa = PBXGroup;
 			children = (
+				27E643E829F48FFB006B20FC /* Cells */,
 				27E643E429F44AB7006B20FC /* SendVC.swift */,
+				2749340B29F59AC2009976B5 /* SendVM.swift */,
 			);
 			path = Send;
+			sourceTree = "<group>";
+		};
+		27E643E829F48FFB006B20FC /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				27E643E929F4902C006B20FC /* TransactionAddressCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		27E643EB29F4A203006B20FC /* SendAmount */ = {
+			isa = PBXGroup;
+			children = (
+				27E643EC29F4A212006B20FC /* SendAmountVC.swift */,
+			);
+			path = SendAmount;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -343,8 +368,11 @@
 				27E643CA29F40719006B20FC /* BubbleView.swift in Sources */,
 				27E643CE29F40FF7006B20FC /* ReceiveVC.swift in Sources */,
 				27764E4629F1357000A45DAF /* WalletHomeVC.swift in Sources */,
+				27E643ED29F4A212006B20FC /* SendAmountVC.swift in Sources */,
 				2719621D29F1BA7A00B5B59F /* WalletTransactionCell.swift in Sources */,
+				2749340C29F59AC2009976B5 /* SendVM.swift in Sources */,
 				278C3A1729F1875100BD16E8 /* BalanceHeaderView.swift in Sources */,
+				27E643EA29F4902C006B20FC /* TransactionAddressCell.swift in Sources */,
 				2736AAA429F3298C009FFBE2 /* BalanceView.swift in Sources */,
 				27E643E529F44AB7006B20FC /* SendVC.swift in Sources */,
 				2772A87829F2F13A0086F0A2 /* EmptyWalletView.swift in Sources */,

@@ -187,6 +187,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSData *)encrypt:(NSData *)decryptedData secret:(NSData *)data;
 - (NSData * __nullable)decrypt:(NSData *)encryptedData secret:(NSData *)data;
 
+// MARK: - NEW METHODS IN THIS VERSION
+//
+
 @end
 
 NS_ASSUME_NONNULL_END

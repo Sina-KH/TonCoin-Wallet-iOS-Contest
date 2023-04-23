@@ -13,12 +13,18 @@ fileprivate let decimalSeparator = "."
 public let walletAddressLength: Int = 48
 public let walletTextLimit: Int = 512
 
+// format address to 2-line text
 public func formatAddress(_ address: String) -> String {
     var address = address
     address.insert("\n", at: address.index(address.startIndex, offsetBy: address.count / 2))
     return address
 }
 
+public func formatStartEndAddress(_ address: String) -> String {
+    return "\(address.prefix(4))...\(address.suffix(4))"
+}
+
+// create deeplink for wallet address with optional amount and comment properties
 public func walletInvoiceUrl(address: String, amount: String? = nil, comment: String? = nil) -> String {
     var arguments = ""
     if let amount = amount, !amount.isEmpty {
@@ -50,6 +56,7 @@ func amountValue(_ string: String) -> Int64 {
     return 0
 }
 
+// format amount into string with separator
 public func formatBalanceText(_ value: Int64) -> String {
     var balanceText = "\(abs(value))"
     while balanceText.count < 10 {
@@ -75,6 +82,7 @@ public func formatBalanceText(_ value: Int64) -> String {
     return balanceText
 }
 
+// timestamp into string
 public func stringForTimestamp(timestamp: Int32, local: Bool = true) -> String {
     var t = Int(timestamp)
     var timeinfo = tm()
@@ -108,4 +116,16 @@ public func stringForShortTimestamp(hours: Int32, minutes: Int32) -> String {
     } else {
         return "\(hourString):0\(minutes)"// \(periodString)"
     }
+}
+
+// check if address is valid
+private let invalidAddressCharacters = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_=").inverted
+public func isValidAddress(_ address: String, exactLength: Bool = false) -> Bool {
+    if address.count > walletAddressLength || address.rangeOfCharacter(from: invalidAddressCharacters) != nil {
+        return false
+    }
+    if exactLength && address.count != walletAddressLength {
+        return false
+    }
+    return true
 }

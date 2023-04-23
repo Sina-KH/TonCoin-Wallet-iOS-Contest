@@ -8,14 +8,12 @@ re-using the best of the exiting, original codebase.
 :white_check_mark: **Backward-compatible:** All the `wallet storage logic` 
 is backward compatible and almost reused. Only a few changes applied to support new flows.
 
-:white_check_mark: **Updated tonlib:** The application is now using [the 
-new tonlib repository](https://github.com/ton-blockchain/ton), and the 
-latest version of the lib (2023.03).
+:white_check_mark: **Updated tonlib:** The application is now using the latest version of the [
+ADNL TonLib Repository](https://github.com/ton-blockchain/ton) (2023.03).
 
 :white_check_mark: `iOS 12.2+` support.
 
-:white_check_mark: Supports all the iOS-devices from `iPhone 5s` and 
-later.
+:white_check_mark: Supports all the iOS-devices starting from `iPhone 5s` and `4" display size`.
 
 ## :beers: How to Build
 

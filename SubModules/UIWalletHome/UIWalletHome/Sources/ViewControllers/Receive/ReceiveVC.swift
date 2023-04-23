@@ -37,7 +37,7 @@ public class ReceiveVC: WViewController {
         // add done button if it's root of a navigation controller
         if navigationController?.viewControllers.count == 1 {
             let doneButton = UIBarButtonItem(title: WStrings.Wallet_Navigation_Done.localized, style: .done, target: self, action: #selector(donePressed))
-            navigationItem.leftBarButtonItem = doneButton
+            navigationItem.rightBarButtonItem = doneButton
         }
         
         // The whole page can be a vertical stack view with spacing between items

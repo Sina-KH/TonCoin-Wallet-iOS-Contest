@@ -16,12 +16,12 @@ public class WButton: UIButton {
 
     public static let defaultHeight = CGFloat(50.0)
 
+    // different types of button in the application
     public enum Usage {
         case primary
         case secondary
         case accent
     }
-
     private var usage = Usage.primary
 
     // used factory pattern because can't subclass a button and call `super.init(buttonType: )`,
@@ -66,8 +66,8 @@ public class WButton: UIButton {
     func updateTheme() {
         switch usage {
         case .primary:
-            backgroundColor = currentTheme.primaryButton.background
-            tintColor = currentTheme.primaryButton.tint
+            backgroundColor = isEnabled ? currentTheme.primaryButton.background : currentTheme.primaryButton.disabledBackground
+            tintColor = isEnabled ? currentTheme.primaryButton.tint : currentTheme.primaryButton.disabledTint
             break
         case .accent:
             backgroundColor = currentTheme.accentButton.background
@@ -90,6 +90,12 @@ public class WButton: UIButton {
            imageEdgeInsets = UIEdgeInsets(top: 0, left: -insetAmount, bottom: 0, right: insetAmount)
            titleEdgeInsets = UIEdgeInsets(top: 0, left: insetAmount, bottom: 0, right: -insetAmount)
            contentEdgeInsets = UIEdgeInsets(top: 0, left: insetAmount, bottom: 0, right: insetAmount)
+        }
+    }
+
+    public override var isEnabled: Bool {
+        didSet {
+            updateTheme()
         }
     }
 }
