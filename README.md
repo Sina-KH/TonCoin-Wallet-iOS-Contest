@@ -110,6 +110,10 @@ The UI implementation of the set passcode flow.
 
 The UI implementation of the home (main) page of the wallet.
 
+### :rocket: UIWalletSend
+
+The UI implementation of the send TON screen pages.
+
 ### :jack_o_lantern: UIComponents
 
 All the UIKit implementation of the components provided inside Figma and 

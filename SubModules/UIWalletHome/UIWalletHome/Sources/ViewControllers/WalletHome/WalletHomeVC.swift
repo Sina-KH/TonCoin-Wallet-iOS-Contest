@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UIWalletSend
 import UIComponents
 import WalletContext
 import WalletCore
@@ -106,7 +107,8 @@ public class WalletHomeVC: WViewController {
             balanceHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             balanceHeaderView.leftAnchor.constraint(equalTo: view.leftAnchor),
             balanceHeaderView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            emptyWalletView!.topAnchor.constraint(equalTo: balanceHeaderView.bottomAnchor)
+            emptyWalletView!.topAnchor.constraint(equalTo: balanceHeaderView.bottomAnchor,
+                                                  constant: -BalanceHeaderView.bottomRadiusViewHeight / 2)
         ])
     }
     

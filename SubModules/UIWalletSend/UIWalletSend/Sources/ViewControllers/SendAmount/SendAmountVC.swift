@@ -10,7 +10,7 @@ import UIComponents
 import WalletContext
 import WalletCore
 
-class SendAmountVC: WViewController {
+public class SendAmountVC: WViewController {
     
     // MARK: - Initializer
     let walletContext: WalletContext
@@ -96,8 +96,10 @@ class SendAmountVC: WViewController {
         sendAllStackView.translatesAutoresizingMaskIntoConstraints = false
         sendAllStackView.alignment = .center
         sendAllStackView.spacing = 4
+        sendAllStackView.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0)
+        sendAllStackView.isLayoutMarginsRelativeArrangement = true
         NSLayoutConstraint.activate([
-            sendAllStackView.heightAnchor.constraint(equalToConstant: 44)
+            sendAllStackView.heightAnchor.constraint(equalToConstant: 52)
         ])
         stackView.addArrangedSubview(sendAllStackView)
         let sendAllLabel = UILabel()
@@ -137,14 +139,14 @@ class SendAmountVC: WViewController {
 }
 
 extension SendAmountVC: WKeyboardObserverDelegate {
-    func keyboardWillShow(height: CGFloat) {
+    public func keyboardWillShow(height: CGFloat) {
         UIView.animate(withDuration: 0.25) {
             self.stackViewBottomConstraint.constant = -height - 12 + self.view.safeAreaInsets.bottom
             self.view.layoutIfNeeded()
         }
     }
     
-    func keyboardWillHide() {
+    public func keyboardWillHide() {
         UIView.animate(withDuration: 0.25) {
             self.stackViewBottomConstraint.constant = -12
             self.view.layoutIfNeeded()

@@ -10,7 +10,7 @@ import UIComponents
 import WalletContext
 import WalletCore
 
-class SendVC: WViewController {
+public class SendVC: WViewController {
     
     // MARK: - Initializer
     let walletContext: WalletContext
@@ -203,14 +203,14 @@ class SendVC: WViewController {
 }
 
 extension SendVC: WKeyboardObserverDelegate {
-    func keyboardWillShow(height: CGFloat) {
+    public func keyboardWillShow(height: CGFloat) {
         UIView.animate(withDuration: 0.25) {
             self.stackViewBottomConstraint.constant = -height - 12 + self.view.safeAreaInsets.bottom
             self.view.layoutIfNeeded()
         }
     }
     
-    func keyboardWillHide() {
+    public func keyboardWillHide() {
         UIView.animate(withDuration: 0.25) {
             self.stackViewBottomConstraint.constant = -12
             self.view.layoutIfNeeded()
@@ -219,7 +219,7 @@ extension SendVC: WKeyboardObserverDelegate {
 }
 
 extension SendVC: WAddressInputDelegate {
-    func addressTextChanged() {
+    public func addressTextChanged() {
         continueButton.isEnabled = !addressField.text.isEmpty
     }
 }

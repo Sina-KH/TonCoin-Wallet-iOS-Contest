@@ -14,6 +14,9 @@
       location = "group:SubModules/UIWalletHome/UIWalletHome.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:SubModules/UIWalletSend/UIWalletSend.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:SubModules/UIComponents/UIComponents.xcodeproj">
    </FileRef>
    <FileRef

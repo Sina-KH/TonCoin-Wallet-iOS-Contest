@@ -21,10 +21,10 @@ public class BalanceHeaderView: UIView {
     // main content / it's smaller on iPhone 5s device
     private static let contentHeight = isIPhone5s ? CGFloat(212) : CGFloat(292)
     // view addded to bottom of the view to have reversed corner radius
-    private static let bottomRadiusViewHeight = CGFloat(32)
+    public static let bottomRadiusViewHeight = CGFloat(32)
 
-    private static let minHeight = minHeightWithoutRadiusView + bottomRadiusViewHeight
-    static let defaultHeight = contentHeight + bottomRadiusViewHeight
+    private static let minHeight = minHeightWithoutRadiusView + bottomRadiusViewHeight / 2
+    static let defaultHeight = contentHeight + bottomRadiusViewHeight / 2
 
     private weak var delegate: BalanceHeaderViewDelegate!
     private var heightConstraint: NSLayoutConstraint!

@@ -1,0 +1,551 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2749341E29F5D014009976B5 /* UIWalletSend.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2749341D29F5D014009976B5 /* UIWalletSend.docc */; };
+		2749342429F5D014009976B5 /* UIWalletSend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2749341929F5D014009976B5 /* UIWalletSend.framework */; };
+		2749342929F5D014009976B5 /* UIWalletSendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749342829F5D014009976B5 /* UIWalletSendTests.swift */; };
+		2749342A29F5D014009976B5 /* UIWalletSend.h in Headers */ = {isa = PBXBuildFile; fileRef = 2749341C29F5D014009976B5 /* UIWalletSend.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2749345229F5D0AF009976B5 /* SendVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749345029F5D0AE009976B5 /* SendVM.swift */; };
+		2749345329F5D0AF009976B5 /* SendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749345129F5D0AF009976B5 /* SendVC.swift */; };
+		2749345529F5D0B6009976B5 /* SendAmountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749345429F5D0B6009976B5 /* SendAmountVC.swift */; };
+		2749345829F5D244009976B5 /* WalletContext.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2749345729F5D244009976B5 /* WalletContext.framework */; };
+		2749345929F5D245009976B5 /* WalletContext.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2749345729F5D244009976B5 /* WalletContext.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2749345C29F5D24A009976B5 /* WalletCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2749345B29F5D24A009976B5 /* WalletCore.framework */; };
+		2749345D29F5D24A009976B5 /* WalletCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2749345B29F5D24A009976B5 /* WalletCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2749345F29F5D24D009976B5 /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2749345E29F5D24D009976B5 /* UIComponents.framework */; };
+		2749346029F5D24E009976B5 /* UIComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2749345E29F5D24D009976B5 /* UIComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2749342529F5D014009976B5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2749341029F5D014009976B5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2749341829F5D014009976B5;
+			remoteInfo = UIWalletSend;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2749345A29F5D245009976B5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2749345D29F5D24A009976B5 /* WalletCore.framework in Embed Frameworks */,
+				2749346029F5D24E009976B5 /* UIComponents.framework in Embed Frameworks */,
+				2749345929F5D245009976B5 /* WalletContext.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2749341929F5D014009976B5 /* UIWalletSend.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIWalletSend.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2749341C29F5D014009976B5 /* UIWalletSend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIWalletSend.h; sourceTree = "<group>"; };
+		2749341D29F5D014009976B5 /* UIWalletSend.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = UIWalletSend.docc; sourceTree = "<group>"; };
+		2749342329F5D014009976B5 /* UIWalletSendTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UIWalletSendTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2749342829F5D014009976B5 /* UIWalletSendTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWalletSendTests.swift; sourceTree = "<group>"; };
+		2749345029F5D0AE009976B5 /* SendVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendVM.swift; sourceTree = "<group>"; };
+		2749345129F5D0AF009976B5 /* SendVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendVC.swift; sourceTree = "<group>"; };
+		2749345429F5D0B6009976B5 /* SendAmountVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendAmountVC.swift; sourceTree = "<group>"; };
+		2749345729F5D244009976B5 /* WalletContext.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletContext.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2749345B29F5D24A009976B5 /* WalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2749345E29F5D24D009976B5 /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2749341629F5D014009976B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2749345C29F5D24A009976B5 /* WalletCore.framework in Frameworks */,
+				2749345F29F5D24D009976B5 /* UIComponents.framework in Frameworks */,
+				2749345829F5D244009976B5 /* WalletContext.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2749342029F5D014009976B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2749342429F5D014009976B5 /* UIWalletSend.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2749340F29F5D014009976B5 = {
+			isa = PBXGroup;
+			children = (
+				2749341B29F5D014009976B5 /* UIWalletSend */,
+				2749342729F5D014009976B5 /* UIWalletSendTests */,
+				2749341A29F5D014009976B5 /* Products */,
+				2749345629F5D244009976B5 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2749341A29F5D014009976B5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2749341929F5D014009976B5 /* UIWalletSend.framework */,
+				2749342329F5D014009976B5 /* UIWalletSendTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2749341B29F5D014009976B5 /* UIWalletSend */ = {
+			isa = PBXGroup;
+			children = (
+				2749343329F5D023009976B5 /* Sources */,
+				2749341C29F5D014009976B5 /* UIWalletSend.h */,
+				2749341D29F5D014009976B5 /* UIWalletSend.docc */,
+			);
+			path = UIWalletSend;
+			sourceTree = "<group>";
+		};
+		2749342729F5D014009976B5 /* UIWalletSendTests */ = {
+			isa = PBXGroup;
+			children = (
+				2749342829F5D014009976B5 /* UIWalletSendTests.swift */,
+			);
+			path = UIWalletSendTests;
+			sourceTree = "<group>";
+		};
+		2749343329F5D023009976B5 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				2749343429F5D029009976B5 /* ViewControllers */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		2749343429F5D029009976B5 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2749344B29F5D05F009976B5 /* Send */,
+				2749344C29F5D05F009976B5 /* SendAmount */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		2749344B29F5D05F009976B5 /* Send */ = {
+			isa = PBXGroup;
+			children = (
+				2749345129F5D0AF009976B5 /* SendVC.swift */,
+				2749345029F5D0AE009976B5 /* SendVM.swift */,
+			);
+			path = Send;
+			sourceTree = "<group>";
+		};
+		2749344C29F5D05F009976B5 /* SendAmount */ = {
+			isa = PBXGroup;
+			children = (
+				2749345429F5D0B6009976B5 /* SendAmountVC.swift */,
+			);
+			path = SendAmount;
+			sourceTree = "<group>";
+		};
+		2749345629F5D244009976B5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2749345E29F5D24D009976B5 /* UIComponents.framework */,
+				2749345B29F5D24A009976B5 /* WalletCore.framework */,
+				2749345729F5D244009976B5 /* WalletContext.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2749341429F5D014009976B5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2749342A29F5D014009976B5 /* UIWalletSend.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2749341829F5D014009976B5 /* UIWalletSend */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2749342D29F5D014009976B5 /* Build configuration list for PBXNativeTarget "UIWalletSend" */;
+			buildPhases = (
+				2749341429F5D014009976B5 /* Headers */,
+				2749341529F5D014009976B5 /* Sources */,
+				2749341629F5D014009976B5 /* Frameworks */,
+				2749341729F5D014009976B5 /* Resources */,
+				2749345A29F5D245009976B5 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UIWalletSend;
+			productName = UIWalletSend;
+			productReference = 2749341929F5D014009976B5 /* UIWalletSend.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		2749342229F5D014009976B5 /* UIWalletSendTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2749343029F5D014009976B5 /* Build configuration list for PBXNativeTarget "UIWalletSendTests" */;
+			buildPhases = (
+				2749341F29F5D014009976B5 /* Sources */,
+				2749342029F5D014009976B5 /* Frameworks */,
+				2749342129F5D014009976B5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2749342629F5D014009976B5 /* PBXTargetDependency */,
+			);
+			name = UIWalletSendTests;
+			productName = UIWalletSendTests;
+			productReference = 2749342329F5D014009976B5 /* UIWalletSendTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2749341029F5D014009976B5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					2749341829F5D014009976B5 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					2749342229F5D014009976B5 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+				};
+			};
+			buildConfigurationList = 2749341329F5D014009976B5 /* Build configuration list for PBXProject "UIWalletSend" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2749340F29F5D014009976B5;
+			productRefGroup = 2749341A29F5D014009976B5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2749341829F5D014009976B5 /* UIWalletSend */,
+				2749342229F5D014009976B5 /* UIWalletSendTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2749341729F5D014009976B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2749342129F5D014009976B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2749341529F5D014009976B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2749345529F5D0B6009976B5 /* SendAmountVC.swift in Sources */,
+				2749345229F5D0AF009976B5 /* SendVM.swift in Sources */,
+				2749341E29F5D014009976B5 /* UIWalletSend.docc in Sources */,
+				2749345329F5D0AF009976B5 /* SendVC.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2749341F29F5D014009976B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2749342929F5D014009976B5 /* UIWalletSendTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2749342629F5D014009976B5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2749341829F5D014009976B5 /* UIWalletSend */;
+			targetProxy = 2749342529F5D014009976B5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2749342B29F5D014009976B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		2749342C29F5D014009976B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		2749342E29F5D014009976B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = org.ton.wallet.UIWalletSend;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2749342F29F5D014009976B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = org.ton.wallet.UIWalletSend;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2749343129F5D014009976B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.ton.wallet.UIWalletSendTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2749343229F5D014009976B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.ton.wallet.UIWalletSendTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2749341329F5D014009976B5 /* Build configuration list for PBXProject "UIWalletSend" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2749342B29F5D014009976B5 /* Debug */,
+				2749342C29F5D014009976B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2749342D29F5D014009976B5 /* Build configuration list for PBXNativeTarget "UIWalletSend" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2749342E29F5D014009976B5 /* Debug */,
+				2749342F29F5D014009976B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2749343029F5D014009976B5 /* Build configuration list for PBXNativeTarget "UIWalletSendTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2749343129F5D014009976B5 /* Debug */,
+				2749343229F5D014009976B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2749341029F5D014009976B5 /* Project object */;
+}
