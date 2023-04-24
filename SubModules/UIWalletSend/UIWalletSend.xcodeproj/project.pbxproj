@@ -15,11 +15,8 @@
 		2749345329F5D0AF009976B5 /* SendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749345129F5D0AF009976B5 /* SendVC.swift */; };
 		2749345529F5D0B6009976B5 /* SendAmountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749345429F5D0B6009976B5 /* SendAmountVC.swift */; };
 		2749345829F5D244009976B5 /* WalletContext.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2749345729F5D244009976B5 /* WalletContext.framework */; };
-		2749345929F5D245009976B5 /* WalletContext.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2749345729F5D244009976B5 /* WalletContext.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2749345C29F5D24A009976B5 /* WalletCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2749345B29F5D24A009976B5 /* WalletCore.framework */; };
-		2749345D29F5D24A009976B5 /* WalletCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2749345B29F5D24A009976B5 /* WalletCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2749345F29F5D24D009976B5 /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2749345E29F5D24D009976B5 /* UIComponents.framework */; };
-		2749346029F5D24E009976B5 /* UIComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2749345E29F5D24D009976B5 /* UIComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,22 +28,6 @@
 			remoteInfo = UIWalletSend;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		2749345A29F5D245009976B5 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				2749345D29F5D24A009976B5 /* WalletCore.framework in Embed Frameworks */,
-				2749346029F5D24E009976B5 /* UIComponents.framework in Embed Frameworks */,
-				2749345929F5D245009976B5 /* WalletContext.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2749341929F5D014009976B5 /* UIWalletSend.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIWalletSend.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -187,7 +168,6 @@
 				2749341529F5D014009976B5 /* Sources */,
 				2749341629F5D014009976B5 /* Frameworks */,
 				2749341729F5D014009976B5 /* Resources */,
-				2749345A29F5D245009976B5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

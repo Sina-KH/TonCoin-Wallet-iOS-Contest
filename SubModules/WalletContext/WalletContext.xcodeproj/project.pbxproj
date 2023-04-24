@@ -18,29 +18,10 @@
 		2772A87A29F301510086F0A2 /* ScreenHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A87929F301510086F0A2 /* ScreenHelpers.swift */; };
 		27764E5629F1461A00A45DAF /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27764E5529F1461A00A45DAF /* KeychainHelper.swift */; };
 		27DB29AC29EC696E00988800 /* SwiftSignalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29AB29EC696E00988800 /* SwiftSignalKit.framework */; };
-		27DB29AD29EC696E00988800 /* SwiftSignalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29AB29EC696E00988800 /* SwiftSignalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		27DB29B329EC699600988800 /* NumberPluralizationForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29B229EC699600988800 /* NumberPluralizationForm.framework */; };
-		27DB29B429EC699600988800 /* NumberPluralizationForm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29B229EC699600988800 /* NumberPluralizationForm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		27DB29D229EC6E4200988800 /* WalletCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29D129EC6E4200988800 /* WalletCore.framework */; };
-		27DB29D329EC6E4200988800 /* WalletCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29D129EC6E4200988800 /* WalletCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		27E643DD29F425D4006B20FC /* UrlEscaping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643DC29F425D4006B20FC /* UrlEscaping.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		27DB29AE29EC696E00988800 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				27DB29B429EC699600988800 /* NumberPluralizationForm.framework in Embed Frameworks */,
-				27DB29D329EC6E4200988800 /* WalletCore.framework in Embed Frameworks */,
-				27DB29AD29EC696E00988800 /* SwiftSignalKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2719622A29F1D9A400B5B59F /* WalletUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletUtils.swift; sourceTree = "<group>"; };
@@ -189,7 +170,6 @@
 				273521DF29E98434007C4E96 /* Sources */,
 				273521E029E98434007C4E96 /* Frameworks */,
 				273521E129E98434007C4E96 /* Resources */,
-				27DB29AE29EC696E00988800 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

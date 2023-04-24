@@ -15,7 +15,6 @@
 		2777558529EB4CEA0098DE68 /* SetPasscodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2777558429EB4CEA0098DE68 /* SetPasscodeVC.swift */; };
 		2777558829EB4D9E0098DE68 /* PasscodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2777558729EB4D9E0098DE68 /* PasscodeInputView.swift */; };
 		27B65D1629EC58DB00D47112 /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B65D1529EC58DB00D47112 /* UIComponents.framework */; };
-		27B65D1729EC58DB00D47112 /* UIComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27B65D1529EC58DB00D47112 /* UIComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		27EBE5A529EDC19D006ECFFB /* PasscodeOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EBE5A429EDC19D006ECFFB /* PasscodeOptionsView.swift */; };
 		27EBE5A829EDE345006ECFFB /* ConfirmPasscodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EBE5A729EDE345006ECFFB /* ConfirmPasscodeVC.swift */; };
 		27EBE5AF29EDE92D006ECFFB /* ActivateBiometricVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EBE5AE29EDE92D006ECFFB /* ActivateBiometricVC.swift */; };
@@ -30,20 +29,6 @@
 			remoteInfo = UIPasscode;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		27B65D1829EC58DB00D47112 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				27B65D1729EC58DB00D47112 /* UIComponents.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		27764E4729F135EE00A45DAF /* UIWalletHome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIWalletHome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -210,7 +195,6 @@
 				2777556329EB4CA10098DE68 /* Sources */,
 				2777556429EB4CA10098DE68 /* Frameworks */,
 				2777556529EB4CA10098DE68 /* Resources */,
-				27B65D1829EC58DB00D47112 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

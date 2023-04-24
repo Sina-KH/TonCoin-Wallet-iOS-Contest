@@ -10,27 +10,9 @@
 		275C577F29E04E82002531AF /* WalletCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 275C577E29E04E82002531AF /* WalletCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		275C578629E04E9D002531AF /* WalletCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C578529E04E9D002531AF /* WalletCore.swift */; };
 		275C586B29E052F6002531AF /* TonBinding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275C57B529E04F51002531AF /* TonBinding.framework */; };
-		275C586C29E052F6002531AF /* TonBinding.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 275C57B529E04F51002531AF /* TonBinding.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		275C586F29E052F7002531AF /* SSignalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 275C586929E052F1002531AF /* SSignalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		27DB29B029EC697E00988800 /* SwiftSignalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29AF29EC697E00988800 /* SwiftSignalKit.framework */; };
-		27DB29B129EC697E00988800 /* SwiftSignalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29AF29EC697E00988800 /* SwiftSignalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		27E391D529F68A2F00E91CBC /* SSignalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E391D429F68A2F00E91CBC /* SSignalKit.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		275C586D29E052F6002531AF /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				27DB29B129EC697E00988800 /* SwiftSignalKit.framework in Embed Frameworks */,
-				275C586C29E052F6002531AF /* TonBinding.framework in Embed Frameworks */,
-				275C586F29E052F7002531AF /* SSignalKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2747981529E0540900330D0C /* SignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,6 +22,7 @@
 		275C57B529E04F51002531AF /* TonBinding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TonBinding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		275C586929E052F1002531AF /* SSignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SSignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27DB29AF29EC697E00988800 /* SwiftSignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftSignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27E391D429F68A2F00E91CBC /* SSignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SSignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27E391D529F68A2F00E91CBC /* SSignalKit.framework in Frameworks */,
 				275C586B29E052F6002531AF /* TonBinding.framework in Frameworks */,
 				27DB29B029EC697E00988800 /* SwiftSignalKit.framework in Frameworks */,
 			);
@@ -84,6 +68,7 @@
 		275C57B429E04F51002531AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				27E391D429F68A2F00E91CBC /* SSignalKit.framework */,
 				27DB29AF29EC697E00988800 /* SwiftSignalKit.framework */,
 				2747981529E0540900330D0C /* SignalKit.framework */,
 				275C586929E052F1002531AF /* SSignalKit.framework */,
@@ -114,7 +99,6 @@
 				275C577729E04E82002531AF /* Sources */,
 				275C577829E04E82002531AF /* Frameworks */,
 				275C577929E04E82002531AF /* Resources */,
-				275C586D29E052F6002531AF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

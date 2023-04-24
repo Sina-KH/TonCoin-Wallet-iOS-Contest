@@ -10,10 +10,8 @@
 		2719621D29F1BA7A00B5B59F /* WalletTransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719621C29F1BA7A00B5B59F /* WalletTransactionCell.swift */; };
 		2719622529F1C55F00B5B59F /* WalletHomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719622429F1C55F00B5B59F /* WalletHomeVM.swift */; };
 		2719622729F1C71600B5B59F /* SwiftSignalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2719622629F1C71600B5B59F /* SwiftSignalKit.framework */; };
-		2719622829F1C71700B5B59F /* SwiftSignalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2719622629F1C71600B5B59F /* SwiftSignalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2736AAA429F3298C009FFBE2 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2736AAA329F3298C009FFBE2 /* BalanceView.swift */; };
 		2749344E29F5D084009976B5 /* UIWalletSend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2749344D29F5D084009976B5 /* UIWalletSend.framework */; };
-		2749344F29F5D084009976B5 /* UIWalletSend.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2749344D29F5D084009976B5 /* UIWalletSend.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2772A87329F2E6010086F0A2 /* WalletCreatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A87229F2E6010086F0A2 /* WalletCreatedView.swift */; };
 		2772A87629F2EEE10086F0A2 /* WalletLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A87529F2EEE10086F0A2 /* WalletLoadingView.swift */; };
 		2772A87829F2F13A0086F0A2 /* EmptyWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A87729F2F13A0086F0A2 /* EmptyWalletView.swift */; };
@@ -23,7 +21,6 @@
 		27764E3A29F134F000A45DAF /* UIWalletHome.h in Headers */ = {isa = PBXBuildFile; fileRef = 27764E2C29F134F000A45DAF /* UIWalletHome.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27764E4629F1357000A45DAF /* WalletHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27764E4529F1357000A45DAF /* WalletHomeVC.swift */; };
 		27764E5C29F1750A00A45DAF /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27764E5B29F1750A00A45DAF /* UIComponents.framework */; };
-		27764E5D29F1750A00A45DAF /* UIComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27764E5B29F1750A00A45DAF /* UIComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		278C3A1729F1875100BD16E8 /* BalanceHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278C3A1629F1875100BD16E8 /* BalanceHeaderView.swift */; };
 		27E643CA29F40719006B20FC /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643C929F40719006B20FC /* BubbleView.swift */; };
 		27E643CE29F40FF7006B20FC /* ReceiveVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643CD29F40FF7006B20FC /* ReceiveVC.swift */; };
@@ -40,22 +37,6 @@
 			remoteInfo = UIWalletHome;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		27764E5E29F1750A00A45DAF /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				27764E5D29F1750A00A45DAF /* UIComponents.framework in Embed Frameworks */,
-				2749344F29F5D084009976B5 /* UIWalletSend.framework in Embed Frameworks */,
-				2719622829F1C71700B5B59F /* SwiftSignalKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2719621C29F1BA7A00B5B59F /* WalletTransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTransactionCell.swift; sourceTree = "<group>"; };
@@ -246,7 +227,6 @@
 				27764E2529F134F000A45DAF /* Sources */,
 				27764E2629F134F000A45DAF /* Frameworks */,
 				27764E2729F134F000A45DAF /* Resources */,
-				27764E5E29F1750A00A45DAF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

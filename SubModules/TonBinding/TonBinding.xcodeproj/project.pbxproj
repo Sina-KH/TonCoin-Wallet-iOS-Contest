@@ -11,7 +11,6 @@
 		275C57B229E04F2C002531AF /* TON.mm in Sources */ = {isa = PBXBuildFile; fileRef = 275C57B029E04F2C002531AF /* TON.mm */; };
 		275C57B329E04F2C002531AF /* TON.h in Headers */ = {isa = PBXBuildFile; fileRef = 275C57B129E04F2C002531AF /* TON.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		275C586229E051C1002531AF /* SSignalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275C585429E050C0002531AF /* SSignalKit.framework */; };
-		275C586329E051C1002531AF /* SSignalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 275C585429E050C0002531AF /* SSignalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		275EC52029E8129600EE8B66 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 275EC4B429E8129300EE8B66 /* libcrypto.a */; };
 		275EC52129E8129600EE8B66 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 275EC4B529E8129300EE8B66 /* libssl.a */; };
 		275EC52229E8129600EE8B66 /* pem2.h in Headers */ = {isa = PBXBuildFile; fileRef = 275EC4B829E8129400EE8B66 /* pem2.h */; };
@@ -173,7 +172,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				275EC5B429E8167800EE8B66 /* libz.1.tbd in Embed Frameworks */,
-				275C586329E051C1002531AF /* SSignalKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
