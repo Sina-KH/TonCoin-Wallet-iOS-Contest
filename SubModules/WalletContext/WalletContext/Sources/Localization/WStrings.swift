@@ -100,6 +100,7 @@ public enum WStrings: String {
     case Wallet_SendAmount_SendAll = "Wallet.SendAmount.SendAll"
     case Wallet_SendAmount_Edit = "Wallet.SendAmount.Edit"
     case Wallet_SendAmount_Continue = "Wallet.SendAmount.Continue"
+    case Wallet_SendAmount_NotEnoughFunds = "Wallet.SendAmount.NotEnoughFunds"
     case Wallet_Navigation_Back = "Wallet.Navigation.Back"
     case Wallet_Navigation_Done = "Wallet.Navigation.Done"
     case Wallet_Navigation_Cancel = "Wallet.Navigation.Cancel"

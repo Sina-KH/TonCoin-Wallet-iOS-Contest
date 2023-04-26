@@ -29,7 +29,8 @@ class WalletHomeVM {
 
     // MARK: - Wallet Public Variables
     var transactions: [WalletTransaction]? = nil
-
+    var combinedState: CombinedWalletState?
+    
     // MARK: - Wallet Logic Variables
     private let stateDisposable = MetaDisposable()
     private let transactionListDisposable = MetaDisposable()
@@ -39,7 +40,6 @@ class WalletHomeVM {
     private var loadingMoreTransactions: Bool = false
     private var canLoadMoreTransactions: Bool = true
     private var reloadingState: Bool = false
-    private var combinedState: CombinedWalletState?
     private let statePromise = Promise<(CombinedWalletState, Bool)>()
     
     // MARK: - Refresh the transactions

@@ -13,11 +13,13 @@ import WalletCore
 public class SendVC: WViewController {
     
     // MARK: - Initializer
-    let walletContext: WalletContext
-    let walletInfo: WalletInfo
-    public init(walletContext: WalletContext, walletInfo: WalletInfo) {
+    private let walletContext: WalletContext
+    private let walletInfo: WalletInfo
+    private let balance: Int64
+    public init(walletContext: WalletContext, walletInfo: WalletInfo, balance: Int64) {
         self.walletContext = walletContext
         self.walletInfo = walletInfo
+        self.balance = balance
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder: NSCoder) {
@@ -197,7 +199,8 @@ public class SendVC: WViewController {
         }
         navigationController?.pushViewController(SendAmountVC(walletContext: walletContext,
                                                               walletInfo: walletInfo,
-                                                              addressToSend: addressField.text),
+                                                              addressToSend: addressField.text,
+                                                              balance: balance),
                                                  animated: true)
     }
 }

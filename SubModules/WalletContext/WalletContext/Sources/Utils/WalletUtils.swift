@@ -40,7 +40,7 @@ public func walletInvoiceUrl(address: String, amount: String? = nil, comment: St
 
 private let maxIntegral: Int64 = Int64.max / 1000000000
 
-func amountValue(_ string: String) -> Int64 {
+public func amountValue(_ string: String) -> Int64 {
     let string = string.replacingOccurrences(of: ",", with: ".")
     if let range = string.range(of: ".") {
         let integralPart = String(string[..<range.lowerBound])

@@ -13,13 +13,15 @@ import WalletCore
 public class SendAmountVC: WViewController {
     
     // MARK: - Initializer
-    let walletContext: WalletContext
-    let walletInfo: WalletInfo
-    let addressToSend: String
-    public init(walletContext: WalletContext, walletInfo: WalletInfo, addressToSend: String) {
+    private let walletContext: WalletContext
+    private let walletInfo: WalletInfo
+    private let addressToSend: String
+    private let balance: Int64
+    public init(walletContext: WalletContext, walletInfo: WalletInfo, addressToSend: String, balance: Int64) {
         self.walletContext = walletContext
         self.walletInfo = walletInfo
         self.addressToSend = addressToSend
+        self.balance = balance
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder: NSCoder) {
@@ -33,6 +35,10 @@ public class SendAmountVC: WViewController {
     }
 
     private var stackViewBottomConstraint: NSLayoutConstraint!
+    private var amountView: WAmountInput!
+    private var insufficientFundsLabel: UILabel!
+    private var sendAllSwitch: UISwitch!
+    private var continueButton: UIButton!
 
     func setupViews() {
         navigationItem.title = WStrings.Wallet_Send_Title.localized
@@ -74,20 +80,33 @@ public class SendAmountVC: WViewController {
         let editButton = WButton.setupInstance(.secondary)
         editButton.translatesAutoresizingMaskIntoConstraints = false
         editButton.setTitle(WStrings.Wallet_SendAmount_Edit.localized, for: .normal)
+        editButton.addTarget(self, action: #selector(editPressed), for: .touchUpInside)
         sendToStackView.addArrangedSubview(editButton)
 
         // amount
         let amountContainerView = UIView()
         amountContainerView.translatesAutoresizingMaskIntoConstraints = false
-        let amountView = WAmountInput()
+        amountContainerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(amountContainerPressed)))
+        amountView = WAmountInput(delegate: self)
         amountView.translatesAutoresizingMaskIntoConstraints = false
         amountContainerView.addSubview(amountView)
         NSLayoutConstraint.activate([
             amountView.centerYAnchor.constraint(equalTo: amountContainerView.centerYAnchor),
-            amountView.heightAnchor.constraint(equalToConstant: 56),
             amountView.leftAnchor.constraint(greaterThanOrEqualTo: amountContainerView.leftAnchor, constant: 8),
             amountView.rightAnchor.constraint(lessThanOrEqualTo: amountContainerView.rightAnchor, constant: -8),
             amountView.centerXAnchor.constraint(equalTo: amountContainerView.centerXAnchor)
+        ])
+        // insufficient funds error
+        insufficientFundsLabel = UILabel()
+        insufficientFundsLabel.translatesAutoresizingMaskIntoConstraints = false
+        insufficientFundsLabel.font = .systemFont(ofSize: 17, weight: .regular)
+        insufficientFundsLabel.textColor = currentTheme.negativeAmount
+        insufficientFundsLabel.text = WStrings.Wallet_SendAmount_NotEnoughFunds.localized
+        insufficientFundsLabel.isHidden = true
+        amountContainerView.addSubview(insufficientFundsLabel)
+        NSLayoutConstraint.activate([
+            insufficientFundsLabel.centerXAnchor.constraint(equalTo: amountContainerView.centerXAnchor),
+            insufficientFundsLabel.topAnchor.constraint(equalTo: amountView.bottomAnchor, constant: 1)
         ])
         stackView.addArrangedSubview(amountContainerView)
 
@@ -113,15 +132,19 @@ public class SendAmountVC: WViewController {
         ])
         sendAllStackView.addArrangedSubview(gemIcon)
         let allAmountLabel = UILabel()
-        allAmountLabel.text = "3.14" // TODO:: Balance here
+        allAmountLabel.text = formatBalanceText(balance)
         sendAllStackView.addArrangedSubview(allAmountLabel)
         sendAllStackView.addArrangedSubview(UIView())
-        sendAllStackView.addArrangedSubview(UISwitch())
+        sendAllSwitch = UISwitch()
+        sendAllSwitch.addTarget(self, action: #selector(sendAllToggle), for: .valueChanged)
+        sendAllStackView.addArrangedSubview(sendAllSwitch)
 
         // continue button
-        let continueButton = WButton.setupInstance(.primary)
+        continueButton = WButton.setupInstance(.primary)
         continueButton.translatesAutoresizingMaskIntoConstraints = false
         continueButton.setTitle(WStrings.Wallet_SendAmount_Continue.localized, for: .normal)
+        continueButton.addTarget(self, action: #selector(continuePressed), for: .touchUpInside)
+        continueButton.isEnabled = false
         stackView.addArrangedSubview(continueButton)
 
         // listen for keyboard
@@ -133,8 +156,31 @@ public class SendAmountVC: WViewController {
     func updateTheme() {
     }
     
-    @objc func cancelPressed() {
-        dismiss(animated: true)
+    @objc func editPressed() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func amountContainerPressed() {
+        if amountView.isFirstResponder {
+            amountView.resignFirstResponder()
+        } else {
+            amountView.becomeFirstResponder()
+        }
+    }
+    
+    @objc func sendAllToggle() {
+        if sendAllSwitch.isOn {
+            amountView.text = formatBalanceText(balance)
+            amountView.textViewDidChange(amountView)
+        }
+    }
+    
+    @objc func continuePressed() {
+        let amount = amountValue(amountView.text)
+
+        let sendConfirmVC = SendConfirmVC(walletContext: walletContext, walletInfo: walletInfo,
+                                          addressToSend: addressToSend, amount: amount)
+        navigationController?.pushViewController(sendConfirmVC, animated: true)
     }
 }
 
@@ -150,6 +196,21 @@ extension SendAmountVC: WKeyboardObserverDelegate {
         UIView.animate(withDuration: 0.25) {
             self.stackViewBottomConstraint.constant = -12
             self.view.layoutIfNeeded()
+        }
+    }
+}
+
+extension SendAmountVC: WAmountInputDelegate {
+    public func amountChanged() {
+        let amount = amountValue(amountView.text)
+        if amount > balance {
+            insufficientFundsLabel.isHidden = false
+            amountView.textColor = currentTheme.negativeAmount
+            continueButton.isEnabled = false
+        } else {
+            insufficientFundsLabel.isHidden = true
+            amountView.textColor = currentTheme.primaryLabel
+            continueButton.isEnabled = true
         }
     }
 }

@@ -125,6 +125,7 @@
 "Wallet.SendAmount.SendAll" = "Send all"; // NEW
 "Wallet.SendAmount.Edit" = "Edit"; // NEW
 "Wallet.SendAmount.Continue" = "Continue"; // NEW
+"Wallet.SendAmount.NotEnoughFunds" = "Insufficient funds"; // NEW
 
 // SendComment
 "Wallet.SendComment.CommentTitle" = "COMMENT (OPTIONAL)"; // NEW
@@ -220,8 +221,6 @@
 "Wallet.TransactionInfo.OtherFeeInfoUrl" = "Blockchain validators collect a tiny fee for processing your decentralized transactions. [More info]()";
 "Wallet.Send.NetworkErrorTitle" = "No network";
 "Wallet.Send.NetworkErrorText" = "Couldn't send TON. Please make sure your internet connection is working and try again.";
-"Wallet.Send.ErrorNotEnoughFundsTitle" = "Insufficient TON";
-"Wallet.Send.ErrorNotEnoughFundsText" = "Unfortunately, your transfer couldn't be completed. You don't have enough TON.";
 "Wallet.Send.ErrorDecryptionFailed" = "Please make sure that your device has a passcode set in iOS Settings and try again.";
 "Wallet.Send.UninitializedTitle" = "Warning";
 "Wallet.Send.UninitializedText" = "This address belongs to an empty wallet. Are you sure you want to transfer TON to it?";
