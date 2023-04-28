@@ -30,6 +30,7 @@ public class IntroVC: WViewController {
     }
     
     func setupViews() {
+        // bottom create wallet action
         let createWalletButton = BottomAction(
             title: WStrings.Wallet_Intro_CreateWallet.localized,
             onPress: {
@@ -37,6 +38,7 @@ public class IntroVC: WViewController {
             }
         )
         
+        // bottom import wallet action
         let importExistingWalletButton = BottomAction(
             title: WStrings.Wallet_Intro_ImportExisting.localized,
             onPress: {
@@ -44,6 +46,7 @@ public class IntroVC: WViewController {
             }
         )
         
+        // bottom actions view
         let bottomActionsView = BottomActionsView(primaryAction: createWalletButton,
                                                   secondaryAction: importExistingWalletButton)
         view.addSubview(bottomActionsView)
@@ -52,7 +55,8 @@ public class IntroVC: WViewController {
             bottomActionsView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 48),
             bottomActionsView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -48),
         ])
-        
+
+        // top view
         let topView = UIView()
         topView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(topView)
@@ -63,6 +67,7 @@ public class IntroVC: WViewController {
             topView.bottomAnchor.constraint(equalTo: bottomActionsView.topAnchor)
         ])
 
+        // header, center of top view
         let headerView = HeaderView(animationName: "Start",
                                     animationPlaybackMode: .loop,
                                     title: WStrings.Wallet_Intro_Title.localized,

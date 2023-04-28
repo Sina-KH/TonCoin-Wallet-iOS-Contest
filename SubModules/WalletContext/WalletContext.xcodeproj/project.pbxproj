@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2719622B29F1D9A400B5B59F /* WalletUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719622A29F1D9A400B5B59F /* WalletUtils.swift */; };
 		273521E729E98434007C4E96 /* WalletContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 273521E629E98434007C4E96 /* WalletContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		273521F329E98449007C4E96 /* StringPluralization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521EE29E98449007C4E96 /* StringPluralization.swift */; };
+		273521F329E98449007C4E96 /* StringPluralizationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521EE29E98449007C4E96 /* StringPluralizationHelper.swift */; };
 		273521F429E98449007C4E96 /* WalletContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521F129E98449007C4E96 /* WalletContext.swift */; };
 		273521F529E98449007C4E96 /* WalletPresentationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521ED29E98448007C4E96 /* WalletPresentationData.swift */; };
 		273521FE29E98514007C4E96 /* WStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521FD29E98514007C4E96 /* WStrings.swift */; };
@@ -20,7 +20,7 @@
 		27DB29AC29EC696E00988800 /* SwiftSignalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29AB29EC696E00988800 /* SwiftSignalKit.framework */; };
 		27DB29B329EC699600988800 /* NumberPluralizationForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29B229EC699600988800 /* NumberPluralizationForm.framework */; };
 		27DB29D229EC6E4200988800 /* WalletCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29D129EC6E4200988800 /* WalletCore.framework */; };
-		27E643DD29F425D4006B20FC /* UrlEscaping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643DC29F425D4006B20FC /* UrlEscaping.swift */; };
+		27E643DD29F425D4006B20FC /* UrlEscapingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643DC29F425D4006B20FC /* UrlEscapingHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +28,7 @@
 		273521E329E98434007C4E96 /* WalletContext.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WalletContext.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		273521E629E98434007C4E96 /* WalletContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletContext.h; sourceTree = "<group>"; };
 		273521ED29E98448007C4E96 /* WalletPresentationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletPresentationData.swift; sourceTree = "<group>"; };
-		273521EE29E98449007C4E96 /* StringPluralization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringPluralization.swift; sourceTree = "<group>"; };
+		273521EE29E98449007C4E96 /* StringPluralizationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringPluralizationHelper.swift; sourceTree = "<group>"; };
 		273521F129E98449007C4E96 /* WalletContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletContext.swift; sourceTree = "<group>"; };
 		273521FD29E98514007C4E96 /* WStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WStrings.swift; sourceTree = "<group>"; };
 		2735220329E98972007C4E96 /* WColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WColors.swift; sourceTree = "<group>"; };
@@ -38,7 +38,7 @@
 		27DB29AB29EC696E00988800 /* SwiftSignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftSignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27DB29B229EC699600988800 /* NumberPluralizationForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NumberPluralizationForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27DB29D129EC6E4200988800 /* WalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		27E643DC29F425D4006B20FC /* UrlEscaping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlEscaping.swift; sourceTree = "<group>"; };
+		27E643DC29F425D4006B20FC /* UrlEscapingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlEscapingHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,12 +93,10 @@
 			isa = PBXGroup;
 			children = (
 				2772A87B29F301540086F0A2 /* Helpers */,
-				27764E5429F1460D00A45DAF /* Keychain */,
 				2735220229E98968007C4E96 /* Theme */,
 				273521FA29E984D1007C4E96 /* Localization */,
 				2719622929F1D99200B5B59F /* Utils */,
 				273521F129E98449007C4E96 /* WalletContext.swift */,
-				273521EE29E98449007C4E96 /* StringPluralization.swift */,
 				273521ED29E98448007C4E96 /* WalletPresentationData.swift */,
 			);
 			path = Sources;
@@ -125,17 +123,11 @@
 			isa = PBXGroup;
 			children = (
 				2772A87929F301510086F0A2 /* ScreenHelpers.swift */,
-				27E643DC29F425D4006B20FC /* UrlEscaping.swift */,
+				27E643DC29F425D4006B20FC /* UrlEscapingHelper.swift */,
+				27764E5529F1461A00A45DAF /* KeychainHelper.swift */,
+				273521EE29E98449007C4E96 /* StringPluralizationHelper.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		27764E5429F1460D00A45DAF /* Keychain */ = {
-			isa = PBXGroup;
-			children = (
-				27764E5529F1461A00A45DAF /* KeychainHelper.swift */,
-			);
-			path = Keychain;
 			sourceTree = "<group>";
 		};
 		27DB29AA29EC696E00988800 /* Frameworks */ = {
@@ -228,9 +220,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				273521FE29E98514007C4E96 /* WStrings.swift in Sources */,
-				273521F329E98449007C4E96 /* StringPluralization.swift in Sources */,
+				273521F329E98449007C4E96 /* StringPluralizationHelper.swift in Sources */,
 				2719622B29F1D9A400B5B59F /* WalletUtils.swift in Sources */,
-				27E643DD29F425D4006B20FC /* UrlEscaping.swift in Sources */,
+				27E643DD29F425D4006B20FC /* UrlEscapingHelper.swift in Sources */,
 				27764E5629F1461A00A45DAF /* KeychainHelper.swift in Sources */,
 				2772A87A29F301510086F0A2 /* ScreenHelpers.swift in Sources */,
 				273521F529E98449007C4E96 /* WalletPresentationData.swift in Sources */,

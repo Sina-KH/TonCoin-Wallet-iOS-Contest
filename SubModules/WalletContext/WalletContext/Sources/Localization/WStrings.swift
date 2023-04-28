@@ -101,6 +101,37 @@ public enum WStrings: String {
     case Wallet_SendAmount_Edit = "Wallet.SendAmount.Edit"
     case Wallet_SendAmount_Continue = "Wallet.SendAmount.Continue"
     case Wallet_SendAmount_NotEnoughFunds = "Wallet.SendAmount.NotEnoughFunds"
+    case Wallet_SendConfirm_Comment = "Wallet.SendConfirm.Comment"
+    case Wallet_SendConfirm_CommentPlaceholder = "Wallet.SendConfirm.CommentPlaceholder"
+    case Wallet_SendConfirm_Hint = "Wallet.SendConfirm.Hint"
+    case Wallet_SendConfirm_HintMessageSizeExceeded = "Wallet.SendConfirm.HintMessageSizeExceeded"
+    case Wallet_SendConfirm_HintMessageCharactersLeft = "Wallet.SendConfirm.HintMessageCharactersLeft"
+    case Wallet_SendConfirm_Label = "Wallet.SendConfirm.Label"
+    case Wallet_SendConfirm_Recipient = "Wallet.SendConfirm.Recipient"
+    case Wallet_SendConfirm_Amount = "Wallet.SendConfirm.Amount"
+    case Wallet_SendConfirm_Fee = "Wallet.SendConfirm.Fee"
+    case Wallet_SendConfirm_ConfirmAndSend = "Wallet.SendConfirm.ConfirmAndSend"
+    case Wallet_SendConfirm_NetworkErrorTitle = "Wallet.SendConfirm.NetworkErrorTitle"
+    case Wallet_SendConfirm_NetworkErrorText = "Wallet.SendConfirm.NetworkErrorText"
+    case Wallet_SendConfirm_ErrorDecryptionFailed = "Wallet.SendConfirm.ErrorDecryptionFailed"
+    case Wallet_SendConfirm_ErrorNotEnoughFundsTitle = "Wallet.SendConfirm.ErrorNotEnoughFundsTitle"
+    case Wallet_SendConfirm_ErrorNotEnoughFundsText = "Wallet.SendConfirm.ErrorNotEnoughFundsText"
+    case Wallet_SendConfirm_ErrorInvalidAddress = "Wallet.SendConfirm.ErrorInvalidAddress"
+    case Wallet_SendConfirm_UnknownError = "Wallet.SendConfirm.UnknownError"
+    case Wallet_SendConfirm_Confirmation = "Wallet.SendConfirm.Confirmation"
+    case Wallet_SendConfirm_ConfirmationText = "Wallet.SendConfirm.ConfirmationText"
+    case Wallet_SendConfirm_CommentNotEncrypted = "Wallet.SendConfirm.CommentNotEncrypted"
+    case Wallet_SendConfirm_ConfirmationConfirm = "Wallet.SendConfirm.ConfirmationConfirm"
+    case Wallet_Sending_Title = "Wallet.Sending.Title"
+    case Wallet_Sending_Text = "Wallet.Sending.Text"
+    case Wallet_Sending_UninitializedTitle = "Wallet.Sending.UninitializedTitle"
+    case Wallet_Sending_UninitializedText = "Wallet.Sending.UninitializedText"
+    case Wallet_Sending_SendAnyway = "Wallet.Sending.SendAnyway"
+    case Wallet_Sending_ViewWallet = "Wallet.Sending.ViewWallet"
+    case Wallet_Sent_Title = "Wallet.Sent.Title"
+    case Wallet_Sent_Text = "Wallet.Sent.Text"
+    case Wallet_Sent_ViewWallet = "Wallet.Sent.ViewWallet"
+    case Wallet_Unlock_Title = "Wallet.Unlock.Title"
     case Wallet_Navigation_Back = "Wallet.Navigation.Back"
     case Wallet_Navigation_Done = "Wallet.Navigation.Done"
     case Wallet_Navigation_Cancel = "Wallet.Navigation.Cancel"
@@ -131,12 +162,49 @@ public enum WStrings: String {
     public static func Wallet_Receive_Description(coin: String) -> String {
         return fillValues(WStrings.Wallet_Receive_Description.localized, values: [coin])
     }
+    
+    public static func Wallet_SendConfirm_HintMessageSizeExceeded(chars: Int) -> String {
+        return fillValues(WStrings.Wallet_SendConfirm_HintMessageSizeExceeded.localized, values: ["\(chars)"])
+    }
+    
+    public static func Wallet_SendConfirm_HintMessageCharactersLeft(chars: Int) -> String {
+        return fillValues(WStrings.Wallet_SendConfirm_HintMessageCharactersLeft.localized, values: ["\(chars)"])
+    }
+    
+    public static func Wallet_SendConfirm_ConfirmationText(textAttr: [NSAttributedString.Key: Any],
+                                                           address: NSAttributedString,
+                                                           amount: NSAttributedString,
+                                                           fee: NSAttributedString) -> NSMutableAttributedString {
+        return fillValues(WStrings.Wallet_SendConfirm_ConfirmationText.localized,
+                          textAttr: textAttr,
+                          values: [address, amount, fee])
+    }
+    
+    public static func Wallet_Sent_Text(amount: String) -> String {
+        return fillValues(WStrings.Wallet_Sent_Text.localized, values: [amount])
+    }
 }
 
 fileprivate func fillValues(_ format: String, values: [String]) -> String {
     var result = format
     for (index, value) in values.enumerated() {
         result = result.replacingOccurrences(of: "%\(index + 1)$@", with: value)
+    }
+    return result
+}
+
+fileprivate func fillValues(_ format: String, textAttr: [NSAttributedString.Key: Any], values: [NSAttributedString]) -> NSMutableAttributedString {
+    var formatString = format
+    let result = NSMutableAttributedString()
+    for (index, value) in values.enumerated() {
+        if let valueRange = format.range(of: "%\(index + 1)%@") {
+            // the string before format value
+            let stringBeforeValue = String(formatString[...valueRange.lowerBound])
+            formatString = String(formatString[valueRange.upperBound...])
+            result.append(NSAttributedString(string: String(stringBeforeValue)))
+            // value
+            result.append(value)
+        }
     }
     return result
 }

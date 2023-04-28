@@ -28,6 +28,7 @@ class PasscodeInputView: UIStackView {
 
     // MARK: Init and setup view
     weak var delegate: PasscodeInputViewDelegate?
+    let theme: WThemePasscodeInput
 
     var circles = [UIView]()
     var currentPasscode = String() {
@@ -39,8 +40,9 @@ class PasscodeInputView: UIStackView {
     var maxPasscodeLength = 6
     var passcodeLength = PasscodeInputView.defaultPasscodeLength
 
-    init(delegate: PasscodeInputViewDelegate) {
+    init(delegate: PasscodeInputViewDelegate?, theme: WThemePasscodeInput = currentTheme.setPasscodeInput) {
         self.delegate = delegate
+        self.theme = theme
         super.init(frame: CGRect.zero)
         setupView()
     }
@@ -64,7 +66,7 @@ class PasscodeInputView: UIStackView {
             let circle = UIView()
             circle.translatesAutoresizingMaskIntoConstraints = false
             circle.layer.cornerRadius = 8
-            circle.layer.borderColor = currentTheme.border.cgColor
+            circle.layer.borderColor = theme.border.cgColor
             circle.layer.borderWidth = 1
             NSLayoutConstraint.activate([
                 circle.widthAnchor.constraint(equalToConstant: 16),
@@ -103,7 +105,7 @@ class PasscodeInputView: UIStackView {
         // update circle colors
         let textLength = currentPasscode.count
         for i in 0 ..< maxPasscodeLength {
-            circles[i].backgroundColor = i < textLength ? currentTheme.backgroundReverse : currentTheme.background
+            circles[i].backgroundColor = i < textLength ? theme.fill : theme.empty
         }
         if currentPasscode.count == passcodeLength {
             delegate?.passcodeSelected(passcode: currentPasscode)

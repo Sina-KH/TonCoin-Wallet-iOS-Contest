@@ -14,6 +14,7 @@
 		2777557829EB4CA20098DE68 /* UIPasscode.h in Headers */ = {isa = PBXBuildFile; fileRef = 2777556A29EB4CA10098DE68 /* UIPasscode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2777558529EB4CEA0098DE68 /* SetPasscodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2777558429EB4CEA0098DE68 /* SetPasscodeVC.swift */; };
 		2777558829EB4D9E0098DE68 /* PasscodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2777558729EB4D9E0098DE68 /* PasscodeInputView.swift */; };
+		2779A84E29FBE48A00E39FF5 /* UnlockVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779A84D29FBE48A00E39FF5 /* UnlockVC.swift */; };
 		27B65D1629EC58DB00D47112 /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B65D1529EC58DB00D47112 /* UIComponents.framework */; };
 		27EBE5A529EDC19D006ECFFB /* PasscodeOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EBE5A429EDC19D006ECFFB /* PasscodeOptionsView.swift */; };
 		27EBE5A829EDE345006ECFFB /* ConfirmPasscodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EBE5A729EDE345006ECFFB /* ConfirmPasscodeVC.swift */; };
@@ -40,6 +41,7 @@
 		2777557629EB4CA20098DE68 /* UIPasscodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPasscodeTests.swift; sourceTree = "<group>"; };
 		2777558429EB4CEA0098DE68 /* SetPasscodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasscodeVC.swift; sourceTree = "<group>"; };
 		2777558729EB4D9E0098DE68 /* PasscodeInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeInputView.swift; sourceTree = "<group>"; };
+		2779A84D29FBE48A00E39FF5 /* UnlockVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockVC.swift; sourceTree = "<group>"; };
 		27B65D1529EC58DB00D47112 /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27EBE5A429EDC19D006ECFFB /* PasscodeOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeOptionsView.swift; sourceTree = "<group>"; };
 		27EBE5A729EDE345006ECFFB /* ConfirmPasscodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPasscodeVC.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				2777558329EB4CDA0098DE68 /* SetPasscodeVC */,
 				27EBE5A629EDE2FC006ECFFB /* ConfirmPasscodeVC */,
 				27EBE5AD29EDE91B006ECFFB /* ActivateBiometricVC */,
+				2779A84C29FBE47200E39FF5 /* Unlock */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -146,6 +149,14 @@
 				27EBE5A429EDC19D006ECFFB /* PasscodeOptionsView.swift */,
 			);
 			path = CommonViews;
+			sourceTree = "<group>";
+		};
+		2779A84C29FBE47200E39FF5 /* Unlock */ = {
+			isa = PBXGroup;
+			children = (
+				2779A84D29FBE48A00E39FF5 /* UnlockVC.swift */,
+			);
+			path = Unlock;
 			sourceTree = "<group>";
 		};
 		27B65D1429EC58DB00D47112 /* Frameworks */ = {
@@ -288,6 +299,7 @@
 				27EBE5A529EDC19D006ECFFB /* PasscodeOptionsView.swift in Sources */,
 				2777558829EB4D9E0098DE68 /* PasscodeInputView.swift in Sources */,
 				2777558529EB4CEA0098DE68 /* SetPasscodeVC.swift in Sources */,
+				2779A84E29FBE48A00E39FF5 /* UnlockVC.swift in Sources */,
 				27EBE5A829EDE345006ECFFB /* ConfirmPasscodeVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

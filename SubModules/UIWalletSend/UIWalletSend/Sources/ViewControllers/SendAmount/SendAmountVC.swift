@@ -100,7 +100,7 @@ public class SendAmountVC: WViewController {
         insufficientFundsLabel = UILabel()
         insufficientFundsLabel.translatesAutoresizingMaskIntoConstraints = false
         insufficientFundsLabel.font = .systemFont(ofSize: 17, weight: .regular)
-        insufficientFundsLabel.textColor = currentTheme.negativeAmount
+        insufficientFundsLabel.textColor = currentTheme.error
         insufficientFundsLabel.text = WStrings.Wallet_SendAmount_NotEnoughFunds.localized
         insufficientFundsLabel.isHidden = true
         amountContainerView.addSubview(insufficientFundsLabel)
@@ -205,7 +205,7 @@ extension SendAmountVC: WAmountInputDelegate {
         let amount = amountValue(amountView.text)
         if amount > balance {
             insufficientFundsLabel.isHidden = false
-            amountView.textColor = currentTheme.negativeAmount
+            amountView.textColor = currentTheme.error
             continueButton.isEnabled = false
         } else {
             insufficientFundsLabel.isHidden = true

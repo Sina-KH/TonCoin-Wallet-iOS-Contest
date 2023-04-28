@@ -11,6 +11,7 @@ import UIWalletHome
 import UIComponents
 import WalletContext
 import WalletCore
+import SwiftSignalKit
 
 class SplashVC: WViewController {
 
@@ -56,6 +57,6 @@ extension SplashVC: SplashVMDelegate {
     }
     
     func errorOccured() {
-        
+        // TODO::
     }
 }

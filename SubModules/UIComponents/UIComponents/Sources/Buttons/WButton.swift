@@ -12,7 +12,7 @@ fileprivate let _borderRadius = 12.0
 fileprivate let _font = UIFont.systemFont(ofSize: 17, weight: .semibold)
 
 @IBDesignable
-public class WButton: UIButton {
+public class WButton: WBaseButton {
 
     public static let defaultHeight = CGFloat(50.0)
 
@@ -21,6 +21,7 @@ public class WButton: UIButton {
         case primary
         case secondary
         case accent
+        case none
     }
     private var usage = Usage.primary
 

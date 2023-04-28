@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		270CDAFE29FAFD3900308DFF /* SendConfirmVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270CDAFD29FAFD3900308DFF /* SendConfirmVM.swift */; };
 		273F7FF029F9B83F0075E2E8 /* SendConfirmVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273F7FEF29F9B83F0075E2E8 /* SendConfirmVC.swift */; };
 		2749341E29F5D014009976B5 /* UIWalletSend.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2749341D29F5D014009976B5 /* UIWalletSend.docc */; };
 		2749342429F5D014009976B5 /* UIWalletSend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2749341929F5D014009976B5 /* UIWalletSend.framework */; };
@@ -18,6 +19,10 @@
 		2749345829F5D244009976B5 /* WalletContext.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2749345729F5D244009976B5 /* WalletContext.framework */; };
 		2749345C29F5D24A009976B5 /* WalletCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2749345B29F5D24A009976B5 /* WalletCore.framework */; };
 		2749345F29F5D24D009976B5 /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2749345E29F5D24D009976B5 /* UIComponents.framework */; };
+		2779A84629FBB74400E39FF5 /* SendingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779A84529FBB74400E39FF5 /* SendingVC.swift */; };
+		2779A84829FBBB8200E39FF5 /* SendingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779A84729FBBB8200E39FF5 /* SendingVM.swift */; };
+		2779A84B29FBC94300E39FF5 /* SentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779A84A29FBC94300E39FF5 /* SentVC.swift */; };
+		27EDEF3929FC45B80057EF71 /* UIPasscode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EDEF3829FC45B80057EF71 /* UIPasscode.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		270CDAFD29FAFD3900308DFF /* SendConfirmVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendConfirmVM.swift; sourceTree = "<group>"; };
 		273F7FEF29F9B83F0075E2E8 /* SendConfirmVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendConfirmVC.swift; sourceTree = "<group>"; };
 		2749341929F5D014009976B5 /* UIWalletSend.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIWalletSend.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2749341C29F5D014009976B5 /* UIWalletSend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIWalletSend.h; sourceTree = "<group>"; };
@@ -43,6 +49,10 @@
 		2749345729F5D244009976B5 /* WalletContext.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletContext.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2749345B29F5D24A009976B5 /* WalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2749345E29F5D24D009976B5 /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2779A84529FBB74400E39FF5 /* SendingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingVC.swift; sourceTree = "<group>"; };
+		2779A84729FBBB8200E39FF5 /* SendingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingVM.swift; sourceTree = "<group>"; };
+		2779A84A29FBC94300E39FF5 /* SentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentVC.swift; sourceTree = "<group>"; };
+		27EDEF3829FC45B80057EF71 /* UIPasscode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIPasscode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27EDEF3929FC45B80057EF71 /* UIPasscode.framework in Frameworks */,
 				2749345C29F5D24A009976B5 /* WalletCore.framework in Frameworks */,
 				2749345F29F5D24D009976B5 /* UIComponents.framework in Frameworks */,
 				2749345829F5D244009976B5 /* WalletContext.framework in Frameworks */,
@@ -67,10 +78,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		270CDAFA29FAD50700308DFF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		273F7FEE29F9B80F0075E2E8 /* SendConfirm */ = {
 			isa = PBXGroup;
 			children = (
+				270CDAFA29FAD50700308DFF /* Views */,
 				273F7FEF29F9B83F0075E2E8 /* SendConfirmVC.swift */,
+				270CDAFD29FAFD3900308DFF /* SendConfirmVM.swift */,
 			);
 			path = SendConfirm;
 			sourceTree = "<group>";
@@ -126,6 +146,8 @@
 				2749344B29F5D05F009976B5 /* Send */,
 				2749344C29F5D05F009976B5 /* SendAmount */,
 				273F7FEE29F9B80F0075E2E8 /* SendConfirm */,
+				2779A84429FBB72F00E39FF5 /* Sending */,
+				2779A84929FBC92200E39FF5 /* Sent */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -150,11 +172,29 @@
 		2749345629F5D244009976B5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				27EDEF3829FC45B80057EF71 /* UIPasscode.framework */,
 				2749345E29F5D24D009976B5 /* UIComponents.framework */,
 				2749345B29F5D24A009976B5 /* WalletCore.framework */,
 				2749345729F5D244009976B5 /* WalletContext.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2779A84429FBB72F00E39FF5 /* Sending */ = {
+			isa = PBXGroup;
+			children = (
+				2779A84529FBB74400E39FF5 /* SendingVC.swift */,
+				2779A84729FBBB8200E39FF5 /* SendingVM.swift */,
+			);
+			path = Sending;
+			sourceTree = "<group>";
+		};
+		2779A84929FBC92200E39FF5 /* Sent */ = {
+			isa = PBXGroup;
+			children = (
+				2779A84A29FBC94300E39FF5 /* SentVC.swift */,
+			);
+			path = Sent;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,10 +307,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2749345529F5D0B6009976B5 /* SendAmountVC.swift in Sources */,
+				2779A84B29FBC94300E39FF5 /* SentVC.swift in Sources */,
 				2749345229F5D0AF009976B5 /* SendVM.swift in Sources */,
 				2749341E29F5D014009976B5 /* UIWalletSend.docc in Sources */,
+				2779A84629FBB74400E39FF5 /* SendingVC.swift in Sources */,
 				273F7FF029F9B83F0075E2E8 /* SendConfirmVC.swift in Sources */,
+				2779A84829FBBB8200E39FF5 /* SendingVM.swift in Sources */,
 				2749345329F5D0AF009976B5 /* SendVC.swift in Sources */,
+				270CDAFE29FAFD3900308DFF /* SendConfirmVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

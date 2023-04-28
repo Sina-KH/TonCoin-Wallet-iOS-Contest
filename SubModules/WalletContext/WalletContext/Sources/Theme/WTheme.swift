@@ -29,6 +29,12 @@ public struct WThemeWordInput {
     public var background: UIColor
 }
 
+public struct WThemePasscodeInput {
+    public var border: UIColor
+    public var empty: UIColor
+    public var fill: UIColor
+}
+
 public struct WThemeToastView {
     public var background: UIColor
     public var tint: UIColor
@@ -38,6 +44,8 @@ public struct WTheme {
     public var primaryButton: WThemePrimaryButton
     public var accentButton: WThemeAccentButton
     public var wordInput: WThemeWordInput
+    public var setPasscodeInput: WThemePasscodeInput
+    public var unlockPasscodeInput: WThemePasscodeInput
     public var balanceHeaderView: WThemeBackgroundHeaderView
     public var toastView: WThemeToastView
     public var background: UIColor
@@ -45,11 +53,14 @@ public struct WTheme {
     public var groupedBackground: UIColor
     public var primaryLabel: UIColor
     public var secondaryLabel: UIColor
+    public var tertiaryLabel: UIColor
     public var border: UIColor
     public var separator: UIColor
     public var tint: UIColor
     public var positiveAmount: UIColor
     public var negativeAmount: UIColor
+    public var warning: UIColor
+    public var error: UIColor
 }
 
 // Current theme now supports both light and dark themes.
@@ -70,6 +81,8 @@ public var currentTheme = WTheme(
     accentButton: WThemeAccentButton(background: _accent,
                                      tint: UIColor.white),
     wordInput: WThemeWordInput(background: WColors.secondaryBackground.color),
+    setPasscodeInput: WThemePasscodeInput(border: _border, empty: _systemBackground, fill: _systemBackgroundReverse),
+    unlockPasscodeInput: WThemePasscodeInput(border: .white, empty: .clear, fill: .white),
     balanceHeaderView: WThemeBackgroundHeaderView(background: .black, headIcons: .white, balance: .white),
     toastView: WThemeToastView(background: _systemBackgroundReverse.withAlphaComponent(0.82), tint: _systemBackground),
     background: _systemBackground,
@@ -77,11 +90,14 @@ public var currentTheme = WTheme(
     groupedBackground: _groupedBackground,
     primaryLabel: _systemBackgroundReverse,
     secondaryLabel: WColors.secondaryLabel.color,
+    tertiaryLabel: _tertiaryLabel,
     border: _border,
     separator: WColors.separator.color,
     tint: .systemBlue,
     positiveAmount: .systemGreen,
-    negativeAmount: .systemRed
+    negativeAmount: .systemRed,
+    warning: .systemOrange,
+    error: .systemRed
 )
 
 fileprivate var _systemBackground: UIColor {
@@ -118,4 +134,12 @@ fileprivate var _border: UIColor {
 
 private var _accent: UIColor {
     return UIColor(red: 0.196, green: 0.667, blue: 0.996, alpha: 1)
+}
+
+private var _tertiaryLabel: UIColor {
+    if #available(iOS 13.0, *) {
+        return .tertiaryLabel
+    } else {
+        return UIColor.black.withAlphaComponent(0.3)
+    }
 }

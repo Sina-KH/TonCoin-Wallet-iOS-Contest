@@ -26,6 +26,8 @@
 		27E643CE29F40FF7006B20FC /* ReceiveVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643CD29F40FF7006B20FC /* ReceiveVC.swift */; };
 		27E643E129F43BDE006B20FC /* QRCodeContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643E029F43BDE006B20FC /* QRCodeContainerView.swift */; };
 		27E643E729F454D5006B20FC /* TransactionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643E629F454D5006B20FC /* TransactionVC.swift */; };
+		27EDEF3E29FC54F90057EF71 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EDEF3D29FC54F90057EF71 /* Identifiable.swift */; };
+		27EDEF4029FC550A0057EF71 /* MergeLists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EDEF3F29FC550A0057EF71 /* MergeLists.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		27E643CD29F40FF7006B20FC /* ReceiveVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveVC.swift; sourceTree = "<group>"; };
 		27E643E029F43BDE006B20FC /* QRCodeContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeContainerView.swift; sourceTree = "<group>"; };
 		27E643E629F454D5006B20FC /* TransactionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionVC.swift; sourceTree = "<group>"; };
+		27EDEF3D29FC54F90057EF71 /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
+		27EDEF3F29FC550A0057EF71 /* MergeLists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeLists.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +127,7 @@
 		27764E4329F1350400A45DAF /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				27EDEF3C29FC54900057EF71 /* MergeLists */,
 				27764E4429F1351500A45DAF /* ViewControllers */,
 			);
 			path = Sources;
@@ -203,6 +208,15 @@
 				27E643E629F454D5006B20FC /* TransactionVC.swift */,
 			);
 			path = Transaction;
+			sourceTree = "<group>";
+		};
+		27EDEF3C29FC54900057EF71 /* MergeLists */ = {
+			isa = PBXGroup;
+			children = (
+				27EDEF3D29FC54F90057EF71 /* Identifiable.swift */,
+				27EDEF3F29FC550A0057EF71 /* MergeLists.swift */,
+			);
+			path = MergeLists;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,8 +339,10 @@
 				2772A87629F2EEE10086F0A2 /* WalletLoadingView.swift in Sources */,
 				27764E2E29F134F000A45DAF /* UIWalletHome.docc in Sources */,
 				27E643E729F454D5006B20FC /* TransactionVC.swift in Sources */,
+				27EDEF3E29FC54F90057EF71 /* Identifiable.swift in Sources */,
 				2772A87329F2E6010086F0A2 /* WalletCreatedView.swift in Sources */,
 				2719622529F1C55F00B5B59F /* WalletHomeVM.swift in Sources */,
+				27EDEF4029FC550A0057EF71 /* MergeLists.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

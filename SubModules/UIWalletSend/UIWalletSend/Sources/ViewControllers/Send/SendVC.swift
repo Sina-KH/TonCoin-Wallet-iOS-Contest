@@ -158,7 +158,7 @@ public class SendVC: WViewController {
         updateTheme()
 
         #if DEBUG
-        addressField.text = "EQBJPpWkeOJcHk6y2oeCPSKLjmn8zEoOfqDHKwQK94CmGDRI"
+        addressField.text = "EQAbrFKnUptp9c5qP5aqtvnuh5ZqzHezqcsithIXHxd4O2ha"
         addressField.textViewDidChange(addressField)
         #endif
     }

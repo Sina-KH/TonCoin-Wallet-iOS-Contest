@@ -9,11 +9,10 @@ import UIKit
 
 public extension UIViewController {
     
-    // show alert view error message
-    func showAlert(title: String, text: String,
-                   button: String, buttonPressed: (() -> ())? = nil,
-                   secondaryButton: String? = nil, secondaryButtonPressed: (() -> ())? = nil,
-                   preferPrimary: Bool = true) {
+    fileprivate func alert(title: String?, text: String,
+                           button: String, buttonPressed: (() -> ())? = nil,
+                           secondaryButton: String? = nil, secondaryButtonPressed: (() -> ())? = nil,
+                           preferPrimary: Bool = true) -> UIAlertController {
         let alert = UIAlertController(title: title, message: text, preferredStyle: .alert)
         let primaryAction = UIAlertAction(title: button,
                                           style: .default,
@@ -33,6 +32,42 @@ public extension UIViewController {
         if preferPrimary {
             alert.preferredAction = primaryAction
         }
+
+        return alert
+    }
+    
+    // show attributed string alert view error message
+    func showAlert(title: String?, textAttr: NSAttributedString,
+                   button: String, buttonPressed: (() -> ())? = nil,
+                   secondaryButton: String? = nil, secondaryButtonPressed: (() -> ())? = nil,
+                   preferPrimary: Bool = true) {
+        let alert = alert(
+            title: title,
+            text: " ",
+            button: button,
+            buttonPressed: buttonPressed,
+            secondaryButton: secondaryButton,
+            secondaryButtonPressed: secondaryButtonPressed,
+            preferPrimary: preferPrimary
+        )
+        alert.setValue(textAttr, forKey: "attributedMessage")
+        present(alert, animated: true, completion: nil)
+    }
+    
+    // show alert view error message
+    func showAlert(title: String?, text: String,
+                   button: String, buttonPressed: (() -> ())? = nil,
+                   secondaryButton: String? = nil, secondaryButtonPressed: (() -> ())? = nil,
+                   preferPrimary: Bool = true) {
+        let alert = alert(
+            title: title,
+            text: text,
+            button: button,
+            buttonPressed: buttonPressed,
+            secondaryButton: secondaryButton,
+            secondaryButtonPressed: secondaryButtonPressed,
+            preferPrimary: preferPrimary
+        )
         // TODO:: Actions stack view should fill one row per action
         present(alert, animated: true, completion: nil)
     }
