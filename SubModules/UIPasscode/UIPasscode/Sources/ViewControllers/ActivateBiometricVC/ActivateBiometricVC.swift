@@ -99,7 +99,7 @@ public class ActivateBiometricVC: WViewController {
 
         let headerView = HeaderView(icon: topImage,
                                     iconWidth: 124, iconHeight: 124,
-                                    iconTintColor: currentTheme.tint,
+                                    iconTintColor: WTheme.tint,
                                     title: titleString,
                                     description: descriptionString)
         topView.addSubview(headerView)

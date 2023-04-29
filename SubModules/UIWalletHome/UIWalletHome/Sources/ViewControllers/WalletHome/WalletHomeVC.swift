@@ -39,7 +39,7 @@ public class WalletHomeVC: WViewController {
         walletHomeVM.refreshTransactions()
 
         let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
-        keyWindow?.backgroundColor = currentTheme.balanceHeaderView.background
+        keyWindow?.backgroundColor = WTheme.balanceHeaderView.background
     }
 
     public override func loadView() {
@@ -82,7 +82,7 @@ public class WalletHomeVC: WViewController {
         // top space under safe area
         let underSafeAreaView = UIView()
         underSafeAreaView.translatesAutoresizingMaskIntoConstraints = false
-        underSafeAreaView.backgroundColor = currentTheme.balanceHeaderView.background
+        underSafeAreaView.backgroundColor = WTheme.balanceHeaderView.background
         view.addSubview(underSafeAreaView)
         NSLayoutConstraint.activate([
             underSafeAreaView.topAnchor.constraint(equalTo: view.topAnchor),

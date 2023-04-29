@@ -70,8 +70,8 @@ public class WCommentInput: UITextView {
     }
     
     func updateTheme() {
-        backgroundColor = currentTheme.background
-        placeholderLabel.textColor = currentTheme.tertiaryLabel
+        backgroundColor = WTheme.background
+        placeholderLabel.textColor = WTheme.tertiaryLabel
     }
 
 }
@@ -85,8 +85,8 @@ extension WCommentInput: UITextViewDelegate {
             ])
             attr.append(NSAttributedString(string: String(text.suffix(text.count - walletTextLimit)), attributes: [
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .regular),
-                NSAttributedString.Key.backgroundColor: currentTheme.error.withAlphaComponent(0.12),
-                NSAttributedString.Key.foregroundColor: currentTheme.error
+                NSAttributedString.Key.backgroundColor: WTheme.error.withAlphaComponent(0.12),
+                NSAttributedString.Key.foregroundColor: WTheme.error
             ]))
             attributedText = attr
         } else {

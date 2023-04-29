@@ -17,6 +17,8 @@
 		2735220629E98C1A007C4E96 /* WTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2735220529E98C1A007C4E96 /* WTheme.swift */; };
 		2772A87A29F301510086F0A2 /* ScreenHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A87929F301510086F0A2 /* ScreenHelpers.swift */; };
 		27764E5629F1461A00A45DAF /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27764E5529F1461A00A45DAF /* KeychainHelper.swift */; };
+		27CFA28E29FDAE3900A65283 /* Int64Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CFA28D29FDAE3900A65283 /* Int64Utils.swift */; };
+		27CFA29029FDB31600A65283 /* TransactionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CFA28F29FDB31600A65283 /* TransactionUtils.swift */; };
 		27DB29AC29EC696E00988800 /* SwiftSignalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29AB29EC696E00988800 /* SwiftSignalKit.framework */; };
 		27DB29B329EC699600988800 /* NumberPluralizationForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29B229EC699600988800 /* NumberPluralizationForm.framework */; };
 		27DB29D229EC6E4200988800 /* WalletCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29D129EC6E4200988800 /* WalletCore.framework */; };
@@ -35,6 +37,8 @@
 		2735220529E98C1A007C4E96 /* WTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTheme.swift; sourceTree = "<group>"; };
 		2772A87929F301510086F0A2 /* ScreenHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenHelpers.swift; sourceTree = "<group>"; };
 		27764E5529F1461A00A45DAF /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
+		27CFA28D29FDAE3900A65283 /* Int64Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int64Utils.swift; sourceTree = "<group>"; };
+		27CFA28F29FDB31600A65283 /* TransactionUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionUtils.swift; sourceTree = "<group>"; };
 		27DB29AB29EC696E00988800 /* SwiftSignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftSignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27DB29B229EC699600988800 /* NumberPluralizationForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NumberPluralizationForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27DB29D129EC6E4200988800 /* WalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +63,8 @@
 			isa = PBXGroup;
 			children = (
 				2719622A29F1D9A400B5B59F /* WalletUtils.swift */,
+				27CFA28D29FDAE3900A65283 /* Int64Utils.swift */,
+				27CFA28F29FDB31600A65283 /* TransactionUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -227,7 +233,9 @@
 				2772A87A29F301510086F0A2 /* ScreenHelpers.swift in Sources */,
 				273521F529E98449007C4E96 /* WalletPresentationData.swift in Sources */,
 				273521F429E98449007C4E96 /* WalletContext.swift in Sources */,
+				27CFA29029FDB31600A65283 /* TransactionUtils.swift in Sources */,
 				2735220429E98972007C4E96 /* WColors.swift in Sources */,
+				27CFA28E29FDAE3900A65283 /* Int64Utils.swift in Sources */,
 				2735220629E98C1A007C4E96 /* WTheme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

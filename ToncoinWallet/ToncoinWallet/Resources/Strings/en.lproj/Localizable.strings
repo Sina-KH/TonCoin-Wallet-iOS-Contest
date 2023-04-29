@@ -103,19 +103,15 @@
 
 // Transaction
 "Wallet.TransactionInfo.Title" = "Transaction";
-"Wallet.TransactionInfo.NoAddress" = "No Address";
-"Wallet.TransactionInfo.RecipientHeader" = "RECIPIENT";
-"Wallet.TransactionInfo.SenderHeader" = "SENDER";
-"Wallet.TransactionInfo.CopyAddress" = "Copy wallet address";
-"Wallet.TransactionInfo.AddressCopied" = "Address copied to clipboard.";
-"Wallet.TransactionInfo.SendGrams" = "Send TON to this address";
-"Wallet.TransactionInfo.CommentHeader" = "COMMENT";
-"Wallet.TransactionInfo.StorageFeeHeader" = "STORAGE FEE";
-"Wallet.TransactionInfo.OtherFeeHeader" = "TRANSACTION FEE";
-"Wallet.TransactionInfo.StorageFeeInfo" = "Blockchain validators collect a tiny fee for storing information about your decentralized wallet and processing your transactions.";
-"Wallet.TransactionInfo.StorageFeeInfoUrl" = "Blockchain validators collect a tiny fee for storing information about your decentralized wallet and processing your transactions. [More info]()";
-"Wallet.TransactionInfo.OtherFeeInfo" = "Blockchain validators collect a tiny fee for processing your decentralized transactions.";
-"Wallet.TransactionInfo.OtherFeeInfoUrl" = "Blockchain validators collect a tiny fee for processing your decentralized transactions. [More info]()";
+"Wallet.TransactionInfo.OtherFee" = "%1$@ transaction fee"; // NEW
+"Wallet.TransactionInfo.Details" = "DETAILS"; // NEW
+"Wallet.TransactionInfo.SenderAddress" = "Sender address"; // NEW
+"Wallet.TransactionInfo.Recipient" = "Recipient"; // NEW
+"Wallet.TransactionInfo.RecipientAddress" = "Recipient address"; // NEW
+"Wallet.TransactionInfo.Transaction" = "Transaction"; // NEW
+"Wallet.TransactionInfo.ViewInExplorer" = "View in explorer"; // NEW
+"Wallet.TransactionInfo.SendTONToThisAddress" = "Send TON to this address"; // NEW
+"Wallet.TransactionInfo.RetryTransaction" = "Retry transaction"; // NEW
 
 // Receive
 "Wallet.Receive.Title" = "Receive Toncoin"; // Updated
@@ -203,6 +199,20 @@
 
 // Alert
 "Wallet.Alert.OK" = "OK";
+
+// Time
+"Wallet.Time.PreciseDate_m1" = "Jan %1$@, %2$@ at %3$@";
+"Wallet.Time.PreciseDate_m2" = "Feb %1$@, %2$@ at %3$@";
+"Wallet.Time.PreciseDate_m3" = "Mar %1$@, %2$@ at %3$@";
+"Wallet.Time.PreciseDate_m4" = "Apr %1$@, %2$@ at %3$@";
+"Wallet.Time.PreciseDate_m5" = "May %1$@, %2$@ at %3$@";
+"Wallet.Time.PreciseDate_m6" = "Jun %1$@, %2$@ at %3$@";
+"Wallet.Time.PreciseDate_m7" = "Jul %1$@, %2$@ at %3$@";
+"Wallet.Time.PreciseDate_m8" = "Aug %1$@, %2$@ at %3$@";
+"Wallet.Time.PreciseDate_m9" = "Sep %1$@, %2$@ at %3$@";
+"Wallet.Time.PreciseDate_m10" = "Oct %1$@, %2$@ at %3$@";
+"Wallet.Time.PreciseDate_m11" = "Nov %1$@, %2$@ at %3$@";
+"Wallet.Time.PreciseDate_m12" = "Dec %1$@, %2$@ at %3$@";
 //////////////////////////
 
 // Original App //////////
@@ -305,18 +315,7 @@
 "Wallet.Info.TransactionDateHeaderYear" = "%1$@ %2$@, %3$@";
 "Wallet.UnknownError" = "An error occurred. Please try again later.";
 "Wallet.ContextMenuCopy" = "Copy";
-"Wallet.Time.PreciseDate_m1" = "Jan %1$@, %2$@ at %3$@";
-"Wallet.Time.PreciseDate_m2" = "Feb %1$@, %2$@ at %3$@";
-"Wallet.Time.PreciseDate_m3" = "Mar %1$@, %2$@ at %3$@";
-"Wallet.Time.PreciseDate_m4" = "Apr %1$@, %2$@ at %3$@";
-"Wallet.Time.PreciseDate_m5" = "May %1$@, %2$@ at %3$@";
-"Wallet.Time.PreciseDate_m6" = "Jun %1$@, %2$@ at %3$@";
-"Wallet.Time.PreciseDate_m7" = "Jul %1$@, %2$@ at %3$@";
-"Wallet.Time.PreciseDate_m8" = "Aug %1$@, %2$@ at %3$@";
-"Wallet.Time.PreciseDate_m9" = "Sep %1$@, %2$@ at %3$@";
-"Wallet.Time.PreciseDate_m10" = "Oct %1$@, %2$@ at %3$@";
-"Wallet.Time.PreciseDate_m11" = "Nov %1$@, %2$@ at %3$@";
-"Wallet.Time.PreciseDate_m12" = "Dec %1$@, %2$@ at %3$@";
+
 "Wallet.VoiceOver.Editing.ClearText" = "Clear text";
 "Wallet.Receive.ShareInvoiceUrlInfo" = "Share this link to receive %@ TON.";
 "Wallet.AccessDenied.Title" = "Please Allow Access";

@@ -22,37 +22,63 @@ class TransactionVC: WViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private var transactionFeeLabel: UILabel!
+    private var dateTimeLabel: UILabel!
+    private var detailsLabel: UILabel!
+    private var addressItem: TitleValueRowView!
+    private var transactionIDItem: TitleValueRowView!
+    private var viewInExplorerButton: UIButton!
+    
     override func loadView() {
         super.loadView()
         setupViews()
     }
     
     private func setupViews() {
+        var constraints = [NSLayoutConstraint]()
+
         let stackView = UIStackView()
+        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
+        stackView.isLayoutMarginsRelativeArrangement = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .center
         view.addSubview(stackView)
-        NSLayoutConstraint.activate([
+        constraints.append(contentsOf: [
             stackView.topAnchor.constraint(equalTo: view.topAnchor),
             stackView.leftAnchor.constraint(equalTo: view.leftAnchor),
             stackView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            stackView.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor)
+            stackView.bottomAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
         // navigation bar
-        let navigationBar = WNavigationBar(title: WStrings.Wallet_TransactionInfo_Title.localized)
+        let doneItem = WNavigationBarButton(text: WStrings.Wallet_Navigation_Done.localized,
+                                            onPress: { [weak self] in
+            self?.dismiss(animated: true)
+        })
+        let navigationBar = WNavigationBar(title: WStrings.Wallet_TransactionInfo_Title.localized,
+                                           trailingItem: doneItem)
         stackView.addArrangedSubview(navigationBar)
+        constraints.append(contentsOf: [
+            navigationBar.leftAnchor.constraint(equalTo: stackView.leftAnchor, constant: 0),
+            navigationBar.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: 0)
+        ])
+
+        // gap
+        stackView.setCustomSpacing(20, after: navigationBar)
         
         // icon and amount stack view
         let iconAndAmountStackView = UIStackView()
         iconAndAmountStackView.translatesAutoresizingMaskIntoConstraints = false
-        iconAndAmountStackView.spacing = 4
+        constraints.append(
+            iconAndAmountStackView.heightAnchor.constraint(equalToConstant: 56)
+        )
+        iconAndAmountStackView.spacing = 8
         iconAndAmountStackView.alignment = .center
         // icon
         let iconImageView = UIImageView()
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
+        constraints.append(contentsOf: [
             iconImageView.widthAnchor.constraint(equalToConstant: 36),
             iconImageView.heightAnchor.constraint(equalToConstant: 36)
         ])
@@ -67,5 +93,124 @@ class TransactionVC: WViewController {
         iconAndAmountStackView.addArrangedSubview(amountLabel)
         
         stackView.addArrangedSubview(iconAndAmountStackView)
+        
+        // gap
+        stackView.setCustomSpacing(6, after: iconAndAmountStackView)
+
+        // other fee label
+        transactionFeeLabel = UILabel()
+        transactionFeeLabel.font = .systemFont(ofSize: 15, weight: .regular)
+        transactionFeeLabel.text = WStrings.Wallet_TransactionInfo_OtherFee(otherFee: formatBalanceText(transaction.otherFee))
+        stackView.addArrangedSubview(transactionFeeLabel)
+        
+        // gap
+        stackView.setCustomSpacing(4, after: transactionFeeLabel)
+        
+        // date time label
+        // TODO:: Pending/Canceled transactions don't have date time!
+        dateTimeLabel = UILabel()
+        dateTimeLabel.font = .systemFont(ofSize: 15, weight: .regular)
+        dateTimeLabel.text = transaction.timestamp.dateTimeString
+        stackView.addArrangedSubview(dateTimeLabel)
+
+        // data from transaction
+        let (addressString, descriptionString, _) = transaction.extractAddressAndDescription()
+
+        // comment bubble view
+        if descriptionString.count > 0 {
+            // gap
+            stackView.setCustomSpacing(16, after: dateTimeLabel)
+            let bubbleView = BubbleView()
+            bubbleView.text = descriptionString
+            stackView.addArrangedSubview(bubbleView)
+            // gap
+            stackView.setCustomSpacing(38, after: bubbleView)
+        } else {
+            // gap
+            stackView.setCustomSpacing(38, after: dateTimeLabel)
+        }
+        
+        // details label
+        detailsLabel = UILabel()
+        detailsLabel.translatesAutoresizingMaskIntoConstraints = false
+        detailsLabel.font = .systemFont(ofSize: 13, weight: .regular)
+        detailsLabel.text = WStrings.Wallet_TransactionInfo_Details.localized
+        stackView.addArrangedSubview(detailsLabel)
+        constraints.append(
+            detailsLabel.leftAnchor.constraint(equalTo: stackView.leftAnchor, constant: 16)
+        )
+        
+        // TODO:: Recipient DNS!
+
+        // sender/recipient
+        let addressTitle = transaction.transferredValueWithoutFees > 0 ?
+        WStrings.Wallet_TransactionInfo_SenderAddress.localized :
+        WStrings.Wallet_TransactionInfo_RecipientAddress.localized
+        addressItem = TitleValueRowView(title: addressTitle, value: formatStartEndAddress(addressString))
+        stackView.addArrangedSubview(addressItem)
+        constraints.append(contentsOf: [
+            addressItem.leftAnchor.constraint(equalTo: stackView.leftAnchor),
+            addressItem.rightAnchor.constraint(equalTo: stackView.rightAnchor)
+        ])
+        
+        // transaction
+        transactionIDItem = TitleValueRowView(title: WStrings.Wallet_TransactionInfo_Transaction.localized,
+                                              value: transaction.hashPreview)
+        stackView.addArrangedSubview(transactionIDItem)
+        constraints.append(contentsOf: [
+            transactionIDItem.leftAnchor.constraint(equalTo: stackView.leftAnchor),
+            transactionIDItem.rightAnchor.constraint(equalTo: stackView.rightAnchor)
+        ])
+
+        // view in explorer
+        let viewInExplorerRow = UIStackView()
+        viewInExplorerRow.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 24, right: 16)
+        viewInExplorerRow.isLayoutMarginsRelativeArrangement = true
+        viewInExplorerRow.axis = .vertical
+        viewInExplorerRow.alignment = .leading
+        stackView.addArrangedSubview(viewInExplorerRow)
+        constraints.append(contentsOf: [
+            viewInExplorerRow.leftAnchor.constraint(equalTo: stackView.leftAnchor)
+        ])
+        viewInExplorerButton = UIButton(type: .system)
+        viewInExplorerButton.translatesAutoresizingMaskIntoConstraints = false
+        constraints.append(
+            viewInExplorerButton.heightAnchor.constraint(equalToConstant: 44)
+        )
+        viewInExplorerButton.titleLabel?.font = .systemFont(ofSize: 17, weight: .regular)
+        viewInExplorerButton.setTitle(WStrings.Wallet_TransactionInfo_ViewInExplorer.localized, for: .normal)
+        viewInExplorerButton.addTarget(self, action: #selector(viewInExplorerPressed), for: .touchUpInside)
+        viewInExplorerButton.translatesAutoresizingMaskIntoConstraints = false
+        viewInExplorerRow.addArrangedSubview(viewInExplorerButton)
+
+        // bottom button
+        let bottomButton = WButton.setupInstance(.primary)
+        // TODO:: Retry button if transaction is canceled
+        bottomButton.setTitle(WStrings.Wallet_TransactionInfo_SendTONToThisAddress.localized, for: .normal)
+        bottomButton.addTarget(self, action: #selector(bottomButtonPressed), for: .touchUpInside)
+        stackView.addArrangedSubview(bottomButton)
+        constraints.append(
+            bottomButton.leftAnchor.constraint(equalTo: stackView.leftAnchor, constant: 16)
+        )
+
+        NSLayoutConstraint.activate(constraints)
+
+        updateTheme()
+    }
+    
+    func updateTheme() {
+        transactionFeeLabel.textColor = WTheme.secondaryLabel
+        dateTimeLabel.textColor = WTheme.secondaryLabel
+        detailsLabel.textColor = WTheme.secondaryLabel
+        addressItem.setValueTextColor(WTheme.secondaryLabel)
+        transactionIDItem.setValueTextColor(WTheme.secondaryLabel)
+    }
+    
+    @objc private func viewInExplorerPressed() {
+        // TODO::
+    }
+    
+    @objc private func bottomButtonPressed() {
+        // TODO::
     }
 }

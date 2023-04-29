@@ -25,7 +25,7 @@ class WordListItemView: UILabel {
 
     private func setupView(index: Int, word: String) {
         let attr = NSMutableAttributedString(string: "\(index < 9 ? " " : "")\(index + 1). ", attributes: [
-            NSAttributedString.Key.foregroundColor: currentTheme.secondaryLabel
+            NSAttributedString.Key.foregroundColor: WTheme.secondaryLabel
         ])
         attr.append(NSAttributedString(string: word, attributes: [
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .semibold)

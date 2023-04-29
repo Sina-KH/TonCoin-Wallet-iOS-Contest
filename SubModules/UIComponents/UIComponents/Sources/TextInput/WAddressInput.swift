@@ -70,8 +70,8 @@ public class WAddressInput: UITextView {
     }
     
     func updateTheme() {
-        backgroundColor = currentTheme.groupedBackground
-        placeholderLabel.textColor = currentTheme.secondaryLabel
+        backgroundColor = WTheme.groupedBackground
+        placeholderLabel.textColor = WTheme.secondaryLabel
     }
 
 }

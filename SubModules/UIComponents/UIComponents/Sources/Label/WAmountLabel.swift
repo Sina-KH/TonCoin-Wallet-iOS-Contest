@@ -52,12 +52,12 @@ public class WAmountLabel: UILabel {
         let components = formatBalanceText(amount).components(separatedBy: ".")
         let attr = NSMutableAttributedString(string: "\(components[0])", attributes: [
             NSAttributedString.Key.font: numberFont,
-            NSAttributedString.Key.foregroundColor: amount > 0 ? currentTheme.positiveAmount : currentTheme.negativeAmount
+            NSAttributedString.Key.foregroundColor: amount > 0 ? WTheme.positiveAmount : WTheme.negativeAmount
         ])
         if components.count > 1 {
             attr.append(NSAttributedString(string: ".\(components[1])", attributes: [
                 NSAttributedString.Key.font: decimalsFont,
-                NSAttributedString.Key.foregroundColor: amount > 0 ? currentTheme.positiveAmount : currentTheme.negativeAmount
+                NSAttributedString.Key.foregroundColor: amount > 0 ? WTheme.positiveAmount : WTheme.negativeAmount
             ]))
         }
         attributedText = attr

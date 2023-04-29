@@ -55,7 +55,7 @@ class PasscodeOptionsView: UIStackView {
         let fourDigitButton = UIButton(type: .system)
         fourDigitButton.translatesAutoresizingMaskIntoConstraints = false
         fourDigitButton.setTitle(WStrings.Wallet_SetPasscode_FourDigitCode.localized, for: .normal)
-        fourDigitButton.tintColor = currentTheme.primaryLabel
+        fourDigitButton.tintColor = WTheme.primaryLabel
         fourDigitButton.titleLabel?.textAlignment = .left
         fourDigitButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         NSLayoutConstraint.activate([
@@ -67,7 +67,7 @@ class PasscodeOptionsView: UIStackView {
         // separator
         let separator = UIView()
         separator.translatesAutoresizingMaskIntoConstraints = false
-        separator.backgroundColor = currentTheme.separator
+        separator.backgroundColor = WTheme.separator
         NSLayoutConstraint.activate([
             separator.heightAnchor.constraint(equalToConstant: 0.33)
         ])
@@ -76,7 +76,7 @@ class PasscodeOptionsView: UIStackView {
         // 6-digit button
         let sixDigitButton = UIButton(type: .system)
         sixDigitButton.translatesAutoresizingMaskIntoConstraints = false
-        sixDigitButton.tintColor = currentTheme.primaryLabel
+        sixDigitButton.tintColor = WTheme.primaryLabel
         sixDigitButton.titleLabel?.textAlignment = .left
         sixDigitButton.setTitle(WStrings.Wallet_SetPasscode_SixDigitCode.localized, for: .normal)
         sixDigitButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)

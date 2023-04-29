@@ -57,7 +57,7 @@ public class SendConfirmVC: WViewController {
             title: WStrings.Wallet_Navigation_Back.localized, style: .plain, target: nil, action: nil
         )
 
-        view.backgroundColor = currentTheme.groupedBackground
+        view.backgroundColor = WTheme.groupedBackground
 
         // parent scrollView
         scrollView = UIScrollView()
@@ -79,7 +79,7 @@ public class SendConfirmVC: WViewController {
         let commentTopLabel = UILabel()
         commentTopLabel.translatesAutoresizingMaskIntoConstraints = false
         commentTopLabel.font = .systemFont(ofSize: 13)
-        commentTopLabel.textColor = currentTheme.secondaryLabel
+        commentTopLabel.textColor = WTheme.secondaryLabel
         commentTopLabel.text = WStrings.Wallet_SendConfirm_Comment.localized
         scrollView.addSubview(commentTopLabel)
         NSLayoutConstraint.activate([
@@ -103,7 +103,7 @@ public class SendConfirmVC: WViewController {
         commentHintLabel.translatesAutoresizingMaskIntoConstraints = false
         commentHintLabel.font = .systemFont(ofSize: 13)
         commentHintLabel.numberOfLines = 0
-        commentHintLabel.textColor = currentTheme.secondaryLabel
+        commentHintLabel.textColor = WTheme.secondaryLabel
         commentHintLabel.text = WStrings.Wallet_SendConfirm_Hint.localized
         scrollView.addSubview(commentHintLabel)
         NSLayoutConstraint.activate([
@@ -127,7 +127,7 @@ public class SendConfirmVC: WViewController {
         let labelLabel = UILabel()
         labelLabel.translatesAutoresizingMaskIntoConstraints = false
         labelLabel.font = .systemFont(ofSize: 13)
-        labelLabel.textColor = currentTheme.secondaryLabel
+        labelLabel.textColor = WTheme.secondaryLabel
         labelLabel.text = WStrings.Wallet_SendConfirm_Label.localized
         scrollView.addSubview(labelLabel)
         NSLayoutConstraint.activate([
@@ -139,7 +139,7 @@ public class SendConfirmVC: WViewController {
         // Label View
         let labelView = UIView()
         labelView.translatesAutoresizingMaskIntoConstraints = false
-        labelView.backgroundColor = currentTheme.background
+        labelView.backgroundColor = WTheme.background
         labelView.layer.cornerRadius = 10
         scrollView.addSubview(labelView)
         NSLayoutConstraint.activate([
@@ -199,13 +199,13 @@ extension SendConfirmVC: WCommentInputDelegate {
         let comment = commentInput.text ?? ""
         // check if comment is too long
         if comment.count > walletTextLimit {
-            commentWarningLabel.textColor = currentTheme.error
+            commentWarningLabel.textColor = WTheme.error
             commentWarningLabel.text = WStrings.Wallet_SendConfirm_HintMessageSizeExceeded(chars: comment.count - walletTextLimit)
             return
         }
         
         if walletTextLimit - comment.count < 25 {
-            commentWarningLabel.textColor = currentTheme.warning
+            commentWarningLabel.textColor = WTheme.warning
             commentWarningLabel.text = WStrings.Wallet_SendConfirm_HintMessageCharactersLeft(chars: walletTextLimit - comment.count)
         } else {
             commentWarningLabel.text = nil

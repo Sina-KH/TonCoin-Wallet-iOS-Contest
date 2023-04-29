@@ -76,9 +76,9 @@ public func formatBalanceText(_ value: Int64) -> String {
             break
         }
     }
-    if value < 0 {
+    /*if value < 0 {
         balanceText.insert("-", at: balanceText.startIndex)
-    }
+    }*/
     return balanceText
 }
 

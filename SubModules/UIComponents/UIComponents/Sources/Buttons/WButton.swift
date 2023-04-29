@@ -67,12 +67,12 @@ public class WButton: WBaseButton {
     func updateTheme() {
         switch usage {
         case .primary:
-            backgroundColor = isEnabled ? currentTheme.primaryButton.background : currentTheme.primaryButton.disabledBackground
-            tintColor = isEnabled ? currentTheme.primaryButton.tint : currentTheme.primaryButton.disabledTint
+            backgroundColor = isEnabled ? WTheme.primaryButton.background : WTheme.primaryButton.disabledBackground
+            tintColor = isEnabled ? WTheme.primaryButton.tint : WTheme.primaryButton.disabledTint
             break
         case .accent:
-            backgroundColor = currentTheme.accentButton.background
-            tintColor = currentTheme.accentButton.tint
+            backgroundColor = WTheme.accentButton.background
+            tintColor = WTheme.accentButton.tint
             break
         default:
             break

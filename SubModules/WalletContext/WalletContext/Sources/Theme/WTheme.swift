@@ -40,7 +40,7 @@ public struct WThemeToastView {
     public var tint: UIColor
 }
 
-public struct WTheme {
+public struct WThemeType {
     public var primaryButton: WThemePrimaryButton
     public var accentButton: WThemeAccentButton
     public var wordInput: WThemeWordInput
@@ -66,14 +66,14 @@ public struct WTheme {
 // Current theme now supports both light and dark themes.
 
 /* If we want to use default iOS colors on dark/light mode (like .systemBackground or just a single UIColor), we define colors in this file, otherwise,
-    for custom colors, we define them in WColors */
+    for custom colors, we define them in WColors and Assets */
 
 /*  If we need to support more custom themes inside the app, and let user change it when using the app without restarting the app,
-    `currentTheme` variable should be changed real-time and the app should be configured to call all .updateTheme() methods on theme change event.
+    `WTheme` variable should be changed real-time and the app should be configured to call all .updateTheme() methods on theme change event.
         (in that case, we have to make all views confirm to a protocol containing `updateTheme` method and call this method on all views and view controllers.)
         (and also, some components may need an update, to support this feature by updating all colors inside updateTheme method.) */
 
-public var currentTheme = WTheme(
+public var WTheme = WThemeType(
     primaryButton: WThemePrimaryButton(background: UIColor.systemBlue,
                                        tint: UIColor.white,
                                        disabledBackground: _groupedBackground,

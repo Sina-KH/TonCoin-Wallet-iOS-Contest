@@ -52,12 +52,12 @@ public class BalanceHeaderView: UIView {
         NSLayoutConstraint.activate([
             heightConstraint
         ])
-        backgroundColor = currentTheme.balanceHeaderView.background
+        backgroundColor = WTheme.balanceHeaderView.background
 
         // settings button
         let settingsButton = WButton.setupInstance(.secondary)
         settingsButton.translatesAutoresizingMaskIntoConstraints = false
-        settingsButton.tintColor = currentTheme.balanceHeaderView.headIcons
+        settingsButton.tintColor = WTheme.balanceHeaderView.headIcons
         settingsButton.setImage(UIImage(named: "SettingsIcon")?.withRenderingMode(.alwaysTemplate), for: .normal)
         addSubview(settingsButton)
         NSLayoutConstraint.activate([
@@ -70,7 +70,7 @@ public class BalanceHeaderView: UIView {
         // scan button
         let scanButton = WButton.setupInstance(.secondary)
         scanButton.translatesAutoresizingMaskIntoConstraints = false
-        scanButton.tintColor = currentTheme.balanceHeaderView.headIcons
+        scanButton.tintColor = WTheme.balanceHeaderView.headIcons
         scanButton.setImage(UIImage(named: "ScanIcon")?.withRenderingMode(.alwaysTemplate), for: .normal)
         addSubview(scanButton)
         NSLayoutConstraint.activate([
@@ -91,7 +91,7 @@ public class BalanceHeaderView: UIView {
         // bottom corner radius
         let bottomCornersView = UIView()
         bottomCornersView.translatesAutoresizingMaskIntoConstraints = false
-        bottomCornersView.backgroundColor = currentTheme.background
+        bottomCornersView.backgroundColor = WTheme.background
         bottomCornersView.layer.cornerRadius = BalanceHeaderView.bottomRadiusViewHeight / 2
         addSubview(bottomCornersView)
         NSLayoutConstraint.activate([

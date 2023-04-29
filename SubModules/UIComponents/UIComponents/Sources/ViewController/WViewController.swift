@@ -13,7 +13,7 @@ open class WViewController: UIViewController {
     // set a view with background as UIViewController view, to do the rest, programmatically, inside the subclasses.
     open override func loadView() {
         let view = UIView()
-        view.backgroundColor = currentTheme.background
+        view.backgroundColor = WTheme.background
         self.view = view
     }
     
@@ -49,7 +49,7 @@ open class WViewController: UIViewController {
     }
     func modalWillDisappear() {
         if overlayView != nil {
-            UIView.animate(withDuration: 0.5) {
+            UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions.allowUserInteraction) {
                 self.overlayView?.alpha = 0
             }
         }

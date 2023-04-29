@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
-        window?.backgroundColor = currentTheme.background
+        window?.backgroundColor = WTheme.background
         
         // StartVC for users who are using the app for the first time
         let startVC = SplashVC(nibName: "SplashVC", bundle: Bundle.main)

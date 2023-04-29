@@ -134,7 +134,7 @@ public class ReceiveVC: WViewController {
     }
     
     func updateTheme() {
-        yourWalletAddressLabel.textColor = currentTheme.secondaryLabel
+        yourWalletAddressLabel.textColor = WTheme.secondaryLabel
     }
     
     @objc func sharePressed() {

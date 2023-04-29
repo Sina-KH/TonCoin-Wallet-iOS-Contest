@@ -67,7 +67,7 @@ public class TitleValueRowView: UIView {
         if separator {
             let separatorView = UIView()
             separatorView.translatesAutoresizingMaskIntoConstraints = false
-            separatorView.backgroundColor = currentTheme.separator
+            separatorView.backgroundColor = WTheme.separator
             addSubview(separatorView)
             NSLayoutConstraint.activate([
                 separatorView.heightAnchor.constraint(equalToConstant: 0.33),
@@ -97,5 +97,9 @@ public class TitleValueRowView: UIView {
         } else {
             activityIndicatorView?.stopAnimating()
         }
+    }
+    
+    public func setValueTextColor(_ color: UIColor) {
+        valueLabel.textColor = color
     }
 }

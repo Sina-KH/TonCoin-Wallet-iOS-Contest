@@ -80,7 +80,7 @@ public class WAmountInput: UITextView {
     }
     
     func updateTheme() {
-        placeholderLabel.textColor = currentTheme.secondaryLabel
+        placeholderLabel.textColor = WTheme.secondaryLabel
     }
 
 }

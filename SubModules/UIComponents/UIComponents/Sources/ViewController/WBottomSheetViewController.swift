@@ -48,8 +48,7 @@ public class WBottomSheetViewController: WViewController {
         NSLayoutConstraint.activate([
             contentViewController.view.leftAnchor.constraint(equalTo: view.leftAnchor),
             contentViewController.view.rightAnchor.constraint(equalTo: view.rightAnchor),
-            contentBottomConstraint,
-            contentViewController.view.heightAnchor.constraint(equalToConstant: 300)
+            contentBottomConstraint
         ])
         addChild(contentViewController)
         contentViewController.didMove(toParent: self)

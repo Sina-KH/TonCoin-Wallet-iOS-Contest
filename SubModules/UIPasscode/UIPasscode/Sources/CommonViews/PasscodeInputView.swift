@@ -40,7 +40,7 @@ class PasscodeInputView: UIStackView {
     var maxPasscodeLength = 6
     var passcodeLength = PasscodeInputView.defaultPasscodeLength
 
-    init(delegate: PasscodeInputViewDelegate?, theme: WThemePasscodeInput = currentTheme.setPasscodeInput) {
+    init(delegate: PasscodeInputViewDelegate?, theme: WThemePasscodeInput = WTheme.setPasscodeInput) {
         self.delegate = delegate
         self.theme = theme
         super.init(frame: CGRect.zero)

@@ -82,6 +82,15 @@ public enum WStrings: String {
     case Wallet_Home_InitTransaction = "Wallet.Home.InitTransaction"
     case Wallet_Home_UnknownTransaction = "Wallet.Home.UnknownTransaction"
     case Wallet_TransactionInfo_Title = "Wallet.TransactionInfo.Title"
+    case Wallet_TransactionInfo_OtherFee = "Wallet.TransactionInfo.OtherFee"
+    case Wallet_TransactionInfo_Details = "Wallet.TransactionInfo.Details"
+    case Wallet_TransactionInfo_SenderAddress = "Wallet.TransactionInfo.SenderAddress"
+    case Wallet_TransactionInfo_Recipient = "Wallet.TransactionInfo.Recipient"
+    case Wallet_TransactionInfo_RecipientAddress = "Wallet.TransactionInfo.RecipientAddress"
+    case Wallet_TransactionInfo_Transaction = "Wallet.TransactionInfo.Transaction"
+    case Wallet_TransactionInfo_ViewInExplorer = "Wallet.TransactionInfo.ViewInExplorer"
+    case Wallet_TransactionInfo_SendTONToThisAddress = "Wallet.TransactionInfo.SendTONToThisAddress"
+    case Wallet_TransactionInfo_RetryTransaction = "Wallet.TransactionInfo.RetryTransaction"
     case Wallet_Receive_Title = "Wallet.Receive.Title"
     case Wallet_Receive_Description = "Wallet.Receive.Description"
     case Wallet_Receive_Toncoin = "Wallet.Receive.Toncoin"
@@ -137,6 +146,18 @@ public enum WStrings: String {
     case Wallet_Navigation_Done = "Wallet.Navigation.Done"
     case Wallet_Navigation_Cancel = "Wallet.Navigation.Cancel"
     case Wallet_Alert_OK = "Wallet.Alert.OK"
+    case Wallet_Time_PreciseDate_m1 = "Wallet.Time.PreciseDate_m1"
+    case Wallet_Time_PreciseDate_m2 = "Wallet.Time.PreciseDate_m2"
+    case Wallet_Time_PreciseDate_m3 = "Wallet.Time.PreciseDate_m3"
+    case Wallet_Time_PreciseDate_m4 = "Wallet.Time.PreciseDate_m4"
+    case Wallet_Time_PreciseDate_m5 = "Wallet.Time.PreciseDate_m5"
+    case Wallet_Time_PreciseDate_m6 = "Wallet.Time.PreciseDate_m6"
+    case Wallet_Time_PreciseDate_m7 = "Wallet.Time.PreciseDate_m7"
+    case Wallet_Time_PreciseDate_m8 = "Wallet.Time.PreciseDate_m8"
+    case Wallet_Time_PreciseDate_m9 = "Wallet.Time.PreciseDate_m9"
+    case Wallet_Time_PreciseDate_m10 = "Wallet.Time.PreciseDate_m10"
+    case Wallet_Time_PreciseDate_m11 = "Wallet.Time.PreciseDate_m11"
+    case Wallet_Time_PreciseDate_m12 = "Wallet.Time.PreciseDate_m12"
 
     public var localized: String {
         // we can cache strings in a dictionary, if some keys are being reused many times and it's required.
@@ -158,6 +179,10 @@ public enum WStrings: String {
     
     public static func Wallet_Home_TransactionStorageFee(storageFee: String) -> String {
         return fillValues(WStrings.Wallet_Home_TransactionStorageFee.localized, values: [storageFee])
+    }
+    
+    public static func Wallet_TransactionInfo_OtherFee(otherFee: String) -> String {
+        return fillValues(WStrings.Wallet_TransactionInfo_OtherFee.localized, values: [otherFee])
     }
     
     public static func Wallet_Receive_Description(coin: String) -> String {
@@ -184,28 +209,31 @@ public enum WStrings: String {
     public static func Wallet_Sent_Text(amount: String) -> String {
         return fillValues(WStrings.Wallet_Sent_Text.localized, values: [amount])
     }
-}
-
-fileprivate func fillValues(_ format: String, values: [String]) -> String {
-    var result = format
-    for (index, value) in values.enumerated() {
-        result = result.replacingOccurrences(of: "%\(index + 1)$@", with: value)
-    }
-    return result
-}
-
-fileprivate func fillValues(_ format: String, textAttr: [NSAttributedString.Key: Any], values: [NSAttributedString]) -> NSMutableAttributedString {
-    var formatString = format
-    let result = NSMutableAttributedString()
-    for (index, value) in values.enumerated() {
-        if let valueRange = format.range(of: "%\(index + 1)%@") {
-            // the string before format value
-            let stringBeforeValue = String(formatString[...valueRange.lowerBound])
-            formatString = String(formatString[valueRange.upperBound...])
-            result.append(NSAttributedString(string: String(stringBeforeValue)))
-            // value
-            result.append(value)
+    
+    public static func fillValues(_ format: String, values: [String]) -> String {
+        var result = format
+        for (index, value) in values.enumerated() {
+            result = result.replacingOccurrences(of: "%\(index + 1)$@", with: value)
         }
+        return result
     }
-    return result
+
+    private static func fillValues(_ format: String,
+                                   textAttr: [NSAttributedString.Key: Any],
+                                   values: [NSAttributedString]) -> NSMutableAttributedString {
+        var formatString = format
+        let result = NSMutableAttributedString()
+        for (index, value) in values.enumerated() {
+            if let valueRange = format.range(of: "%\(index + 1)%@") {
+                // the string before format value
+                let stringBeforeValue = String(formatString[...valueRange.lowerBound])
+                formatString = String(formatString[valueRange.upperBound...])
+                result.append(NSAttributedString(string: String(stringBeforeValue)))
+                // value
+                result.append(value)
+            }
+        }
+        return result
+    }
+
 }

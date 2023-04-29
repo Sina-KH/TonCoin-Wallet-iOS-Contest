@@ -103,7 +103,7 @@ class WalletTransactionCell: UITableViewCell {
         // seaparator
         let separatorView = UIView()
         separatorView.translatesAutoresizingMaskIntoConstraints = false
-        separatorView.backgroundColor = currentTheme.separator
+        separatorView.backgroundColor = WTheme.separator
         addSubview(separatorView)
         NSLayoutConstraint.activate([
             separatorView.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -116,9 +116,9 @@ class WalletTransactionCell: UITableViewCell {
     }
     
     func updateTheme() {
-        directionLabel.textColor = currentTheme.secondaryLabel
-        dateLabel.textColor = currentTheme.secondaryLabel
-        storageFeeLabel.textColor = currentTheme.secondaryLabel
+        directionLabel.textColor = WTheme.secondaryLabel
+        dateLabel.textColor = WTheme.secondaryLabel
+        storageFeeLabel.textColor = WTheme.secondaryLabel
     }
     
     public func configure(with transaction: WalletTransaction) {
@@ -128,56 +128,18 @@ class WalletTransactionCell: UITableViewCell {
         amountLabel.amount = transaction.transferredValueWithoutFees
 
         // prepare address and description texts
-        var addressString = ""
-        var descriptionString = ""
-        var descriptionIsMonospace = false
+        let (addressString, descriptionString, _) = transaction.extractAddressAndDescription()
 
+        // direction label string
         if transaction.transferredValueWithoutFees < 0 {
             // sent
             if transaction.outMessages.isEmpty {
                 directionLabel.text = ""
-                if transaction.isInitialization {
-                    addressString = WStrings.Wallet_Home_InitTransaction.localized
-                } else {
-                    addressString = WStrings.Wallet_Home_UnknownTransaction.localized
-                }
             } else {
                 directionLabel.text = WStrings.Wallet_Home_TransactionFrom.localized
-                for message in transaction.outMessages {
-                    if !addressString.isEmpty {
-                        addressString.append("\n")
-                    }
-                    addressString.append(formatAddress(message.destination))
-                    
-                    if !descriptionString.isEmpty {
-                        descriptionString.append("\n")
-                    }
-                    switch message.contents {
-                    case .raw:
-                        break
-                    case .encryptedText:
-                        descriptionIsMonospace = true
-                        break
-                    case let .plainText(text):
-                        descriptionString.append(text)
-                    }
-                }
             }
         } else {
-            // received
             directionLabel.text = WStrings.Wallet_Home_TransactionFrom.localized
-            addressString = formatAddress(transaction.inMessage?.source ?? "")
-            if let contents = transaction.inMessage?.contents {
-                switch contents {
-                case .raw:
-                    descriptionString = ""
-                case .encryptedText:
-                    descriptionString = ""
-                    descriptionIsMonospace = true
-                case let .plainText(text):
-                    descriptionString = text
-                }
-            }
         }
 
         addressLabel.text = addressString

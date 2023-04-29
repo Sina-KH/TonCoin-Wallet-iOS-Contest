@@ -70,7 +70,7 @@ class BubbleView: UIView {
         bezierPath.addCurve(to: CGPoint(x: 22, y: height), controlPoint1: CGPoint(x: 16, y: height), controlPoint2: CGPoint(x: 19, y: height))
         bezierPath.close()
 
-        bubbleLayer.fillColor = currentTheme.groupedBackground.cgColor
+        bubbleLayer.fillColor = WTheme.groupedBackground.cgColor
 
         bubbleLayer.path = bezierPath.cgPath
     }

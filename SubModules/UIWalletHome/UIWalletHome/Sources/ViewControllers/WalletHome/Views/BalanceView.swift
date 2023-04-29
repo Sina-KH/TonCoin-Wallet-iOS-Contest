@@ -42,12 +42,12 @@ public class BalanceView: UIStackView {
             let components = formatBalanceText(balance > -1 ? balance : 0).components(separatedBy: ".")
             let attr = NSMutableAttributedString(string: "\(components[0])", attributes: [
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 48, weight: .semibold),
-                NSAttributedString.Key.foregroundColor: currentTheme.balanceHeaderView.balance
+                NSAttributedString.Key.foregroundColor: WTheme.balanceHeaderView.balance
             ])
             if components.count > 1 {
                 attr.append(NSAttributedString(string: ".\(components[1])", attributes: [
                     NSAttributedString.Key.font: UIFont.systemFont(ofSize: 30, weight: .semibold),
-                    NSAttributedString.Key.foregroundColor: currentTheme.balanceHeaderView.balance
+                    NSAttributedString.Key.foregroundColor: WTheme.balanceHeaderView.balance
                 ]))
             }
             balanceLabel.attributedText = attr
@@ -76,7 +76,7 @@ public class BalanceView: UIStackView {
         ])
 
         balanceLabel = UILabel()
-        balanceLabel.textColor = currentTheme.balanceHeaderView.balance
+        balanceLabel.textColor = WTheme.balanceHeaderView.balance
         balanceLabel.translatesAutoresizingMaskIntoConstraints = false
         addArrangedSubview(balanceLabel)
     }

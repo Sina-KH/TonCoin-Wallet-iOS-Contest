@@ -111,9 +111,9 @@ public class ToastView: UIView {
     }
 
     func updateTheme() {
-        backgroundColor = currentTheme.toastView.background
-        iconView.tintColor = currentTheme.toastView.tint
-        titleLabel.textColor = currentTheme.toastView.tint
-        messageLabel.textColor = currentTheme.toastView.tint
+        backgroundColor = WTheme.toastView.background
+        iconView.tintColor = WTheme.toastView.tint
+        titleLabel.textColor = WTheme.toastView.tint
+        messageLabel.textColor = WTheme.toastView.tint
     }
 }

@@ -164,7 +164,7 @@ public class SendVC: WViewController {
     }
     
     func updateTheme() {
-        addressHintLabel.textColor = currentTheme.secondaryLabel
+        addressHintLabel.textColor = WTheme.secondaryLabel
     }
 
     func showWrongAddressToast() {

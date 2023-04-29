@@ -70,8 +70,8 @@ public class WWordInput: UIView {
     }
 
     func updateTheme() {
-        backgroundColor = currentTheme.wordInput.background
-        numberLabel.textColor = currentTheme.secondaryLabel
+        backgroundColor = WTheme.wordInput.background
+        numberLabel.textColor = WTheme.secondaryLabel
     }
 }
 

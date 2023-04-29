@@ -70,7 +70,7 @@ public class WalletCreatedView: UIView {
     }
 
     func updateTheme() {
-        titleLabel.textColor = currentTheme.secondaryLabel
+        titleLabel.textColor = WTheme.secondaryLabel
     }
 
     // pass touch events to below view

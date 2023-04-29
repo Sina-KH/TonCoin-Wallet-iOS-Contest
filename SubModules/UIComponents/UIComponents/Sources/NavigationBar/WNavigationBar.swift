@@ -6,12 +6,24 @@
 //
 
 import UIKit
+import WalletContext
+
+public struct WNavigationBarButton {
+    let text: String
+    let onPress: () -> Void
+    public init(text: String, onPress: @escaping () -> Void) {
+        self.text = text
+        self.onPress = onPress
+    }
+}
 
 public class WNavigationBar: UIView {
 
     private let title: String
-    public init(title: String) {
+    private let trailingItem: WNavigationBarButton
+    public init(title: String, trailingItem: WNavigationBarButton) {
         self.title = title
+        self.trailingItem = trailingItem
         super.init(frame: .zero)
         setupViews()
     }
@@ -35,5 +47,20 @@ public class WNavigationBar: UIView {
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
+        
+        let trailingButton = WButton.setupInstance(.secondary)
+        trailingButton.setTitle(trailingItem.text, for: .normal)
+        trailingButton.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
+        trailingButton.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(trailingButton)
+        NSLayoutConstraint.activate([
+            trailingButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            trailingButton.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
+        trailingButton.addTarget(self, action: #selector(trailingItemPressed), for: .touchUpInside)
+    }
+    
+    @objc func trailingItemPressed() {
+        trailingItem.onPress()
     }
 }

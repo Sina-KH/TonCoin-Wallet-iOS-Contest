@@ -68,12 +68,12 @@ public class SendAmountVC: WViewController {
         let sendToAttributedString = NSMutableAttributedString(string: "\(WStrings.Wallet_SendAmount_SendTo.localized) ",
                                                                attributes: [
                                                                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .regular),
-                                                                NSAttributedString.Key.foregroundColor: currentTheme.secondaryLabel
+                                                                NSAttributedString.Key.foregroundColor: WTheme.secondaryLabel
         ])
         sendToAttributedString.append(NSAttributedString(string: formatStartEndAddress(addressToSend),
                                                          attributes: [
                                                              NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .regular),
-                                                             NSAttributedString.Key.foregroundColor: currentTheme.primaryLabel
+                                                             NSAttributedString.Key.foregroundColor: WTheme.primaryLabel
         ]))
         sendToLabel.attributedText = sendToAttributedString
         sendToStackView.addArrangedSubview(sendToLabel)
@@ -100,7 +100,7 @@ public class SendAmountVC: WViewController {
         insufficientFundsLabel = UILabel()
         insufficientFundsLabel.translatesAutoresizingMaskIntoConstraints = false
         insufficientFundsLabel.font = .systemFont(ofSize: 17, weight: .regular)
-        insufficientFundsLabel.textColor = currentTheme.error
+        insufficientFundsLabel.textColor = WTheme.error
         insufficientFundsLabel.text = WStrings.Wallet_SendAmount_NotEnoughFunds.localized
         insufficientFundsLabel.isHidden = true
         amountContainerView.addSubview(insufficientFundsLabel)
@@ -205,11 +205,11 @@ extension SendAmountVC: WAmountInputDelegate {
         let amount = amountValue(amountView.text)
         if amount > balance {
             insufficientFundsLabel.isHidden = false
-            amountView.textColor = currentTheme.error
+            amountView.textColor = WTheme.error
             continueButton.isEnabled = false
         } else {
             insufficientFundsLabel.isHidden = true
-            amountView.textColor = currentTheme.primaryLabel
+            amountView.textColor = WTheme.primaryLabel
             continueButton.isEnabled = true
         }
     }

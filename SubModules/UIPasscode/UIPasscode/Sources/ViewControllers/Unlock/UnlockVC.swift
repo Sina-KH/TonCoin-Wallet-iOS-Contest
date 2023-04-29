@@ -35,7 +35,7 @@ public class UnlockVC: WViewController {
     private var passcodeInputView: PasscodeInputView!
 
     private func setupViews() {
-        view.backgroundColor = currentTheme.balanceHeaderView.background
+        view.backgroundColor = WTheme.balanceHeaderView.background
         
         let unlockView = UIStackView()
         unlockView.translatesAutoresizingMaskIntoConstraints = false
@@ -58,44 +58,26 @@ public class UnlockVC: WViewController {
         unlockView.addArrangedSubview(gemIcon)
 
         // gap
-        let gapView1 = UIView()
-        gapView1.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            gapView1.widthAnchor.constraint(equalToConstant: 0),
-            gapView1.heightAnchor.constraint(equalToConstant: isIPhone5s ? 16 : 29)
-        ])
-        unlockView.addArrangedSubview(gapView1)
+        unlockView.setCustomSpacing(isIPhone5s ? 16 : 29, after: gemIcon)
 
         // enter passcode hint
         let enterPasscodeLabel = UILabel()
         enterPasscodeLabel.translatesAutoresizingMaskIntoConstraints = false
         enterPasscodeLabel.font = .systemFont(ofSize: isIPhone5s ? 17 : 20)
         enterPasscodeLabel.text = WStrings.Wallet_Unlock_Title.localized
-        enterPasscodeLabel.textColor = currentTheme.balanceHeaderView.balance
+        enterPasscodeLabel.textColor = WTheme.balanceHeaderView.balance
         unlockView.addArrangedSubview(enterPasscodeLabel)
         
         // gap
-        let gapView2 = UIView()
-        gapView2.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            gapView2.widthAnchor.constraint(equalToConstant: 0),
-            gapView2.heightAnchor.constraint(equalToConstant: isIPhone5s ? 12 : 24)
-        ])
-        unlockView.addArrangedSubview(gapView2)
+        unlockView.setCustomSpacing(isIPhone5s ? 12 : 24, after: enterPasscodeLabel)
 
         // passcode input view
-        passcodeInputView = PasscodeInputView(delegate: self, theme: currentTheme.unlockPasscodeInput)
+        passcodeInputView = PasscodeInputView(delegate: self, theme: WTheme.unlockPasscodeInput)
         passcodeInputView.isUserInteractionEnabled = false
         unlockView.addArrangedSubview(passcodeInputView)
 
         // gap
-        let gapView3 = UIView()
-        gapView3.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            gapView3.widthAnchor.constraint(equalToConstant: 0),
-            gapView3.heightAnchor.constraint(equalToConstant: isIPhone5s ? 24 : 61)
-        ])
-        unlockView.addArrangedSubview(gapView3)
+        unlockView.setCustomSpacing(isIPhone5s ? 24 : 61, after: passcodeInputView)
 
         // create and add buttons
         // we have 4 rows
@@ -113,8 +95,8 @@ public class UnlockVC: WViewController {
                     button.heightAnchor.constraint(equalToConstant: 78)
                 ])
                 button.layer.cornerRadius = 39
-                button.backgroundColor = currentTheme.background.withAlphaComponent(0.12)
-                button.highlightBackgroundColor = currentTheme.background.withAlphaComponent(0.4)
+                button.backgroundColor = WTheme.background.withAlphaComponent(0.12)
+                button.highlightBackgroundColor = WTheme.background.withAlphaComponent(0.4)
                 button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
                 button.tag = r * 3 + c
                 // check if button should contain a number label on top and a alphabet label on bottom
@@ -123,7 +105,7 @@ public class UnlockVC: WViewController {
                     let buttonTitleLabel = UILabel()
                     buttonTitleLabel.translatesAutoresizingMaskIntoConstraints = false
                     buttonTitleLabel.font = .boldSystemFont(ofSize: 37)
-                    buttonTitleLabel.textColor = currentTheme.background
+                    buttonTitleLabel.textColor = WTheme.background
                     let num: Int
                     if r < 3 {
                         // numbers between 1 and 9
@@ -142,7 +124,7 @@ public class UnlockVC: WViewController {
                     let buttonAlphabetLabel = UILabel()
                     buttonAlphabetLabel.translatesAutoresizingMaskIntoConstraints = false
                     buttonAlphabetLabel.font = .boldSystemFont(ofSize: num > 0 ? 10 : 16)
-                    buttonAlphabetLabel.textColor = currentTheme.background
+                    buttonAlphabetLabel.textColor = WTheme.background
                     buttonAlphabetLabel.text = alphabetText(forNum: num)
                     button.addSubview(buttonAlphabetLabel)
                     NSLayoutConstraint.activate([
@@ -164,7 +146,7 @@ public class UnlockVC: WViewController {
                         image = UIImage(named: "BackspaceIcon")!
                     }
                     let buttonImageView = UIImageView(image: image.withRenderingMode(.alwaysTemplate))
-                    buttonImageView.tintColor = currentTheme.balanceHeaderView.balance
+                    buttonImageView.tintColor = WTheme.balanceHeaderView.balance
                     buttonImageView.translatesAutoresizingMaskIntoConstraints = false
                     buttonImageView.contentMode = .scaleAspectFit
                     button.addSubview(buttonImageView)
@@ -177,13 +159,13 @@ public class UnlockVC: WViewController {
                 }
                 rowView.addArrangedSubview(button)
             }
-            let gapView4 = UIView()
-            gapView4.translatesAutoresizingMaskIntoConstraints = false
+            let gapView = UIView()
+            gapView.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
-                gapView4.widthAnchor.constraint(equalToConstant: 0),
-                gapView4.heightAnchor.constraint(equalToConstant: isIPhone5s ? 6 : 18)
+                gapView.widthAnchor.constraint(equalToConstant: 0),
+                gapView.heightAnchor.constraint(equalToConstant: isIPhone5s ? 6 : 18)
             ])
-            unlockView.addArrangedSubview(gapView4)
+            unlockView.addArrangedSubview(gapView)
             unlockView.addArrangedSubview(rowView)
         }
     }
