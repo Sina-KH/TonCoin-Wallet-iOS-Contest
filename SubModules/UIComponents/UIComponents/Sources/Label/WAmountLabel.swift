@@ -10,8 +10,8 @@ import WalletContext
 
 public class WAmountLabel: UILabel {
     
-    private static let numberFont = UIFont.systemFont(ofSize: 19, weight: .medium)
-    private static let decimalsFont = UIFont.systemFont(ofSize: 15, weight: .regular)
+    private static let defaultNumberFont = UIFont.systemFont(ofSize: 19, weight: .medium)
+    private static let defaultDecimalsFont = UIFont.systemFont(ofSize: 15, weight: .regular)
     
     public var amount: Int64 = 0 {
         didSet {
@@ -19,7 +19,11 @@ public class WAmountLabel: UILabel {
         }
     }
 
-    public init() {
+    private let numberFont: UIFont
+    private let decimalsFont: UIFont
+    public init(numberFont: UIFont? = nil, decimalsFont: UIFont? = nil) {
+        self.numberFont = numberFont ?? WAmountLabel.defaultNumberFont
+        self.decimalsFont = decimalsFont ?? WAmountLabel.defaultDecimalsFont
         super.init(frame: CGRect.zero)
         updateTheme()
     }
@@ -47,12 +51,12 @@ public class WAmountLabel: UILabel {
         // reset text color
         let components = formatBalanceText(amount).components(separatedBy: ".")
         let attr = NSMutableAttributedString(string: "\(components[0])", attributes: [
-            NSAttributedString.Key.font: WAmountLabel.numberFont,
+            NSAttributedString.Key.font: numberFont,
             NSAttributedString.Key.foregroundColor: amount > 0 ? currentTheme.positiveAmount : currentTheme.negativeAmount
         ])
         if components.count > 1 {
             attr.append(NSAttributedString(string: ".\(components[1])", attributes: [
-                NSAttributedString.Key.font: WAmountLabel.decimalsFont,
+                NSAttributedString.Key.font: decimalsFont,
                 NSAttributedString.Key.foregroundColor: amount > 0 ? currentTheme.positiveAmount : currentTheme.negativeAmount
             ]))
         }

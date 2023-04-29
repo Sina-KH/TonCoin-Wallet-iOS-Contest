@@ -81,6 +81,7 @@ public enum WStrings: String {
     case Wallet_Home_TransactionPendingHeader = "Wallet.Home.TransactionPendingHeader"
     case Wallet_Home_InitTransaction = "Wallet.Home.InitTransaction"
     case Wallet_Home_UnknownTransaction = "Wallet.Home.UnknownTransaction"
+    case Wallet_TransactionInfo_Title = "Wallet.TransactionInfo.Title"
     case Wallet_Receive_Title = "Wallet.Receive.Title"
     case Wallet_Receive_Description = "Wallet.Receive.Description"
     case Wallet_Receive_Toncoin = "Wallet.Receive.Toncoin"

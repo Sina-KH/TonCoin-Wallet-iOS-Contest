@@ -137,8 +137,8 @@
 			isa = PBXGroup;
 			children = (
 				27E643CB29F40FBD006B20FC /* WalletHome */,
-				27E643CC29F40FDA006B20FC /* Receive */,
 				27E643E229F448AB006B20FC /* Transaction */,
+				27E643CC29F40FDA006B20FC /* Receive */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

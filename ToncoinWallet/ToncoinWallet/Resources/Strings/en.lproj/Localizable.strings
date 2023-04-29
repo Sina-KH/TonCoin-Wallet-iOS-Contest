@@ -101,6 +101,22 @@
 "Wallet.Home.InitTransaction" = "Wallet initialized"; // NEW
 "Wallet.Home.UnknownTransaction" = "Unknown"; // NEW
 
+// Transaction
+"Wallet.TransactionInfo.Title" = "Transaction";
+"Wallet.TransactionInfo.NoAddress" = "No Address";
+"Wallet.TransactionInfo.RecipientHeader" = "RECIPIENT";
+"Wallet.TransactionInfo.SenderHeader" = "SENDER";
+"Wallet.TransactionInfo.CopyAddress" = "Copy wallet address";
+"Wallet.TransactionInfo.AddressCopied" = "Address copied to clipboard.";
+"Wallet.TransactionInfo.SendGrams" = "Send TON to this address";
+"Wallet.TransactionInfo.CommentHeader" = "COMMENT";
+"Wallet.TransactionInfo.StorageFeeHeader" = "STORAGE FEE";
+"Wallet.TransactionInfo.OtherFeeHeader" = "TRANSACTION FEE";
+"Wallet.TransactionInfo.StorageFeeInfo" = "Blockchain validators collect a tiny fee for storing information about your decentralized wallet and processing your transactions.";
+"Wallet.TransactionInfo.StorageFeeInfoUrl" = "Blockchain validators collect a tiny fee for storing information about your decentralized wallet and processing your transactions. [More info]()";
+"Wallet.TransactionInfo.OtherFeeInfo" = "Blockchain validators collect a tiny fee for processing your decentralized transactions.";
+"Wallet.TransactionInfo.OtherFeeInfoUrl" = "Blockchain validators collect a tiny fee for processing your decentralized transactions. [More info]()";
+
 // Receive
 "Wallet.Receive.Title" = "Receive Toncoin"; // Updated
 "Wallet.Receive.Description" = "Send only %1$@ to this address.\nSending other coins may result\nin permanent loss."; // NEW
@@ -234,20 +250,6 @@
 "Wallet.SecureStorageChanged.PasscodeText" = "Unfortunately, your wallet is no longer available due to the change in your system security settings (Passcode). To restore your wallet, tap \"Import existing wallet\".";
 "Wallet.SecureStorageChanged.ImportWallet" = "Import existing wallet";
 "Wallet.SecureStorageChanged.CreateWallet" = "Create new wallet";
-"Wallet.TransactionInfo.Title" = "Transaction";
-"Wallet.TransactionInfo.NoAddress" = "No Address";
-"Wallet.TransactionInfo.RecipientHeader" = "RECIPIENT";
-"Wallet.TransactionInfo.SenderHeader" = "SENDER";
-"Wallet.TransactionInfo.CopyAddress" = "Copy wallet address";
-"Wallet.TransactionInfo.AddressCopied" = "Address copied to clipboard.";
-"Wallet.TransactionInfo.SendGrams" = "Send TON to this address";
-"Wallet.TransactionInfo.CommentHeader" = "COMMENT";
-"Wallet.TransactionInfo.StorageFeeHeader" = "STORAGE FEE";
-"Wallet.TransactionInfo.OtherFeeHeader" = "TRANSACTION FEE";
-"Wallet.TransactionInfo.StorageFeeInfo" = "Blockchain validators collect a tiny fee for storing information about your decentralized wallet and processing your transactions.";
-"Wallet.TransactionInfo.StorageFeeInfoUrl" = "Blockchain validators collect a tiny fee for storing information about your decentralized wallet and processing your transactions. [More info]()";
-"Wallet.TransactionInfo.OtherFeeInfo" = "Blockchain validators collect a tiny fee for processing your decentralized transactions.";
-"Wallet.TransactionInfo.OtherFeeInfoUrl" = "Blockchain validators collect a tiny fee for processing your decentralized transactions. [More info]()";
 "Wallet.Receive.CreateInvoice" = "Create Invoice";
 "Wallet.Receive.CreateInvoiceInfo" = "You can specify the amount and purpose of the payment to save the sender some time.";
 "Wallet.Configuration.Title" = "Server Settings";

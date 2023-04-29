@@ -9,7 +9,7 @@ re-using the best of the exiting, original codebase.
 is backward compatible and almost reused. Only a few changes applied to support new flows.
 
 :white_check_mark: **Updated tonlib:** The application is now using the latest version of the [
-ADNL TonLib Repository](https://github.com/ton-blockchain/ton) (2023.03).
+ADNL TonLib Repository](https://github.com/ton-blockchain/ton) (2023.04).
 
 :white_check_mark: `iOS 12.2+` support.
 

@@ -39,6 +39,8 @@
 		27A1281129E0403E002D030A /* SwiftSignalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273A604129E02EE1007CA6F0 /* SwiftSignalKit.framework */; };
 		27A1281329E04040002D030A /* YuvConversion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273A60AD29E0316A007CA6F0 /* YuvConversion.framework */; };
 		27B65D1129EC567A00D47112 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B65D1029EC567A00D47112 /* HeaderView.swift */; };
+		27CFA28929FD8FE400A65283 /* WBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CFA28829FD8FE400A65283 /* WBottomSheetViewController.swift */; };
+		27CFA28C29FDA5FA00A65283 /* WNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CFA28B29FDA5FA00A65283 /* WNavigationBar.swift */; };
 		27E643D129F41E0D006B20FC /* QrCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643D029F41E0D006B20FC /* QrCode.swift */; };
 		27E643D329F41E59006B20FC /* TransformImageArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643D229F41E59006B20FC /* TransformImageArguments.swift */; };
 		27E643D529F41E85006B20FC /* ImageCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643D429F41E85006B20FC /* ImageCorners.swift */; };
@@ -92,6 +94,8 @@
 		2786FB5A29E876420023FE21 /* UIKitRuntimeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitRuntimeUtils.swift; sourceTree = "<group>"; };
 		2786FB6C29E882550023FE21 /* UIViewControllerUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerUtils.swift; sourceTree = "<group>"; };
 		27B65D1029EC567A00D47112 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		27CFA28829FD8FE400A65283 /* WBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBottomSheetViewController.swift; sourceTree = "<group>"; };
+		27CFA28B29FDA5FA00A65283 /* WNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WNavigationBar.swift; sourceTree = "<group>"; };
 		27E643D029F41E0D006B20FC /* QrCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCode.swift; sourceTree = "<group>"; };
 		27E643D229F41E59006B20FC /* TransformImageArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformImageArguments.swift; sourceTree = "<group>"; };
 		27E643D429F41E85006B20FC /* ImageCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCorners.swift; sourceTree = "<group>"; };
@@ -136,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				273521CC29E94D4E007C4E96 /* WViewController.swift */,
+				27CFA28829FD8FE400A65283 /* WBottomSheetViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -241,8 +246,9 @@
 				2719621E29F1BD6200B5B59F /* Label */,
 				2735220D29E9C342007C4E96 /* WordInput */,
 				2749340629F53CF9009976B5 /* TextInput */,
-				273A60AF29E0324D007CA6F0 /* Utils */,
+				27CFA28A29FDA5E400A65283 /* NavigationBar */,
 				273521CB29E94D3B007C4E96 /* ViewController */,
+				273A60AF29E0324D007CA6F0 /* Utils */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -265,6 +271,14 @@
 				270CDAFB29FAD55900308DFF /* TitleValueRowView.swift */,
 			);
 			path = CommonViews;
+			sourceTree = "<group>";
+		};
+		27CFA28A29FDA5E400A65283 /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				27CFA28B29FDA5FA00A65283 /* WNavigationBar.swift */,
+			);
+			path = NavigationBar;
 			sourceTree = "<group>";
 		};
 		27E643CF29F41E02006B20FC /* QR */ = {
@@ -418,6 +432,7 @@
 				27764E5029F13BC700A45DAF /* BottomActionsView.swift in Sources */,
 				2719622029F1BD6F00B5B59F /* WAmountLabel.swift in Sources */,
 				27E643D529F41E85006B20FC /* ImageCorners.swift in Sources */,
+				27CFA28C29FDA5FA00A65283 /* WNavigationBar.swift in Sources */,
 				273A609129E0310C007CA6F0 /* GenerateImage.swift in Sources */,
 				27B65D1129EC567A00D47112 /* HeaderView.swift in Sources */,
 				27E643D929F42269006B20FC /* WQrCode.swift in Sources */,
@@ -427,6 +442,7 @@
 				27EBE5AA29EDE6C9006ECFFB /* UINavigationControllerUtils.swift in Sources */,
 				2735220F29E9C359007C4E96 /* WWordInput.swift in Sources */,
 				27E643D129F41E0D006B20FC /* QrCode.swift in Sources */,
+				27CFA28929FD8FE400A65283 /* WBottomSheetViewController.swift in Sources */,
 				2786FB6D29E882550023FE21 /* UIViewControllerUtils.swift in Sources */,
 				270CDAFC29FAD55900308DFF /* TitleValueRowView.swift in Sources */,
 				273F7FF229F9C1BF0075E2E8 /* WCommentInput.swift in Sources */,

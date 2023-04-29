@@ -34,7 +34,7 @@ sh $BUILD_DIR/build-ton-arch.sh "$BUILD_DIR_ARM64" "$BUILD_DIR" "$OPENSSL" arm64
 sh $BUILD_DIR/build-ton-arch.sh "$BUILD_DIR_X86_64" "$BUILD_DIR" "$OPENSSL" x86_64 12.0
 
 mkdir -p $(pwd)/build/ton_universal/lib
-for entry in $(pwd)/build/ton_x86_64/build/out/lib/*.a;do; \
+for entry in $(pwd)/build/ton_x86_64/build/out/lib/*.a; do \
 	entryFileName=`basename "$entry"`; \
 	lipo $entry $(pwd)/build/ton_arm64/build/out/lib/$entryFileName -create -output $(pwd)/build/ton_universal/lib/$entryFileName ;\
 done

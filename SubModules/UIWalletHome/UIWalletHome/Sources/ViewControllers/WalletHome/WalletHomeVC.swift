@@ -148,6 +148,8 @@ extension WalletHomeVC: UITableViewDataSource, UITableViewDelegate {
     }
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let transactionVC = TransactionVC(transaction: walletHomeVM.transactions![indexPath.row])
+        present(bottomSheet: transactionVC)
     }
 }
 
