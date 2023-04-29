@@ -46,10 +46,12 @@ public class BalanceHeaderView: UIView {
     }
 
     private func setupView() {
+        var constraints = [NSLayoutConstraint]()
+
         translatesAutoresizingMaskIntoConstraints = false
         layer.masksToBounds = true
         heightConstraint = heightAnchor.constraint(equalToConstant: 300)
-        NSLayoutConstraint.activate([
+        constraints.append(contentsOf: [
             heightConstraint
         ])
         backgroundColor = WTheme.balanceHeaderView.background
@@ -60,7 +62,7 @@ public class BalanceHeaderView: UIView {
         settingsButton.tintColor = WTheme.balanceHeaderView.headIcons
         settingsButton.setImage(UIImage(named: "SettingsIcon")?.withRenderingMode(.alwaysTemplate), for: .normal)
         addSubview(settingsButton)
-        NSLayoutConstraint.activate([
+        constraints.append(contentsOf: [
             settingsButton.topAnchor.constraint(equalTo: topAnchor),
             settingsButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
             settingsButton.widthAnchor.constraint(equalToConstant: 44),
@@ -73,7 +75,7 @@ public class BalanceHeaderView: UIView {
         scanButton.tintColor = WTheme.balanceHeaderView.headIcons
         scanButton.setImage(UIImage(named: "ScanIcon")?.withRenderingMode(.alwaysTemplate), for: .normal)
         addSubview(scanButton)
-        NSLayoutConstraint.activate([
+        constraints.append(contentsOf: [
             scanButton.topAnchor.constraint(equalTo: topAnchor),
             scanButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
             scanButton.widthAnchor.constraint(equalToConstant: 44),
@@ -94,7 +96,7 @@ public class BalanceHeaderView: UIView {
         bottomCornersView.backgroundColor = WTheme.background
         bottomCornersView.layer.cornerRadius = BalanceHeaderView.bottomRadiusViewHeight / 2
         addSubview(bottomCornersView)
-        NSLayoutConstraint.activate([
+        constraints.append(contentsOf: [
             bottomCornersView.leftAnchor.constraint(equalTo: leftAnchor, constant: 0),
             bottomCornersView.rightAnchor.constraint(equalTo: rightAnchor, constant: 0),
             bottomCornersView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: BalanceHeaderView.bottomRadiusViewHeight / 2),
@@ -107,7 +109,7 @@ public class BalanceHeaderView: UIView {
         actionsStackView.spacing = 12
         actionsStackView.distribution = .fillEqually
         addSubview(actionsStackView)
-        NSLayoutConstraint.activate([
+        constraints.append(contentsOf: [
             actionsStackView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
             actionsStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
             actionsStackView.bottomAnchor.constraint(equalTo: bottomCornersView.topAnchor, constant: -16)
@@ -129,6 +131,7 @@ public class BalanceHeaderView: UIView {
         sendButton.addTarget(self, action: #selector(sendPressed), for: .touchUpInside)
         actionsStackView.addArrangedSubview(sendButton)
 
+        NSLayoutConstraint.activate(constraints)
     }
 
     // update height
@@ -145,6 +148,12 @@ public class BalanceHeaderView: UIView {
 
         // set actions alpha
         actionsStackView.alpha = 1 - scrollOffset / 100
+        
+        // set balance view size
+        balanceView.update(
+            scale: newHeight > BalanceHeaderView.minHeight * 2 ? 1 :
+                0.5 + (newHeight - BalanceHeaderView.minHeight) / BalanceHeaderView.minHeight / 2
+        )
     }
     
     func update(balance: Int64) {
