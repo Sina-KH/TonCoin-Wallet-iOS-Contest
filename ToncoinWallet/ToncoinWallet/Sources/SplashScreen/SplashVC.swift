@@ -25,13 +25,19 @@ class SplashVC: WViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        // start the app by initializing the wallet context and getting the wallet info
-        splashVM.startApp()
+        startApp()
     }
 
     func replaceVC(with vc: UIViewController) {
-        navigationController?.setViewControllers([vc], animated: false)
-        navigationController?.viewControllers.last?.view.layer.animateAlpha(from: 0.0, to: 1.0, duration: 0.3)
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: false)
+        vc.view.layer.animateAlpha(from: 0.0, to: 1.0, duration: 0.3)
+    }
+    
+    // start the app by initializing the wallet context and getting the wallet info
+    private func startApp() {
+        splashVM.startApp()
     }
 }
 
@@ -58,5 +64,11 @@ extension SplashVC: SplashVMDelegate {
     
     func errorOccured() {
         // TODO::
+    }
+    
+    func restartApp() {
+        dismiss(animated: true) { [weak self] in
+            self?.startApp()
+        }
     }
 }

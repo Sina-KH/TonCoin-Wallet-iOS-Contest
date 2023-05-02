@@ -27,6 +27,9 @@ protocol SplashVMDelegate: AnyObject {
 
     // called when the wallet data is complete and user should see wallet home screen (wallet info)
     func navigateToHome(walletContext: WalletContext, walletInfo: WalletInfo)
+    
+    // called from wallet context if wallet is deleted
+    func restartApp()
 }
 
 class SplashVM: NSObject {
@@ -146,8 +149,19 @@ class SplashVM: NSObject {
         }
 
         let _ = (resolvedInitialConfig
-        |> deliverOnMainQueue).start(next: { initialResolvedConfig in
-            let walletContext = WalletContextImpl(basePath: documentsPath, storage: storage, config: initialResolvedConfig.config, blockchainName: initialResolvedConfig.networkName, presentationData: presentationData)
+        |> deliverOnMainQueue).start(next: { [weak self] initialResolvedConfig in
+            guard let self else {
+                return
+            }
+            guard let splashVMDelegate = splashVMDelegate else {
+                return
+            }
+            let walletContext = WalletContextImpl(basePath: documentsPath,
+                                                  storage: storage,
+                                                  config: initialResolvedConfig.config,
+                                                  blockchainName: initialResolvedConfig.networkName,
+                                                  presentationData: presentationData,
+                                                  splashVMDelegate: splashVMDelegate)
             self.walletContext = walletContext
 
             func validateBlockchain(completion: @escaping () -> Void) {

@@ -10,6 +10,8 @@ import UIComponents
 import WalletContext
 
 public protocol BalanceHeaderViewDelegate: AnyObject {
+    func scanPressed()
+    func settingsPressed()
     func receivePressed()
     func sendPressed()
 }
@@ -56,30 +58,32 @@ public class BalanceHeaderView: UIView {
         ])
         backgroundColor = WTheme.balanceHeaderView.background
 
-        // settings button
-        let settingsButton = WButton.setupInstance(.secondary)
-        settingsButton.translatesAutoresizingMaskIntoConstraints = false
-        settingsButton.tintColor = WTheme.balanceHeaderView.headIcons
-        settingsButton.setImage(UIImage(named: "SettingsIcon")?.withRenderingMode(.alwaysTemplate), for: .normal)
-        addSubview(settingsButton)
-        constraints.append(contentsOf: [
-            settingsButton.topAnchor.constraint(equalTo: topAnchor),
-            settingsButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
-            settingsButton.widthAnchor.constraint(equalToConstant: 44),
-            settingsButton.heightAnchor.constraint(equalToConstant: 44)
-        ])
-
         // scan button
         let scanButton = WButton.setupInstance(.secondary)
         scanButton.translatesAutoresizingMaskIntoConstraints = false
         scanButton.tintColor = WTheme.balanceHeaderView.headIcons
         scanButton.setImage(UIImage(named: "ScanIcon")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        scanButton.addTarget(self, action: #selector(scanPressed), for: .touchUpInside)
         addSubview(scanButton)
         constraints.append(contentsOf: [
             scanButton.topAnchor.constraint(equalTo: topAnchor),
             scanButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
             scanButton.widthAnchor.constraint(equalToConstant: 44),
             scanButton.heightAnchor.constraint(equalToConstant: 44)
+        ])
+
+        // settings button
+        let settingsButton = WButton.setupInstance(.secondary)
+        settingsButton.translatesAutoresizingMaskIntoConstraints = false
+        settingsButton.tintColor = WTheme.balanceHeaderView.headIcons
+        settingsButton.setImage(UIImage(named: "SettingsIcon")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        settingsButton.addTarget(self, action: #selector(settingsPressed), for: .touchUpInside)
+        addSubview(settingsButton)
+        constraints.append(contentsOf: [
+            settingsButton.topAnchor.constraint(equalTo: topAnchor),
+            settingsButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
+            settingsButton.widthAnchor.constraint(equalToConstant: 44),
+            settingsButton.heightAnchor.constraint(equalToConstant: 44)
         ])
 
         // balance view
@@ -168,6 +172,14 @@ public class BalanceHeaderView: UIView {
         } else {
             return hitView
         }
+    }
+    
+    @objc func scanPressed() {
+        delegate?.scanPressed()
+    }
+    
+    @objc func settingsPressed() {
+        delegate?.settingsPressed()
     }
 
     @objc func receivePressed() {

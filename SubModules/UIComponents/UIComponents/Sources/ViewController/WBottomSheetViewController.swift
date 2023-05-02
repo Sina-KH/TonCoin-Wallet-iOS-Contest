@@ -42,7 +42,7 @@ public class WBottomSheetViewController: WViewController {
         // setup content view controller
         contentViewController.view.translatesAutoresizingMaskIntoConstraints = false
         contentViewController.view.layer.cornerRadius = 10
-        contentViewController.view.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        contentViewController.view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         view.addSubview(contentViewController.view)
         contentBottomConstraint = contentViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         NSLayoutConstraint.activate([

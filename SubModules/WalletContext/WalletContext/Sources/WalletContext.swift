@@ -45,4 +45,6 @@ public protocol WalletContext {
     func openPlatformSettings()
     func authorizeAccessToCamera(completion: @escaping () -> Void)
     func pickImage(present: @escaping (UIViewController) -> Void, completion: @escaping (UIImage) -> Void)
+
+    func restartApp()
 }

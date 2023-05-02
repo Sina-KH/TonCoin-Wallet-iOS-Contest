@@ -189,6 +189,22 @@
 "Wallet.Sent.Text" = "%1$@ TON have been sent to"; // Updated
 "Wallet.Sent.ViewWallet" = "View my wallet";
 
+// Settings
+"Wallet.Settings.Title" = "Wallet Settings"; // Updated
+"Wallet.Settings.General" = "GENERAL"; // NEW
+"Wallet.Settings.Notifications" = "Notifications"; // NEW
+"Wallet.Settings.ActiveAddress" = "Active address"; // NEW
+"Wallet.Settings.PrimaryCurrency" = "Primary currency"; // NEW
+"Wallet.Settings.Security" = "SECURITY"; // NEW
+"Wallet.Settings.ShowRecoveryPhrase" = "Show recovery phrase"; // NEW
+"Wallet.Settings.ChangePasscode" = "Change passcode"; // NEW
+"Wallet.Settings.TouchID" = "Touch ID"; // NEW
+"Wallet.Settings.FaceID" = "Face ID"; // NEW
+"Wallet.Settings.DeleteWallet" = "Delete Wallet"; // Updated
+"Wallet.Settings.DeleteWalletInfo" = "This will disconnect the wallet from this app. You will be able to restore your wallet using 24 secret words – or import another wallet.\n\nTON Wallets are located in the decentralized TON Blockchain. If you want a wallet to be deleted, simply transfer all the TON from it and leave it empty.";
+"Wallet.Settings.CurrencyUSD" = "USD"; // NEW
+"Wallet.Settings.CurrencyEUR" = "EUR"; // NEW
+
 // Unlock
 "Wallet.Unlock.Title" = "Enter your TON Wallet Passcode";
 
@@ -241,12 +257,9 @@
 "Wallet.Send.TransactionInProgress" = "Please wait until the current transaction is completed.";
 "Wallet.Send.SyncInProgress" = "Please wait while the wallet finishes syncing with the TON Blockchain.";
 "Wallet.Send.EncryptComment" = "Encrypt Text";
-"Wallet.Settings.Title" = "Settings";
 "Wallet.Settings.Configuration" = "Server Settings";
 "Wallet.Settings.ConfigurationInfo" = "Advanced Settings";
 "Wallet.Settings.BackupWallet" = "Backup Wallet";
-"Wallet.Settings.DeleteWallet" = "Log Out";
-"Wallet.Settings.DeleteWalletInfo" = "This will disconnect the wallet from this app. You will be able to restore your wallet using 24 secret words – or import another wallet.\n\nTON Wallets are located in the decentralized TON Blockchain. If you want a wallet to be deleted, simply transfer all the TON from it and leave it empty.";
 "Wallet.Intro.NotNow" = "Not Now";
 "Wallet.Intro.Terms" = "By creating a wallet you accept the\n[Terms of Conditions]().";
 "Wallet.SecureStorageNotAvailable.Title" = "Set a Passcode";
@@ -281,34 +294,7 @@
 "Wallet.Configuration.BlockchainNameChangedProceed" = "Proceed";
 "Wallet.CreateInvoice.Title" = "Create Invoice";
 "Wallet.Navigation.Close" = "Close";
-"Wallet.Navigation.Back" = "Back";
-"Wallet.Navigation.Done" = "Done";
-"Wallet.Navigation.Cancel" = "Cancel";
 "Wallet.Alert.Cancel" = "Cancel";
-"Wallet.Month.GenJanuary" = "January";
-"Wallet.Month.GenFebruary" = "February";
-"Wallet.Month.GenMarch" = "March";
-"Wallet.Month.GenApril" = "April";
-"Wallet.Month.GenMay" = "May";
-"Wallet.Month.GenJune" = "June";
-"Wallet.Month.GenJuly" = "July";
-"Wallet.Month.GenAugust" = "August";
-"Wallet.Month.GenSeptember" = "September";
-"Wallet.Month.GenOctober" = "October";
-"Wallet.Month.GenNovember" = "November";
-"Wallet.Month.GenDecember" = "December";
-"Wallet.Month.ShortJanuary" = "Jan";
-"Wallet.Month.ShortFebruary" = "Feb";
-"Wallet.Month.ShortMarch" = "Mar";
-"Wallet.Month.ShortApril" = "Apr";
-"Wallet.Month.ShortMay" = "May";
-"Wallet.Month.ShortJune" = "Jun";
-"Wallet.Month.ShortJuly" = "Jul";
-"Wallet.Month.ShortAugust" = "Aug";
-"Wallet.Month.ShortSeptember" = "Sep";
-"Wallet.Month.ShortOctober" = "Oct";
-"Wallet.Month.ShortNovember" = "Nov";
-"Wallet.Month.ShortDecember" = "Dec";
 "Wallet.Weekday.Today" = "Today";
 "Wallet.Weekday.Yesterday" = "Yesterday";
 "Wallet.Info.TransactionDateHeader" = "%1$@ %2$@";

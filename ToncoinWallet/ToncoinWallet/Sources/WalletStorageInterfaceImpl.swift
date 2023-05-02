@@ -119,6 +119,8 @@ final class WalletContextImpl: NSObject, WalletContext, UIImagePickerControllerD
     let presentationData: WalletPresentationData
 //    let window: Window1
     
+    let splashVMDelegate: SplashVMDelegate
+    
     let supportsCustomConfigurations: Bool = true
     let termsUrl: String? = nil
     let feeInfoUrl: String? = nil
@@ -229,10 +231,20 @@ final class WalletContextImpl: NSObject, WalletContext, UIImagePickerControllerD
         picker.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
-    init(basePath: String, storage: WalletStorageInterfaceImpl, config: String, blockchainName: String, presentationData: WalletPresentationData) {
+    func restartApp() {
+        splashVMDelegate.restartApp()
+    }
+
+    init(basePath: String,
+         storage: WalletStorageInterfaceImpl,
+         config: String,
+         blockchainName: String,
+         presentationData: WalletPresentationData,
+         splashVMDelegate: SplashVMDelegate) {
         let _ = try? FileManager.default.createDirectory(at: URL(fileURLWithPath: basePath + "/keys"), withIntermediateDirectories: true, attributes: nil)
         self.storageImpl = storage
         
+        self.splashVMDelegate = splashVMDelegate
 //        self.window = window
         
         self.tonInstance = TonInstance(

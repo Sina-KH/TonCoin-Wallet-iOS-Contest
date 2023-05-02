@@ -291,6 +291,15 @@ extension WalletHomeVC: WalletHomeVMDelegate {
 }
 
 extension WalletHomeVC: BalanceHeaderViewDelegate {
+    public func scanPressed() {
+        
+    }
+    public func settingsPressed() {
+        let settingsVC = SettingsVC(walletContext: walletContext,
+                                    walletInfo: walletInfo,
+                                    walletHomeVC: self)
+        present(UINavigationController(rootViewController: settingsVC), animated: true)
+    }
     public func receivePressed() {
         let receiveVC = ReceiveVC(walletContext: walletContext, walletInfo: walletInfo)
         present(UINavigationController(rootViewController: receiveVC), animated: true)

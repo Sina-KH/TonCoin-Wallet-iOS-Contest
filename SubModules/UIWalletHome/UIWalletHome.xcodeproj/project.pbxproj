@@ -11,6 +11,7 @@
 		2719622529F1C55F00B5B59F /* WalletHomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719622429F1C55F00B5B59F /* WalletHomeVM.swift */; };
 		2719622729F1C71600B5B59F /* SwiftSignalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2719622629F1C71600B5B59F /* SwiftSignalKit.framework */; };
 		2736AAA429F3298C009FFBE2 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2736AAA329F3298C009FFBE2 /* BalanceView.swift */; };
+		273A6E7A2A016C6700007637 /* MultiSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A6E792A016C6700007637 /* MultiSelectView.swift */; };
 		2749344E29F5D084009976B5 /* UIWalletSend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2749344D29F5D084009976B5 /* UIWalletSend.framework */; };
 		2772A87329F2E6010086F0A2 /* WalletCreatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A87229F2E6010086F0A2 /* WalletCreatedView.swift */; };
 		2772A87629F2EEE10086F0A2 /* WalletLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A87529F2EEE10086F0A2 /* WalletLoadingView.swift */; };
@@ -46,6 +47,7 @@
 		2719622429F1C55F00B5B59F /* WalletHomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletHomeVM.swift; sourceTree = "<group>"; };
 		2719622629F1C71600B5B59F /* SwiftSignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftSignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2736AAA329F3298C009FFBE2 /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
+		273A6E792A016C6700007637 /* MultiSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelectView.swift; sourceTree = "<group>"; };
 		2749344D29F5D084009976B5 /* UIWalletSend.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIWalletSend.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2772A87229F2E6010086F0A2 /* WalletCreatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCreatedView.swift; sourceTree = "<group>"; };
 		2772A87529F2EEE10086F0A2 /* WalletLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletLoadingView.swift; sourceTree = "<group>"; };
@@ -89,6 +91,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		273A6E782A016C5D00007637 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				273A6E792A016C6700007637 /* MultiSelectView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		27764E1F29F134F000A45DAF = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +182,7 @@
 		27CFA29329FDCA1300A65283 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				273A6E782A016C5D00007637 /* Views */,
 				27CFA29429FDCA2100A65283 /* SettingsVC.swift */,
 			);
 			path = Settings;
@@ -340,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27E643E129F43BDE006B20FC /* QRCodeContainerView.swift in Sources */,
+				273A6E7A2A016C6700007637 /* MultiSelectView.swift in Sources */,
 				27E643CA29F40719006B20FC /* BubbleView.swift in Sources */,
 				27E643CE29F40FF7006B20FC /* ReceiveVC.swift in Sources */,
 				27764E4629F1357000A45DAF /* WalletHomeVC.swift in Sources */,
