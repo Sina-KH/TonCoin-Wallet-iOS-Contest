@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		275C09F72A03A2D200CBB232 /* PasscodeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C09F62A03A2D200CBB232 /* PasscodeScreenView.swift */; };
+		275C09FA2A03A66100CBB232 /* ChangePasscodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C09F92A03A66100CBB232 /* ChangePasscodeVC.swift */; };
 		27764E5329F13D4C00A45DAF /* BiometricHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27764E5229F13D4C00A45DAF /* BiometricHelper.swift */; };
 		2777556C29EB4CA10098DE68 /* UIPasscode.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2777556B29EB4CA10098DE68 /* UIPasscode.docc */; };
 		2777557229EB4CA20098DE68 /* UIPasscode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2777556729EB4CA10098DE68 /* UIPasscode.framework */; };
@@ -32,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		275C09F62A03A2D200CBB232 /* PasscodeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeScreenView.swift; sourceTree = "<group>"; };
+		275C09F92A03A66100CBB232 /* ChangePasscodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasscodeVC.swift; sourceTree = "<group>"; };
 		27764E4729F135EE00A45DAF /* UIWalletHome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIWalletHome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27764E5229F13D4C00A45DAF /* BiometricHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricHelper.swift; sourceTree = "<group>"; };
 		2777556729EB4CA10098DE68 /* UIPasscode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIPasscode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +72,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		275C09F82A03A64300CBB232 /* ChangePasscodeVC */ = {
+			isa = PBXGroup;
+			children = (
+				275C09F92A03A66100CBB232 /* ChangePasscodeVC.swift */,
+			);
+			path = ChangePasscodeVC;
+			sourceTree = "<group>";
+		};
 		27764E5129F13D3A00A45DAF /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +142,7 @@
 				27EBE5A629EDE2FC006ECFFB /* ConfirmPasscodeVC */,
 				27EBE5AD29EDE91B006ECFFB /* ActivateBiometricVC */,
 				2779A84C29FBE47200E39FF5 /* Unlock */,
+				275C09F82A03A64300CBB232 /* ChangePasscodeVC */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -147,6 +160,7 @@
 			children = (
 				2777558729EB4D9E0098DE68 /* PasscodeInputView.swift */,
 				27EBE5A429EDC19D006ECFFB /* PasscodeOptionsView.swift */,
+				275C09F62A03A2D200CBB232 /* PasscodeScreenView.swift */,
 			);
 			path = CommonViews;
 			sourceTree = "<group>";
@@ -295,11 +309,13 @@
 			files = (
 				27EBE5AF29EDE92D006ECFFB /* ActivateBiometricVC.swift in Sources */,
 				27764E5329F13D4C00A45DAF /* BiometricHelper.swift in Sources */,
+				275C09F72A03A2D200CBB232 /* PasscodeScreenView.swift in Sources */,
 				2777556C29EB4CA10098DE68 /* UIPasscode.docc in Sources */,
 				27EBE5A529EDC19D006ECFFB /* PasscodeOptionsView.swift in Sources */,
 				2777558829EB4D9E0098DE68 /* PasscodeInputView.swift in Sources */,
 				2777558529EB4CEA0098DE68 /* SetPasscodeVC.swift in Sources */,
 				2779A84E29FBE48A00E39FF5 /* UnlockVC.swift in Sources */,
+				275C09FA2A03A66100CBB232 /* ChangePasscodeVC.swift in Sources */,
 				27EBE5A829EDE345006ECFFB /* ConfirmPasscodeVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,12 +10,12 @@ import UIKit
 public extension UIViewController {
     
     fileprivate func alert(title: String?, text: String,
-                           button: String, buttonPressed: (() -> ())? = nil,
+                           button: String, buttonStyle: UIAlertAction.Style, buttonPressed: (() -> ())? = nil,
                            secondaryButton: String? = nil, secondaryButtonPressed: (() -> ())? = nil,
                            preferPrimary: Bool = true) -> UIAlertController {
         let alert = UIAlertController(title: title, message: text, preferredStyle: .alert)
         let primaryAction = UIAlertAction(title: button,
-                                          style: .default,
+                                          style: buttonStyle,
                                           handler: {(alert: UIAlertAction!) in
             buttonPressed?()
         }
@@ -38,13 +38,14 @@ public extension UIViewController {
     
     // show attributed string alert view error message
     func showAlert(title: String?, textAttr: NSAttributedString,
-                   button: String, buttonPressed: (() -> ())? = nil,
+                   button: String, buttonPressed: (() -> ())? = nil, buttonStyle: UIAlertAction.Style = .default,
                    secondaryButton: String? = nil, secondaryButtonPressed: (() -> ())? = nil,
                    preferPrimary: Bool = true) {
         let alert = alert(
             title: title,
             text: " ",
             button: button,
+            buttonStyle: buttonStyle,
             buttonPressed: buttonPressed,
             secondaryButton: secondaryButton,
             secondaryButtonPressed: secondaryButtonPressed,
@@ -56,13 +57,14 @@ public extension UIViewController {
     
     // show alert view error message
     func showAlert(title: String?, text: String,
-                   button: String, buttonPressed: (() -> ())? = nil,
+                   button: String, buttonStyle: UIAlertAction.Style = .default, buttonPressed: (() -> ())? = nil,
                    secondaryButton: String? = nil, secondaryButtonPressed: (() -> ())? = nil,
                    preferPrimary: Bool = true) {
         let alert = alert(
             title: title,
             text: text,
             button: button,
+            buttonStyle: buttonStyle,
             buttonPressed: buttonPressed,
             secondaryButton: secondaryButton,
             secondaryButtonPressed: secondaryButtonPressed,

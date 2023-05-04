@@ -27,6 +27,9 @@
 		274D3F0829D61CC4007C47AE /* UIComponentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3F0729D61CC4007C47AE /* UIComponentsTests.swift */; };
 		274D3F0929D61CC4007C47AE /* UIComponents.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D3EFB29D61CC4007C47AE /* UIComponents.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		274D3F2829D628E4007C47AE /* WButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3F2329D626F6007C47AE /* WButton.swift */; };
+		275C09F42A039C3000CBB232 /* WHighlightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C09F32A039C3000CBB232 /* WHighlightView.swift */; };
+		275C09FD2A03BA1100CBB232 /* WordListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C09FC2A03BA1100CBB232 /* WordListItemView.swift */; };
+		275C09FE2A03BA1100CBB232 /* WordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C09FB2A03BA1100CBB232 /* WordListView.swift */; };
 		27764E5029F13BC700A45DAF /* BottomActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27764E4F29F13BC700A45DAF /* BottomActionsView.swift */; };
 		2777555929EB37660098DE68 /* WKeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2777555829EB37660098DE68 /* WKeyboardObserver.swift */; };
 		2779A85029FC17F100E39FF5 /* WBaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779A84F29FC17F100E39FF5 /* WBaseButton.swift */; };
@@ -86,6 +89,9 @@
 		274D3F0229D61CC4007C47AE /* UIComponentsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UIComponentsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		274D3F0729D61CC4007C47AE /* UIComponentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponentsTests.swift; sourceTree = "<group>"; };
 		274D3F2329D626F6007C47AE /* WButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WButton.swift; sourceTree = "<group>"; };
+		275C09F32A039C3000CBB232 /* WHighlightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WHighlightView.swift; sourceTree = "<group>"; };
+		275C09FB2A03BA1100CBB232 /* WordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListView.swift; sourceTree = "<group>"; };
+		275C09FC2A03BA1100CBB232 /* WordListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListItemView.swift; sourceTree = "<group>"; };
 		27764E4F29F13BC700A45DAF /* BottomActionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomActionsView.swift; sourceTree = "<group>"; };
 		2777555829EB37660098DE68 /* WKeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKeyboardObserver.swift; sourceTree = "<group>"; };
 		2779A84F29FC17F100E39FF5 /* WBaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBaseButton.swift; sourceTree = "<group>"; };
@@ -247,6 +253,7 @@
 				2735220D29E9C342007C4E96 /* WordInput */,
 				2749340629F53CF9009976B5 /* TextInput */,
 				27CFA28A29FDA5E400A65283 /* NavigationBar */,
+				275C09F22A039C2100CBB232 /* HighlightView */,
 				273521CB29E94D3B007C4E96 /* ViewController */,
 				273A60AF29E0324D007CA6F0 /* Utils */,
 			);
@@ -262,6 +269,14 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
+		275C09F22A039C2100CBB232 /* HighlightView */ = {
+			isa = PBXGroup;
+			children = (
+				275C09F32A039C3000CBB232 /* WHighlightView.swift */,
+			);
+			path = HighlightView;
+			sourceTree = "<group>";
+		};
 		27B65D0F29EC566C00D47112 /* CommonViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +284,8 @@
 				27764E4F29F13BC700A45DAF /* BottomActionsView.swift */,
 				2749340929F54530009976B5 /* ToastView.swift */,
 				270CDAFB29FAD55900308DFF /* TitleValueRowView.swift */,
+				275C09FB2A03BA1100CBB232 /* WordListView.swift */,
+				275C09FC2A03BA1100CBB232 /* WordListItemView.swift */,
 			);
 			path = CommonViews;
 			sourceTree = "<group>";
@@ -424,6 +441,7 @@
 				273521CD29E94D4E007C4E96 /* WViewController.swift in Sources */,
 				273A5CB429E02000007CA6F0 /* WAnimatedSticker.swift in Sources */,
 				27E643D329F41E59006B20FC /* TransformImageArguments.swift in Sources */,
+				275C09FD2A03BA1100CBB232 /* WordListItemView.swift in Sources */,
 				273A608F29E030CA007CA6F0 /* AnimationRenderer.swift in Sources */,
 				2749340829F53D13009976B5 /* WAddressInput.swift in Sources */,
 				274D3F2829D628E4007C47AE /* WButton.swift in Sources */,
@@ -435,6 +453,8 @@
 				27CFA28C29FDA5FA00A65283 /* WNavigationBar.swift in Sources */,
 				273A609129E0310C007CA6F0 /* GenerateImage.swift in Sources */,
 				27B65D1129EC567A00D47112 /* HeaderView.swift in Sources */,
+				275C09F42A039C3000CBB232 /* WHighlightView.swift in Sources */,
+				275C09FE2A03BA1100CBB232 /* WordListView.swift in Sources */,
 				27E643D929F42269006B20FC /* WQrCode.swift in Sources */,
 				2779A85029FC17F100E39FF5 /* WBaseButton.swift in Sources */,
 				274D3EFD29D61CC4007C47AE /* UIComponents.docc in Sources */,

@@ -18,6 +18,9 @@ class SettingsVC: WViewController {
     let walletContext: WalletContext
     let walletInfo: WalletInfo
     let walletHomeVC: WalletHomeVC
+    
+    private lazy var settingsViewModel = SettingsVM(settingsVMDelegate: self)
+    
     public init(walletContext: WalletContext, walletInfo: WalletInfo, walletHomeVC: WalletHomeVC) {
         self.walletContext = walletContext
         self.walletInfo = walletInfo
@@ -31,7 +34,11 @@ class SettingsVC: WViewController {
     // MARK: - Load and SetupView Functions
     private var scrollView: UIScrollView!
     private var stackView: UIStackView!
-
+    private var notificationsSwitch: UISwitch!
+    private var biometricSwitch: UISwitch!
+    private var addressPicker: PickerView!
+    private var currencyPicker: PickerView!
+    
     override func loadView() {
         super.loadView()
         view.backgroundColor = WTheme.groupedBackground
@@ -72,37 +79,35 @@ class SettingsVC: WViewController {
         // `GENERAL` title
         addSettingsHeader(title: WStrings.Wallet_Settings_General.localized)
         // notifications
-        addSwitchItem(position: .top,
+        notificationsSwitch = addSwitchItem(position: .top,
                       title: WStrings.Wallet_Settings_Notifications.localized,
-                      switchSelector: #selector(notificationsChanged))
+                      switchSelector: #selector(notificationsPressed))
         // active address
-        addMultiSelectItem(position: .middle,
-                           title: WStrings.Wallet_Settings_ActiveAddress.localized,
-                           items: [
-                            MultiSelectItem(id: 31, name: "v3R1"),
-                            MultiSelectItem(id: 32, name: "v4R1"),
-                            MultiSelectItem(id: 42, name: "v4R2")
-                           ], selectedID: 32)
+        addressPicker = addPickerItem(position: .middle,
+                                      title: WStrings.Wallet_Settings_ActiveAddress.localized,
+                                      items: [
+                                        PickerViewItem(id: 31, name: "v3R1"),
+                                        PickerViewItem(id: 32, name: "v3R2"),
+                                        PickerViewItem(id: 42, name: "v4R2")
+                                      ], selectedID: 32, selector: #selector(addressSelected))
         // primary currency
-        addMultiSelectItem(position: .bottom,
-                           title: WStrings.Wallet_Settings_PrimaryCurrency.localized,
-                           items: [
-                            MultiSelectItem(id: 1, name: WStrings.Wallet_Settings_CurrencyUSD.localized),
-                            MultiSelectItem(id: 1, name: WStrings.Wallet_Settings_CurrencyEUR.localized)
-                           ], selectedID: 1)
+        currencyPicker = addPickerItem(position: .bottom,
+                                       title: WStrings.Wallet_Settings_PrimaryCurrency.localized,
+                                       items: [
+                                        PickerViewItem(id: 1, name: WStrings.Wallet_Settings_CurrencyUSD.localized),
+                                        PickerViewItem(id: 2, name: WStrings.Wallet_Settings_CurrencyEUR.localized)
+                                       ], selectedID: 1, selector: #selector(currencySelected))
 
         // `SECURITY` title
         addSettingsHeader(title: WStrings.Wallet_Settings_Security.localized)
         // show recovery phrase
         addNavigationItem(position: .top,
-                          title: WStrings.Wallet_Settings_ShowRecoveryPhrase.localized) {
-            // TODO::
-        }
+                          title: WStrings.Wallet_Settings_ShowRecoveryPhrase.localized,
+                          selector: #selector(recoveryPhrasePressed))
         // change passcode
         addNavigationItem(position: .middle,
-                          title: WStrings.Wallet_Settings_ChangePasscode.localized) {
-            // TODO::
-        }
+                          title: WStrings.Wallet_Settings_ChangePasscode.localized,
+                          selector: #selector(changePasscodePressed))
         // faceID / touchID
         let biometricString: String?
         switch BiometricHelper.biometricType() {
@@ -117,9 +122,10 @@ class SettingsVC: WViewController {
             break
         }
         if let biometricString = biometricString {
-            addSwitchItem(position: .bottom,
+            biometricSwitch = addSwitchItem(position: .bottom,
                           title: biometricString,
-                          switchSelector: #selector(biometricActiavationChanged))
+                          switchSelector: #selector(biometricActiavationPressed))
+            biometricSwitch.isOn = settingsViewModel.isBiometricActivated
         }
 
         // Delete Wallet
@@ -128,7 +134,7 @@ class SettingsVC: WViewController {
         let deleteWalletButton = WBaseButton(type: .system)
         deleteWalletButton.translatesAutoresizingMaskIntoConstraints = false
         deleteWalletButton.backgroundColor = WTheme.background
-        deleteWalletButton.highlightBackgroundColor = WTheme.background.withAlphaComponent(0.4)
+        deleteWalletButton.highlightBackgroundColor = WTheme.backgroundReverse.withAlphaComponent(0.1)
         deleteWalletButton.addTarget(self, action: #selector(deleteWallet), for: .touchUpInside)
         deleteWalletButton.layer.cornerRadius = 10
         deleteWalletButton.tintColor = WTheme.error
@@ -163,28 +169,35 @@ class SettingsVC: WViewController {
     }
     
     // adds a switch item to the settings
-    private func addSwitchItem(position: ItemPosition, title: String, switchSelector: Selector) {
+    private func addSwitchItem(position: ItemPosition, title: String, switchSelector: Selector) -> UISwitch {
         let switchView = UISwitch()
         switchView.translatesAutoresizingMaskIntoConstraints = false
         switchView.addTarget(self, action: switchSelector, for: .valueChanged)
-        addItem(position: position, title: title, rightView: switchView)
+        addItem(position: position, title: title, rightView: switchView, selector: switchSelector)
+        return switchView
     }
     
     // add multi select item to the settings
-    private func addMultiSelectItem(position: ItemPosition, title: String, items: [MultiSelectItem], selectedID: Int) {
-        let multiSelectView = MultiSelectView(items: items, selectedID: selectedID)
-        addItem(position: position, title: title, rightView: multiSelectView)
+    private func addPickerItem(position: ItemPosition,
+                               title: String,
+                               items: [PickerViewItem],
+                               selectedID: Int,
+                               selector: Selector) -> PickerView {
+        let pickerView = PickerView(items: items, selectedID: selectedID, onChange: { _ in
+            self.perform(selector)
+        })
+        pickerView.translatesAutoresizingMaskIntoConstraints = false
+        addItem(position: position, title: title, rightView: pickerView, selector: selector)
+        return pickerView
     }
     
     // add navigation item to the settings
-    private func addNavigationItem(position: ItemPosition, title: String, onSelect: () -> Void) {
+    private func addNavigationItem(position: ItemPosition, title: String, selector: Selector) {
         let rightArrowImageView = UIImageView(image: UIImage(named: "RightArrowIcon")!.withRenderingMode(.alwaysTemplate))
         rightArrowImageView.tintColor = WTheme.secondaryLabel
         rightArrowImageView.translatesAutoresizingMaskIntoConstraints = false
         rightArrowImageView.contentMode = .center
-        addItem(position: position,
-                title: title,
-                rightView: rightArrowImageView)
+        addItem(position: position, title: title, rightView: rightArrowImageView, selector: selector)
     }
 
     // adds an item to settings items
@@ -193,8 +206,9 @@ class SettingsVC: WViewController {
         case middle
         case bottom
     }
-    private func addItem(position: ItemPosition, title: String, rightView: UIView) {
-        let settingsItemView = UIView()
+    private func addItem(position: ItemPosition, title: String, rightView: UIView, selector: Selector) {
+        let settingsItemView = WHighlightView()
+        settingsItemView.highlightBackgroundColor = WTheme.backgroundReverse.withAlphaComponent(0.1)
         settingsItemView.backgroundColor = WTheme.background
         settingsItemView.translatesAutoresizingMaskIntoConstraints = false
         stackView.addArrangedSubview(settingsItemView)
@@ -243,31 +257,69 @@ class SettingsVC: WViewController {
                 separatorView.bottomAnchor.constraint(equalTo: settingsItemView.bottomAnchor)
             ])
         }
+        
+        settingsItemView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: selector))
     }
 
-    @objc func notificationsChanged(sender: UISwitch) {
-        print(sender.isOn)
+    // MARK: - Actions
+    @objc func notificationsPressed(sender: AnyObject) {
+        if (sender as? UISwitch) != notificationsSwitch {
+            notificationsSwitch.setOn(!notificationsSwitch.isOn, animated: true)
+        }
     }
     
-    @objc func biometricActiavationChanged(sender: UISwitch) {
-        print(sender.isOn)
+    private var activatingBiometricInProgress = false
+    @objc func biometricActiavationPressed(sender: AnyObject) {
+        if activatingBiometricInProgress {
+            return
+        }
+        if (sender as? UISwitch) != biometricSwitch {
+            biometricSwitch.setOn(!biometricSwitch.isOn, animated: true)
+        }
+        if biometricSwitch.isOn {
+            activatingBiometricInProgress = true
+            biometricSwitch.isUserInteractionEnabled = false
+            settingsViewModel.activateBiometric()
+        } else {
+            settingsViewModel.disableBiometric()
+        }
     }
     
     @objc func donePressed() {
         dismiss(animated: true)
     }
     
+    @objc func recoveryPhrasePressed() {
+        settingsViewModel.loadRecoveryPhrase(walletContext: walletContext, walletInfo: walletInfo)
+    }
+    
+    @objc func changePasscodePressed() {
+        let nav = UINavigationController(rootViewController: ChangePasscodeVC(step: .currentPasscode))
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
+    }
+    
+    @objc func addressSelected(sender: Any) {
+        addressPicker.pickerPressed()
+    }
+    
+    @objc func currencySelected(sender: Any) {
+        currencyPicker.pickerPressed()
+    }
+    
     @objc func deleteWallet() {
         showAlert(title: nil,
                   text: WStrings.Wallet_Settings_DeleteWalletInfo.localized,
-                  button: WStrings.Wallet_Settings_DeleteWallet.localized) { [weak self] in
+                  button: WStrings.Wallet_Settings_DeleteWallet.localized,
+                  buttonStyle: .destructive,
+                  buttonPressed: { [weak self] in
             guard let self else {
                 return
             }
             let _ = (deleteAllLocalWalletsData(storage: walletContext.storage,
                                                tonInstance: walletContext.tonInstance)
-            |> deliverOnMainQueue).start(error: { [weak self] _ in
-                
+            |> deliverOnMainQueue).start(error: { _ in
+                // TODO::
             }, completed: { [weak self] in
                 guard let self else {
                     return
@@ -276,6 +328,29 @@ class SettingsVC: WViewController {
                     self.walletContext.restartApp()
                 }
             })
-        }
+        }, secondaryButton: WStrings.Wallet_Navigation_Cancel.localized)
+    }
+}
+
+extension SettingsVC: SettingsVMDelegate {
+    func showRecoveryPhrase(wordList: [String]) {
+        navigationController?.pushViewController(RecoveryPhraseVC(walletContext: walletContext,
+                                                                  walletInfo: walletInfo,
+                                                                  wordList: wordList), animated: true)
+    }
+
+    func biometricUpdated(to: Bool) {
+        activatingBiometricInProgress = false
+        biometricSwitch.isUserInteractionEnabled = true
+        biometricSwitch.setOn(to, animated: true)
+    }
+    
+    func biometricActivationErrorOccured() {
+        activatingBiometricInProgress = false
+        biometricSwitch.isUserInteractionEnabled = true
+        showAlert(title: WStrings.Wallet_Biometric_NotAvailableTitle.localized,
+                  text: WStrings.Wallet_Biometric_NotAvailableText.localized,
+                  button: WStrings.Wallet_Alert_OK.localized)
+        biometricSwitch.setOn(settingsViewModel.isBiometricActivated, animated: true)
     }
 }

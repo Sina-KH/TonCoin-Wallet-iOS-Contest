@@ -23,7 +23,7 @@ public struct KeychainHelper {
     public static func save(biometric: Bool) {
         KeychainHelper.save(biometric ? "1" : "0", forKey: biometricKey)
     }
-    public static func passcode() -> Bool {
+    public static func isBiometricActivated() -> Bool {
         KeychainHelper.load(withKey: KeychainHelper.biometricKey) == "1"
     }
 

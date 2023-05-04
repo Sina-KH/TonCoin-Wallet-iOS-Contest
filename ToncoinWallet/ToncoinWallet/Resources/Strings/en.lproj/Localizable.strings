@@ -208,6 +208,11 @@
 // Unlock
 "Wallet.Unlock.Title" = "Enter your TON Wallet Passcode";
 
+// Change Passcode
+"Wallet.ChangePasscode.Title" = "Enter your current passcode"; // NEW
+"Wallet.ChangePasscode.NewPassTitle" = "Set a passcode"; // NEW
+"Wallet.ChangePasscode.NewPassVerifyTitle" = "Confirm a passcode"; // NEW
+
 // Navigation
 "Wallet.Navigation.Back" = "Back";
 "Wallet.Navigation.Done" = "Done";

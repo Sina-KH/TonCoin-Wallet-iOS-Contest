@@ -8,9 +8,9 @@
 import UIKit
 import WalletContext
 
-class WordListItemView: UILabel {
+public class WordListItemView: UILabel {
 
-    init(index: Int, word: String) {
+    public init(index: Int, word: String) {
         super.init(frame: CGRect.zero)
         setupView(index: index, word: word)
     }

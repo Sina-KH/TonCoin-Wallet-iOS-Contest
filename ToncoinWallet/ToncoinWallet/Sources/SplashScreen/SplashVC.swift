@@ -62,6 +62,10 @@ extension SplashVC: SplashVMDelegate {
         replaceVC(with: WalletHomeVC(walletContext: walletContext, walletInfo: walletInfo))
     }
     
+    func navigateToSetPasscode() {
+        // TODO:: should be called if original version updated to this version, to have a passcode!
+    }
+    
     func errorOccured() {
         // TODO::
     }

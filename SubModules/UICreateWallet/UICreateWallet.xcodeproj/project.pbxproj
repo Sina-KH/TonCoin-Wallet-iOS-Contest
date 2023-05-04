@@ -10,8 +10,6 @@
 		2719622D29F1DF3700B5B59F /* PossibleWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719622C29F1DF3700B5B59F /* PossibleWords.swift */; };
 		2719623029F1DF8800B5B59F /* ImportWalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719622F29F1DF8800B5B59F /* ImportWalletVC.swift */; };
 		2719624629F1E66400B5B59F /* ImportWalletVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719624529F1E66400B5B59F /* ImportWalletVM.swift */; };
-		273521CF29E95666007C4E96 /* WordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521CE29E95666007C4E96 /* WordListView.swift */; };
-		273521D129E9586B007C4E96 /* WordListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521D029E9586B007C4E96 /* WordListItemView.swift */; };
 		273521D629E95D97007C4E96 /* WalletCreatedVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521D529E95D97007C4E96 /* WalletCreatedVM.swift */; };
 		2735220C29E9C24F007C4E96 /* WordCheckVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2735220B29E9C24F007C4E96 /* WordCheckVC.swift */; };
 		273A60DB29E03BA1007CA6F0 /* WalletCreatedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A60D929E03BA1007CA6F0 /* WalletCreatedVC.swift */; };
@@ -46,8 +44,6 @@
 		2719622C29F1DF3700B5B59F /* PossibleWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PossibleWords.swift; sourceTree = "<group>"; };
 		2719622F29F1DF8800B5B59F /* ImportWalletVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportWalletVC.swift; sourceTree = "<group>"; };
 		2719624529F1E66400B5B59F /* ImportWalletVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportWalletVM.swift; sourceTree = "<group>"; };
-		273521CE29E95666007C4E96 /* WordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListView.swift; sourceTree = "<group>"; };
-		273521D029E9586B007C4E96 /* WordListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListItemView.swift; sourceTree = "<group>"; };
 		273521D529E95D97007C4E96 /* WalletCreatedVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCreatedVM.swift; sourceTree = "<group>"; };
 		273521FF29E9880A007C4E96 /* WalletContext.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletContext.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2735220B29E9C24F007C4E96 /* WordCheckVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCheckVC.swift; sourceTree = "<group>"; };
@@ -239,8 +235,6 @@
 			isa = PBXGroup;
 			children = (
 				27BB29A429E8B5E1009F5DD7 /* WordDisplayVC.swift */,
-				273521CE29E95666007C4E96 /* WordListView.swift */,
-				273521D029E9586B007C4E96 /* WordListItemView.swift */,
 			);
 			path = WordDisplay;
 			sourceTree = "<group>";
@@ -355,7 +349,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				275783AB29F2757D004FBE88 /* ImportSuccessVC.swift in Sources */,
-				273521CF29E95666007C4E96 /* WordListView.swift in Sources */,
 				2735220C29E9C24F007C4E96 /* WordCheckVC.swift in Sources */,
 				2719624629F1E66400B5B59F /* ImportWalletVM.swift in Sources */,
 				2719622D29F1DF3700B5B59F /* PossibleWords.swift in Sources */,
@@ -366,7 +359,6 @@
 				2777555C29EB455C0098DE68 /* CompletedVC.swift in Sources */,
 				2719623029F1DF8800B5B59F /* ImportWalletVC.swift in Sources */,
 				27BB29A529E8B5E1009F5DD7 /* WordDisplayVC.swift in Sources */,
-				273521D129E9586B007C4E96 /* WordListItemView.swift in Sources */,
 				273A60DB29E03BA1007CA6F0 /* WalletCreatedVC.swift in Sources */,
 				275783B029F2850A004FBE88 /* RestoreFailedVC.swift in Sources */,
 			);

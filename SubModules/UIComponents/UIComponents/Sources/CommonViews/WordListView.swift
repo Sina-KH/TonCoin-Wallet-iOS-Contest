@@ -7,9 +7,9 @@
 
 import UIKit
 
-class WordListView: UIView {
+public class WordListView: UIView {
 
-    init(words: [String]) {
+    public init(words: [String]) {
         super.init(frame: CGRect.zero)
         setupView(words: words)
     }
