@@ -117,8 +117,14 @@ public class WalletHomeVC: WViewController {
         balanceHeaderView.update(balance: balance)
     }
     func updateHeaderTimestamp(timestamp: Int32) {
-        
+        let diff = Date().timeIntervalSince1970 - Double(timestamp)
+        if diff < 60 {
+            balanceHeaderView.update(status: .updated)
+        } else {
+            // TODO:: show diff like the original app ?
+        }
     }
+
     func updateEmptyView() {
         if walletHomeVM.transactions?.count == 0 {
             emptyWalletView?.showWalletCreatedView(address: walletInfo.address)
@@ -270,6 +276,16 @@ extension WalletHomeVC: WalletHomeVMDelegate {
 //        }
         
         updateEmptyView()
+    }
+    
+    func updateUpdateProgress(to progress: Int) {
+        if walletHomeVM.isRefreshing {
+            balanceHeaderView.update(status: .updating(progress: progress))
+        }
+        // TODO::
+//                    if strongSelf.headerNode.isRefreshing, strongSelf.isReady, let (_, _) = strongSelf.validLayout {
+//                        strongSelf.headerNode.refreshNode.update(state: .refreshing)
+//                    }
     }
     
     // called when refresh failed with an error

@@ -74,6 +74,7 @@ private enum WalletInfoListEntry: Equatable, Comparable, Identifiable {
 
 protocol WalletHomeVMDelegate: AnyObject {
     func updateCombinedState(combinedState: CombinedWalletState?, isUpdated: Bool)
+    func updateUpdateProgress(to progress: Int)
     func refreshErrorOccured(error: GetCombinedWalletStateError)
 }
 
@@ -93,6 +94,7 @@ class WalletHomeVM {
     // MARK: - Wallet Public Variables
     var transactions: [WalletTransaction]? = nil
     var combinedState: CombinedWalletState?
+    var isRefreshing: Bool = false
     
     // MARK: - Wallet Logic Variables
     private let stateDisposable = MetaDisposable()
@@ -109,6 +111,8 @@ class WalletHomeVM {
     private var pollCombinedStateDisposable: Disposable?
     private var watchCombinedStateDisposable: Disposable?
     private var refreshProgressDisposable: Disposable?
+
+    private var prevProgress: Int? = nil
 
     // MARK: - Init wallet info
     private func initWalletInfo() {
@@ -178,15 +182,15 @@ class WalletHomeVM {
         self.pollCombinedStateDisposable = (pollCombinedState
         |> deliverOnMainQueue).start()
         
+        // listen for update progress change
         self.refreshProgressDisposable = (walletContext.tonInstance.syncProgress
         |> deliverOnMainQueue).start(next: { [weak self] progress in
-            guard let strongSelf = self else {
-                return
+            if (self?.prevProgress ?? -1) != Int(progress * 100) {
+                self?.prevProgress = Int(progress * 100)
+                DispatchQueue.main.async {
+                    self?.walletHomeVMDelegate?.updateUpdateProgress(to: Int(progress * 100))
+                }
             }
-            // TODO:: strongSelf.headerNode.refreshNode.refreshProgress = progress
-//            if strongSelf.headerNode.isRefreshing, strongSelf.isReady, let (_, _) = strongSelf.validLayout {
-//                strongSelf.headerNode.refreshNode.update(state: .refreshing)
-//            }
         })
         
         self.transactionDecryptionKeyDisposable = (self.transactionDecryptionKey.get()
@@ -308,7 +312,7 @@ class WalletHomeVM {
         self.updateStatePromise()
 
         // TODO::
-        //self.headerNode.isRefreshing = true
+        isRefreshing = true
         //self.headerNode.refreshNode.refreshProgress = 0.0
         
         let subject: CombinedWalletStateSubject = .wallet(self.walletInfo)
@@ -397,7 +401,7 @@ class WalletHomeVM {
             strongSelf.loadingMoreTransactions = false
             strongSelf.canLoadMoreTransactions = false
                 
-            // TODO:: strongSelf.headerNode.isRefreshing = false
+            strongSelf.isRefreshing = false
             
             // TODO::
 //            if strongSelf.isReady, let (_, navigationHeight) = strongSelf.validLayout {

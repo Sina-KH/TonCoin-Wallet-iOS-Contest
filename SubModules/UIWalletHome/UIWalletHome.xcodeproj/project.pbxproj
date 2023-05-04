@@ -17,6 +17,7 @@
 		275C09EF2A038CC400CBB232 /* PickerPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C09EE2A038CC400CBB232 /* PickerPopupView.swift */; };
 		275C09F12A03978900CBB232 /* PickerPopupItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C09F02A03978900CBB232 /* PickerPopupItemView.swift */; };
 		275C0A012A03BAA600CBB232 /* RecoveryPhraseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C0A002A03BAA600CBB232 /* RecoveryPhraseVC.swift */; };
+		275C0A092A03C72400CBB232 /* UpdateStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C0A082A03C72400CBB232 /* UpdateStatusView.swift */; };
 		2772A87329F2E6010086F0A2 /* WalletCreatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A87229F2E6010086F0A2 /* WalletCreatedView.swift */; };
 		2772A87629F2EEE10086F0A2 /* WalletLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A87529F2EEE10086F0A2 /* WalletLoadingView.swift */; };
 		2772A87829F2F13A0086F0A2 /* EmptyWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A87729F2F13A0086F0A2 /* EmptyWalletView.swift */; };
@@ -57,6 +58,7 @@
 		275C09EE2A038CC400CBB232 /* PickerPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerPopupView.swift; sourceTree = "<group>"; };
 		275C09F02A03978900CBB232 /* PickerPopupItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerPopupItemView.swift; sourceTree = "<group>"; };
 		275C0A002A03BAA600CBB232 /* RecoveryPhraseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryPhraseVC.swift; sourceTree = "<group>"; };
+		275C0A082A03C72400CBB232 /* UpdateStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStatusView.swift; sourceTree = "<group>"; };
 		2772A87229F2E6010086F0A2 /* WalletCreatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCreatedView.swift; sourceTree = "<group>"; };
 		2772A87529F2EEE10086F0A2 /* WalletLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletLoadingView.swift; sourceTree = "<group>"; };
 		2772A87729F2F13A0086F0A2 /* EmptyWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyWalletView.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			children = (
 				278C3A1629F1875100BD16E8 /* BalanceHeaderView.swift */,
 				2736AAA329F3298C009FFBE2 /* BalanceView.swift */,
+				275C0A082A03C72400CBB232 /* UpdateStatusView.swift */,
 				2772A87729F2F13A0086F0A2 /* EmptyWalletView.swift */,
 				2772A87529F2EEE10086F0A2 /* WalletLoadingView.swift */,
 				2772A87229F2E6010086F0A2 /* WalletCreatedView.swift */,
@@ -379,6 +382,7 @@
 				27CFA29529FDCA2100A65283 /* SettingsVC.swift in Sources */,
 				278C3A1729F1875100BD16E8 /* BalanceHeaderView.swift in Sources */,
 				275C0A012A03BAA600CBB232 /* RecoveryPhraseVC.swift in Sources */,
+				275C0A092A03C72400CBB232 /* UpdateStatusView.swift in Sources */,
 				2736AAA429F3298C009FFBE2 /* BalanceView.swift in Sources */,
 				2772A87829F2F13A0086F0A2 /* EmptyWalletView.swift in Sources */,
 				2772A87629F2EEE10086F0A2 /* WalletLoadingView.swift in Sources */,

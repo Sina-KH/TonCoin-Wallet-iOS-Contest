@@ -32,6 +32,7 @@ public class BalanceHeaderView: UIView {
     private var heightConstraint: NSLayoutConstraint!
     private var actionsStackView: UIStackView!
     private var balanceView: BalanceView!
+    private var updateStatusView: UpdateStatusView!
 
     public init(delegate: BalanceHeaderViewDelegate) {
         self.delegate = delegate
@@ -89,11 +90,19 @@ public class BalanceHeaderView: UIView {
         // balance view
         balanceView = BalanceView()
         addSubview(balanceView)
-        NSLayoutConstraint.activate([
+        constraints.append(contentsOf: [
             balanceView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10),
             balanceView.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
 
+        // update status view
+        updateStatusView = UpdateStatusView()
+        addSubview(updateStatusView)
+        constraints.append(contentsOf: [
+            updateStatusView.topAnchor.constraint(equalTo: topAnchor),
+            updateStatusView.centerXAnchor.constraint(equalTo: centerXAnchor)
+        ])
+        
         // bottom corner radius
         let bottomCornersView = UIView()
         bottomCornersView.translatesAutoresizingMaskIntoConstraints = false
@@ -162,6 +171,10 @@ public class BalanceHeaderView: UIView {
     
     func update(balance: Int64) {
         balanceView.balance = balance
+    }
+    
+    func update(status: UpdateStatusView.State) {
+        updateStatusView.state = status
     }
 
     // pass touch events to below view
