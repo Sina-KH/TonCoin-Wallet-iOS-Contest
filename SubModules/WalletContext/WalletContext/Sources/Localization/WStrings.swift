@@ -161,6 +161,15 @@ public enum WStrings: String {
     case Wallet_ChangePasscode_Title = "Wallet.ChangePasscode.Title"
     case Wallet_ChangePasscode_NewPassTitle = "Wallet.ChangePasscode.NewPassTitle"
     case Wallet_ChangePasscode_NewPassVerifyTitle = "Wallet.ChangePasscode.NewPassVerifyTitle"
+    case Wallet_TonConnect_ConnectTo = "Wallet.TonConnect.ConnectTo"
+    case Wallet_TonConnect_RequestText = "Wallet.TonConnect.RequestText"
+    case Wallet_TonConnect_Notice = "Wallet.TonConnect.Notice"
+    case Wallet_TonConnect_ConnectWallet = "Wallet.TonConnect.ConnectWallet"
+    case Wallet_TonConnectTransfer_Title = "Wallet.TonConnectTransfer.Title"
+    case Wallet_TonConnectTransfer_Recipient = "Wallet.TonConnectTransfer.Recipient"
+    case Wallet_TonConnectTransfer_Fee = "Wallet.TonConnectTransfer.Fee"
+    case Wallet_TonConnectTransfer_Confirm = "Wallet.TonConnectTransfer.Confirm"
+    case Wallet_TonConnectTransfer_Cancel = "Wallet.TonConnectTransfer.Cancel"
     case Wallet_Navigation_Back = "Wallet.Navigation.Back"
     case Wallet_Navigation_Done = "Wallet.Navigation.Done"
     case Wallet_Navigation_Cancel = "Wallet.Navigation.Cancel"
@@ -229,6 +238,19 @@ public enum WStrings: String {
         return fillValues(WStrings.Wallet_Sent_Text.localized, values: [amount])
     }
     
+    public static func Wallet_TonConnect_ConnectTo(app: String) -> String {
+        return fillValues(WStrings.Wallet_TonConnect_ConnectTo.localized, values: [app])
+    }
+    
+    public static func Wallet_TonConnect_RequestText(textAttr: [NSAttributedString.Key: Any],
+                                                     application: NSAttributedString,
+                                                     address: NSAttributedString,
+                                                     walletVersion: NSAttributedString) -> NSMutableAttributedString {
+        return fillValues(WStrings.Wallet_TonConnect_RequestText.localized,
+                          textAttr: textAttr,
+                          values: [application, address, walletVersion])
+    }
+
     public static func fillValues(_ format: String, values: [String]) -> String {
         var result = format
         for (index, value) in values.enumerated() {
@@ -243,9 +265,9 @@ public enum WStrings: String {
         var formatString = format
         let result = NSMutableAttributedString()
         for (index, value) in values.enumerated() {
-            if let valueRange = format.range(of: "%\(index + 1)%@") {
+            if let valueRange = formatString.range(of: "%\(index + 1)$@") {
                 // the string before format value
-                let stringBeforeValue = String(formatString[...valueRange.lowerBound])
+                let stringBeforeValue = String(formatString[..<valueRange.lowerBound])
                 formatString = String(formatString[valueRange.upperBound...])
                 result.append(NSAttributedString(string: String(stringBeforeValue)))
                 // value

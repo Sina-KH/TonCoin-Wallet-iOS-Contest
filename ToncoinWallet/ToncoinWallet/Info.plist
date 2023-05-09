@@ -14,12 +14,16 @@
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string>org.mycompany.TonWallet-iOS</string>
+			<string>org.ton.wallet</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>ton</string>
 			</array>
 		</dict>
+	</array>
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applinks:org.ton.wallet?mode=developer</string>
 	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>

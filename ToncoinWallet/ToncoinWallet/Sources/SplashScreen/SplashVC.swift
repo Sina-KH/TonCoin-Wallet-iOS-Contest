@@ -8,6 +8,7 @@
 import UIKit
 import UICreateWallet
 import UIWalletHome
+import UITonConnect
 import UIComponents
 import WalletContext
 import WalletCore

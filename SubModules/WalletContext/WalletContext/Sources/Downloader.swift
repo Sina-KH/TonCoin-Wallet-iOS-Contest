@@ -1,7 +1,7 @@
 import SwiftSignalKit
 
-class Downloader {
-    enum DownloadFileError {
+public class Downloader {
+    public enum DownloadFileError {
         case network
     }
     
@@ -14,7 +14,7 @@ class Downloader {
         return session
     }()
     
-    static func download(url: URL) -> Signal<Data, DownloadFileError> {
+    public static func download(url: URL) -> Signal<Data, DownloadFileError> {
         return Signal { subscriber in
             let completed = Atomic<Bool>(value: false)
             let downloadTask = urlSession.downloadTask(with: url, completionHandler: { location, _, error in

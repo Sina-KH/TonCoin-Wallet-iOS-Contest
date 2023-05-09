@@ -135,13 +135,6 @@ final class WalletContextImpl: NSObject, WalletContext, UIImagePickerControllerD
         return .single(Data())
     }
     
-    func downloadFile(url: URL) -> Signal<Data, WalletDownloadFileError> {
-        return Downloader.download(url: url)
-        |> mapError { _ in
-            return .generic
-        }
-    }
-    
     func updateResolvedWalletConfiguration(configuration: LocalWalletConfiguration, source: LocalWalletConfigurationSource, resolvedConfig: String) -> Signal<Never, NoError> {
         return self.storageImpl.updateMergedLocalWalletConfiguration { current in
             var current = current

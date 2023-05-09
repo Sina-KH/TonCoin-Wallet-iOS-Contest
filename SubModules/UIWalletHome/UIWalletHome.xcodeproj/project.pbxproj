@@ -12,6 +12,7 @@
 		2719622729F1C71600B5B59F /* SwiftSignalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2719622629F1C71600B5B59F /* SwiftSignalKit.framework */; };
 		2736AAA429F3298C009FFBE2 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2736AAA329F3298C009FFBE2 /* BalanceView.swift */; };
 		273A6E7A2A016C6700007637 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A6E792A016C6700007637 /* PickerView.swift */; };
+		273F47562A09C498000C5263 /* ReversedCornerRadiusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273F47552A09C497000C5263 /* ReversedCornerRadiusView.swift */; };
 		2749344E29F5D084009976B5 /* UIWalletSend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2749344D29F5D084009976B5 /* UIWalletSend.framework */; };
 		275C09ED2A0385A200CBB232 /* SettingsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C09EC2A0385A200CBB232 /* SettingsVM.swift */; };
 		275C09EF2A038CC400CBB232 /* PickerPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C09EE2A038CC400CBB232 /* PickerPopupView.swift */; };
@@ -53,6 +54,7 @@
 		2719622629F1C71600B5B59F /* SwiftSignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftSignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2736AAA329F3298C009FFBE2 /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
 		273A6E792A016C6700007637 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		273F47552A09C497000C5263 /* ReversedCornerRadiusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReversedCornerRadiusView.swift; sourceTree = "<group>"; };
 		2749344D29F5D084009976B5 /* UIWalletSend.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIWalletSend.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		275C09EC2A0385A200CBB232 /* SettingsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVM.swift; sourceTree = "<group>"; };
 		275C09EE2A038CC400CBB232 /* PickerPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerPopupView.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				2736AAA329F3298C009FFBE2 /* BalanceView.swift */,
 				275C0A082A03C72400CBB232 /* UpdateStatusView.swift */,
 				2772A87729F2F13A0086F0A2 /* EmptyWalletView.swift */,
+				273F47552A09C497000C5263 /* ReversedCornerRadiusView.swift */,
 				2772A87529F2EEE10086F0A2 /* WalletLoadingView.swift */,
 				2772A87229F2E6010086F0A2 /* WalletCreatedView.swift */,
 				27E643C929F40719006B20FC /* BubbleView.swift */,
@@ -391,6 +394,7 @@
 				27EDEF3E29FC54F90057EF71 /* Identifiable.swift in Sources */,
 				2772A87329F2E6010086F0A2 /* WalletCreatedView.swift in Sources */,
 				2719622529F1C55F00B5B59F /* WalletHomeVM.swift in Sources */,
+				273F47562A09C498000C5263 /* ReversedCornerRadiusView.swift in Sources */,
 				275C09F12A03978900CBB232 /* PickerPopupItemView.swift in Sources */,
 				27EDEF4029FC550A0057EF71 /* MergeLists.swift in Sources */,
 				275C09EF2A038CC400CBB232 /* PickerPopupView.swift in Sources */,

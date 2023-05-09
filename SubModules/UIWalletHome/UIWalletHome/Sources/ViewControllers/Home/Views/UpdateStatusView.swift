@@ -47,7 +47,7 @@ public class UpdateStatusView: UIStackView {
         addArrangedSubview(statusLabel)
     }
     
-    enum State {
+    enum State: Equatable {
         case waitingForNetwork
         case connecting
         case updating(progress: Int)
@@ -78,8 +78,11 @@ public class UpdateStatusView: UIStackView {
                 break
             }
             if alpha != targetAlpha {
-                UIView.animate(withDuration: 0.2) {
+                UIView.animate(withDuration: 0.2, animations: {
                     self.alpha = targetAlpha
+                }) { _ in
+                    // set hidden to prevent appearance from header view alpha controls
+                    self.isHidden = targetAlpha == 0
                 }
             }
         }

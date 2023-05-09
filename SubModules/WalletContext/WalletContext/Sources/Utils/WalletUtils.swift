@@ -7,6 +7,19 @@
 
 import Foundation
 
+public func walletVersionString(version: Int) -> String {
+    switch version {
+    case 31:
+        return "v3R1"
+    case 32:
+        return "v3R2"
+    case 42:
+        return "v4R2"
+    default:
+        return ""
+    }
+}
+
 // TODO:: Read from WStrings?
 fileprivate let decimalSeparator = "."
 

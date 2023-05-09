@@ -768,11 +768,28 @@ public struct WalletInfo: Codable, Equatable {
     public let publicKey: WalletPublicKey
     public let address: String
     public let encryptedSecret: TonKeychainEncryptedData
-    
-    public init(publicKey: WalletPublicKey, address: String, encryptedSecret: TonKeychainEncryptedData) {
+    public let version: Int
+
+    enum CodingKeys: CodingKey {
+        case publicKey
+        case address
+        case encryptedSecret
+        case version
+    }
+
+    public init(publicKey: WalletPublicKey, address: String, encryptedSecret: TonKeychainEncryptedData, version: Int = 32) {
         self.publicKey = publicKey
         self.address = address
         self.encryptedSecret = encryptedSecret
+        self.version = version
+    }
+
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        publicKey = try values.decode(WalletPublicKey.self, forKey: .publicKey)
+        address = try values.decode(String.self, forKey: .address)
+        encryptedSecret = try values.decode(TonKeychainEncryptedData.self, forKey: .encryptedSecret)
+        version = (try? values.decode(Int.self, forKey: .version)) ?? 32
     }
 }
 

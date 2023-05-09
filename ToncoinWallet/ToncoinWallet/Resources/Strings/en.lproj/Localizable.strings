@@ -215,6 +215,19 @@
 "Wallet.ChangePasscode.NewPassTitle" = "Set a passcode"; // NEW
 "Wallet.ChangePasscode.NewPassVerifyTitle" = "Confirm a passcode"; // NEW
 
+// TON Connect
+"Wallet.TonConnect.ConnectTo" = "Connect to %1$@"; // NEW
+"Wallet.TonConnect.RequestText" = "%1$@ is requesting access to your wallet address %2$@ %3$@."; // NEW
+"Wallet.TonConnect.Notice" = "Be sure to check the service address before connecting the wallet."; // NEW
+"Wallet.TonConnect.ConnectWallet" = "Connect wallet"; // NEW
+
+// Ton Connect Transfer
+"Wallet.TonConnectTransfer.Title" = "TON Transfer"; // NEW
+"Wallet.TonConnectTransfer.Recipient" = "Recipient"; // NEW
+"Wallet.TonConnectTransfer.Fee" = "Fee"; // NEW
+"Wallet.TonConnectTransfer.Confirm" = "Confirm"; // NEW
+"Wallet.TonConnectTransfer.Cancel" = "Cancel"; // NEW
+
 // Navigation
 "Wallet.Navigation.Back" = "Back";
 "Wallet.Navigation.Done" = "Done";

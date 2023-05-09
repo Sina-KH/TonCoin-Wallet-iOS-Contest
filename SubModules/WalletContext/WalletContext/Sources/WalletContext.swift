@@ -33,7 +33,6 @@ public protocol WalletContext {
     var inForeground: Signal<Bool, NoError> { get }
     
     func getServerSalt() -> Signal<Data, WalletContextGetServerSaltError>
-    func downloadFile(url: URL) -> Signal<Data, WalletDownloadFileError>
     
     func updateResolvedWalletConfiguration(configuration: LocalWalletConfiguration, source: LocalWalletConfigurationSource, resolvedConfig: String) -> Signal<Never, NoError>
     

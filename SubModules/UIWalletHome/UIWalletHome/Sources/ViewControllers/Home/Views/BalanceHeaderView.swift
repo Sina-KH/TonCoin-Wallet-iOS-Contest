@@ -22,17 +22,17 @@ public class BalanceHeaderView: UIView {
     private static let minHeightWithoutRadiusView = CGFloat(44)
     // main content / it's smaller on iPhone 5s device
     private static let contentHeight = isIPhone5s ? CGFloat(212) : CGFloat(292)
-    // view addded to bottom of the view to have reversed corner radius
-    public static let bottomRadiusViewHeight = CGFloat(32)
+    // gap for the view that have reversed corner radius on the bottom
+    public static let bottomGap = CGFloat(0)
 
-    private static let minHeight = minHeightWithoutRadiusView + bottomRadiusViewHeight / 2
-    static let defaultHeight = contentHeight + bottomRadiusViewHeight / 2
+    private static let minHeight = minHeightWithoutRadiusView + bottomGap
+    static let defaultHeight = contentHeight + bottomGap
 
     private weak var delegate: BalanceHeaderViewDelegate!
     private var heightConstraint: NSLayoutConstraint!
     private var actionsStackView: UIStackView!
     private var balanceView: BalanceView!
-    private var updateStatusView: UpdateStatusView!
+    private(set) var updateStatusView: UpdateStatusView!
 
     public init(delegate: BalanceHeaderViewDelegate) {
         self.delegate = delegate
@@ -89,6 +89,7 @@ public class BalanceHeaderView: UIView {
 
         // balance view
         balanceView = BalanceView()
+        balanceView.isUserInteractionEnabled = false
         addSubview(balanceView)
         constraints.append(contentsOf: [
             balanceView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10),
@@ -102,19 +103,6 @@ public class BalanceHeaderView: UIView {
             updateStatusView.topAnchor.constraint(equalTo: topAnchor),
             updateStatusView.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
-        
-        // bottom corner radius
-        let bottomCornersView = UIView()
-        bottomCornersView.translatesAutoresizingMaskIntoConstraints = false
-        bottomCornersView.backgroundColor = WTheme.background
-        bottomCornersView.layer.cornerRadius = BalanceHeaderView.bottomRadiusViewHeight / 2
-        addSubview(bottomCornersView)
-        constraints.append(contentsOf: [
-            bottomCornersView.leftAnchor.constraint(equalTo: leftAnchor, constant: 0),
-            bottomCornersView.rightAnchor.constraint(equalTo: rightAnchor, constant: 0),
-            bottomCornersView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: BalanceHeaderView.bottomRadiusViewHeight / 2),
-            bottomCornersView.heightAnchor.constraint(equalToConstant: BalanceHeaderView.bottomRadiusViewHeight)
-        ])
 
         // send/receive actions
         actionsStackView = UIStackView()
@@ -125,7 +113,7 @@ public class BalanceHeaderView: UIView {
         constraints.append(contentsOf: [
             actionsStackView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
             actionsStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
-            actionsStackView.bottomAnchor.constraint(equalTo: bottomCornersView.topAnchor, constant: -16)
+            actionsStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16 - BalanceHeaderView.bottomGap)
         ])
 
         let receiveButton = WButton.setupInstance(.accent)
@@ -163,10 +151,10 @@ public class BalanceHeaderView: UIView {
         actionsStackView.alpha = 1 - scrollOffset / 100
         
         // set balance view size
-        balanceView.update(
-            scale: newHeight > BalanceHeaderView.minHeight * 2 ? 1 :
-                0.5 + (newHeight - BalanceHeaderView.minHeight) / BalanceHeaderView.minHeight / 2
-        )
+        let scale = newHeight > BalanceHeaderView.minHeight * 3 ? 1.5 :
+            0.5 + (newHeight - BalanceHeaderView.minHeight) / BalanceHeaderView.minHeight / 2
+        balanceView.update(scale: min(1, scale))
+        updateStatusView.alpha = scale == 1.5 ? 1 : max(0, scale - 0.9) * 10 / 6
     }
     
     func update(balance: Int64) {

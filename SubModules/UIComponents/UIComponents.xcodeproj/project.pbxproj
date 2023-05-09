@@ -18,6 +18,7 @@
 		273A608F29E030CA007CA6F0 /* AnimationRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A608E29E030CA007CA6F0 /* AnimationRenderer.swift */; };
 		273A609129E0310C007CA6F0 /* GenerateImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A609029E0310C007CA6F0 /* GenerateImage.swift */; };
 		273A60B129E0325B007CA6F0 /* UIColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A60B029E0325B007CA6F0 /* UIColorUtils.swift */; };
+		273F474C2A09B6B2000C5263 /* UIImageViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273F474B2A09B6B2000C5263 /* UIImageViewUtils.swift */; };
 		273F7FF229F9C1BF0075E2E8 /* WCommentInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273F7FF129F9C1BF0075E2E8 /* WCommentInput.swift */; };
 		2749340829F53D13009976B5 /* WAddressInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749340729F53D13009976B5 /* WAddressInput.swift */; };
 		2749340A29F54530009976B5 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749340929F54530009976B5 /* ToastView.swift */; };
@@ -79,6 +80,7 @@
 		273A609029E0310C007CA6F0 /* GenerateImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateImage.swift; sourceTree = "<group>"; };
 		273A60AD29E0316A007CA6F0 /* YuvConversion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = YuvConversion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		273A60B029E0325B007CA6F0 /* UIColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorUtils.swift; sourceTree = "<group>"; };
+		273F474B2A09B6B2000C5263 /* UIImageViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewUtils.swift; sourceTree = "<group>"; };
 		273F7FF129F9C1BF0075E2E8 /* WCommentInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCommentInput.swift; sourceTree = "<group>"; };
 		2749340729F53D13009976B5 /* WAddressInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WAddressInput.swift; sourceTree = "<group>"; };
 		2749340929F54530009976B5 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				2786FB6C29E882550023FE21 /* UIViewControllerUtils.swift */,
 				27EBE5A929EDE6C9006ECFFB /* UINavigationControllerUtils.swift */,
 				2777555829EB37660098DE68 /* WKeyboardObserver.swift */,
+				273F474B2A09B6B2000C5263 /* UIImageViewUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 				275C09FD2A03BA1100CBB232 /* WordListItemView.swift in Sources */,
 				273A608F29E030CA007CA6F0 /* AnimationRenderer.swift in Sources */,
 				2749340829F53D13009976B5 /* WAddressInput.swift in Sources */,
+				273F474C2A09B6B2000C5263 /* UIImageViewUtils.swift in Sources */,
 				274D3F2829D628E4007C47AE /* WButton.swift in Sources */,
 				27E643D729F41FAC006B20FC /* TransformImageView.swift in Sources */,
 				273A5FF729E02E16007CA6F0 /* AnimatedStickerView.swift in Sources */,

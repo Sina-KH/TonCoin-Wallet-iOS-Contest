@@ -106,10 +106,22 @@ public class WalletHomeVC: WViewController {
         NSLayoutConstraint.activate([
             balanceHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             balanceHeaderView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            balanceHeaderView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            emptyWalletView!.topAnchor.constraint(equalTo: balanceHeaderView.bottomAnchor,
-                                                  constant: -BalanceHeaderView.bottomRadiusViewHeight / 2)
+            balanceHeaderView.rightAnchor.constraint(equalTo: view.rightAnchor)
         ])
+
+        // reversed bottom corner radius for balance header view!
+        let bottomCornersView = ReversedCornerRadiusView()
+        bottomCornersView.translatesAutoresizingMaskIntoConstraints = false
+        bottomCornersView.backgroundColor = WTheme.balanceHeaderView.background
+        view.addSubview(bottomCornersView)
+        NSLayoutConstraint.activate([
+            bottomCornersView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
+            bottomCornersView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
+            bottomCornersView.topAnchor.constraint(equalTo: balanceHeaderView.bottomAnchor),
+            bottomCornersView.heightAnchor.constraint(equalToConstant: 16),
+            emptyWalletView!.topAnchor.constraint(equalTo: balanceHeaderView.bottomAnchor)
+        ])
+
     }
     
     // MARK: - Update View Functions
@@ -279,7 +291,7 @@ extension WalletHomeVC: WalletHomeVMDelegate {
     }
     
     func updateUpdateProgress(to progress: Int) {
-        if walletHomeVM.isRefreshing {
+        if walletHomeVM.isRefreshing || balanceHeaderView.updateStatusView.state != .updated {
             balanceHeaderView.update(status: .updating(progress: progress))
         }
         // TODO::
@@ -290,19 +302,21 @@ extension WalletHomeVC: WalletHomeVMDelegate {
     
     // called when refresh failed with an error
     func refreshErrorOccured(error: GetCombinedWalletStateError) {
-        let text: String
+        //let text: String
         switch error {
             case .generic:
-                text = WStrings.Wallet_Home_RefreshErrorText.localized
+                //text = WStrings.Wallet_Home_RefreshErrorText.localized
+                balanceHeaderView.update(status: .connecting)
                 break
             case .network:
-                text = WStrings.Wallet_Home_RefreshErrorNetworkText.localized
+                //text = WStrings.Wallet_Home_RefreshErrorNetworkText.localized
+                balanceHeaderView.update(status: .waitingForNetwork)
                 break
         }
 
-        showAlert(title: WStrings.Wallet_Home_RefreshErrorTitle.localized,
+        /*showAlert(title: WStrings.Wallet_Home_RefreshErrorTitle.localized,
                   text: text,
-                  button: WStrings.Wallet_Alert_OK.localized)
+                  button: WStrings.Wallet_Alert_OK.localized)*/
     }
 }
 
