@@ -12,19 +12,25 @@ import WalletContext
 import WalletCore
 import SwiftSignalKit
 
+enum CurrencyIDs: Int {
+    case USD = 1
+    case EUR = 2
+    case RUB = 3
+}
+
 class SettingsVC: WViewController {
     
     // MARK: - Initializer
     let walletContext: WalletContext
     let walletInfo: WalletInfo
-    let walletHomeVC: WalletHomeVC
+    let onCurrencyChangedDelegate: (Int) -> Void
     
     private lazy var settingsViewModel = SettingsVM(settingsVMDelegate: self)
     
-    public init(walletContext: WalletContext, walletInfo: WalletInfo, walletHomeVC: WalletHomeVC) {
+    public init(walletContext: WalletContext, walletInfo: WalletInfo, onCurrencyChanged: @escaping (Int) -> Void) {
         self.walletContext = walletContext
         self.walletInfo = walletInfo
-        self.walletHomeVC = walletHomeVC
+        self.onCurrencyChangedDelegate = onCurrencyChanged
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder: NSCoder) {
@@ -89,14 +95,21 @@ class SettingsVC: WViewController {
                                         PickerViewItem(id: 31, name: "v3R1"),
                                         PickerViewItem(id: 32, name: "v3R2"),
                                         PickerViewItem(id: 42, name: "v4R2")
-                                      ], selectedID: 32, selector: #selector(addressSelected))
+                                      ],
+                                      selectedID: 32,
+                                      selector: #selector(addressSelected),
+                                      onChangeSelector: #selector(onAddressChanged))
         // primary currency
         currencyPicker = addPickerItem(position: .bottom,
                                        title: WStrings.Wallet_Settings_PrimaryCurrency.localized,
                                        items: [
                                         PickerViewItem(id: 1, name: WStrings.Wallet_Settings_CurrencyUSD.localized),
-                                        PickerViewItem(id: 2, name: WStrings.Wallet_Settings_CurrencyEUR.localized)
-                                       ], selectedID: 1, selector: #selector(currencySelected))
+                                        PickerViewItem(id: 2, name: WStrings.Wallet_Settings_CurrencyEUR.localized),
+                                        PickerViewItem(id: 3, name: WStrings.Wallet_Settings_CurrencyRUB.localized)
+                                       ],
+                                       selectedID: UserDefaultsHelper.selectedCurrencyID(),
+                                       selector: #selector(currencySelected),
+                                       onChangeSelector: #selector(onCurrencyChanged))
 
         // `SECURITY` title
         addSettingsHeader(title: WStrings.Wallet_Settings_Security.localized)
@@ -182,9 +195,10 @@ class SettingsVC: WViewController {
                                title: String,
                                items: [PickerViewItem],
                                selectedID: Int,
-                               selector: Selector) -> PickerView {
+                               selector: Selector,
+                               onChangeSelector: Selector) -> PickerView {
         let pickerView = PickerView(items: items, selectedID: selectedID, onChange: { _ in
-            self.perform(selector)
+            self.perform(onChangeSelector)
         })
         pickerView.translatesAutoresizingMaskIntoConstraints = false
         addItem(position: position, title: title, rightView: pickerView, selector: selector)
@@ -302,9 +316,16 @@ class SettingsVC: WViewController {
     @objc func addressSelected(sender: Any) {
         addressPicker.pickerPressed()
     }
+    @objc func onAddressChanged() {
+        // TODO::
+    }
     
     @objc func currencySelected(sender: Any) {
         currencyPicker.pickerPressed()
+    }
+    @objc func onCurrencyChanged() {
+        UserDefaultsHelper.select(currencyID: currencyPicker.selectedID)
+        onCurrencyChangedDelegate(currencyPicker.selectedID)
     }
     
     @objc func deleteWallet() {

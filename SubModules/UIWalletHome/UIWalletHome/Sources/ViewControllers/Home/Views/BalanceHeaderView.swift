@@ -8,6 +8,7 @@
 import UIKit
 import UIComponents
 import WalletContext
+import SwiftSignalKit
 
 public protocol BalanceHeaderViewDelegate: AnyObject {
     func scanPressed()
@@ -33,11 +34,13 @@ public class BalanceHeaderView: UIView {
     private var actionsStackView: UIStackView!
     private var balanceView: BalanceView!
     private(set) var updateStatusView: UpdateStatusView!
+    private var rateLabel: UILabel!
 
     public init(delegate: BalanceHeaderViewDelegate) {
         self.delegate = delegate
         super.init(frame: CGRect.zero)
         setupView()
+        setupRateUpdater()
     }
 
     override public init(frame: CGRect) {
@@ -95,6 +98,19 @@ public class BalanceHeaderView: UIView {
             balanceView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10),
             balanceView.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
+        
+        // rate label
+        rateLabel = UILabel()
+        rateLabel.translatesAutoresizingMaskIntoConstraints = false
+        rateLabel.textColor = WTheme.balanceHeaderView.balance.withAlphaComponent(0.6)
+        rateLabel.font = .systemFont(ofSize: 13, weight: .regular)
+        rateLabel.alpha = 0
+        rateLabel.textAlignment = .center
+        addSubview(rateLabel)
+        constraints.append(contentsOf: [
+            rateLabel.topAnchor.constraint(equalTo: balanceView.bottomAnchor),
+            rateLabel.centerXAnchor.constraint(equalTo: balanceView.centerXAnchor)
+        ])
 
         // update status view
         updateStatusView = UpdateStatusView()
@@ -151,14 +167,21 @@ public class BalanceHeaderView: UIView {
         actionsStackView.alpha = 1 - scrollOffset / 100
         
         // set balance view size
+
+        // scale is between 0.5 (collapsed) and 1.5 (expanded)
         let scale = newHeight > BalanceHeaderView.minHeight * 3 ? 1.5 :
             0.5 + (newHeight - BalanceHeaderView.minHeight) / BalanceHeaderView.minHeight / 2
         balanceView.update(scale: min(1, scale))
+
         updateStatusView.alpha = scale == 1.5 ? 1 : max(0, scale - 0.9) * 10 / 6
+        
+        // show rate value for selected currency if scrolled up
+        rateLabel.alpha = scale > 0.9 ? 0 : 1 - (scale - 0.5) * 10 / 4
     }
     
     func update(balance: Int64) {
         balanceView.balance = balance
+        updateRateLabel()
     }
     
     func update(status: UpdateStatusView.State) {
@@ -189,5 +212,61 @@ public class BalanceHeaderView: UIView {
     
     @objc func sendPressed() {
         delegate.sendPressed()
+    }
+    
+    // MARK: - Currency Rates
+    private var rateUpdaterTimer: SwiftSignalKit.Timer? = nil
+    private var currencyPrices: RatesResponse.Rates.CurrencyRates.CurrencyPrices? = nil
+    var selectedCurrencyID = UserDefaultsHelper.selectedCurrencyID() {
+        didSet {
+            updateRateLabel()
+        }
+    }
+    private func setupRateUpdater() {
+        rateUpdaterTimer?.invalidate()
+        rateUpdaterTimer = SwiftSignalKit.Timer(timeout: 60, repeat: true, completion: { [weak self] in
+            self?.updateRate()
+        }, queue: Queue.mainQueue())
+        rateUpdaterTimer?.start()
+    }
+    private func updateRate() {
+        guard let url = URL(string: "https://tonapi.io/v2/rates?tokens=ton&currencies=ton%2Cusd%2Crub%2Ceur") else {
+            return
+        }
+        _ = (Downloader.download(url: url) |> deliverOnMainQueue).start(next: { [weak self] data in
+            guard let self else { return }
+            let ratesResponse = try? JSONDecoder().decode(RatesResponse.self, from: data)
+            currencyPrices = ratesResponse?.rates.TON.prices
+            updateRateLabel()
+        }, completed: {
+        })
+    }
+
+    // update rate on updates of `balance`, `price` or `selected currency`
+    private func updateRateLabel() {
+        rateLabel.text = ""
+        guard let balance = Double(formatBalanceText(balanceView.balance)) else { return }
+        switch selectedCurrencyID {
+        case CurrencyIDs.USD.rawValue:
+            if let currencyPrice = currencyPrices?.USD {
+                let amount = floor(currencyPrice * balance * 100) / 100
+                rateLabel.text = "≈ $\(amount)"
+            }
+            break
+        case CurrencyIDs.EUR.rawValue:
+            if let currencyPrice = currencyPrices?.EUR {
+                let amount = floor(currencyPrice * balance * 100) / 100
+                rateLabel.text = "≈ €\(currencyPrice * balance)"
+            }
+            break
+        case CurrencyIDs.RUB.rawValue:
+            if let currencyPrice = currencyPrices?.USD {
+                let amount = floor(currencyPrice * balance * 10) / 10
+                rateLabel.text = "≈ ₽\(currencyPrice * balance)"
+            }
+            break
+        default:
+            break
+        }
     }
 }

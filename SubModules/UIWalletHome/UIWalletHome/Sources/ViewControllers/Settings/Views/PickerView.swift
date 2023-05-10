@@ -86,5 +86,6 @@ class PickerView: UIView {
 extension PickerView: PickerPopupDelegate {
     func pickerItemSelected(item: PickerViewItem) {
         selectedID = item.id
+        onChange?(item)
     }
 }

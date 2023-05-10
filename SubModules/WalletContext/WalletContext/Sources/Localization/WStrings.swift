@@ -157,6 +157,7 @@ public enum WStrings: String {
     case Wallet_Settings_DeleteWalletInfo = "Wallet.Settings.DeleteWalletInfo"
     case Wallet_Settings_CurrencyUSD = "Wallet.Settings.CurrencyUSD"
     case Wallet_Settings_CurrencyEUR = "Wallet.Settings.CurrencyEUR"
+    case Wallet_Settings_CurrencyRUB = "Wallet.Settings.CurrencyRUB"
     case Wallet_Unlock_Title = "Wallet.Unlock.Title"
     case Wallet_ChangePasscode_Title = "Wallet.ChangePasscode.Title"
     case Wallet_ChangePasscode_NewPassTitle = "Wallet.ChangePasscode.NewPassTitle"

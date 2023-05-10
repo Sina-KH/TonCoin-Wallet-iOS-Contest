@@ -78,17 +78,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		270CDAFA29FAD50700308DFF /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		273F7FEE29F9B80F0075E2E8 /* SendConfirm */ = {
 			isa = PBXGroup;
 			children = (
-				270CDAFA29FAD50700308DFF /* Views */,
 				273F7FEF29F9B83F0075E2E8 /* SendConfirmVC.swift */,
 				270CDAFD29FAFD3900308DFF /* SendConfirmVM.swift */,
 			);

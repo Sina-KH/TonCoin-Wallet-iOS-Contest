@@ -52,11 +52,11 @@ public class WalletCreatedView: UIView {
             titleLabel.rightAnchor.constraint(equalTo: rightAnchor)
         ])
 
-        let addressLabel = UILabel()
+        let addressLabel = WAddressLabel()
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
         addressLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         addressLabel.numberOfLines = 2
-        addressLabel.text = formatAddress(address)
+        addressLabel.address = address
         addressLabel.textAlignment = .center
         addSubview(addressLabel)
         NSLayoutConstraint.activate([

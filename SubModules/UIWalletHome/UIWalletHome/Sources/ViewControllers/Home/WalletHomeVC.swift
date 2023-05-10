@@ -322,12 +322,14 @@ extension WalletHomeVC: WalletHomeVMDelegate {
 
 extension WalletHomeVC: BalanceHeaderViewDelegate {
     public func scanPressed() {
-        
+        // TODO::
     }
     public func settingsPressed() {
         let settingsVC = SettingsVC(walletContext: walletContext,
                                     walletInfo: walletInfo,
-                                    walletHomeVC: self)
+                                    onCurrencyChanged: { [weak self] currencyID in
+            self?.balanceHeaderView?.selectedCurrencyID = currencyID
+        })
         present(UINavigationController(rootViewController: settingsVC), animated: true)
     }
     public func receivePressed() {

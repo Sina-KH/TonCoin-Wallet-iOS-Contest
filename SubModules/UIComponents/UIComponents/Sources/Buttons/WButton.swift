@@ -112,7 +112,7 @@ public class WButton: WBaseButton {
                     loadingView?.color = .white
                     addSubview(loadingView!)
                     NSLayoutConstraint.activate([
-                        loadingView!.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+                        loadingView!.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
                         loadingView!.centerYAnchor.constraint(equalTo: centerYAnchor)
                     ])
                 }

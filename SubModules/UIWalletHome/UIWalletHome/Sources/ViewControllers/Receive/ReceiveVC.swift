@@ -99,19 +99,11 @@ public class ReceiveVC: WViewController {
         addressStackView.alignment = .center
         stackView.addArrangedSubview(addressStackView)
         // address label
-        let addressLabel = UILabel()
+        let addressLabel = WAddressLabel()
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
         addressLabel.font = .systemFont(ofSize: 17, weight: .semibold)
         addressLabel.numberOfLines = 0
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = .justified
-        let attributedString = NSAttributedString(string: formatAddress(walletInfo.address),
-            attributes: [
-                NSAttributedString.Key.paragraphStyle: paragraphStyle,
-                NSAttributedString.Key.baselineOffset: NSNumber(value: 0)
-            ]
-        )
-        addressLabel.attributedText = attributedString
+        addressLabel.address = walletInfo.address
         addressStackView.addArrangedSubview(addressLabel)
         // `your wallet address` label
         yourWalletAddressLabel = UILabel()
