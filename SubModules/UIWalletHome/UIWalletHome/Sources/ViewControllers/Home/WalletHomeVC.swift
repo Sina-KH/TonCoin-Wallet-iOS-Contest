@@ -101,7 +101,7 @@ public class WalletHomeVC: WViewController {
         ])
 
         // balance header view
-        balanceHeaderView = BalanceHeaderView(delegate: self)
+        balanceHeaderView = BalanceHeaderView(walletInfo: walletInfo, delegate: self)
         view.addSubview(balanceHeaderView)
         NSLayoutConstraint.activate([
             balanceHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),

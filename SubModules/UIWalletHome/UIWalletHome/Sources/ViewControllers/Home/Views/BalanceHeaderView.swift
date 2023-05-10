@@ -8,6 +8,7 @@
 import UIKit
 import UIComponents
 import WalletContext
+import WalletCore
 import SwiftSignalKit
 
 public protocol BalanceHeaderViewDelegate: AnyObject {
@@ -29,15 +30,18 @@ public class BalanceHeaderView: UIView {
     private static let minHeight = minHeightWithoutRadiusView + bottomGap
     static let defaultHeight = contentHeight + bottomGap
 
+    private var walletInfo: WalletInfo
     private weak var delegate: BalanceHeaderViewDelegate!
     private var heightConstraint: NSLayoutConstraint!
     private var actionsStackView: UIStackView!
+    private var shortAddressLabel: UILabel!
     private var balanceView: BalanceView!
     private var updateStatusViewContainer: UIView!
     private(set) var updateStatusView: UpdateStatusView!
     private var rateLabel: UILabel!
 
-    public init(delegate: BalanceHeaderViewDelegate) {
+    public init(walletInfo: WalletInfo, delegate: BalanceHeaderViewDelegate) {
+        self.walletInfo = walletInfo
         self.delegate = delegate
         super.init(frame: CGRect.zero)
         setupView()
@@ -100,6 +104,18 @@ public class BalanceHeaderView: UIView {
             balanceView.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
         
+        // short address label
+        shortAddressLabel = UILabel()
+        shortAddressLabel.translatesAutoresizingMaskIntoConstraints = false
+        shortAddressLabel.font = .systemFont(ofSize: 17, weight: .regular)
+        shortAddressLabel.textColor = WTheme.balanceHeaderView.balance
+        shortAddressLabel.text = formatStartEndAddress(walletInfo.address)
+        addSubview(shortAddressLabel)
+        constraints.append(contentsOf: [
+            shortAddressLabel.bottomAnchor.constraint(equalTo: balanceView.topAnchor, constant: -2),
+            shortAddressLabel.centerXAnchor.constraint(equalTo: balanceView.centerXAnchor)
+        ])
+
         // rate label
         rateLabel = UILabel()
         rateLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -173,9 +189,10 @@ public class BalanceHeaderView: UIView {
         // set the new constraint
         heightConstraint.constant = newHeight
 
-        // set actions alpha
+        // set actions and short address alpha
         actionsStackView.alpha = 1 - scrollOffset / 100
-        
+        shortAddressLabel.alpha = actionsStackView.alpha
+
         // set balance view size
 
         // scale is between 0.5 (collapsed) and 1.5 (expanded)
@@ -266,13 +283,13 @@ public class BalanceHeaderView: UIView {
         case CurrencyIDs.EUR.rawValue:
             if let currencyPrice = currencyPrices?.EUR {
                 let amount = floor(currencyPrice * balance * 100) / 100
-                rateLabel.text = "≈ €\(currencyPrice * balance)"
+                rateLabel.text = "≈ €\(amount)"
             }
             break
         case CurrencyIDs.RUB.rawValue:
             if let currencyPrice = currencyPrices?.USD {
                 let amount = floor(currencyPrice * balance * 10) / 10
-                rateLabel.text = "≈ ₽\(currencyPrice * balance)"
+                rateLabel.text = "≈ ₽\(amount)"
             }
             break
         default:
