@@ -7,24 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2711D9782A0A18B600AD35DF /* TonConnectEventSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2711D9772A0A18B600AD35DF /* TonConnectEventSuccess.swift */; };
+		2711D97A2A0A1D7800AD35DF /* TonConnectEventError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2711D9792A0A1D7800AD35DF /* TonConnectEventError.swift */; };
+		2711D9802A0A221200AD35DF /* TonConnectRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2711D97F2A0A221200AD35DF /* TonConnectRequest.swift */; };
+		2711D9822A0A229400AD35DF /* TonConnectEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2711D9812A0A229400AD35DF /* TonConnectEvent.swift */; };
 		273F47362A09B483000C5263 /* UITonConnect.h in Headers */ = {isa = PBXBuildFile; fileRef = 273F47352A09B483000C5263 /* UITonConnect.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		273F473E2A09B4BF000C5263 /* TonConnectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273F473D2A09B4BF000C5263 /* TonConnectVC.swift */; };
 		273F47412A09B4D0000C5263 /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273F47402A09B4D0000C5263 /* UIComponents.framework */; };
 		273F47452A09B4DE000C5263 /* WalletContext.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273F47442A09B4DE000C5263 /* WalletContext.framework */; };
-		273F47502A09BF7B000C5263 /* TonConnectRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273F474F2A09BF7B000C5263 /* TonConnectRequest.swift */; };
+		273F47502A09BF7B000C5263 /* TonConnectRequestConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273F474F2A09BF7B000C5263 /* TonConnectRequestConnect.swift */; };
 		273F47522A09C23B000C5263 /* TonConnectManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273F47512A09C23B000C5263 /* TonConnectManifest.swift */; };
 		273F47542A09C281000C5263 /* TonConnectVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273F47532A09C281000C5263 /* TonConnectVM.swift */; };
+		274080A02A0C1D200098838D /* TonTransferVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2740809F2A0C1D200098838D /* TonTransferVC.swift */; };
+		274080A22A0C1DDB0098838D /* TonTransferVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274080A12A0C1DDB0098838D /* TonTransferVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2711D9772A0A18B600AD35DF /* TonConnectEventSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TonConnectEventSuccess.swift; sourceTree = "<group>"; };
+		2711D9792A0A1D7800AD35DF /* TonConnectEventError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TonConnectEventError.swift; sourceTree = "<group>"; };
+		2711D97F2A0A221200AD35DF /* TonConnectRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TonConnectRequest.swift; sourceTree = "<group>"; };
+		2711D9812A0A229400AD35DF /* TonConnectEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TonConnectEvent.swift; sourceTree = "<group>"; };
 		273F47322A09B483000C5263 /* UITonConnect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UITonConnect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		273F47352A09B483000C5263 /* UITonConnect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITonConnect.h; sourceTree = "<group>"; };
 		273F473D2A09B4BF000C5263 /* TonConnectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TonConnectVC.swift; sourceTree = "<group>"; };
 		273F47402A09B4D0000C5263 /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		273F47442A09B4DE000C5263 /* WalletContext.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletContext.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		273F474F2A09BF7B000C5263 /* TonConnectRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TonConnectRequest.swift; sourceTree = "<group>"; };
+		273F474F2A09BF7B000C5263 /* TonConnectRequestConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TonConnectRequestConnect.swift; sourceTree = "<group>"; };
 		273F47512A09C23B000C5263 /* TonConnectManifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TonConnectManifest.swift; sourceTree = "<group>"; };
 		273F47532A09C281000C5263 /* TonConnectVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TonConnectVM.swift; sourceTree = "<group>"; };
+		2740809F2A0C1D200098838D /* TonTransferVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TonTransferVC.swift; sourceTree = "<group>"; };
+		274080A12A0C1DDB0098838D /* TonTransferVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TonTransferVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +52,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2711D9762A0A187300AD35DF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2711D97C2A0A218000AD35DF /* Requests_App2Wallet */,
+				2711D97B2A0A216D00AD35DF /* Events_Wallet2App */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2711D97B2A0A216D00AD35DF /* Events_Wallet2App */ = {
+			isa = PBXGroup;
+			children = (
+				2711D97F2A0A221200AD35DF /* TonConnectRequest.swift */,
+				2711D9812A0A229400AD35DF /* TonConnectEvent.swift */,
+				2711D9772A0A18B600AD35DF /* TonConnectEventSuccess.swift */,
+				2711D9792A0A1D7800AD35DF /* TonConnectEventError.swift */,
+			);
+			path = Events_Wallet2App;
+			sourceTree = "<group>";
+		};
+		2711D97C2A0A218000AD35DF /* Requests_App2Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				2711D97D2A0A218F00AD35DF /* ConnectRequest */,
+			);
+			path = Requests_App2Wallet;
+			sourceTree = "<group>";
+		};
+		2711D97D2A0A218F00AD35DF /* ConnectRequest */ = {
+			isa = PBXGroup;
+			children = (
+				273F474F2A09BF7B000C5263 /* TonConnectRequestConnect.swift */,
+				273F47512A09C23B000C5263 /* TonConnectManifest.swift */,
+			);
+			path = ConnectRequest;
+			sourceTree = "<group>";
+		};
 		273F47282A09B483000C5263 = {
 			isa = PBXGroup;
 			children = (
@@ -69,10 +118,8 @@
 		273F473C2A09B48B000C5263 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				273F473D2A09B4BF000C5263 /* TonConnectVC.swift */,
-				273F47532A09C281000C5263 /* TonConnectVM.swift */,
-				273F474F2A09BF7B000C5263 /* TonConnectRequest.swift */,
-				273F47512A09C23B000C5263 /* TonConnectManifest.swift */,
+				2740809C2A0C1CF40098838D /* ViewControllers */,
+				2711D9762A0A187300AD35DF /* Models */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -84,6 +131,33 @@
 				273F47402A09B4D0000C5263 /* UIComponents.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2740809C2A0C1CF40098838D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2740809E2A0C1D0B0098838D /* TonTransfer */,
+				2740809D2A0C1CFD0098838D /* TonConnect */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		2740809D2A0C1CFD0098838D /* TonConnect */ = {
+			isa = PBXGroup;
+			children = (
+				273F473D2A09B4BF000C5263 /* TonConnectVC.swift */,
+				273F47532A09C281000C5263 /* TonConnectVM.swift */,
+			);
+			path = TonConnect;
+			sourceTree = "<group>";
+		};
+		2740809E2A0C1D0B0098838D /* TonTransfer */ = {
+			isa = PBXGroup;
+			children = (
+				2740809F2A0C1D200098838D /* TonTransferVC.swift */,
+				274080A12A0C1DDB0098838D /* TonTransferVM.swift */,
+			);
+			path = TonTransfer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,9 +240,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				273F47502A09BF7B000C5263 /* TonConnectRequest.swift in Sources */,
+				2711D97A2A0A1D7800AD35DF /* TonConnectEventError.swift in Sources */,
+				274080A22A0C1DDB0098838D /* TonTransferVM.swift in Sources */,
+				273F47502A09BF7B000C5263 /* TonConnectRequestConnect.swift in Sources */,
+				274080A02A0C1D200098838D /* TonTransferVC.swift in Sources */,
+				2711D9782A0A18B600AD35DF /* TonConnectEventSuccess.swift in Sources */,
 				273F47522A09C23B000C5263 /* TonConnectManifest.swift in Sources */,
 				273F473E2A09B4BF000C5263 /* TonConnectVC.swift in Sources */,
+				2711D9822A0A229400AD35DF /* TonConnectEvent.swift in Sources */,
+				2711D9802A0A221200AD35DF /* TonConnectRequest.swift in Sources */,
 				273F47542A09C281000C5263 /* TonConnectVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

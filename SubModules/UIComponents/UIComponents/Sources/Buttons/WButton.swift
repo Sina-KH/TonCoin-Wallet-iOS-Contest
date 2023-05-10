@@ -21,6 +21,7 @@ public class WButton: WBaseButton {
         case primary
         case secondary
         case accent
+        case accentLight
         case none
     }
     private var usage = Usage.primary
@@ -73,6 +74,10 @@ public class WButton: WBaseButton {
         case .accent:
             backgroundColor = WTheme.accentButton.background
             tintColor = WTheme.accentButton.tint
+            break
+        case .accentLight:
+            backgroundColor = WTheme.accentLightButton.background
+            tintColor = WTheme.accentLightButton.tint
             break
         default:
             break

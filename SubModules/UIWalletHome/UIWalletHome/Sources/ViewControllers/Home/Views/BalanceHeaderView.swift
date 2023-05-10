@@ -96,7 +96,7 @@ public class BalanceHeaderView: UIView {
         ])
 
         // balance view
-        balanceView = BalanceView()
+        balanceView = BalanceView(textColor: WTheme.balanceHeaderView.balance)
         balanceView.isUserInteractionEnabled = false
         addSubview(balanceView)
         constraints.append(contentsOf: [

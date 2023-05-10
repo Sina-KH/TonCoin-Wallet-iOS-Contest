@@ -6,12 +6,13 @@
 //
 
 import UIKit
-import UIComponents
 import WalletContext
 
 public class BalanceView: UIView {
 
-    public init() {
+    private var textColor: UIColor? = nil
+    public init(textColor: UIColor?) {
+        self.textColor = textColor
         super.init(frame: CGRect.zero)
         setupView()
     }
@@ -66,7 +67,7 @@ public class BalanceView: UIView {
         ])
 
         balanceLabel = UILabel()
-        balanceLabel.textColor = WTheme.balanceHeaderView.balance
+        balanceLabel.textColor = textColor ?? WTheme.primaryLabel
         balanceLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(balanceLabel)
         spacingConstraint = balanceLabel.leftAnchor.constraint(equalTo: animatedSticker.rightAnchor, constant: 8)
@@ -82,7 +83,7 @@ public class BalanceView: UIView {
     ///
     /// - Parameters:
     ///     - scale: A number between 0.5 (collapsed) and 1 (expanded).
-    func update(scale: CGFloat) {
+    public func update(scale: CGFloat) {
         if self.scale == scale {
             return
         }
@@ -107,12 +108,12 @@ public class BalanceView: UIView {
         let components = formatBalanceText(balance > -1 ? balance : 0).components(separatedBy: ".")
         let attr = NSMutableAttributedString(string: "\(components[0])", attributes: [
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17 + 62 * (scale - 0.5), weight: .semibold),
-            NSAttributedString.Key.foregroundColor: WTheme.balanceHeaderView.balance
+            NSAttributedString.Key.foregroundColor: textColor ?? WTheme.primaryLabel
         ])
         if components.count > 1 {
             attr.append(NSAttributedString(string: ".\(components[1])", attributes: [
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17 + 26 * (scale - 0.5), weight: .semibold),
-                NSAttributedString.Key.foregroundColor: WTheme.balanceHeaderView.balance
+                NSAttributedString.Key.foregroundColor: textColor ?? WTheme.primaryLabel
             ]))
         }
         balanceLabel.attributedText = attr

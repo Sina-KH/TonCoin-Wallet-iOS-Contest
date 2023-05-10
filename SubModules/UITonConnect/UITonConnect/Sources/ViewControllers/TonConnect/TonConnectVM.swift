@@ -35,4 +35,8 @@ class TonConnectVM {
         }, completed: {
         })
     }
+    
+    func connect() {
+        
+    }
 }

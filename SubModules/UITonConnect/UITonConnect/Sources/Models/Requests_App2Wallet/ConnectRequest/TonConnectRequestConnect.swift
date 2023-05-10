@@ -1,5 +1,5 @@
 //
-//  TonConnectRequest.swift
+//  TonConnectConnectRequest.swift
 //  UITonConnect
 //
 //  Created by Sina on 5/9/23.
@@ -22,7 +22,7 @@ public struct TonConnectItem {
     }
 }
 
-public struct TonConnectRequest {
+public struct TonConnectRequestConnect {
     let manifestUrl: String
     let items: [TonConnectItem]
 
@@ -35,10 +35,10 @@ public struct TonConnectRequest {
 public struct TonConnectRequestLink {
     let version: Int
     let id: String
-    let r: TonConnectRequest
+    let r: TonConnectRequestConnect
     let ret: String?             // `back`, `none`, or a URL
 
-    public init(version: Int, id: String, r: TonConnectRequest, ret: String? = nil) {
+    public init(version: Int, id: String, r: TonConnectRequestConnect, ret: String? = nil) {
         self.version = version
         self.id = id
         self.r = r

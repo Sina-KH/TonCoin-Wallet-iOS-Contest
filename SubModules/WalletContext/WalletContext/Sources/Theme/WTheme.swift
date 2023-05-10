@@ -43,6 +43,7 @@ public struct WThemeToastView {
 public struct WThemeType {
     public var primaryButton: WThemePrimaryButton
     public var accentButton: WThemeAccentButton
+    public var accentLightButton: WThemeAccentButton
     public var wordInput: WThemeWordInput
     public var setPasscodeInput: WThemePasscodeInput
     public var unlockPasscodeInput: WThemePasscodeInput
@@ -80,6 +81,8 @@ public var WTheme = WThemeType(
                                        disabledTint: WColors.secondaryLabel.color),
     accentButton: WThemeAccentButton(background: _accent,
                                      tint: UIColor.white),
+    accentLightButton: WThemeAccentButton(background: _accent.withAlphaComponent(0.1),
+                                     tint: _accent),
     wordInput: WThemeWordInput(background: WColors.secondaryBackground.color),
     setPasscodeInput: WThemePasscodeInput(border: _border, empty: _systemBackground, fill: _systemBackgroundReverse),
     unlockPasscodeInput: WThemePasscodeInput(border: .white, empty: .clear, fill: .white),

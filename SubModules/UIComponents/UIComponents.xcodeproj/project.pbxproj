@@ -20,6 +20,8 @@
 		273A60B129E0325B007CA6F0 /* UIColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A60B029E0325B007CA6F0 /* UIColorUtils.swift */; };
 		273F474C2A09B6B2000C5263 /* UIImageViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273F474B2A09B6B2000C5263 /* UIImageViewUtils.swift */; };
 		273F7FF229F9C1BF0075E2E8 /* WCommentInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273F7FF129F9C1BF0075E2E8 /* WCommentInput.swift */; };
+		2740809B2A0C15A60098838D /* WAddressLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2740809A2A0C15A60098838D /* WAddressLabel.swift */; };
+		274080A92A0C399A0098838D /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274080A82A0C399A0098838D /* BalanceView.swift */; };
 		2749340829F53D13009976B5 /* WAddressInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749340729F53D13009976B5 /* WAddressInput.swift */; };
 		2749340A29F54530009976B5 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749340929F54530009976B5 /* ToastView.swift */; };
 		2749340E29F5CB80009976B5 /* WAmountInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749340D29F5CB80009976B5 /* WAmountInput.swift */; };
@@ -82,6 +84,8 @@
 		273A60B029E0325B007CA6F0 /* UIColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorUtils.swift; sourceTree = "<group>"; };
 		273F474B2A09B6B2000C5263 /* UIImageViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewUtils.swift; sourceTree = "<group>"; };
 		273F7FF129F9C1BF0075E2E8 /* WCommentInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCommentInput.swift; sourceTree = "<group>"; };
+		2740809A2A0C15A60098838D /* WAddressLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WAddressLabel.swift; sourceTree = "<group>"; };
+		274080A82A0C399A0098838D /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
 		2749340729F53D13009976B5 /* WAddressInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WAddressInput.swift; sourceTree = "<group>"; };
 		2749340929F54530009976B5 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		2749340D29F5CB80009976B5 /* WAmountInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WAmountInput.swift; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				2719621F29F1BD6F00B5B59F /* WAmountLabel.swift */,
+				2740809A2A0C15A60098838D /* WAddressLabel.swift */,
 			);
 			path = Label;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 				270CDAFB29FAD55900308DFF /* TitleValueRowView.swift */,
 				275C09FB2A03BA1100CBB232 /* WordListView.swift */,
 				275C09FC2A03BA1100CBB232 /* WordListItemView.swift */,
+				274080A82A0C399A0098838D /* BalanceView.swift */,
 			);
 			path = CommonViews;
 			sourceTree = "<group>";
@@ -460,9 +466,11 @@
 				275C09F42A039C3000CBB232 /* WHighlightView.swift in Sources */,
 				275C09FE2A03BA1100CBB232 /* WordListView.swift in Sources */,
 				27E643D929F42269006B20FC /* WQrCode.swift in Sources */,
+				274080A92A0C399A0098838D /* BalanceView.swift in Sources */,
 				2779A85029FC17F100E39FF5 /* WBaseButton.swift in Sources */,
 				274D3EFD29D61CC4007C47AE /* UIComponents.docc in Sources */,
 				273A608D29E030B5007CA6F0 /* SoftwareAnimationRenderer.swift in Sources */,
+				2740809B2A0C15A60098838D /* WAddressLabel.swift in Sources */,
 				27EBE5AA29EDE6C9006ECFFB /* UINavigationControllerUtils.swift in Sources */,
 				2735220F29E9C359007C4E96 /* WWordInput.swift in Sources */,
 				27E643D129F41E0D006B20FC /* QrCode.swift in Sources */,

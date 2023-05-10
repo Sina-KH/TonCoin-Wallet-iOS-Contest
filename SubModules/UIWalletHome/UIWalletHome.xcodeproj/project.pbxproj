@@ -10,7 +10,6 @@
 		2719621D29F1BA7A00B5B59F /* WalletTransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719621C29F1BA7A00B5B59F /* WalletTransactionCell.swift */; };
 		2719622529F1C55F00B5B59F /* WalletHomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719622429F1C55F00B5B59F /* WalletHomeVM.swift */; };
 		2719622729F1C71600B5B59F /* SwiftSignalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2719622629F1C71600B5B59F /* SwiftSignalKit.framework */; };
-		2736AAA429F3298C009FFBE2 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2736AAA329F3298C009FFBE2 /* BalanceView.swift */; };
 		273A6E7A2A016C6700007637 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273A6E792A016C6700007637 /* PickerView.swift */; };
 		273F47562A09C498000C5263 /* ReversedCornerRadiusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273F47552A09C497000C5263 /* ReversedCornerRadiusView.swift */; };
 		274080A72A0C2CE20098838D /* RatesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274080A62A0C2CE20098838D /* RatesResponse.swift */; };
@@ -53,7 +52,6 @@
 		2719621C29F1BA7A00B5B59F /* WalletTransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTransactionCell.swift; sourceTree = "<group>"; };
 		2719622429F1C55F00B5B59F /* WalletHomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletHomeVM.swift; sourceTree = "<group>"; };
 		2719622629F1C71600B5B59F /* SwiftSignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftSignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2736AAA329F3298C009FFBE2 /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
 		273A6E792A016C6700007637 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		273F47552A09C497000C5263 /* ReversedCornerRadiusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReversedCornerRadiusView.swift; sourceTree = "<group>"; };
 		274080A62A0C2CE20098838D /* RatesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesResponse.swift; sourceTree = "<group>"; };
@@ -203,7 +201,6 @@
 			isa = PBXGroup;
 			children = (
 				278C3A1629F1875100BD16E8 /* BalanceHeaderView.swift */,
-				2736AAA329F3298C009FFBE2 /* BalanceView.swift */,
 				275C0A082A03C72400CBB232 /* UpdateStatusView.swift */,
 				2772A87729F2F13A0086F0A2 /* EmptyWalletView.swift */,
 				273F47552A09C497000C5263 /* ReversedCornerRadiusView.swift */,
@@ -398,7 +395,6 @@
 				274080A72A0C2CE20098838D /* RatesResponse.swift in Sources */,
 				275C0A012A03BAA600CBB232 /* RecoveryPhraseVC.swift in Sources */,
 				275C0A092A03C72400CBB232 /* UpdateStatusView.swift in Sources */,
-				2736AAA429F3298C009FFBE2 /* BalanceView.swift in Sources */,
 				2772A87829F2F13A0086F0A2 /* EmptyWalletView.swift in Sources */,
 				2772A87629F2EEE10086F0A2 /* WalletLoadingView.swift in Sources */,
 				27764E2E29F134F000A45DAF /* UIWalletHome.docc in Sources */,
