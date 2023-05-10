@@ -33,6 +33,7 @@ public class BalanceHeaderView: UIView {
     private var heightConstraint: NSLayoutConstraint!
     private var actionsStackView: UIStackView!
     private var balanceView: BalanceView!
+    private var updateStatusViewContainer: UIView!
     private(set) var updateStatusView: UpdateStatusView!
     private var rateLabel: UILabel!
 
@@ -113,11 +114,20 @@ public class BalanceHeaderView: UIView {
         ])
 
         // update status view
-        updateStatusView = UpdateStatusView()
-        addSubview(updateStatusView)
+        updateStatusViewContainer = UIView()
+        updateStatusViewContainer.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(updateStatusViewContainer)
         constraints.append(contentsOf: [
-            updateStatusView.topAnchor.constraint(equalTo: topAnchor),
-            updateStatusView.centerXAnchor.constraint(equalTo: centerXAnchor)
+            updateStatusViewContainer.topAnchor.constraint(equalTo: topAnchor),
+            updateStatusViewContainer.centerXAnchor.constraint(equalTo: centerXAnchor)
+        ])
+        updateStatusView = UpdateStatusView()
+        updateStatusViewContainer.addSubview(updateStatusView)
+        constraints.append(contentsOf: [
+            updateStatusView.leftAnchor.constraint(equalTo: updateStatusViewContainer.leftAnchor),
+            updateStatusView.rightAnchor.constraint(equalTo: updateStatusViewContainer.rightAnchor),
+            updateStatusView.topAnchor.constraint(equalTo: updateStatusViewContainer.topAnchor),
+            updateStatusView.centerXAnchor.constraint(equalTo: updateStatusViewContainer.centerXAnchor),
         ])
 
         // send/receive actions
@@ -173,7 +183,7 @@ public class BalanceHeaderView: UIView {
             0.5 + (newHeight - BalanceHeaderView.minHeight) / BalanceHeaderView.minHeight / 2
         balanceView.update(scale: min(1, scale))
 
-        updateStatusView.alpha = scale == 1.5 ? 1 : max(0, scale - 0.9) * 10 / 6
+        updateStatusViewContainer.alpha = scale == 1.5 ? 1 : max(0, scale - 0.9) * 10 / 6
         
         // show rate value for selected currency if scrolled up
         rateLabel.alpha = scale > 0.9 ? 0 : 1 - (scale - 0.5) * 10 / 4
