@@ -40,6 +40,8 @@ public class ImportSuccessVC: WViewController {
         super.loadView()
         setupViews()
     }
+    
+    private var bottomActionsView: BottomActionsView!
 
     func setupViews() {
         navigationItem.hidesBackButton = true
@@ -51,7 +53,7 @@ public class ImportSuccessVC: WViewController {
             }
         )
         
-        let bottomActionsView = BottomActionsView(primaryAction: proceedAction)
+        bottomActionsView = BottomActionsView(primaryAction: proceedAction)
         view.addSubview(bottomActionsView)
         NSLayoutConstraint.activate([
             bottomActionsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -58),
@@ -91,6 +93,12 @@ public class ImportSuccessVC: WViewController {
         importSuccessVM.loadWalletInfo(walletContext: walletContext, importedInfo: importedWalletInfo)
     }
     
+    var isLoading: Bool = false {
+        didSet {
+            bottomActionsView.primaryButton.showLoading = isLoading
+            view.isUserInteractionEnabled = !isLoading
+        }
+    }
 }
 
 extension ImportSuccessVC: ImportSuccessVMDelegate {

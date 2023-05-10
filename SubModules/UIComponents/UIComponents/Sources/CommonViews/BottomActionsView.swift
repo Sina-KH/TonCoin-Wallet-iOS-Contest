@@ -39,6 +39,7 @@ public class BottomActionsView: UIView {
     
     private var primaryAction: BottomAction? = nil
     private var secondaryAction: BottomAction? = nil
+    public var primaryButton: WButton!
 
     private func setupView(primaryAction: BottomAction,
                            secondaryAction: BottomAction? = nil,
@@ -49,7 +50,7 @@ public class BottomActionsView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         
         // add primary action
-        let primaryButton = WButton.setupInstance(.primary)
+        primaryButton = WButton.setupInstance(.primary)
         primaryButton.translatesAutoresizingMaskIntoConstraints = false
         primaryButton.setTitle(primaryAction.title, for: .normal)
         primaryButton.addTarget(self, action: #selector(primaryPressed(_:)), for: .touchUpInside)

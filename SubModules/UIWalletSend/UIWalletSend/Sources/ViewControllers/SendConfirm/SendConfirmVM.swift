@@ -11,6 +11,7 @@ import WalletCore
 import SwiftSignalKit
 
 protocol SendConfirmVMDelegate: AnyObject {
+    var isLoading: Bool { get set }
     func feeAmountUpdated(fee: Int64)
     func sendConfirmationRequired(fee: Int64, canNotEncryptComment: Bool)
     func navigateToSending(sendInstanceData: SendInstanceData)
@@ -40,7 +41,11 @@ class SendConfirmVM {
     // latest request data to stop using result if anything changed
     private var latestAmount: Int64? = nil
     private var latestComment: String? = nil
-    private var isSending: Bool = false
+    private var isSending: Bool = false {
+        didSet {
+            sendConfirmVMDelegate?.isLoading = isSending
+        }
+    }
     func calculateFee(to destinationAddress: String, amount: Int64, comment: String, toSend: Bool = false) {
         if isSending {
             return

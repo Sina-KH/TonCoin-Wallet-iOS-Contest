@@ -11,6 +11,7 @@ import WalletCore
 import SwiftSignalKit
 
 protocol ImportSuccessVMDelegate: AnyObject {
+    var isLoading: Bool { get set }
     func importCompleted(walletInfo: WalletInfo)
     func errorOccured(text: String)
 }
@@ -24,6 +25,10 @@ class ImportSuccessVM {
     
     // TODO:: Handle errors! Here we have the wallet but not loaded completely!
     public func loadWalletInfo(walletContext: WalletContext, importedInfo: ImportedWalletInfo) {
+        if importSuccessVMDelegate?.isLoading ?? true {
+            return
+        }
+        importSuccessVMDelegate?.isLoading = true
         let signal = getWalletInfo(importedInfo: importedInfo, tonInstance: walletContext.tonInstance)
         |> mapError { error -> GetCombinedWalletStateError in
             switch error {
@@ -63,6 +68,7 @@ class ImportSuccessVM {
         |> take(1)
         |> deliverOnMainQueue
         _ = signal.start(next: { [weak self] state in
+            self?.importSuccessVMDelegate?.isLoading = false
             guard let state else {
                 self?.importSuccessVMDelegate?.errorOccured(text: "")
                 return

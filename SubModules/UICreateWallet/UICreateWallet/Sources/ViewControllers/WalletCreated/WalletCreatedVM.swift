@@ -11,6 +11,7 @@ import WalletCore
 import WalletContext
 
 protocol WalletCreatedVMDelegate: AnyObject {
+    var isLoading: Bool { get set }
     func wordsLoaded(words: [String])
     func errorOccured()
 }
@@ -23,6 +24,10 @@ class WalletCreatedVM {
     }
 
     func loadWords(walletContext: WalletContext, walletInfo: WalletInfo) {
+        if walletCreatedVMDelegate?.isLoading ?? true {
+            return
+        }
+        walletCreatedVMDelegate?.isLoading = true
         let _ = (walletContext.keychain.decrypt(walletInfo.encryptedSecret)
         |> deliverOnMainQueue).start(next: { [weak self] decryptedSecret in
             let _ = (walletContext.getServerSalt()
@@ -36,6 +41,7 @@ class WalletCreatedVM {
                         return
                     }
 
+                    walletCreatedVMDelegate?.isLoading = false
                     walletCreatedVMDelegate?.wordsLoaded(words: wordList)
 //                    strongSelf.mode = .created(walletInfo: walletInfo, words: wordList)
 //                    strongSelf.push(WalletWordDisplayScreen(context: strongSelf.context, blockchainNetwork: strongSelf.blockchainNetwork, walletInfo: walletInfo, wordList: wordList, mode: .check, walletCreatedPreloadState: strongSelf.walletCreatedPreloadState))
@@ -44,6 +50,7 @@ class WalletCreatedVM {
                         return
                     }
                     
+                    walletCreatedVMDelegate?.isLoading = false
                     walletCreatedVMDelegate?.errorOccured()
 //                    strongSelf.present(standardTextAlertController(theme: strongSelf.presentationData.theme.alert, title: strongSelf.presentationData.strings.Wallet_Created_ExportErrorTitle, text: strongSelf.presentationData.strings.Wallet_Created_ExportErrorText, actions: [
 //                        TextAlertAction(type: .defaultAction, title: strongSelf.presentationData.strings.Wallet_Alert_OK, action: {
@@ -55,26 +62,17 @@ class WalletCreatedVM {
                     return
                 }
                 
+                walletCreatedVMDelegate?.isLoading = false
                 walletCreatedVMDelegate?.errorOccured()
-//                controller?.dismiss()
-//
-//                strongSelf.present(standardTextAlertController(theme: strongSelf.presentationData.theme.alert, title: strongSelf.presentationData.strings.Wallet_Created_ExportErrorTitle, text: strongSelf.presentationData.strings.Wallet_Created_ExportErrorText, actions: [
-//                    TextAlertAction(type: .defaultAction, title: strongSelf.presentationData.strings.Wallet_Alert_OK, action: {
-//                    })
-//                ], actionLayout: .vertical), in: .window(.root))
             })
         }, error: { [weak self] error in
             guard let self else {
                 return
             }
-//            controller?.dismiss()
+            walletCreatedVMDelegate?.isLoading = false
             if case .cancelled = error {
             } else {
                 walletCreatedVMDelegate?.errorOccured()
-//                strongSelf.present(standardTextAlertController(theme: strongSelf.presentationData.theme.alert, title: strongSelf.presentationData.strings.Wallet_Created_ExportErrorTitle, text: strongSelf.presentationData.strings.Wallet_Created_ExportErrorText, actions: [
-//                    TextAlertAction(type: .defaultAction, title: strongSelf.presentationData.strings.Wallet_Alert_OK, action: {
-//                    })
-//                ], actionLayout: .vertical), in: .window(.root))
             }
         })
     }

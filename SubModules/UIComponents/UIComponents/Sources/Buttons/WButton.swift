@@ -99,4 +99,27 @@ public class WButton: WBaseButton {
             updateTheme()
         }
     }
+    
+    // MARK: - Loading View
+    private var loadingView: UIActivityIndicatorView? = nil
+    public var showLoading: Bool = false {
+        didSet {
+            if showLoading {
+                if loadingView == nil {
+                    loadingView = UIActivityIndicatorView()
+                    loadingView!.translatesAutoresizingMaskIntoConstraints = false
+                    loadingView?.hidesWhenStopped = true
+                    loadingView?.color = .white
+                    addSubview(loadingView!)
+                    NSLayoutConstraint.activate([
+                        loadingView!.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+                        loadingView!.centerYAnchor.constraint(equalTo: centerYAnchor)
+                    ])
+                }
+                loadingView?.startAnimating()
+            } else {
+                loadingView?.stopAnimating()
+            }
+        }
+    }
 }

@@ -36,6 +36,8 @@ public class WalletCreatedVC: WViewController {
         super.loadView()
         setupViews()
     }
+    
+    private var bottomActionsView: BottomActionsView!
 
     func setupViews() {
         navigationItem.hidesBackButton = true
@@ -47,7 +49,7 @@ public class WalletCreatedVC: WViewController {
             }
         )
         
-        let bottomActionsView = BottomActionsView(primaryAction: proceedAction)
+        bottomActionsView = BottomActionsView(primaryAction: proceedAction)
         view.addSubview(bottomActionsView)
         NSLayoutConstraint.activate([
             bottomActionsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -58),
@@ -88,9 +90,17 @@ public class WalletCreatedVC: WViewController {
         navigationController?.pushViewController(wordDisplayVC, animated: true)
     }
     
+    var isLoading: Bool = false {
+        didSet {
+            bottomActionsView.primaryButton.showLoading = isLoading
+            view.isUserInteractionEnabled = !isLoading
+        }
+    }
+    
 }
 
 extension WalletCreatedVC: WalletCreatedVMDelegate {
+
     func wordsLoaded(words: [String]) {
         self.wordList = words
         proceedPressed()

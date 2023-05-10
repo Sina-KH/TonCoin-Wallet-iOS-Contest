@@ -29,6 +29,8 @@ public class IntroVC: WViewController {
         setupViews()
     }
     
+    private var bottomActionsView: BottomActionsView!
+
     func setupViews() {
         // bottom create wallet action
         let createWalletButton = BottomAction(
@@ -47,7 +49,7 @@ public class IntroVC: WViewController {
         )
         
         // bottom actions view
-        let bottomActionsView = BottomActionsView(primaryAction: createWalletButton,
+        bottomActionsView = BottomActionsView(primaryAction: createWalletButton,
                                                   secondaryAction: importExistingWalletButton)
         view.addSubview(bottomActionsView)
         NSLayoutConstraint.activate([
@@ -80,8 +82,17 @@ public class IntroVC: WViewController {
         ])
     }
 
+    var isLoading = false {
+        didSet {
+            bottomActionsView.primaryButton.showLoading = isLoading
+            view.isUserInteractionEnabled = !isLoading
+        }
+    }
     func createWalletPressed() {
-        // TODO:: Show loading
+        if isLoading {
+            return
+        }
+        isLoading = true
 
         let _ = (walletContext.getServerSalt()
         |> deliverOnMainQueue).start(next: { [weak self] serverSalt in
@@ -99,14 +110,17 @@ public class IntroVC: WViewController {
                                                       walletInfo: walletInfo,
                                                       wordList: wordList)
                 navigationController?.pushViewController(walletCreatedVC, animated: true)
+                isLoading = false
 
             }, error: { [weak self] _ in
                 guard let self else  { return }
                 showAlert()
+                isLoading = false
             })
         }, error: { [weak self] _ in
             guard let self else  { return }
             showAlert()
+            isLoading = false
         })
     }
     

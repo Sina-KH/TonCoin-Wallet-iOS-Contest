@@ -11,6 +11,7 @@ import WalletCore
 import WalletContext
 
 public protocol ImportWalletVMDelegate: AnyObject {
+    var isLoading: Bool { get set }
     func walletImported(walletInfo: ImportedWalletInfo)
     func errorOccured()
 }
@@ -28,6 +29,10 @@ public class ImportWalletVM {
     }
     
     func importWallet(walletContext: WalletContext, enteredWords: [String]) {
+        if importWalletVMDelegate?.isLoading ?? true {
+            return
+        }
+        importWalletVMDelegate?.isLoading = true
         let _ = (walletContext.getServerSalt()
                  |> deliverOnMainQueue).start(next: { [weak self] serverSalt in
             guard let self else {return}
@@ -37,11 +42,14 @@ public class ImportWalletVM {
                                              wordList: enteredWords,
                                              localPassword: serverSalt)
                      |> deliverOnMainQueue).start(next: { [weak self] importedInfo in
+                self?.importWalletVMDelegate?.isLoading = false
                 self?.importWalletVMDelegate?.walletImported(walletInfo: importedInfo)
             }, error: { [weak self] error in
+                self?.importWalletVMDelegate?.isLoading = false
                 self?.importWalletVMDelegate?.errorOccured()
             })
         }, error: { [weak self] error in
+            self?.importWalletVMDelegate?.isLoading = false
             self?.importWalletVMDelegate?.errorOccured()
         })
         

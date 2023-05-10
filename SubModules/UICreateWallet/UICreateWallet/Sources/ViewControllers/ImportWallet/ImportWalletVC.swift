@@ -35,6 +35,8 @@ class ImportWalletVC: WViewController {
         setupViews()
     }
     
+    private var bottomActionsView: BottomActionsView!
+    
     func setupViews() {
         // parent scrollView
         scrollView = UIScrollView()
@@ -122,7 +124,7 @@ class ImportWalletVC: WViewController {
             }
         )
         
-        let bottomActionsView = BottomActionsView(primaryAction: continueAction, reserveSecondaryActionHeight: false)
+        bottomActionsView = BottomActionsView(primaryAction: continueAction, reserveSecondaryActionHeight: false)
         scrollView.addSubview(bottomActionsView)
         NSLayoutConstraint.activate([
             bottomActionsView.topAnchor.constraint(equalTo: wordsStackView.bottomAnchor, constant: 16),
@@ -164,6 +166,13 @@ class ImportWalletVC: WViewController {
         showAlert(title: WStrings.Wallet_WordImport_IncorrectTitle.localized,
                   text: WStrings.Wallet_WordImport_IncorrectText.localized,
                   button: WStrings.Wallet_Alert_OK.localized)
+    }
+    
+    var isLoading: Bool = false {
+        didSet {
+            bottomActionsView.primaryButton.showLoading = isLoading
+            view.isUserInteractionEnabled = !isLoading
+        }
     }
 }
 

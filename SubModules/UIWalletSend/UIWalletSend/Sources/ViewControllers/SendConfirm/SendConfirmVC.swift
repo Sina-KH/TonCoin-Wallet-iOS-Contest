@@ -190,6 +190,13 @@ public class SendConfirmVC: WViewController {
     @objc private func continuePressed() {
         sendConfirmVM.calculateFee(to: addressToSend, amount: amount, comment: commentInput.text, toSend: true)
     }
+    
+    var isLoading: Bool = false {
+        didSet {
+            continueButton.showLoading = isLoading
+            view.isUserInteractionEnabled = !isLoading
+        }
+    }
 }
 
 extension SendConfirmVC: WCommentInputDelegate {
