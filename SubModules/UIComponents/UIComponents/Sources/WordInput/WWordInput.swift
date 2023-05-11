@@ -15,11 +15,11 @@ public protocol WWordInputDelegate: AnyObject {
 public class WWordInput: UIView {
     private var wordNumber: Int = 0
     private weak var delegate: WWordInputDelegate? = nil
-    public init(wordNumber: Int, delegate: WWordInputDelegate) {
+    public init(index: Int, wordNumber: Int, delegate: WWordInputDelegate) {
         self.wordNumber = wordNumber
         self.delegate = delegate
         super.init(frame: CGRect.zero)
-        self.tag = wordNumber
+        self.tag = index
         setup()
     }
     

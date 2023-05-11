@@ -39,10 +39,16 @@ class SplashVM: NSObject {
         self.splashVMDelegate = splashVMDelegate
     }
     
-    private var walletContext: WalletContextImpl? = nil
-
+    private (set) var walletContext: WalletContextImpl? = nil
+    private (set) var readyWalletInfo: WalletInfo? = nil
+    private (set) var appStarted = false
+    
     // get wallet data and present correct page on the navigation controller
     func startApp() {
+        appStarted = false
+        walletContext = nil
+        readyWalletInfo = nil
+
         let presentationData = WalletPresentationData(
             // TODO:: Move into WalletContext like WStrings and Theme
             dateTimeFormat: WalletPresentationDateTimeFormat(
@@ -214,11 +220,13 @@ class SplashVM: NSObject {
                                 print(".ready")
                                 if exportCompleted == .yes {
                                     validateBlockchain { [weak self] in
+                                        self?.readyWalletInfo = info
+                                        self?.appStarted = true
                                         self?.splashVMDelegate?.navigateToHome(walletContext: walletContext, walletInfo: info)
                                     }
-                                    // TODO:: Handle deeplinks
                                 } else {
                                     validateBlockchain { [weak self] in
+                                        self?.appStarted = true
                                         if exportCompleted == .no(isImport: false) {
                                             self?.splashVMDelegate?.navigateToWalletCreated(walletContext: walletContext, walletInfo: info)
                                         } else {
@@ -230,6 +238,7 @@ class SplashVM: NSObject {
                                 print(".imported")
                                 
                                 validateBlockchain { [weak self] in
+                                    self?.appStarted = true
                                     self?.splashVMDelegate?.navigateToWalletImported(walletContext: walletContext, importedWalletInfo: info)
                                 }
                             }
@@ -244,6 +253,7 @@ class SplashVM: NSObject {
                 } else {
                     if publicKey != nil {
                         validateBlockchain { [weak self] in
+                            self?.appStarted = true
                             self?.splashVMDelegate?.navigateToIntro(walletContext: walletContext)
                         }
                     } else {

@@ -35,6 +35,12 @@
       location = "group:SubModules/TonBinding/TonBinding.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:SubModules/Bridge/Bridge.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SubModules/Sodium/Sodium.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:SubModules/BuildConfig/BuildConfig.xcodeproj">
    </FileRef>
    <FileRef

@@ -523,7 +523,7 @@ typedef enum {
         
         bool ignoreCache = false;
         #if DEBUG
-        ignoreCache = true;
+        //ignoreCache = true;
         #endif
         
         auto query = make_object<tonlib_api::init>(make_object<tonlib_api::options>(

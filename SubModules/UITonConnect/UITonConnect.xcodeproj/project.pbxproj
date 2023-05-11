@@ -20,6 +20,11 @@
 		273F47542A09C281000C5263 /* TonConnectVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273F47532A09C281000C5263 /* TonConnectVM.swift */; };
 		274080A02A0C1D200098838D /* TonTransferVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2740809F2A0C1D200098838D /* TonTransferVC.swift */; };
 		274080A22A0C1DDB0098838D /* TonTransferVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274080A12A0C1DDB0098838D /* TonTransferVM.swift */; };
+		274DFA0B2A0CEF560042A6A6 /* TonConnectCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274DFA0A2A0CEF560042A6A6 /* TonConnectCore.swift */; };
+		274DFA172A0CFBEF0042A6A6 /* SwiftSignalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274DFA162A0CFBEF0042A6A6 /* SwiftSignalKit.framework */; };
+		274DFA1C2A0CFC1C0042A6A6 /* WalletCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274DFA1B2A0CFC1C0042A6A6 /* WalletCore.framework */; };
+		274DFA202A0CFC210042A6A6 /* Bridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274DFA1F2A0CFC210042A6A6 /* Bridge.framework */; };
+		274DFA242A0D02FE0042A6A6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274DFA232A0D02FE0042A6A6 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +42,12 @@
 		273F47532A09C281000C5263 /* TonConnectVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TonConnectVM.swift; sourceTree = "<group>"; };
 		2740809F2A0C1D200098838D /* TonTransferVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TonTransferVC.swift; sourceTree = "<group>"; };
 		274080A12A0C1DDB0098838D /* TonTransferVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TonTransferVM.swift; sourceTree = "<group>"; };
+		274DFA0A2A0CEF560042A6A6 /* TonConnectCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TonConnectCore.swift; sourceTree = "<group>"; };
+		274DFA162A0CFBEF0042A6A6 /* SwiftSignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftSignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		274DFA1A2A0CFC140042A6A6 /* WalletContext.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletContext.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		274DFA1B2A0CFC1C0042A6A6 /* WalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		274DFA1F2A0CFC210042A6A6 /* Bridge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bridge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		274DFA232A0D02FE0042A6A6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,7 +55,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				274DFA202A0CFC210042A6A6 /* Bridge.framework in Frameworks */,
+				274DFA172A0CFBEF0042A6A6 /* SwiftSignalKit.framework in Frameworks */,
+				274DFA242A0D02FE0042A6A6 /* AVFoundation.framework in Frameworks */,
 				273F47412A09B4D0000C5263 /* UIComponents.framework in Frameworks */,
+				274DFA1C2A0CFC1C0042A6A6 /* WalletCore.framework in Frameworks */,
 				273F47452A09B4DE000C5263 /* WalletContext.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -120,6 +135,7 @@
 			children = (
 				2740809C2A0C1CF40098838D /* ViewControllers */,
 				2711D9762A0A187300AD35DF /* Models */,
+				274DFA092A0CEF430042A6A6 /* TonConnctCore */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -127,6 +143,11 @@
 		273F473F2A09B4D0000C5263 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				274DFA232A0D02FE0042A6A6 /* AVFoundation.framework */,
+				274DFA1F2A0CFC210042A6A6 /* Bridge.framework */,
+				274DFA1B2A0CFC1C0042A6A6 /* WalletCore.framework */,
+				274DFA1A2A0CFC140042A6A6 /* WalletContext.framework */,
+				274DFA162A0CFBEF0042A6A6 /* SwiftSignalKit.framework */,
 				273F47442A09B4DE000C5263 /* WalletContext.framework */,
 				273F47402A09B4D0000C5263 /* UIComponents.framework */,
 			);
@@ -136,8 +157,8 @@
 		2740809C2A0C1CF40098838D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				2740809E2A0C1D0B0098838D /* TonTransfer */,
 				2740809D2A0C1CFD0098838D /* TonConnect */,
+				2740809E2A0C1D0B0098838D /* TonTransfer */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -158,6 +179,14 @@
 				274080A12A0C1DDB0098838D /* TonTransferVM.swift */,
 			);
 			path = TonTransfer;
+			sourceTree = "<group>";
+		};
+		274DFA092A0CEF430042A6A6 /* TonConnctCore */ = {
+			isa = PBXGroup;
+			children = (
+				274DFA0A2A0CEF560042A6A6 /* TonConnectCore.swift */,
+			);
+			path = TonConnctCore;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2711D97A2A0A1D7800AD35DF /* TonConnectEventError.swift in Sources */,
+				274DFA0B2A0CEF560042A6A6 /* TonConnectCore.swift in Sources */,
 				274080A22A0C1DDB0098838D /* TonTransferVM.swift in Sources */,
 				273F47502A09BF7B000C5263 /* TonConnectRequestConnect.swift in Sources */,
 				274080A02A0C1D200098838D /* TonTransferVC.swift in Sources */,

@@ -74,8 +74,10 @@ extension MergedLocalWalletConfiguration {
                 resolved: nil),*/
             testNet: MergedLocalBlockchainConfiguration(
                 configuration: LocalBlockchainConfiguration(
-                    source: .url("https://ton.org/global-config-wallet.json"),
-                    customId: "mainnet"
+//                    source: .url("https://ton.org/global-config-wallet.json"),
+//                    customId: "mainnet"
+                    source: .url("https://ton.org/testnet-global.config.json"),
+                    customId: "testnet"
                 ),
                 resolved: nil
             ),

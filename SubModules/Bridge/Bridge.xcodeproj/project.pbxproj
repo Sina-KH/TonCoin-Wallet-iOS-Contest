@@ -1,0 +1,424 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2711D9912A0A298200AD35DF /* Bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 2711D9902A0A298200AD35DF /* Bridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		274080B52A0C53C10098838D /* EventSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274080B22A0C53C00098838D /* EventSource.swift */; };
+		274080B62A0C53C10098838D /* EventStreamParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274080B32A0C53C10098838D /* EventStreamParser.swift */; };
+		274080B72A0C53C10098838D /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274080B42A0C53C10098838D /* Event.swift */; };
+		274080BA2A0C569C0098838D /* SessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274080B92A0C569C0098838D /* SessionProtocol.swift */; };
+		274081872A0C57830098838D /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274081862A0C57830098838D /* Sodium.framework */; };
+		274DFA0E2A0CF2C10042A6A6 /* BridgeEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274DFA0D2A0CF2C10042A6A6 /* BridgeEmitter.swift */; };
+		274DFA102A0CF3C80042A6A6 /* BridgeHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274DFA0F2A0CF3C80042A6A6 /* BridgeHelpers.swift */; };
+		274DFA132A0CF5D90042A6A6 /* PublicKeyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274DFA122A0CF5D90042A6A6 /* PublicKeyUtils.swift */; };
+		275F3E302A0A7AAA00665136 /* BridgeListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275F3E2F2A0A7AAA00665136 /* BridgeListener.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2711D98D2A0A298200AD35DF /* Bridge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Bridge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2711D9902A0A298200AD35DF /* Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
+		274080B22A0C53C00098838D /* EventSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventSource.swift; sourceTree = "<group>"; };
+		274080B32A0C53C10098838D /* EventStreamParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStreamParser.swift; sourceTree = "<group>"; };
+		274080B42A0C53C10098838D /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		274080B92A0C569C0098838D /* SessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionProtocol.swift; sourceTree = "<group>"; };
+		274081862A0C57830098838D /* Sodium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Sodium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		274DFA0D2A0CF2C10042A6A6 /* BridgeEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeEmitter.swift; sourceTree = "<group>"; };
+		274DFA0F2A0CF3C80042A6A6 /* BridgeHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeHelpers.swift; sourceTree = "<group>"; };
+		274DFA122A0CF5D90042A6A6 /* PublicKeyUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKeyUtils.swift; sourceTree = "<group>"; };
+		275F3E2F2A0A7AAA00665136 /* BridgeListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeListener.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2711D98A2A0A298200AD35DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				274081872A0C57830098838D /* Sodium.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2711D9832A0A298100AD35DF = {
+			isa = PBXGroup;
+			children = (
+				2711D98F2A0A298200AD35DF /* Bridge */,
+				2711D98E2A0A298200AD35DF /* Products */,
+				274081852A0C57830098838D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2711D98E2A0A298200AD35DF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2711D98D2A0A298200AD35DF /* Bridge.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2711D98F2A0A298200AD35DF /* Bridge */ = {
+			isa = PBXGroup;
+			children = (
+				2711D9972A0A298900AD35DF /* Sources */,
+				2711D9902A0A298200AD35DF /* Bridge.h */,
+			);
+			path = Bridge;
+			sourceTree = "<group>";
+		};
+		2711D9972A0A298900AD35DF /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				274080B82A0C56880098838D /* Encryption */,
+				274080B12A0C53B00098838D /* EventSource */,
+				274DFA112A0CF5CC0042A6A6 /* Utils */,
+				274DFA0F2A0CF3C80042A6A6 /* BridgeHelpers.swift */,
+				275F3E2F2A0A7AAA00665136 /* BridgeListener.swift */,
+				274DFA0D2A0CF2C10042A6A6 /* BridgeEmitter.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		274080B12A0C53B00098838D /* EventSource */ = {
+			isa = PBXGroup;
+			children = (
+				274080B42A0C53C10098838D /* Event.swift */,
+				274080B22A0C53C00098838D /* EventSource.swift */,
+				274080B32A0C53C10098838D /* EventStreamParser.swift */,
+			);
+			path = EventSource;
+			sourceTree = "<group>";
+		};
+		274080B82A0C56880098838D /* Encryption */ = {
+			isa = PBXGroup;
+			children = (
+				274080B92A0C569C0098838D /* SessionProtocol.swift */,
+			);
+			path = Encryption;
+			sourceTree = "<group>";
+		};
+		274081852A0C57830098838D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				274081862A0C57830098838D /* Sodium.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		274DFA112A0CF5CC0042A6A6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				274DFA122A0CF5D90042A6A6 /* PublicKeyUtils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2711D9882A0A298200AD35DF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2711D9912A0A298200AD35DF /* Bridge.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2711D98C2A0A298200AD35DF /* Bridge */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2711D9942A0A298200AD35DF /* Build configuration list for PBXNativeTarget "Bridge" */;
+			buildPhases = (
+				2711D9882A0A298200AD35DF /* Headers */,
+				2711D9892A0A298200AD35DF /* Sources */,
+				2711D98A2A0A298200AD35DF /* Frameworks */,
+				2711D98B2A0A298200AD35DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Bridge;
+			productName = Bridge;
+			productReference = 2711D98D2A0A298200AD35DF /* Bridge.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2711D9842A0A298100AD35DF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					2711D98C2A0A298200AD35DF = {
+						CreatedOnToolsVersion = 14.3;
+						LastSwiftMigration = 1430;
+					};
+				};
+			};
+			buildConfigurationList = 2711D9872A0A298100AD35DF /* Build configuration list for PBXProject "Bridge" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2711D9832A0A298100AD35DF;
+			productRefGroup = 2711D98E2A0A298200AD35DF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2711D98C2A0A298200AD35DF /* Bridge */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2711D98B2A0A298200AD35DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2711D9892A0A298200AD35DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				274DFA132A0CF5D90042A6A6 /* PublicKeyUtils.swift in Sources */,
+				274080B72A0C53C10098838D /* Event.swift in Sources */,
+				274DFA0E2A0CF2C10042A6A6 /* BridgeEmitter.swift in Sources */,
+				274DFA102A0CF3C80042A6A6 /* BridgeHelpers.swift in Sources */,
+				274080B62A0C53C10098838D /* EventStreamParser.swift in Sources */,
+				275F3E302A0A7AAA00665136 /* BridgeListener.swift in Sources */,
+				274080BA2A0C569C0098838D /* SessionProtocol.swift in Sources */,
+				274080B52A0C53C10098838D /* EventSource.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2711D9922A0A298200AD35DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		2711D9932A0A298200AD35DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		2711D9952A0A298200AD35DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = org.ton.wallet.Bridge;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2711D9962A0A298200AD35DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = org.ton.wallet.Bridge;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2711D9872A0A298100AD35DF /* Build configuration list for PBXProject "Bridge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2711D9922A0A298200AD35DF /* Debug */,
+				2711D9932A0A298200AD35DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2711D9942A0A298200AD35DF /* Build configuration list for PBXNativeTarget "Bridge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2711D9952A0A298200AD35DF /* Debug */,
+				2711D9962A0A298200AD35DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2711D9842A0A298100AD35DF /* Project object */;
+}

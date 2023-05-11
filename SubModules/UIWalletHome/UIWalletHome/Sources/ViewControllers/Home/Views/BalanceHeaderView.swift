@@ -255,6 +255,7 @@ public class BalanceHeaderView: UIView {
             self?.updateRate()
         }, queue: Queue.mainQueue())
         rateUpdaterTimer?.start()
+        updateRate()
     }
     private func updateRate() {
         guard let url = URL(string: "https://tonapi.io/v2/rates?tokens=ton&currencies=ton%2Cusd%2Crub%2Ceur") else {

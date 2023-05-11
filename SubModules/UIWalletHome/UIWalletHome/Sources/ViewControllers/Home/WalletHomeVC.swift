@@ -10,6 +10,7 @@ import UIWalletSend
 import UIComponents
 import WalletContext
 import WalletCore
+import Bridge
 
 public class WalletHomeVC: WViewController {
 
@@ -40,6 +41,15 @@ public class WalletHomeVC: WViewController {
 
         let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
         keyWindow?.backgroundColor = WTheme.balanceHeaderView.background
+
+        // connect the application to the wallet applications
+//        BridgeToApp.connect()
+    }
+    
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        UIApplication.shared.open(URL(string: "tc://?v=2&id=7200057313a31397feb70171404b1935d2ed771c8951f9acd3d07bb8d7e9f269&r=%7B%22manifestUrl%22%3A%22https%3A%2F%2Fgist.githubusercontent.com%2Fsiandreev%2F75f1a2ccf2f3b4e2771f6089aeb06d7f%2Fraw%2Fd4986344010ec7a2d1cc8a2a9baa57de37aaccb8%2Fgistfile1.txt%22%2C%22items%22%3A%5B%7B%22name%22%3A%22ton_addr%22%7D%5D%7D")!)
     }
 
     public override func loadView() {
@@ -178,62 +188,13 @@ extension WalletHomeVC: WalletHomeVMDelegate {
         tableView.reloadData()
         
         if let combinedState = combinedState {
+            // TODO:: Show locked balance in a separate label?
             updateBalance(balance: combinedState.walletState.effectiveAvailableBalance)
-//            self.headerNode.balanceNode.balance = (formatBalanceText(max(0, combinedState.walletState.effectiveAvailableBalance), decimalSeparator: self.presentationData.dateTimeFormat.decimalSeparator), .white)
-//            if let unlockedBalance = combinedState.walletState.unlockedBalance {
-//                let lockedBalance = combinedState.walletState.totalBalance - unlockedBalance
-//
-//                if lockedBalance <= 0 {
-//                    let balanceLabel: String
-//                    switch self.blockchainNetwork {
-//                    /*case .mainNet:
-//                        balanceLabel = self.presentationData.strings.Wallet_Info_YourBalance*/
-//                    case .testNet:
-//                        balanceLabel = "Your balance"
-//                    }
-//                    self.headerNode.balanceSubtitleNode.attributedText = NSAttributedString(string: balanceLabel, font: Font.regular(13), textColor: UIColor(white: 1.0, alpha: 0.6))
-//                    self.headerNode.balanceSubtitleIconNode.isHidden = true
-//                } else {
-//                    let balanceText = formatBalanceText(max(0, lockedBalance), decimalSeparator: self.presentationData.dateTimeFormat.decimalSeparator)
-//
-//                    let string = NSMutableAttributedString()
-//                    string.append(NSAttributedString(string: "\(balanceText)", font: Font.semibold(13), textColor: .white))
-//                    string.append(NSAttributedString(string: " locked", font: Font.regular(13), textColor: .white))
-//
-//                    self.headerNode.balanceSubtitleNode.attributedText = string
-//                    self.headerNode.balanceSubtitleIconNode.isHidden = false
-//                }
-//            } else {
-//                let balanceLabel: String
-//                switch self.blockchainNetwork {
-//                /*case .mainNet:
-//                    balanceLabel = self.presentationData.strings.Wallet_Info_YourBalance*/
-//                case .testNet:
-//                    balanceLabel = "Your balance"
-//                }
-//                self.headerNode.balanceSubtitleNode.attributedText = NSAttributedString(string: balanceLabel, font: Font.regular(13), textColor: UIColor(white: 1.0, alpha: 0.6))
-//                self.headerNode.balanceSubtitleIconNode.isHidden = true
-//            }
-//            self.headerNode.balance = max(0, combinedState.walletState.effectiveAvailableBalance)
-//
-//            if self.isReady, let (layout, navigationHeight) = self.validLayout {
-//                self.containerLayoutUpdated(layout: layout, navigationHeight: navigationHeight, transition: .immediate)
-//            }
 
-//            if isUpdated {
-//                self.reloadingState = false
-//            }
-            
             updateHeaderTimestamp(timestamp: Int32(clamping: combinedState.timestamp))
-
-//            if self.isReady, let (_, navigationHeight) = self.validLayout {
-//                self.headerNode.update(size: self.headerNode.bounds.size, navigationHeight: navigationHeight, offset: self.listOffset ?? 0.0, transition: .immediate, isScrolling: false)
-//            }
 
             var updatedTransactions: [WalletTransaction] = combinedState.topTransactions
             if updatedTransactions.count > 0 {
-                print("UPPPPPPPPPP")
-                print(updatedTransactions)
             }
 //            if let currentEntries = self.currentEntries {
 //                var existingIds = Set<WalletInfoListEntryId>()
@@ -294,7 +255,7 @@ extension WalletHomeVC: WalletHomeVMDelegate {
         if walletHomeVM.isRefreshing || balanceHeaderView.updateStatusView.state != .updated {
             balanceHeaderView.update(status: .updating(progress: progress))
         }
-        // TODO::
+        // TODO:: Pull to refresh?
 //                    if strongSelf.headerNode.isRefreshing, strongSelf.isReady, let (_, _) = strongSelf.validLayout {
 //                        strongSelf.headerNode.refreshNode.update(state: .refreshing)
 //                    }
@@ -320,6 +281,7 @@ extension WalletHomeVC: WalletHomeVMDelegate {
     }
 }
 
+// MARK: - `BalanceHeaderView` Delegate Functions
 extension WalletHomeVC: BalanceHeaderViewDelegate {
     public func scanPressed() {
         // TODO::

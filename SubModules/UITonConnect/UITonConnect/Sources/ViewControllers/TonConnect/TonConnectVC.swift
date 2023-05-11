@@ -9,15 +9,24 @@ import UIKit
 import UIComponents
 import WalletContext
 import WalletCore
+import AVFoundation
 
 public class TonConnectVC: WViewController {
 
+    private let walletContext: WalletContext
     private let walletInfo: WalletInfo
     private let tonConnectRequestLink: TonConnectRequestLink
     
-    private lazy var tonConnectViewModel = TonConnectVM(tonConnectVMDelegate: self)
+    private lazy var tonConnectViewModel = TonConnectVM(
+        walletContext: walletContext,
+        walletInfo: walletInfo,
+        tonConnectVMDelegate: self
+    )
     
-    public init(walletInfo: WalletInfo, tonConnectRequestLink: TonConnectRequestLink) {
+    public init(walletContext: WalletContext,
+                walletInfo: WalletInfo,
+                tonConnectRequestLink: TonConnectRequestLink) {
+        self.walletContext = walletContext
         self.walletInfo = walletInfo
         self.tonConnectRequestLink = tonConnectRequestLink
         super.init(nibName: nil, bundle: nil)
@@ -37,6 +46,7 @@ public class TonConnectVC: WViewController {
     private var topImageView: UIImageView!
     private var titleLabel: UILabel!
     private var textLabel: UILabel!
+    private var connectButton: WButton!
     
     public override func loadView() {
         super.loadView()
@@ -116,9 +126,10 @@ public class TonConnectVC: WViewController {
         verticalStackView.setCustomSpacing(24, after: noticeLabel)
         
         // connect button
-        let connectButton = WButton.setupInstance(.primary)
+        connectButton = WButton.setupInstance(.primary)
         connectButton.translatesAutoresizingMaskIntoConstraints = false
         connectButton.setTitle(WStrings.Wallet_TonConnect_ConnectWallet.localized, for: .normal)
+        connectButton.addTarget(self, action: #selector(connectPressed), for: .touchUpInside)
         verticalStackView.addArrangedSubview(connectButton)
         
         // close button
@@ -142,6 +153,20 @@ public class TonConnectVC: WViewController {
         dismiss(animated: true)
     }
     
+    @objc func connectPressed() {
+        if isLoading {
+            return
+        }
+        isLoading = true
+        tonConnectViewModel.connect(request: tonConnectRequestLink)
+    }
+    
+    var isLoading = false {
+        didSet {
+            connectButton.showLoading = isLoading
+            view.isUserInteractionEnabled = !isLoading
+        }
+    }
 }
 
 extension TonConnectVC: TonConnectVMDelegate {
@@ -176,7 +201,11 @@ extension TonConnectVC: TonConnectVMDelegate {
         topImageView.download(from: imageURL)
     }
     func errorOccured() {
+        isLoading = false
         // TODO::
-        dismiss(animated: true)
+    }
+    func tonConnected() {
+        AudioServicesPlaySystemSound(SystemSoundID(1394))
+        print("CONNECTEDDDDDDDDDD@@!#!@#!@E")
     }
 }

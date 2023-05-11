@@ -12,7 +12,7 @@ public enum TonConnectItemName: String {
     case ton_proof = "ton_proof"
 }
 
-public struct TonConnectItem {
+public struct TonConnectItem: Codable {
     let name: String
     let payload: String?
 
@@ -22,7 +22,7 @@ public struct TonConnectItem {
     }
 }
 
-public struct TonConnectRequestConnect {
+public struct TonConnectRequestConnect: Codable {
     let manifestUrl: String
     let items: [TonConnectItem]
 

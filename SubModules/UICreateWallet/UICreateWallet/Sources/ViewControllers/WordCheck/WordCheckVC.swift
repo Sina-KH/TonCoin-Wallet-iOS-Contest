@@ -88,7 +88,7 @@ class WordCheckVC: WViewController {
         let fieldsCount = 3
         wordInputs = []
         for i in 0 ..< fieldsCount {
-            let wordInput = WWordInput(wordNumber: wordIndices[i] + 1, delegate: self)
+            let wordInput = WWordInput(index: i, wordNumber: wordIndices[i] + 1, delegate: self)
             if i < fieldsCount - 1 {
                 wordInput.textField.returnKeyType = .next
             } else {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TonConnectEventSuccess: TonConnectEvent {
+struct TonConnectEventSuccess: TonConnectEvent, Codable {
     let event: String
     let id: Int
     let payload: TonConnectEventSuccessPayload
@@ -19,18 +19,18 @@ struct TonConnectEventSuccess: TonConnectEvent {
     }
 }
 
-struct TonConnectEventSuccessPayload {
-    let items: [TonConnectItemReply]
+struct TonConnectEventSuccessPayload: Codable {
+    let items: [TonConnectItemReplyAddr]
     let device: TonConnectEventSuccessPayloadDeviceInfo
 }
 
 // all the replies implement a name
-protocol TonConnectItemReply {
+protocol TonConnectItemReply: Codable {
     var name: String { get }
 }
 
 // `ton_addr` reply specific struct
-struct TonConnectItemReplyAddr: TonConnectItemReply {
+struct TonConnectItemReplyAddr: TonConnectItemReply, Codable {
     let name: String
 
     // `ton_addr` item reply
@@ -49,7 +49,7 @@ struct TonConnectItemReplyAddr: TonConnectItemReply {
 }
 
 // used for methods not supported. (for example `ton_proof`)
-struct ConnectItemReplyErrorNotSupported: TonConnectItemReply {
+struct ConnectItemReplyErrorNotSupported: TonConnectItemReply, Codable {
     let name: String
     let error: TonConnectItemError
     
@@ -60,13 +60,13 @@ struct ConnectItemReplyErrorNotSupported: TonConnectItemReply {
 }
 
 // ton connect item errors generally contain a code and a message
-struct TonConnectItemError {
+struct TonConnectItemError: Codable {
     let code: TonConnectItemErrorCode
     let message: String?
 }
 
 // specific error related to `ton_addr`
-struct TonConnectItemReplyAddrError: TonConnectItemReply {
+struct TonConnectItemReplyAddrError: TonConnectItemReply, Codable {
     let name: String
     let error: TonConnectItemErrorCode
     
@@ -76,7 +76,7 @@ struct TonConnectItemReplyAddrError: TonConnectItemReply {
     }
 }
 
-enum TonConnectItemErrorCode: Int {
+enum TonConnectItemErrorCode: Int, Codable {
     case unknown = 0
     case methodNotSupported = 400
 }
@@ -115,13 +115,13 @@ enum TonConnectItemErrorCode: Int {
     }
 }*/
 
-enum TonNetwork: Int {
+enum TonNetwork: Int, Codable {
     case mainnet = -239
     case testnet = -3
 }
 
-struct TonConnectEventSuccessPayloadDeviceInfo {
-    enum Platform: String {
+struct TonConnectEventSuccessPayloadDeviceInfo: Codable {
+    enum Platform: String, Codable {
         case iPhone = "iphone"
         case iPad = "iPad"
         case mac = "mac"
@@ -134,7 +134,7 @@ struct TonConnectEventSuccessPayloadDeviceInfo {
     let features: TonConnectFeature
 }
 
-struct TonConnectFeature {
+struct TonConnectFeature: Codable {
     let name: String
     let maxMessages: Int
 }

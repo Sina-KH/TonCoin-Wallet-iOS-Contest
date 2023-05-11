@@ -21,6 +21,10 @@
 		273521F929E9847A007C4E96 /* WalletContext.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 273521F729E9847A007C4E96 /* WalletContext.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		273F47492A09B4EA000C5263 /* UITonConnect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273F47482A09B4EA000C5263 /* UITonConnect.framework */; };
 		273F474A2A09B4EA000C5263 /* UITonConnect.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 273F47482A09B4EA000C5263 /* UITonConnect.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		274080AB2A0C4F570098838D /* Bridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274080AA2A0C4F570098838D /* Bridge.framework */; };
+		274080AC2A0C4F570098838D /* Bridge.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 274080AA2A0C4F570098838D /* Bridge.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		274081832A0C577C0098838D /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274081822A0C577C0098838D /* Sodium.framework */; };
+		274081842A0C577C0098838D /* Sodium.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 274081822A0C577C0098838D /* Sodium.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2749346229F5D34E009976B5 /* UIWalletHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2749346129F5D34E009976B5 /* UIWalletHome.framework */; };
 		2749346329F5D603009976B5 /* UICreateWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D3F8A29D639C5007C47AE /* UICreateWallet.framework */; };
 		2749346529F5D60A009976B5 /* UIWalletSend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2749346429F5D60A009976B5 /* UIWalletSend.framework */; };
@@ -31,6 +35,7 @@
 		274D3ED529D619BF007C47AE /* ToncoinWalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3ED429D619BF007C47AE /* ToncoinWalletTests.swift */; };
 		274D3EDF29D619BF007C47AE /* ToncoinWalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3EDE29D619BF007C47AE /* ToncoinWalletUITests.swift */; };
 		274D3EE129D619BF007C47AE /* ToncoinWalletUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D3EE029D619BF007C47AE /* ToncoinWalletUITestsLaunchTests.swift */; };
+		274DFA052A0CD4D30042A6A6 /* DeeplinkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274DFA042A0CD4D30042A6A6 /* DeeplinkHandler.swift */; };
 		275783A829F269B1004FBE88 /* SplashVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275783A729F269B1004FBE88 /* SplashVM.swift */; };
 		275C585C29E051B6002531AF /* WalletCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275C57B729E04F79002531AF /* WalletCore.framework */; };
 		275C585D29E051B6002531AF /* WalletCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 275C57B729E04F79002531AF /* WalletCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -96,8 +101,10 @@
 				2786FB4729E8641D0023FE21 /* NumberPluralizationForm.framework in Embed Frameworks */,
 				27764E4C29F135F600A45DAF /* UIWalletHome.framework in Embed Frameworks */,
 				275EC64229E857D300EE8B66 /* RLottieBinding.framework in Embed Frameworks */,
+				274080AC2A0C4F570098838D /* Bridge.framework in Embed Frameworks */,
 				2749346629F5D60A009976B5 /* UIWalletSend.framework in Embed Frameworks */,
 				275C585F29E051B8002531AF /* SwiftSignalKit.framework in Embed Frameworks */,
+				274081842A0C577C0098838D /* Sodium.framework in Embed Frameworks */,
 				275EC63929E8562700EE8B66 /* UIComponents.framework in Embed Frameworks */,
 				275C585D29E051B6002531AF /* WalletCore.framework in Embed Frameworks */,
 				27A1280A29E0402C002D030A /* UICreateWallet.framework in Embed Frameworks */,
@@ -129,6 +136,8 @@
 		2719623B29F1E02100B5B59F /* Main.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = Main.tgs; sourceTree = "<group>"; };
 		273521F729E9847A007C4E96 /* WalletContext.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletContext.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		273F47482A09B4EA000C5263 /* UITonConnect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UITonConnect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		274080AA2A0C4F570098838D /* Bridge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bridge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		274081822A0C577C0098838D /* Sodium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Sodium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2749346129F5D34E009976B5 /* UIWalletHome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIWalletHome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2749346429F5D60A009976B5 /* UIWalletSend.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIWalletSend.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		274D3EBA29D619BD007C47AE /* ToncoinWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToncoinWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +152,7 @@
 		274D3EE029D619BF007C47AE /* ToncoinWalletUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToncoinWalletUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		274D3F2C29D62BF3007C47AE /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		274D3F8A29D639C5007C47AE /* UICreateWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UICreateWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		274DFA042A0CD4D30042A6A6 /* DeeplinkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkHandler.swift; sourceTree = "<group>"; };
 		275783A729F269B1004FBE88 /* SplashVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVM.swift; sourceTree = "<group>"; };
 		275C57B729E04F79002531AF /* WalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		275C585829E051A3002531AF /* WalletUrl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletUrl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,9 +196,11 @@
 				275EC63629E855A100EE8B66 /* SSignalKit.framework in Frameworks */,
 				275EC63E29E857BC00EE8B66 /* YuvConversion.framework in Frameworks */,
 				2749346529F5D60A009976B5 /* UIWalletSend.framework in Frameworks */,
+				274080AB2A0C4F570098838D /* Bridge.framework in Frameworks */,
 				273521F829E9847A007C4E96 /* WalletContext.framework in Frameworks */,
 				27DB29CC29EC6A6200988800 /* BuildConfig.framework in Frameworks */,
 				275EC63329E8541E00EE8B66 /* TonBinding.framework in Frameworks */,
+				274081832A0C577C0098838D /* Sodium.framework in Frameworks */,
 				275C586029E051BA002531AF /* WalletUrl.framework in Frameworks */,
 				273F47492A09B4EA000C5263 /* UITonConnect.framework in Frameworks */,
 			);
@@ -292,6 +304,8 @@
 		274D3F2B29D62BF3007C47AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				274081822A0C577C0098838D /* Sodium.framework */,
+				274080AA2A0C4F570098838D /* Bridge.framework */,
 				273F47482A09B4EA000C5263 /* UITonConnect.framework */,
 				2749346429F5D60A009976B5 /* UIWalletSend.framework */,
 				2749346129F5D34E009976B5 /* UIWalletHome.framework */,
@@ -316,13 +330,30 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		274DFA032A0CD4CA0042A6A6 /* DeeplinkHandler */ = {
+			isa = PBXGroup;
+			children = (
+				274DFA042A0CD4D30042A6A6 /* DeeplinkHandler.swift */,
+			);
+			path = DeeplinkHandler;
+			sourceTree = "<group>";
+		};
+		274DFA062A0CD4DE0042A6A6 /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				275C586529E05215002531AF /* WalletConfiguration.swift */,
+				2786FB4929E866380023FE21 /* WalletStorageInterfaceImpl.swift */,
+				2786FB4B29E866670023FE21 /* FileBackedStorage.swift */,
+			);
+			path = Wallet;
+			sourceTree = "<group>";
+		};
 		275C576E29E04E2A002531AF /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				27764E5929F16E6E00A45DAF /* SplashScreen */,
-				275C586529E05215002531AF /* WalletConfiguration.swift */,
-				2786FB4929E866380023FE21 /* WalletStorageInterfaceImpl.swift */,
-				2786FB4B29E866670023FE21 /* FileBackedStorage.swift */,
+				274DFA032A0CD4CA0042A6A6 /* DeeplinkHandler */,
+				274DFA062A0CD4DE0042A6A6 /* Wallet */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -488,6 +519,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				278C3A1429F1839C00BD16E8 /* SplashVC.swift in Sources */,
+				274DFA052A0CD4D30042A6A6 /* DeeplinkHandler.swift in Sources */,
 				274D3EBE29D619BD007C47AE /* AppDelegate.swift in Sources */,
 				2786FB4C29E866670023FE21 /* FileBackedStorage.swift in Sources */,
 				2786FB4A29E866380023FE21 /* WalletStorageInterfaceImpl.swift in Sources */,

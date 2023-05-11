@@ -12,6 +12,7 @@ import WalletContext
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    var deeplinkHandler: DeeplinkHandler? = nil
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -25,17 +26,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window?.makeKeyAndVisible()
         
+        deeplinkHandler = DeeplinkHandler(deeplinkNavigator: startVC)
+
+        return true
+    }
+    // handle `ton://` for `toncoin invoices` and `tc://` for `ton connect` deeplinks
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        deeplinkHandler?.handle(url)
         return true
     }
     
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+    func application(_ application: UIApplication,
+                     continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
 
         guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
-          let url = userActivity.webpageURL,
-          let components = URLComponents(url: url,
-                                         resolvingAgainstBaseURL: true) else {
+              let url = userActivity.webpageURL else {
             return false
         }
+
+        deeplinkHandler?.handle(url)
 
         return true
     }
