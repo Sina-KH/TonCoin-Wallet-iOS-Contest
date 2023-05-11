@@ -21,8 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // StartVC for users who are using the app for the first time
         let startVC = SplashVC(nibName: "SplashVC", bundle: Bundle.main)
-        let navigationController = UINavigationController(rootViewController: startVC)
-        self.window?.rootViewController = navigationController
+        self.window?.rootViewController = startVC
         
         self.window?.makeKeyAndVisible()
         

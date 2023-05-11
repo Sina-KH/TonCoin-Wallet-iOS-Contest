@@ -24,6 +24,46 @@ class SplashVC: WViewController {
 
     public override func loadView() {
         super.loadView()
+
+        setupViews()
+    }
+
+    private var topAnchorConstraint: NSLayoutConstraint!
+
+    private func setupViews() {
+        let balanceHeaderBackground = UIView()
+        balanceHeaderBackground.translatesAutoresizingMaskIntoConstraints = false
+        balanceHeaderBackground.backgroundColor = WTheme.balanceHeaderView.background
+        view.addSubview(balanceHeaderBackground)
+        topAnchorConstraint = balanceHeaderBackground.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+        NSLayoutConstraint.activate([
+            topAnchorConstraint,
+            balanceHeaderBackground.leftAnchor.constraint(equalTo: view.leftAnchor),
+            balanceHeaderBackground.rightAnchor.constraint(equalTo: view.rightAnchor),
+            balanceHeaderBackground.heightAnchor.constraint(equalToConstant: BalanceHeaderView.defaultHeight)
+        ])
+
+        let underSafeAreaView = UIView()
+        underSafeAreaView.translatesAutoresizingMaskIntoConstraints = false
+        underSafeAreaView.backgroundColor = WTheme.balanceHeaderView.background
+        view.addSubview(underSafeAreaView)
+        NSLayoutConstraint.activate([
+            underSafeAreaView.topAnchor.constraint(equalTo: view.topAnchor),
+            underSafeAreaView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            underSafeAreaView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            underSafeAreaView.bottomAnchor.constraint(equalTo: balanceHeaderBackground.topAnchor)
+        ])
+        
+        let bottomCornersView = ReversedCornerRadiusView()
+        bottomCornersView.translatesAutoresizingMaskIntoConstraints = false
+        bottomCornersView.backgroundColor = WTheme.balanceHeaderView.background
+        view.addSubview(bottomCornersView)
+        NSLayoutConstraint.activate([
+            bottomCornersView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
+            bottomCornersView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
+            bottomCornersView.topAnchor.constraint(equalTo: balanceHeaderBackground.bottomAnchor),
+            bottomCornersView.heightAnchor.constraint(equalToConstant: ReversedCornerRadiusView.radius)
+        ])
     }
 
     public override func viewDidLoad() {
@@ -32,16 +72,29 @@ class SplashVC: WViewController {
         startApp()
     }
 
-    func replaceVC(with vc: WViewController) {
+    func replaceVC(with vc: WViewController, animateHeader: Bool) {
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
-        present(navVC, animated: false) { [weak self] in
-            guard let self else {return}
-            if let nextDeeplink {
-                self.handle(deeplink: nextDeeplink)
+        func presentNav() {
+            present(navVC, animated: false) { [weak self] in
+                guard let self else {return}
+                if let nextDeeplink {
+                    self.handle(deeplink: nextDeeplink)
+                }
             }
         }
-        vc.view.layer.animateAlpha(from: 0.0, to: 1.0, duration: 0.3)
+        if animateHeader {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.topAnchorConstraint.constant = -BalanceHeaderView.defaultHeight - self.view.safeAreaInsets.top - 16
+                self.view.layoutIfNeeded()
+            }) { finished in
+                presentNav()
+                vc.view.layer.animateAlpha(from: 0.0, to: 1.0, duration: 0.3)
+            }
+        } else {
+            presentNav()
+            vc.view.layer.animateAlpha(from: 0.0, to: 1.0, duration: 0.3)
+        }
     }
     
     // start the app by initializing the wallet context and getting the wallet info
@@ -52,23 +105,23 @@ class SplashVC: WViewController {
 
 extension SplashVC: SplashVMDelegate {
     func navigateToIntro(walletContext: WalletContext) {
-        replaceVC(with: IntroVC(walletContext: walletContext))
+        replaceVC(with: IntroVC(walletContext: walletContext), animateHeader: true)
     }
     
     func navigateToWalletCreated(walletContext: WalletContext, walletInfo: WalletInfo) {
-        replaceVC(with: WalletCreatedVC(walletContext: walletContext, walletInfo: walletInfo, wordList: []))
+        replaceVC(with: WalletCreatedVC(walletContext: walletContext, walletInfo: walletInfo, wordList: []), animateHeader: true)
     }
     
     func navigateToWalletImported(walletContext: WalletContext, importedWalletInfo: ImportedWalletInfo) {
-        replaceVC(with: ImportSuccessVC(walletContext: walletContext, importedWalletInfo: importedWalletInfo))
+        replaceVC(with: ImportSuccessVC(walletContext: walletContext, importedWalletInfo: importedWalletInfo), animateHeader: true)
     }
     
     func navigateToWalletImported(walletContext: WalletContext, walletInfo: WalletInfo) {
-        replaceVC(with: ImportSuccessVC(walletContext: walletContext, walletInfo: walletInfo))
+        replaceVC(with: ImportSuccessVC(walletContext: walletContext, walletInfo: walletInfo), animateHeader: true)
     }
 
     func navigateToHome(walletContext: WalletContext, walletInfo: WalletInfo) {
-        replaceVC(with: WalletHomeVC(walletContext: walletContext, walletInfo: walletInfo))
+        replaceVC(with: WalletHomeVC(walletContext: walletContext, walletInfo: walletInfo), animateHeader: false)
     }
     
     func navigateToSetPasscode() {

@@ -128,7 +128,7 @@ public class WalletHomeVC: WViewController {
             bottomCornersView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
             bottomCornersView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
             bottomCornersView.topAnchor.constraint(equalTo: balanceHeaderView.bottomAnchor),
-            bottomCornersView.heightAnchor.constraint(equalToConstant: 16),
+            bottomCornersView.heightAnchor.constraint(equalToConstant: ReversedCornerRadiusView.radius),
             emptyWalletView!.topAnchor.constraint(equalTo: balanceHeaderView.bottomAnchor)
         ])
 

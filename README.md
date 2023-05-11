@@ -11,9 +11,13 @@ is backward compatible and almost reused. Only a few changes applied to support 
 :white_check_mark: **Updated tonlib:** The application is now using the latest version of the [
 ADNL TonLib Repository](https://github.com/ton-blockchain/ton) (2023.04).
 
+:white_check_mark: **TON Connect 2 Support** as documented in [Ton-Connect Repository](https://github.com/ton-blockchain/ton-connect). `Bridge` and `Session Protocol` are implemented. `tc://` is available as unified deeplink of the ton connect. `Universal Link` is also support and can be set after deploying the `Bridge instance`.
+
 :white_check_mark: `iOS 12.2+` support.
 
 :white_check_mark: Supports all the iOS-devices starting from `iPhone 5s` and `4" display size`.
+
+:white_check_mark: App size (the final universal `.ipa file`) is **around 6 megabytes**.
 
 ## :beers: How to Build
 
@@ -139,6 +143,15 @@ from the `ton://transfer` urls.
 ### :yarn: TonBinding
 
 The binding between the wallet project and the `tonlib` library.
+
+### :link:  Bridge
+
+The bridge framework is developed to support Ton Connect feature using the [bridge api documentation](https://github.com/ton-blockchain/ton-connect/blob/main/bridge.md).
+
+### :lock:  Sodium
+
+Sodium is used to implement encryption algorithms in `Bridge API`, on iOS 12+.
+It includes Clibsodium that can be rebuilt and used, from [libsodium repository](https://github.com/jedisct1/libsodium).
 
 ### :hammer: BuildConfig
 

@@ -28,7 +28,7 @@ public class BalanceHeaderView: UIView {
     public static let bottomGap = CGFloat(0)
 
     private static let minHeight = minHeightWithoutRadiusView + bottomGap
-    static let defaultHeight = contentHeight + bottomGap
+    public static let defaultHeight = contentHeight + bottomGap
 
     private var walletInfo: WalletInfo
     private weak var delegate: BalanceHeaderViewDelegate!
@@ -61,7 +61,7 @@ public class BalanceHeaderView: UIView {
 
         translatesAutoresizingMaskIntoConstraints = false
         layer.masksToBounds = true
-        heightConstraint = heightAnchor.constraint(equalToConstant: 300)
+        heightConstraint = heightAnchor.constraint(equalToConstant: BalanceHeaderView.contentHeight)
         constraints.append(contentsOf: [
             heightConstraint
         ])
