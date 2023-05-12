@@ -195,10 +195,8 @@ class SplashVM: NSObject {
                                 // Error happened!
                                 // TODO::
                             }, completed: { [weak self] in
-                                // TODO:: Dismiss all other view controllers
                                 // start app again
-                                self?.walletContext = nil
-                                self?.startApp()
+                                self?.splashVMDelegate?.restartApp()
                             })
                         }
                     })

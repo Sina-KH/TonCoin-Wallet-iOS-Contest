@@ -340,7 +340,7 @@ class SettingsVC: WViewController {
             let _ = (deleteAllLocalWalletsData(storage: walletContext.storage,
                                                tonInstance: walletContext.tonInstance)
             |> deliverOnMainQueue).start(error: { _ in
-                // TODO::
+                
             }, completed: { [weak self] in
                 guard let self else {
                     return

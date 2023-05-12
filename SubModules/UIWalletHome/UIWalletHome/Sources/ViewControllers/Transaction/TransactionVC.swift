@@ -132,8 +132,7 @@ class TransactionVC: WViewController {
             amountLabel.amount = trn.value
             // TODO:: Fee should be added to the logic
             transactionFeeLabel.text = nil
-            dateTimeLabel.text = nil
-            // TODO:: Show Pending
+            dateTimeLabel.text = WStrings.Wallet_TransactionInfo_Pending.localized
             addressTitle = WStrings.Wallet_TransactionInfo_RecipientAddress.localized
             hashPreview = trn.hashPreview
             break
@@ -221,7 +220,14 @@ class TransactionVC: WViewController {
     
     func updateTheme() {
         transactionFeeLabel.textColor = WTheme.secondaryLabel
-        dateTimeLabel.textColor = WTheme.secondaryLabel
+        switch transaction {
+        case .completed(_):
+            dateTimeLabel.textColor = WTheme.secondaryLabel
+            break
+        case .pending(_):
+            dateTimeLabel.textColor = WTheme.primaryButton.background
+            break
+        }
         detailsLabel.textColor = WTheme.secondaryLabel
         addressItem.setValueTextColor(WTheme.secondaryLabel)
         transactionIDItem.setValueTextColor(WTheme.secondaryLabel)

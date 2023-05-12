@@ -125,6 +125,7 @@
 "Wallet.TransactionInfo.ViewInExplorer" = "View in explorer"; // NEW
 "Wallet.TransactionInfo.SendTONToThisAddress" = "Send TON to this address"; // NEW
 "Wallet.TransactionInfo.RetryTransaction" = "Retry transaction"; // NEW
+"Wallet.TransactionInfo.Pending" = "Pending"; // NEW
 
 // Receive
 "Wallet.Receive.Title" = "Receive Toncoin"; // Updated

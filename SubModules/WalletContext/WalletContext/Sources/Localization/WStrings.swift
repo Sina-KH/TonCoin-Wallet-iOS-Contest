@@ -102,6 +102,7 @@ public enum WStrings: String {
     case Wallet_TransactionInfo_ViewInExplorer = "Wallet.TransactionInfo.ViewInExplorer"
     case Wallet_TransactionInfo_SendTONToThisAddress = "Wallet.TransactionInfo.SendTONToThisAddress"
     case Wallet_TransactionInfo_RetryTransaction = "Wallet.TransactionInfo.RetryTransaction"
+    case Wallet_TransactionInfo_Pending = "Wallet.TransactionInfo.Pending"
     case Wallet_Receive_Title = "Wallet.Receive.Title"
     case Wallet_Receive_Description = "Wallet.Receive.Description"
     case Wallet_Receive_Toncoin = "Wallet.Receive.Toncoin"

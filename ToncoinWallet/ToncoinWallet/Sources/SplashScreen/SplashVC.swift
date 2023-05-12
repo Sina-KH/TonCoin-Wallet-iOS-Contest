@@ -137,8 +137,12 @@ extension SplashVC: SplashVMDelegate {
     }
     
     func restartApp() {
-        dismiss(animated: true) { [weak self] in
-            self?.startApp()
+        if topViewController() !== self {
+            dismiss(animated: true) { [weak self] in
+                self?.startApp()
+            }
+        } else {
+            startApp()
         }
     }
 }
