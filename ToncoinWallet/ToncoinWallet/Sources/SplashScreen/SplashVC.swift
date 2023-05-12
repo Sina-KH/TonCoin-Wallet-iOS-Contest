@@ -9,6 +9,7 @@ import UIKit
 import UICreateWallet
 import UIWalletHome
 import UITonConnect
+import UIWalletSend
 import UIComponents
 import WalletContext
 import WalletCore
@@ -127,6 +128,10 @@ extension SplashVC: SplashVMDelegate {
         // TODO:: should be called if original version updated to this version, to have a passcode!
     }
     
+    func navigateToSecuritySettingsChanged(walletContext: WalletContext, type: SecuritySettingsChangedType) {
+        replaceVC(with: SecuritySettingsChangedVC(walletContext: walletContext, changeType: type), animateOutBlackHeader: true)
+    }
+    
     func errorOccured() {
         // TODO::
     }
@@ -142,23 +147,47 @@ extension SplashVC: SplashVMDelegate {
 extension SplashVC: DeeplinkNavigator {
     func handle(deeplink: Deeplink) {
         if splashVM.appStarted {
+            guard let walletInfo = splashVM.readyWalletInfo else {
+                nextDeeplink = nil
+                return
+            }
+
             switch deeplink {
 
                 // tonConnect2 request deeplink
                 case .tonConnect2(requestLink: let requestLink):
-                    var topVC = topViewController()
-                    if let navVC = topVC as? UINavigationController {
-                        topVC = navVC.topViewController
-                    }
-                    if let readyWalletInfo = splashVM.readyWalletInfo {
-                        if let topVC = topVC as? WViewController {
-                            topVC.present(bottomSheet: TonConnectVC(walletContext: splashVM.walletContext!,
-                                                                    walletInfo: readyWalletInfo,
-                                                                    tonConnectRequestLink: requestLink))
-                        }
-                    }
+                let tonConnectVC = TonConnectVC(walletContext: splashVM.walletContext!,
+                                           walletInfo: walletInfo,
+                                           tonConnectRequestLink: requestLink)
+                
+                var topVC = topViewController()
+                if let navVC = topVC as? UINavigationController {
+                    topVC = navVC.topViewController
+                }
+                if let topVC = topVC as? WViewController {
+                    topVC.present(bottomSheet: tonConnectVC)
+                }
+                break
+                
+            case .invoice(address: let address, amount: let amount, comment: let comment):
+                let vc: UIViewController!
+                if let amount = amount {
+                    vc = SendConfirmVC(walletContext: splashVM.walletContext!,
+                                                walletInfo: walletInfo,
+                                                addressToSend: address,
+                                                amount: amount,
+                                                defaultComment: comment)
+                } else {
+                    vc = SendAmountVC(walletContext: splashVM.walletContext!,
+                                               walletInfo: walletInfo,
+                                               addressToSend: address,
+                                               balance: nil)
+                }
+                topViewController()?.present(UINavigationController(rootViewController: vc), animated: true)
+                break
 
             }
+
             nextDeeplink = nil
         } else {
             nextDeeplink = deeplink

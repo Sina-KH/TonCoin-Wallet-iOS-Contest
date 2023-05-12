@@ -32,6 +32,8 @@ public class WalletHomeVC: WViewController {
     lazy var walletHomeVM = WalletHomeVM(walletContext: walletContext, walletInfo: walletInfo, walletHomeVMDelegate: self)
 
     private var tableView: UITableView!
+    private var headerContainerView: UIView!
+    private var headerContainerViewHeightConstraint: NSLayoutConstraint? = nil
     private var balanceHeaderView: BalanceHeaderView!
     private var bottomCornersView: ReversedCornerRadiusView!
     private var emptyWalletView: EmptyWalletView? = nil
@@ -42,17 +44,8 @@ public class WalletHomeVC: WViewController {
         
         walletHomeVM.refreshTransactions()
 
-        let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
-        keyWindow?.backgroundColor = WTheme.balanceHeaderView.background
-
         // connect the application to the wallet applications
 //        BridgeToApp.connect()
-    }
-    
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-//        UIApplication.shared.open(URL(string: "tc://?v=2&id=7200057313a31397feb70171404b1935d2ed771c8951f9acd3d07bb8d7e9f269&r=%7B%22manifestUrl%22%3A%22https%3A%2F%2Fgist.githubusercontent.com%2Fsiandreev%2F75f1a2ccf2f3b4e2771f6089aeb06d7f%2Fraw%2Fd4986344010ec7a2d1cc8a2a9baa57de37aaccb8%2Fgistfile1.txt%22%2C%22items%22%3A%5B%7B%22name%22%3A%22ton_addr%22%7D%5D%7D")!)
     }
 
     public override func loadView() {
@@ -92,18 +85,6 @@ public class WalletHomeVC: WViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
 
-        // top space under safe area
-        let underSafeAreaView = UIView()
-        underSafeAreaView.translatesAutoresizingMaskIntoConstraints = false
-        underSafeAreaView.backgroundColor = WTheme.balanceHeaderView.background
-        view.addSubview(underSafeAreaView)
-        NSLayoutConstraint.activate([
-            underSafeAreaView.topAnchor.constraint(equalTo: view.topAnchor),
-            underSafeAreaView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            underSafeAreaView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            underSafeAreaView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
-        ])
-
         // show `loading` or `wallet created` view if needed, based on situation
         emptyWalletView = EmptyWalletView()
         view.addSubview(emptyWalletView!)
@@ -113,13 +94,29 @@ public class WalletHomeVC: WViewController {
             emptyWalletView!.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
 
+        // header container view (covers under the safe area and also used to animate views on start)
+        headerContainerView = UIView()
+        headerContainerView.translatesAutoresizingMaskIntoConstraints = false
+        headerContainerView.backgroundColor = WTheme.balanceHeaderView.background
+        headerContainerView.layer.masksToBounds = true
+        view.addSubview(headerContainerView)
+        NSLayoutConstraint.activate([
+            headerContainerView.topAnchor.constraint(equalTo: view.topAnchor),
+            headerContainerView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            headerContainerView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        ])
+
         // balance header view
         balanceHeaderView = BalanceHeaderView(walletInfo: walletInfo, delegate: self)
-        view.addSubview(balanceHeaderView)
+        headerContainerView.addSubview(balanceHeaderView)
+        let balanceHeaderViewBottomConstraint = balanceHeaderView.bottomAnchor.constraint(equalTo: headerContainerView.bottomAnchor)
+        // this priotity should be `.defaultHigh` because it should break and respect `headerContainerViewHeightConstraint` on startup animation.
+        balanceHeaderViewBottomConstraint.priority = .defaultHigh
         NSLayoutConstraint.activate([
             balanceHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             balanceHeaderView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            balanceHeaderView.rightAnchor.constraint(equalTo: view.rightAnchor)
+            balanceHeaderView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            balanceHeaderViewBottomConstraint
         ])
 
         // reversed bottom corner radius for balance header view!
@@ -130,11 +127,17 @@ public class WalletHomeVC: WViewController {
         NSLayoutConstraint.activate([
             bottomCornersView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
             bottomCornersView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
-            bottomCornersView.topAnchor.constraint(equalTo: balanceHeaderView.bottomAnchor),
+            bottomCornersView.topAnchor.constraint(equalTo: headerContainerView.bottomAnchor),
             bottomCornersView.heightAnchor.constraint(equalToConstant: ReversedCornerRadiusView.radius),
             emptyWalletView!.topAnchor.constraint(equalTo: bottomCornersView.topAnchor)
         ])
 
+        if animateHeaderOnLoad {
+            headerContainerViewHeightConstraint = headerContainerView.heightAnchor.constraint(equalToConstant: 0)
+            NSLayoutConstraint.activate([
+                headerContainerViewHeightConstraint!
+            ])
+        }
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -143,29 +146,36 @@ public class WalletHomeVC: WViewController {
         if animateHeaderOnLoad {
             animateHeaderOnLoad = false
             // hide everything before first render!
-            balanceHeaderView.alpha = 0
-            bottomCornersView.alpha = 0
             emptyWalletView?.alpha = 0
+            balanceHeaderView.alpha = 0
+            balanceHeaderView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
             view.layoutIfNeeded()
             DispatchQueue.main.async {
-                // animate table view to desired position (collapsed mode) after first render
-                self.tableView.setContentOffset(CGPoint(x: 0, y: BalanceHeaderView.defaultHeight + self.view.safeAreaInsets.top), animated: false)
-                // animate balance and reversed corners to show
-                UIView.animate(withDuration: 0.3, animations: {
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.headerContainerViewHeightConstraint?.constant = BalanceHeaderView.defaultHeight + self.view.safeAreaInsets.top
                     self.balanceHeaderView.alpha = 1
-                    self.bottomCornersView.alpha = 1
+                    self.emptyWalletView?.alpha = 1
+                    self.balanceHeaderView.transform = CGAffineTransform(scaleX: 1, y: 1)
+                    self.view.layoutIfNeeded()
                 }) { _ in
-                    // now animate and show everything in normal position
-                    DispatchQueue.main.async {
-                        self.tableView.setContentOffset(CGPoint.zero, animated: true)
-                    }
-                    UIView.animate(withDuration: 0.3) {
-                        self.emptyWalletView?.alpha = 1
-                        self.view.layoutIfNeeded()
-                    }
+                    self.headerContainerViewHeightConstraint?.isActive = false
                 }
             }
         }
+    }
+    
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        keyWindow?.backgroundColor = WTheme.balanceHeaderView.background
+
+        //        UIApplication.shared.open(URL(string: "tc://?v=2&id=7200057313a31397feb70171404b1935d2ed771c8951f9acd3d07bb8d7e9f269&r=%7B%22manifestUrl%22%3A%22https%3A%2F%2Fgist.githubusercontent.com%2Fsiandreev%2F75f1a2ccf2f3b4e2771f6089aeb06d7f%2Fraw%2Fd4986344010ec7a2d1cc8a2a9baa57de37aaccb8%2Fgistfile1.txt%22%2C%22items%22%3A%5B%7B%22name%22%3A%22ton_addr%22%7D%5D%7D")!)
+    }
+
+    public override func viewDidDisappear(_ animated: Bool) {
+        let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        keyWindow?.backgroundColor = WTheme.background
     }
 
 }
@@ -176,20 +186,25 @@ extension WalletHomeVC: UITableViewDataSource, UITableViewDelegate {
         balanceHeaderView.updateHeight(scrollOffset: scrollView.contentOffset.y)
     }
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return walletHomeVM.transactionSections?.count ?? 0
+        return 1
     }
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return walletHomeVM.transactionSections?[section].transactions.count ?? 0
+        return walletHomeVM.transactions?.count ?? 0
     }
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Transaction", for: indexPath) as! WalletTransactionCell
-        cell.configure(with: walletHomeVM.transactionSections![indexPath.section].transactions[indexPath.row])
+        cell.configure(with: walletHomeVM.transactions![indexPath.row])
         return cell
     }
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let transactionVC = TransactionVC(transaction: walletHomeVM.transactionSections![indexPath.section].transactions[indexPath.row])
+        let transactionVC = TransactionVC(transaction: walletHomeVM.transactions![indexPath.row])
         present(bottomSheet: transactionVC)
+    }
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row >= (walletHomeVM.transactions?.count ?? 0) - 3 {
+            walletHomeVM.loadMoreTransactions()
+        }
     }
 }
 
@@ -203,15 +218,15 @@ extension WalletHomeVC: WalletHomeVMDelegate {
         if diff < 60 {
             balanceHeaderView.update(status: .updated)
         } else {
-            // TODO:: show diff like the original app ?
+            // We can show diff like the original app, but it's not in the designs.
         }
     }
 
     func updateEmptyView() {
-        if walletHomeVM.transactionSections?.count == 0 {
+        if walletHomeVM.transactions?.count == 0 {
             // switch from loading view to wallet created view
             emptyWalletView?.showWalletCreatedView(address: walletInfo.address)
-        } else if walletHomeVM.transactionSections?.count ?? 0 > 0 {
+        } else if walletHomeVM.transactions?.count ?? 0 > 0 {
             emptyWalletView?.hideAnimated()
             // don't need it anymore, let it dealloc!
             emptyWalletView = nil
@@ -219,10 +234,22 @@ extension WalletHomeVC: WalletHomeVMDelegate {
     }
     
     func reloadTableView(deleteIndices: [HomeDeleteItem], insertIndicesAndItems: [HomeInsertItem], updateIndicesAndItems: [HomeUpdateItem]) {
-        // TODO:: Animate
-        tableView.reloadData()
+        tableView.beginUpdates()
+        tableView.deleteRows(at: deleteIndices.map({ it in
+            IndexPath(row: it.index, section: 0)
+        }), with: .automatic)
+        if walletHomeVM.transactions?.count ?? 0 > 0 {
+            // prevent issue if it's empty and empty view cell wants to be inserted. (original app logic)
+            tableView.insertRows(at: insertIndicesAndItems.map({ it in
+                IndexPath(row: it.index, section: 0)
+            }), with: .automatic)
+        }
+        tableView.reloadRows(at: updateIndicesAndItems.map({ it in
+            IndexPath(row: it.index, section: 0)
+        }), with: .automatic)
+        tableView.endUpdates()
     }
-    
+
     func updateUpdateProgress(to progress: Int) {
         if walletHomeVM.isRefreshing || balanceHeaderView.updateStatusView.state != .updated {
             balanceHeaderView.update(status: .updating(progress: progress))

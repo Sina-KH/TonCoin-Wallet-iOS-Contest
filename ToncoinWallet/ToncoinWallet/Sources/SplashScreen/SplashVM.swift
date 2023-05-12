@@ -27,7 +27,12 @@ protocol SplashVMDelegate: AnyObject {
 
     // called when the wallet data is complete and user should see wallet home screen (wallet info)
     func navigateToHome(walletContext: WalletContext, walletInfo: WalletInfo)
-    
+
+    // Called if original version updated to this version, to have a passcode!
+    func navigateToSetPasscode()
+
+    func navigateToSecuritySettingsChanged(walletContext: WalletContext, type: SecuritySettingsChangedType)
+
     // called from wallet context if wallet is deleted
     func restartApp()
 }
@@ -243,12 +248,12 @@ class SplashVM: NSObject {
                                 }
                             }
                         } else {
-//                            let splashScreen = WalletSplashScreen(context: walletContext, blockchainNetwork: initialResolvedConfig.activeNetwork, mode: .secureStorageReset(.changed), walletCreatedPreloadState: nil)
-//                            beginWithController(splashScreen)
+                            self?.appStarted = true
+                            self?.splashVMDelegate?.navigateToSecuritySettingsChanged(walletContext: walletContext, type: .changed)
                         }
                     } else {
-//                        let splashScreen = WalletSplashScreen(context: walletContext, blockchainNetwork: initialResolvedConfig.activeNetwork, mode: WalletSplashMode.secureStorageReset(.notAvailable), walletCreatedPreloadState: nil)
-//                        beginWithController(splashScreen)
+                        self?.appStarted = true
+                        self?.splashVMDelegate?.navigateToSecuritySettingsChanged(walletContext: walletContext, type: .notAvailable)
                     }
                 } else {
                     if publicKey != nil {
@@ -258,8 +263,8 @@ class SplashVM: NSObject {
                         }
                     } else {
                         print("secure storage not available")
-//                        let splashScreen = WalletSplashScreen(context: walletContext, blockchainNetwork: initialResolvedConfig.activeNetwork, mode: .secureStorageNotAvailable, walletCreatedPreloadState: nil)
-//                        beginWithController(splashScreen)
+                        self?.appStarted = true
+                        self?.splashVMDelegate?.navigateToSecuritySettingsChanged(walletContext: walletContext, type: .notAvailable)
                     }
                 }
             })

@@ -1,22 +1,30 @@
 //
-//  RestoreFailedVC.swift
+//  SecuritySettingsChangedVC.swift
 //  UICreateWallet
 //
-//  Created by Sina on 4/21/23.
+//  Created by Sina on 5/12/23.
 //
 
 import UIKit
 import SwiftSignalKit
 import WalletCore
+import UIPasscode
 import UIComponents
 import WalletContext
 
-public class RestoreFailedVC: WViewController {
+public enum SecuritySettingsChangedType {
+    case notAvailable
+    case changed
+}
 
-    var walletContext: WalletContext
+public class SecuritySettingsChangedVC: WViewController {
 
-    public init(walletContext: WalletContext) {
+    private let walletContext: WalletContext
+    private let changeType: SecuritySettingsChangedType
+
+    public init(walletContext: WalletContext, changeType: SecuritySettingsChangedType) {
         self.walletContext = walletContext
+        self.changeType = changeType
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -32,22 +40,30 @@ public class RestoreFailedVC: WViewController {
     private var bottomActionsView: BottomActionsView!
 
     func setupViews() {
-        let enterWordsButton = BottomAction(
-            title: WStrings.Wallet_RestoreFailed_EnterWords.localized,
-            onPress: {
-                self.navigationController?.popViewController(animated: true)
-            }
-        )
         
-        let createWalletButton = BottomAction(
-            title: WStrings.Wallet_RestoreFailed_CreateWallet.localized,
-            onPress: {
-                self.createWalletPressed()
-            }
-        )
-        
-        bottomActionsView = BottomActionsView(primaryAction: enterWordsButton,
+        if changeType == .changed {
+            
+            let enterWordsButton = BottomAction(
+                title: WStrings.Wallet_SecuritySettingsChanged_ImportWallet.localized,
+                onPress: {
+                    self.navigationController?.pushViewController(ImportWalletVC(walletContext: self.walletContext), animated: true)
+                }
+            )
+            
+            let createWalletButton = BottomAction(
+                title: WStrings.Wallet_SecuritySettingsChanged_CreateWallet.localized,
+                onPress: {
+                    self.createWalletPressed()
+                }
+            )
+
+            bottomActionsView = BottomActionsView(primaryAction: enterWordsButton,
                                                   secondaryAction: createWalletButton)
+        } else {
+            bottomActionsView = BottomActionsView(primaryAction: BottomAction(title: WStrings.Wallet_Alert_OK.localized, onPress: {
+                self.walletContext.restartApp()
+            }))
+        }
         view.addSubview(bottomActionsView)
         NSLayoutConstraint.activate([
             bottomActionsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -58),
@@ -65,10 +81,36 @@ public class RestoreFailedVC: WViewController {
             topView.bottomAnchor.constraint(equalTo: bottomActionsView.topAnchor)
         ])
 
+        let biometricString: String?
+        switch BiometricHelper.biometricType() {
+        case .face:
+            biometricString = WStrings.Wallet_SecuritySettingsChanged_BiometryFaceID.localized
+            break
+        case .none:
+            biometricString = WStrings.Wallet_SecuritySettingsChanged_BiometryTouchID.localized
+            break
+        case .touch:
+            biometricString = nil
+            break
+        }
+        let description: String
+        switch changeType {
+        case .notAvailable:
+            description = biometricString == nil ?
+                WStrings.Wallet_SecuritySettingsChanged_ResetPasscodeText.localized :
+                WStrings.Wallet_SecuritySettingsChanged_ResetBiometryText(biometricType: biometricString!)
+            break
+        case .changed:
+            description = biometricString == nil ?
+                WStrings.Wallet_SecuritySettingsChanged_PasscodeText.localized :
+                WStrings.Wallet_SecuritySettingsChanged_BiometryText(biometricType: biometricString!)
+            break
+        }
+
         let headerView = HeaderView(animationName: "Too Bad",
                                     animationPlaybackMode: .once,
-                                    title: WStrings.Wallet_RestoreFailed_Title.localized,
-                                    description: WStrings.Wallet_RestoreFailed_Text.localized)
+                                    title: WStrings.Wallet_SecuritySettingsChanged_Title.localized,
+                                    description: description)
         topView.addSubview(headerView)
         NSLayoutConstraint.activate([
             headerView.leftAnchor.constraint(equalTo: topView.leftAnchor, constant: 32),

@@ -16,13 +16,15 @@ public class SendAmountVC: WViewController {
     private let walletContext: WalletContext
     private let walletInfo: WalletInfo
     private let addressToSend: String
-    private let balance: Int64
-    public init(walletContext: WalletContext, walletInfo: WalletInfo, addressToSend: String, balance: Int64) {
+    private var balance: Int64?
+    public init(walletContext: WalletContext, walletInfo: WalletInfo, addressToSend: String, balance: Int64? = nil) {
         self.walletContext = walletContext
         self.walletInfo = walletInfo
         self.addressToSend = addressToSend
         self.balance = balance
         super.init(nibName: nil, bundle: nil)
+        
+        EventsHelper.observeBalanceUpdate(self, with: #selector(walletBalanceUpdated(notification:)))
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -37,6 +39,7 @@ public class SendAmountVC: WViewController {
     private var stackViewBottomConstraint: NSLayoutConstraint!
     private var amountView: WAmountInput!
     private var insufficientFundsLabel: UILabel!
+    private var sendAllStackView: UIStackView!
     private var sendAllSwitch: UISwitch!
     private var continueButton: UIButton!
 
@@ -111,7 +114,7 @@ public class SendAmountVC: WViewController {
         stackView.addArrangedSubview(amountContainerView)
 
         // send all
-        let sendAllStackView = UIStackView()
+        sendAllStackView = UIStackView()
         sendAllStackView.translatesAutoresizingMaskIntoConstraints = false
         sendAllStackView.alignment = .center
         sendAllStackView.spacing = 4
@@ -132,7 +135,11 @@ public class SendAmountVC: WViewController {
         ])
         sendAllStackView.addArrangedSubview(gemIcon)
         let allAmountLabel = UILabel()
-        allAmountLabel.text = formatBalanceText(balance)
+        if let balance {
+            allAmountLabel.text = formatBalanceText(balance)
+        } else {
+            sendAllStackView.isHidden = true
+        }
         sendAllStackView.addArrangedSubview(allAmountLabel)
         sendAllStackView.addArrangedSubview(UIView())
         sendAllSwitch = UISwitch()
@@ -170,7 +177,7 @@ public class SendAmountVC: WViewController {
     
     @objc func sendAllToggle() {
         if sendAllSwitch.isOn {
-            amountView.text = formatBalanceText(balance)
+            amountView.text = formatBalanceText(balance ?? 0)
             amountView.textViewDidChange(amountView)
         }
     }
@@ -181,6 +188,14 @@ public class SendAmountVC: WViewController {
         let sendConfirmVC = SendConfirmVC(walletContext: walletContext, walletInfo: walletInfo,
                                           addressToSend: addressToSend, amount: amount)
         navigationController?.pushViewController(sendConfirmVC, animated: true)
+    }
+    
+    @objc func walletBalanceUpdated(notification: Notification) {
+        if let userInfo = notification.userInfo, let balance = userInfo["balance"] as? Int64 {
+            self.balance = balance
+            sendAllStackView.isHidden = false
+            amountChanged()
+        }
     }
 }
 
@@ -203,7 +218,7 @@ extension SendAmountVC: WKeyboardObserverDelegate {
 extension SendAmountVC: WAmountInputDelegate {
     public func amountChanged() {
         let amount = amountValue(amountView.text)
-        if amount > balance {
+        if let balance, amount > balance {
             insufficientFundsLabel.isHidden = false
             amountView.textColor = WTheme.error
             continueButton.isEnabled = false

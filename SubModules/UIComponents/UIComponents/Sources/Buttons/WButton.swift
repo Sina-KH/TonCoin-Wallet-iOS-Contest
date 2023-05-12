@@ -114,7 +114,7 @@ public class WButton: WBaseButton {
                     loadingView = UIActivityIndicatorView()
                     loadingView!.translatesAutoresizingMaskIntoConstraints = false
                     loadingView?.hidesWhenStopped = true
-                    loadingView?.color = .white
+                    loadingView?.color = usage == .secondary ? WTheme.primaryButton.background :  .white
                     addSubview(loadingView!)
                     NSLayoutConstraint.activate([
                         loadingView!.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),

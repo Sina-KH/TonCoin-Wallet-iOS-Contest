@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2719622B29F1D9A400B5B59F /* WalletUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719622A29F1D9A400B5B59F /* WalletUtils.swift */; };
+		272211F72A0E6B00001F827C /* EventsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272211F62A0E6B00001F827C /* EventsHelper.swift */; };
 		273521E729E98434007C4E96 /* WalletContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 273521E629E98434007C4E96 /* WalletContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		273521F329E98449007C4E96 /* StringPluralizationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521EE29E98449007C4E96 /* StringPluralizationHelper.swift */; };
 		273521F429E98449007C4E96 /* WalletContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521F129E98449007C4E96 /* WalletContext.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		2719622A29F1D9A400B5B59F /* WalletUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletUtils.swift; sourceTree = "<group>"; };
+		272211F62A0E6B00001F827C /* EventsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsHelper.swift; sourceTree = "<group>"; };
 		273521E329E98434007C4E96 /* WalletContext.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WalletContext.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		273521E629E98434007C4E96 /* WalletContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletContext.h; sourceTree = "<group>"; };
 		273521ED29E98448007C4E96 /* WalletPresentationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletPresentationData.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				27764E5529F1461A00A45DAF /* KeychainHelper.swift */,
 				274080A32A0C23140098838D /* UserDefaultsHelper.swift */,
 				273521EE29E98449007C4E96 /* StringPluralizationHelper.swift */,
+				272211F62A0E6B00001F827C /* EventsHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 				2772A87A29F301510086F0A2 /* ScreenHelpers.swift in Sources */,
 				273521F529E98449007C4E96 /* WalletPresentationData.swift in Sources */,
 				273521F429E98449007C4E96 /* WalletContext.swift in Sources */,
+				272211F72A0E6B00001F827C /* EventsHelper.swift in Sources */,
 				273F474E2A09B711000C5263 /* Downloader.swift in Sources */,
 				27CFA29029FDB31600A65283 /* TransactionUtils.swift in Sources */,
 				2735220429E98972007C4E96 /* WColors.swift in Sources */,

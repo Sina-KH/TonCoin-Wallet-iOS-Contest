@@ -10,6 +10,10 @@ import WalletContext
 
 open class WViewController: UIViewController {
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
     // set a view with background as UIViewController view, to do the rest, programmatically, inside the subclasses.
     open override func loadView() {
         let view = UIView()

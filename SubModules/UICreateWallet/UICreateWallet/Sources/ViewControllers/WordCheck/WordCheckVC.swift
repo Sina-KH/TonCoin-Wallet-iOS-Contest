@@ -121,9 +121,9 @@ class WordCheckVC: WViewController {
     }
     
     func continuePressed() {
-        view.endEditing(true)
         for (i, index) in wordIndices.enumerated() {
             if wordInputs[i].textField.text?.trimmingCharacters(in: .whitespaces).lowercased() != wordList[index] {
+                view.endEditing(true)
                 showAlert()
                 return
             }
@@ -139,6 +139,7 @@ class WordCheckVC: WViewController {
             // navigate to completed vc
             navigationController?.pushViewController(CompletedVC(walletContext: walletContext, walletInfo: walletInfo), animated: true)
         })
+
         navigationController?.pushViewController(nextVC, animated: true)
     }
     
@@ -157,7 +158,11 @@ class WordCheckVC: WViewController {
 
 extension WordCheckVC: WKeyboardObserverDelegate {
     func keyboardWillShow(height: CGFloat) {
-        scrollView.contentInset.bottom = height + 20
+        if scrollView.contentInset.bottom == 0 {
+            scrollView.contentInset.bottom = height + 20
+        } else {
+            // it's just a keyboard height changed caused by pushing new vc with keyboard
+        }
     }
     
     func keyboardWillHide() {

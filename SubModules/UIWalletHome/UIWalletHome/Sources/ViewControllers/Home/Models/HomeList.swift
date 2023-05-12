@@ -8,11 +8,6 @@
 import Foundation
 import WalletCore
 
-struct TransactionSection {
-    let date: Date
-    var transactions: [HomeListTransaction]
-}
-
 enum HomeListTransaction: Equatable {
     case completed(WalletTransaction)
     case pending(PendingWalletTransaction)

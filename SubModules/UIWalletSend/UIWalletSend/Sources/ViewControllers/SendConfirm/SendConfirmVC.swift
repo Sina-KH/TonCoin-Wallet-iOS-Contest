@@ -19,11 +19,13 @@ public class SendConfirmVC: WViewController {
     private let walletInfo: WalletInfo
     private let addressToSend: String
     private let amount: Int64
-    public init(walletContext: WalletContext, walletInfo: WalletInfo, addressToSend: String, amount: Int64) {
+    private let defaultComment: String?
+    public init(walletContext: WalletContext, walletInfo: WalletInfo, addressToSend: String, amount: Int64, defaultComment: String? = nil) {
         self.walletContext = walletContext
         self.walletInfo = walletInfo
         self.addressToSend = addressToSend
         self.amount = amount
+        self.defaultComment = defaultComment
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder: NSCoder) {
@@ -182,6 +184,11 @@ public class SendConfirmVC: WViewController {
             continueButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -16),
             continueButtonBottomConstraint
         ])
+
+        if let defaultComment {
+            commentInput.text = defaultComment
+            commentTextChanged()
+        }
 
         // listen for keyboard
         WKeyboardObserver.observeKeyboard(delegate: self)

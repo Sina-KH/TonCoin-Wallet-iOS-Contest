@@ -6,7 +6,7 @@
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string>org.ton.wallet</string>
+			<string>sinakh.ton.wallet</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>ton</string>

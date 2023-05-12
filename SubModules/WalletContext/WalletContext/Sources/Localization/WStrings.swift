@@ -45,6 +45,15 @@ public enum WStrings: String {
     case Wallet_RestoreFailed_Text = "Wallet.RestoreFailed.Text"
     case Wallet_RestoreFailed_EnterWords = "Wallet.RestoreFailed.EnterWords"
     case Wallet_RestoreFailed_CreateWallet = "Wallet.RestoreFailed.CreateWallet"
+    case Wallet_SecuritySettingsChanged_Title = "Wallet.SecuritySettingsChanged.Title"
+    case Wallet_SecuritySettingsChanged_BiometryTouchID = "Wallet.SecuritySettingsChanged.BiometryTouchID"
+    case Wallet_SecuritySettingsChanged_BiometryFaceID = "Wallet.SecuritySettingsChanged.BiometryFaceID"
+    case Wallet_SecuritySettingsChanged_ResetBiometryText = "Wallet.SecuritySettingsChanged.ResetBiometryText"
+    case Wallet_SecuritySettingsChanged_ResetPasscodeText = "Wallet.SecuritySettingsChanged.ResetPasscodeText"
+    case Wallet_SecuritySettingsChanged_BiometryText = "Wallet.SecuritySettingsChanged.BiometryText"
+    case Wallet_SecuritySettingsChanged_PasscodeText = "Wallet.SecuritySettingsChanged.PasscodeText"
+    case Wallet_SecuritySettingsChanged_ImportWallet = "Wallet.SecuritySettingsChanged.ImportWallet"
+    case Wallet_SecuritySettingsChanged_CreateWallet = "Wallet.SecuritySettingsChanged.CreateWallet"
     case Wallet_Completed_Title = "Wallet.Completed.Title"
     case Wallet_Completed_Text = "Wallet.Completed.Text"
     case Wallet_Completed_ViewWallet = "Wallet.Completed.ViewWallet"
@@ -199,6 +208,14 @@ public enum WStrings: String {
         }))
     }
     
+    public static func Wallet_SecuritySettingsChanged_ResetBiometryText(biometricType: String) -> String {
+        return fillValues(WStrings.Wallet_SecuritySettingsChanged_ResetBiometryText.localized, values: [biometricType])
+    }
+    
+    public static func Wallet_SecuritySettingsChanged_BiometryText(biometricType: String) -> String {
+        return fillValues(WStrings.Wallet_SecuritySettingsChanged_BiometryText.localized, values: [biometricType])
+    }
+
     public static func Wallet_SetPasscode_Text(digits: Int) -> String {
         return fillValues(WStrings.Wallet_SetPasscode_Text.localized, values: ["\(digits)"])
     }

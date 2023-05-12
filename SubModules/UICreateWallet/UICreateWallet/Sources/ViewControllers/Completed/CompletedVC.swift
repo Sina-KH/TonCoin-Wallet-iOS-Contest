@@ -32,8 +32,20 @@ public class CompletedVC: WViewController {
         setupViews()
     }
     
+    private var containerView: UIView!
+    
     func setupViews() {
         navigationItem.hidesBackButton = true
+
+        containerView = UIView()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(containerView)
+        NSLayoutConstraint.activate([
+            containerView.topAnchor.constraint(equalTo: view.topAnchor),
+            containerView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            containerView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
 
         let viewWalletButton = BottomAction(
             title: WStrings.Wallet_Completed_ViewWallet.localized,
@@ -43,7 +55,7 @@ public class CompletedVC: WViewController {
         )
         
         let bottomActionsView = BottomActionsView(primaryAction: viewWalletButton)
-        view.addSubview(bottomActionsView)
+        containerView.addSubview(bottomActionsView)
         NSLayoutConstraint.activate([
             bottomActionsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -58),
             bottomActionsView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 48),
@@ -52,7 +64,7 @@ public class CompletedVC: WViewController {
         
         let topView = UIView()
         topView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(topView)
+        containerView.addSubview(topView)
         NSLayoutConstraint.activate([
             topView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             topView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
@@ -78,6 +90,9 @@ public class CompletedVC: WViewController {
         navVC.modalPresentationStyle = .fullScreen
         navVC.modalTransitionStyle = .crossDissolve
         present(navVC, animated: true)
+        UIView.animate(withDuration: 0.6) {
+            self.containerView.transform = CGAffineTransform(translationX: 0, y: BalanceHeaderView.defaultHeight)
+        }
     }
     
     func showAlert() {

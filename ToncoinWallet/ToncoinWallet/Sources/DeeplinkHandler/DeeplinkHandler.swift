@@ -12,6 +12,7 @@ import WalletContext
 
 enum Deeplink {
     case tonConnect2(requestLink: TonConnectRequestLink)
+    case invoice(address: String, amount: Int64?, comment: String?)
 }
 
 protocol DeeplinkNavigator: AnyObject {
@@ -25,8 +26,15 @@ class DeeplinkHandler {
     }
     
     func handle(_ url: URL) {
-        if url.scheme == "tc" {
+        switch url.scheme {
+        case "ton":
+            handleTonInvoice(with: url)
+            break
+        case "tc":
             handleTonConnect(with: url)
+            break
+        default:
+            break
         }
     }
     
@@ -46,5 +54,14 @@ class DeeplinkHandler {
 
         let requestLink = TonConnectRequestLink(version: version, id: id, r: tonConnectRequestConnect)
         deeplinkNavigator?.handle(deeplink: Deeplink.tonConnect2(requestLink: requestLink))
+    }
+    
+    private func handleTonInvoice(with url: URL) {
+        guard let params = url.queryParameters,
+              let address = params["address"] else {
+            return
+        }
+        
+        deeplinkNavigator?.handle(deeplink: Deeplink.invoice(address: address, amount: Int64(params["amount"] ?? ""), comment: params["comment"]))
     }
 }

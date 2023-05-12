@@ -40,6 +40,7 @@ public class BottomActionsView: UIView {
     private var primaryAction: BottomAction? = nil
     private var secondaryAction: BottomAction? = nil
     public var primaryButton: WButton!
+    public var secondaryButton: WButton!
 
     private func setupView(primaryAction: BottomAction,
                            secondaryAction: BottomAction? = nil,
@@ -63,7 +64,7 @@ public class BottomActionsView: UIView {
 
         // secondary button
         if let secondaryAction {
-            let secondaryButton = WButton.setupInstance(.secondary)
+            secondaryButton = WButton.setupInstance(.secondary)
             secondaryButton.translatesAutoresizingMaskIntoConstraints = false
             secondaryButton.setTitle(secondaryAction.title, for: .normal)
             secondaryButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)

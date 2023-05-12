@@ -37,7 +37,7 @@ class WalletHomeVM {
     // MARK: - Wallet Public Variables
     var combinedState: CombinedWalletState?
     var isRefreshing: Bool = false
-    var transactionSections: [TransactionSection]? = nil
+    var transactions: [HomeListTransaction]? = nil
     
     // MARK: - Wallet Logic Variables
     private let stateDisposable = MetaDisposable()
@@ -327,11 +327,61 @@ class WalletHomeVM {
         }
     }
     
+    // MARK: - Load more transactions
+    func loadMoreTransactions() {
+        if loadingMoreTransactions || reloadingState || !canLoadMoreTransactions {
+            return
+        }
+        self.loadingMoreTransactions = true
+        var lastTransactionId: WalletTransactionId?
+        if let last = self.currentEntries?.last {
+            switch last {
+            case let .transaction(_, transaction):
+                switch transaction {
+                case let .completed(completed):
+                    lastTransactionId = completed.transactionId
+                case .pending:
+                    break
+                }
+            case .empty:
+                break
+            }
+        }
+        let transactionDecryptionKey = self.transactionDecryptionKey
+        let tonInstance = walletContext.tonInstance
+        let requestTransactions = getWalletTransactions(address: self.walletInfo.address, previousId: lastTransactionId, tonInstance: tonInstance)
+        let processedTransactions = requestTransactions
+        |> mapToSignal { transactions -> Signal<[WalletTransaction], GetWalletTransactionsError> in
+            return transactionDecryptionKey.get()
+            |> castError(GetWalletTransactionsError.self)
+            |> take(1)
+            |> mapToSignal { decryptionKey -> Signal<[WalletTransaction], GetWalletTransactionsError> in
+                guard let decryptionKey = decryptionKey else {
+                    return .single(transactions)
+                }
+                return decryptWalletTransactions(decryptionKey: decryptionKey, transactions: transactions, tonInstance: tonInstance)
+                |> `catch` { _ -> Signal<[WalletTransaction], GetWalletTransactionsError> in
+                    return .single(transactions)
+                }
+            }
+        }
+        self.transactionListDisposable.set((processedTransactions
+        |> deliverOnMainQueue).start(next: { [weak self] transactions in
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.transactionsLoaded(isReload: false, isEmpty: false, transactions: transactions, pendingTransactions: [])
+        }, error: { _ in
+        }))
+    }
+    
     // MARK: - Update Combined State
     // called on each state update to update needed views
     func updateCombinedState(combinedState: CombinedWalletState?, isUpdated: Bool) {
         if let combinedState = combinedState {
             // TODO:: Show locked balance in a separate label?
+
+            EventsHelper.balanceUpdated(to: combinedState.walletState.effectiveAvailableBalance)
             walletHomeVMDelegate?.updateBalance(balance: combinedState.walletState.effectiveAvailableBalance)
             
             walletHomeVMDelegate?.updateHeaderTimestamp(timestamp: Int32(clamping: combinedState.timestamp))
@@ -459,32 +509,13 @@ class WalletHomeVM {
                                              to: updatedEntries)
         self.currentEntries = updatedEntries
 
-        transactionSections = []
+        transactions = []
         for entry in currentEntries ?? [] {
             switch entry {
             case .empty(_, _):
                 break
             case .transaction(_, let trn):
-                let date: Date
-                switch trn {
-                    case .completed(let trnDetails):
-                    date = Date(timeIntervalSince1970: Double(trnDetails.timestamp))
-                    case .pending(let trnDetails):
-                    date = Date(timeIntervalSince1970: Double(trnDetails.timestamp))
-                }
-                let calendar = Calendar.current
-                let startOfDay = calendar.startOfDay(for: date)
-                if transactionSections!.isEmpty {
-                    transactionSections!.append(TransactionSection(date: startOfDay,
-                                                                  transactions: [trn]))
-                } else {
-                    if startOfDay != transactionSections!.last!.date {
-                        transactionSections!.append(TransactionSection(date: startOfDay,
-                                                                      transactions: [trn]))
-                    } else {
-                        transactionSections![transactionSections!.count - 1].transactions.append(trn)
-                    }
-                }
+                transactions?.append(trn)
                 break
             }
         }
