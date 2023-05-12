@@ -16,7 +16,13 @@ public class SendAmountVC: WViewController {
     private let walletContext: WalletContext
     private let walletInfo: WalletInfo
     private let addressToSend: String
-    private var balance: Int64?
+    private var balance: Int64? {
+        didSet {
+            if let balance {
+                allAmountLabel?.text = formatBalanceText(balance)
+            }
+        }
+    }
     public init(walletContext: WalletContext, walletInfo: WalletInfo, addressToSend: String, balance: Int64? = nil) {
         self.walletContext = walletContext
         self.walletInfo = walletInfo
@@ -40,6 +46,7 @@ public class SendAmountVC: WViewController {
     private var amountView: WAmountInput!
     private var insufficientFundsLabel: UILabel!
     private var sendAllStackView: UIStackView!
+    private var allAmountLabel: UILabel?
     private var sendAllSwitch: UISwitch!
     private var continueButton: UIButton!
 
@@ -134,13 +141,13 @@ public class SendAmountVC: WViewController {
             gemIcon.heightAnchor.constraint(equalToConstant: 16)
         ])
         sendAllStackView.addArrangedSubview(gemIcon)
-        let allAmountLabel = UILabel()
+        allAmountLabel = UILabel()
         if let balance {
-            allAmountLabel.text = formatBalanceText(balance)
+            allAmountLabel!.text = formatBalanceText(balance)
         } else {
             sendAllStackView.isHidden = true
         }
-        sendAllStackView.addArrangedSubview(allAmountLabel)
+        sendAllStackView.addArrangedSubview(allAmountLabel!)
         sendAllStackView.addArrangedSubview(UIView())
         sendAllSwitch = UISwitch()
         sendAllSwitch.addTarget(self, action: #selector(sendAllToggle), for: .valueChanged)

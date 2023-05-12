@@ -9,6 +9,22 @@ import WalletCore
 
 extension WalletTransaction {
     
+    public func extractAddress() -> String? {
+        if self.transferredValueWithoutFees < 0 {
+            // sent
+            if self.outMessages.isEmpty {
+                return nil
+            } else {
+                for message in self.outMessages {
+                    return message.destination
+                }
+            }
+        } else {
+            return inMessage?.source
+        }
+        return nil
+    }
+    
     public func extractAddressAndDescription() -> (String, String, Bool) { // address, description, descriptionIsMonospace
         var addressString = ""
         var descriptionString = ""

@@ -356,6 +356,7 @@ extension SendConfirmVC: SendConfirmVMDelegate {
             text = WStrings.Wallet_SendConfirm_UnknownError.localized
         }
         showAlert(title: title, text: text, button: WStrings.Wallet_Alert_OK.localized)
+        feeRowView.setValueText("")
     }
     
     func errorOccured(error: TonKeychainDecryptDataError) {

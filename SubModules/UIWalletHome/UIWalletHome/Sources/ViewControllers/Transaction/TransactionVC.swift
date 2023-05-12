@@ -6,15 +6,26 @@
 //
 
 import UIKit
+import UIWalletSend
 import UIComponents
 import WalletContext
 import WalletCore
+import SwiftSignalKit
 
 class TransactionVC: WViewController {
     
+    private let walletContext: WalletContext
+    private let walletInfo: WalletInfo
     private let transaction: HomeListTransaction
-    init(transaction: HomeListTransaction) {
+    private weak var homeVC: WalletHomeVC?
+    init(walletContext: WalletContext,
+         walletInfo: WalletInfo,
+         transaction: HomeListTransaction,
+         homeVC: WalletHomeVC?) {
+        self.walletContext = walletContext
+        self.walletInfo = walletInfo
         self.transaction = transaction
+        self.homeVC = homeVC
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -234,10 +245,38 @@ class TransactionVC: WViewController {
     }
     
     @objc private func viewInExplorerPressed() {
-        // TODO::
+        let hash: String
+        switch transaction {
+        case .completed(let walletTransaction):
+            hash = walletTransaction.transactionId.transactionHash.base64EncodedString()
+        case .pending(let pendingWalletTransaction):
+            hash = pendingWalletTransaction.bodyHash.base64EncodedString()
+        }
+        // get wallet configuration info
+        let _ = (walletContext.storage.localWalletConfiguration()
+                 |> take(1)
+                 |> deliverOnMainQueue).start(next: { configuration in
+            
+            let baseURL = configuration.testNet.customId == "mainnet" ? "https://tonscan.org/tx/" : "https://testnet.tonscan.org/tx/"
+            if let url = URL(string: "\(baseURL)\(hash)") {
+                UIApplication.shared.open(url)
+            }
+            
+        })
     }
     
     @objc private func bottomButtonPressed() {
-        // TODO::
+        let addressString: String
+        switch transaction {
+        case .completed(let walletTransaction):
+            addressString = walletTransaction.extractAddress() ?? ""
+        case .pending(let pendingWalletTransaction):
+            addressString = pendingWalletTransaction.address
+        }
+        let vc = SendAmountVC(walletContext: walletContext,
+                              walletInfo: walletInfo,
+                              addressToSend: addressString,
+                              balance: homeVC?.walletHomeVM.combinedState?.walletState.effectiveAvailableBalance)
+        present(UINavigationController(rootViewController: vc), animated: true)
     }
 }
