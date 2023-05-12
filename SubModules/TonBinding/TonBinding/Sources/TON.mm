@@ -1211,7 +1211,7 @@ typedef enum {
             }
         }];
         
-        auto query = make_object<tonlib_api::raw_getTransactions>(
+        auto query = make_object<tonlib_api::raw_getTransactionsV2>(
             make_object<tonlib_api::inputKeyFake>(),
             make_object<tonlib_api::accountAddress>(
                 makeString(addressData)
@@ -1219,7 +1219,9 @@ typedef enum {
             make_object<tonlib_api::internal_transactionId>(
                 lt,
                 makeString(hash)
-            )
+            ),
+            20,
+            true
         );
         _client->send({ requestId, std::move(query) });
         

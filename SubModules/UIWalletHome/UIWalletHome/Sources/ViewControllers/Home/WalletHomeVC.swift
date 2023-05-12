@@ -235,9 +235,12 @@ extension WalletHomeVC: WalletHomeVMDelegate {
     
     func reloadTableView(deleteIndices: [HomeDeleteItem], insertIndicesAndItems: [HomeInsertItem], updateIndicesAndItems: [HomeUpdateItem]) {
         tableView.beginUpdates()
-        tableView.deleteRows(at: deleteIndices.map({ it in
-            IndexPath(row: it.index, section: 0)
-        }), with: .automatic)
+        if walletHomeVM.transactions?.count ?? 0 > 0 {
+            // prevent issue if it's empty and empty view cell wants to be deleted. (original app logic)
+            tableView.deleteRows(at: deleteIndices.map({ it in
+                IndexPath(row: it.index, section: 0)
+            }), with: .automatic)
+        }
         if walletHomeVM.transactions?.count ?? 0 > 0 {
             // prevent issue if it's empty and empty view cell wants to be inserted. (original app logic)
             tableView.insertRows(at: insertIndicesAndItems.map({ it in

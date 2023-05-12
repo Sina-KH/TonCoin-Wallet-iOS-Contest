@@ -38,6 +38,10 @@ using `brew install libmicrohttpd`
 1. Clone the repository with submodules with
 `git clone https://github.com/Sina-KH/TonCoin-Wallet-iOS-Contest --recursive`
 
+1. Install `openssl` on your system, and set it's path inside `scripts/build-ton.sh` file like:
+```export OPENSSL_ROOT_DIR=/usr/local/opt/openssl@3/```
+This is the default path, set in this file, so you don't need to change it if your openssl is installed in this path.
+
 1. Run the Prepare.sh script with `sh Prepare/prepare.sh`, ***This command 
 should run successfully with no errors.*** This script ***automatically*** 
 builds `OpenSSL` and `Tonlib`, create the universal `.a` lib files and put 
