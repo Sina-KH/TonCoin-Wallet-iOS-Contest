@@ -70,3 +70,18 @@ extension WalletTransaction {
         return"\(hash.prefix(5))...\(hash.suffix(5))"
     }
 }
+
+extension PendingWalletTransaction {
+    
+    public func extractAddressAndDescription() -> (String, String, Bool) { // address, description, descriptionIsMonospace
+        return (self.address, String(data: self.comment, encoding: .utf8) ?? "", false)
+    }
+    
+    public var hashPreview: String {
+        let hash = self.bodyHash.base64EncodedString()
+        if hash.count < 14 {
+            return hash
+        }
+        return"\(hash.prefix(5))...\(hash.suffix(5))"
+    }
+}

@@ -1105,7 +1105,7 @@
 					"$(OTHER_CFLAGS)",
 					"-std=c++14",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.ton.wallet.TonBinding;
+				PRODUCT_BUNDLE_IDENTIFIER = sinakh.ton.wallet.TonBinding;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1151,7 +1151,7 @@
 					"$(OTHER_CFLAGS)",
 					"-std=c++14",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.ton.wallet.TonBinding;
+				PRODUCT_BUNDLE_IDENTIFIER = sinakh.ton.wallet.TonBinding;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;

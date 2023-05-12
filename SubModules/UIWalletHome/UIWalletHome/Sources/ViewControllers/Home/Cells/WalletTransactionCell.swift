@@ -121,46 +121,82 @@ class WalletTransactionCell: UITableViewCell {
         storageFeeLabel.textColor = WTheme.secondaryLabel
     }
     
-    public func configure(with transaction: WalletTransaction) {
-        // TODO:: Pending and other types switch case required
+    public func configure(with transactionItem: HomeListTransaction) {
+        switch transactionItem {
+        case .completed(let transaction):
+            
+            // set amount
+            amountLabel.amount = transaction.transferredValueWithoutFees
 
-        // set amount
-        amountLabel.amount = transaction.transferredValueWithoutFees
+            // prepare address and description texts
+            let (addressString, descriptionString, _) = transaction.extractAddressAndDescription()
 
-        // prepare address and description texts
-        let (addressString, descriptionString, _) = transaction.extractAddressAndDescription()
-
-        // direction label string
-        if transaction.transferredValueWithoutFees < 0 {
-            // sent
-            if transaction.outMessages.isEmpty {
-                directionLabel.text = ""
+            // direction label string
+            if transaction.transferredValueWithoutFees < 0 {
+                // sent
+                if transaction.outMessages.isEmpty {
+                    directionLabel.text = ""
+                } else {
+                    directionLabel.text = WStrings.Wallet_Home_TransactionTo.localized
+                }
             } else {
                 directionLabel.text = WStrings.Wallet_Home_TransactionFrom.localized
             }
-        } else {
-            directionLabel.text = WStrings.Wallet_Home_TransactionFrom.localized
-        }
 
-        addressLabel.text = addressString
+            addressLabel.text = addressString
 
-        // datetime
-        dateLabel.text = stringForTimestamp(timestamp: Int32(clamping: transaction.timestamp))
-        
-        // storage fee label
-        storageFeeLabel.text = WStrings.Wallet_Home_TransactionStorageFee(storageFee: formatBalanceText(transaction.storageFee))
+            // datetime
+            dateLabel.text = stringForTimestamp(timestamp: Int32(clamping: transaction.timestamp))
+            
+            // storage fee label
+            storageFeeLabel.text = WStrings.Wallet_Home_TransactionStorageFee(storageFee: formatBalanceText(transaction.storageFee))
 
-        // show comment (description string) in a bubble view
-        if descriptionString.count == 0 {
-            // remove from stackView to remove extra spacing
-            if bubbleView.superview != nil {
-                bubbleView.removeFromSuperview()
+            // show comment (description string) in a bubble view
+            if descriptionString.count == 0 {
+                // remove from stackView to remove extra spacing
+                if bubbleView.superview != nil {
+                    bubbleView.removeFromSuperview()
+                }
+            } else {
+                if bubbleView.superview == nil {
+                    verticalStackView.addSubview(bubbleView)
+                }
+                bubbleView.text = descriptionString
             }
-        } else {
-            if bubbleView.superview == nil {
-                verticalStackView.addSubview(bubbleView)
+
+        case .pending(let transaction):
+            
+            // set amount
+            amountLabel.amount = transaction.value
+
+            // prepare address and description texts
+            let (addressString, descriptionString, _) = transaction.extractAddressAndDescription()
+
+            // direction label string
+            directionLabel.text = WStrings.Wallet_Home_TransactionTo.localized
+
+            addressLabel.text = addressString
+
+            // datetime
+            dateLabel.text = stringForTimestamp(timestamp: Int32(clamping: transaction.timestamp))
+            
+            // storage fee label
+            storageFeeLabel.text = nil
+
+            // show comment (description string) in a bubble view
+            if descriptionString.count == 0 {
+                // remove from stackView to remove extra spacing
+                if bubbleView.superview != nil {
+                    bubbleView.removeFromSuperview()
+                }
+            } else {
+                if bubbleView.superview == nil {
+                    verticalStackView.addSubview(bubbleView)
+                }
+                bubbleView.text = descriptionString
             }
-            bubbleView.text = descriptionString
+
+            break
         }
     }
     

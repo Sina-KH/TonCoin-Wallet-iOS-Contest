@@ -73,9 +73,11 @@ public class CompletedVC: WViewController {
     }
 
     func viewWalletPressed() {
-        navigationController?.pushViewController(WalletHomeVC(walletContext: walletContext, walletInfo: walletInfo),
-                                                 animated: true,
-                                                 clearStack: true)
+        let homeVC = WalletHomeVC(walletContext: walletContext, walletInfo: walletInfo, animateHeaderOnLoad: true)
+        let navVC = UINavigationController(rootViewController: homeVC)
+        navVC.modalPresentationStyle = .fullScreen
+        navVC.modalTransitionStyle = .crossDissolve
+        present(navVC, animated: true)
     }
     
     func showAlert() {

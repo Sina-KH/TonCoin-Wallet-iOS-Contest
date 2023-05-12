@@ -10,70 +10,13 @@ import WalletContext
 import WalletCore
 import SwiftSignalKit
 
-enum WalletInfoTransaction: Equatable {
-    case completed(WalletTransaction)
-    case pending(PendingWalletTransaction)
-}
-
-private enum WalletInfoListEntryId: Hashable {
-    case empty
-    case transaction(WalletTransactionId)
-    case pendingTransaction(Data)
-}
-
-private enum WalletInfoListEntry: Equatable, Comparable, Identifiable {
-    case empty(String, Bool)
-    case transaction(Int, WalletInfoTransaction)
-    
-    var stableId: WalletInfoListEntryId {
-        switch self {
-        case .empty:
-            return .empty
-        case let .transaction(_, transaction):
-            switch transaction {
-            case let .completed(completed):
-                return .transaction(completed.transactionId)
-            case let .pending(pending):
-                return .pendingTransaction(pending.bodyHash)
-            }
-        }
-    }
-    
-    static func <(lhs: WalletInfoListEntry, rhs: WalletInfoListEntry) -> Bool {
-        switch lhs {
-        case .empty:
-            switch rhs {
-            case .empty:
-                return false
-            case .transaction:
-                return true
-            }
-        case let .transaction(lhsIndex, _):
-            switch rhs {
-            case .empty:
-                return false
-            case let .transaction(rhsIndex, _):
-                return lhsIndex < rhsIndex
-            }
-        }
-    }
-//
-//    func item(theme: WalletTheme, strings: WalletStrings, dateTimeFormat: WalletPresentationDateTimeFormat, action: @escaping (WalletInfoTransaction) -> Void, displayAddressContextMenu: @escaping (ASDisplayNode, CGRect) -> Void) -> ListViewItem {
-//        switch self {
-//        case let .empty(address, loading):
-//            return WalletInfoEmptyItem(theme: theme, strings: strings, address: address, loading: loading, displayAddressContextMenu: { node, frame in
-//                displayAddressContextMenu(node, frame)
-//            })
-//        case let .transaction(_, transaction):
-//            return WalletInfoTransactionItem(theme: theme, strings: strings, dateTimeFormat: dateTimeFormat, walletTransaction: transaction, action: {
-//                action(transaction)
-//            })
-//        }
-//    }
-}
-
 protocol WalletHomeVMDelegate: AnyObject {
-    func updateCombinedState(combinedState: CombinedWalletState?, isUpdated: Bool)
+    func updateBalance(balance: Int64)
+    func updateHeaderTimestamp(timestamp: Int32)
+    func updateEmptyView()
+    func reloadTableView(deleteIndices: [HomeDeleteItem],
+                         insertIndicesAndItems: [HomeInsertItem],
+                         updateIndicesAndItems: [HomeUpdateItem])
     func updateUpdateProgress(to progress: Int)
     func refreshErrorOccured(error: GetCombinedWalletStateError)
 }
@@ -90,11 +33,11 @@ class WalletHomeVM {
         self.walletHomeVMDelegate = walletHomeVMDelegate
         initWalletInfo()
     }
-
+    
     // MARK: - Wallet Public Variables
-    var transactions: [WalletTransaction]? = nil
     var combinedState: CombinedWalletState?
     var isRefreshing: Bool = false
+    var transactionSections: [TransactionSection]? = nil
     
     // MARK: - Wallet Logic Variables
     private let stateDisposable = MetaDisposable()
@@ -104,20 +47,33 @@ class WalletHomeVM {
     
     private var loadingMoreTransactions: Bool = false
     private var canLoadMoreTransactions: Bool = true
-    private var currentEntries: [WalletInfoListEntry]?
+    private var currentEntries: [HomeListItemEntry]?
     private var reloadingState: Bool = false
     private let statePromise = Promise<(CombinedWalletState, Bool)>()
+    
+    // list of updates that should be done on transactions list in home page
+    private var enqueuedTransactions: [HomeListUpdate] = []
     
     private var pollCombinedStateDisposable: Disposable?
     private var watchCombinedStateDisposable: Disposable?
     private var refreshProgressDisposable: Disposable?
-
+    
     private var prevProgress: Int? = nil
-
+    
+    deinit {
+        self.stateDisposable.dispose()
+        self.transactionListDisposable.dispose()
+        //self.updateTimestampTimer?.invalidate()
+        self.pollCombinedStateDisposable?.dispose()
+        self.watchCombinedStateDisposable?.dispose()
+        self.refreshProgressDisposable?.dispose()
+        self.transactionDecryptionKeyDisposable?.dispose()
+    }
+    
     // MARK: - Init wallet info
     private func initWalletInfo() {
         let subject: CombinedWalletStateSubject = .wallet(walletInfo)
-
+        
         let watchCombinedStateSignal = walletContext.storage.watchWalletRecords()
         |> map { records -> CombinedWalletState? in
             for record in records {
@@ -136,8 +92,8 @@ class WalletHomeVM {
         
         let tonInstance = walletContext.tonInstance
         let decryptedWalletState = combineLatest(queue: .mainQueue(),
-            watchCombinedStateSignal,
-            self.transactionDecryptionKey.get()
+                                                 watchCombinedStateSignal,
+                                                 self.transactionDecryptionKey.get()
         )
         |> mapToSignal { maybeState, decryptionKey -> Signal<CombinedWalletState?, NoError> in
             guard let state = maybeState, let decryptionKey = decryptionKey else {
@@ -153,7 +109,7 @@ class WalletHomeVM {
         }
         
         self.watchCombinedStateDisposable = (decryptedWalletState
-        |> deliverOnMainQueue).start(next: { [weak self] state in
+                                             |> deliverOnMainQueue).start(next: { [weak self] state in
             guard let strongSelf = self, let state = state else {
                 return
             }
@@ -161,7 +117,7 @@ class WalletHomeVM {
             if state.pendingTransactions != strongSelf.combinedState?.pendingTransactions || state.timestamp != strongSelf.combinedState?.timestamp {
                 if !strongSelf.reloadingState {
                     self?.combinedState = state
-                    strongSelf.walletHomeVMDelegate?.updateCombinedState(combinedState: state, isUpdated: true)
+                    strongSelf.updateCombinedState(combinedState: state, isUpdated: true)
                 }
             }
         })
@@ -180,11 +136,11 @@ class WalletHomeVM {
         |> restart
         
         self.pollCombinedStateDisposable = (pollCombinedState
-        |> deliverOnMainQueue).start()
+                                            |> deliverOnMainQueue).start()
         
         // listen for update progress change
         self.refreshProgressDisposable = (walletContext.tonInstance.syncProgress
-        |> deliverOnMainQueue).start(next: { [weak self] progress in
+                                          |> deliverOnMainQueue).start(next: { [weak self] progress in
             if (self?.prevProgress ?? -1) != Int(progress * 100) {
                 self?.prevProgress = Int(progress * 100)
                 DispatchQueue.main.async {
@@ -194,7 +150,7 @@ class WalletHomeVM {
         })
         
         self.transactionDecryptionKeyDisposable = (self.transactionDecryptionKey.get()
-        |> deliverOnMainQueue).start(next: { [weak self] value in
+                                                   |> deliverOnMainQueue).start(next: { [weak self] value in
             guard let strongSelf = self else {
                 return
             }
@@ -235,7 +191,7 @@ class WalletHomeVM {
                 
                 if !encryptedTransactions.isEmpty {
                     let _ = (decryptWalletTransactions(decryptionKey: value, transactions: Array(encryptedTransactions.values), tonInstance: strongSelf.walletContext.tonInstance)
-                    |> deliverOnMainQueue).start(next: { decryptedTransactions in
+                             |> deliverOnMainQueue).start(next: { decryptedTransactions in
                         guard let strongSelf = self else {
                             return
                         }
@@ -243,7 +199,7 @@ class WalletHomeVM {
                         for transaction in decryptedTransactions {
                             decryptedTransactionMap[transaction.transactionId] = transaction
                         }
-                        var updatedEntries: [WalletInfoListEntry] = []
+                        var updatedEntries: [HomeListItemEntry] = []
                         for entry in currentEntries {
                             switch entry {
                             case .empty:
@@ -268,52 +224,15 @@ class WalletHomeVM {
         })
     }
     
-    // MARK: - replaceEntries
-    private func replaceEntries(_ updatedEntries: [WalletInfoListEntry]) {
-//        let transaction = preparedTransition(from: self.currentEntries ?? [], to: updatedEntries, presentationData: self.presentationData, action: { [weak self] transaction in
-//            guard let strongSelf = self else {
-//                return
-//            }
-//            strongSelf.openTransaction(transaction)
-//        }, displayAddressContextMenu: { [weak self] node, frame in
-//            guard let strongSelf = self else {
-//                return
-//            }
-//            let address = strongSelf.walletInfo.address
-//            let contextMenuController = ContextMenuController(actions: [ContextMenuAction(content: .text(title: strongSelf.presentationData.strings.Wallet_ContextMenuCopy, accessibilityLabel: strongSelf.presentationData.strings.Wallet_ContextMenuCopy), action: {
-//                UIPasteboard.general.string = address
-//            })])
-//            strongSelf.present(contextMenuController, ContextMenuControllerPresentationArguments(sourceNodeAndRect: { [weak self] in
-//                if let strongSelf = self {
-//                    return (node, frame.insetBy(dx: 0.0, dy: -2.0), strongSelf, strongSelf.view.bounds)
-//                } else {
-//                    return nil
-//                }
-//            }))
-//        })
-//        self.currentEntries = updatedEntries
-//
-//        self.enqueuedTransactions.append(transaction)
-//        self.dequeueTransaction()
-    }
-    
-    private func dequeueTransaction() {
-//        self.enqueuedTransactions.remove(at: 0)
-//
-//        self.listNode.transaction(deleteIndices: transaction.deletions, insertIndicesAndItems: transaction.insertions, updateIndicesAndItems: transaction.updates, options: options, updateSizeAndInsets: nil, updateOpaqueState: nil, completion: { _ in
-//        })
-    }
-    
     // MARK: - Refresh the transactions
     func refreshTransactions() {
         self.transactionListDisposable.set(nil)
         self.loadingMoreTransactions = true
         self.reloadingState = true
         self.updateStatePromise()
-
+        
         // TODO::
         isRefreshing = true
-        //self.headerNode.refreshNode.refreshProgress = 0.0
         
         let subject: CombinedWalletStateSubject = .wallet(self.walletInfo)
         
@@ -356,7 +275,7 @@ class WalletHomeVM {
         }
         
         self.stateDisposable.set((processedWalletState
-        |> deliverOnMainQueue).start(next: { [weak self] value in
+                                  |> deliverOnMainQueue).start(next: { [weak self] value in
             guard let strongSelf = self else {
                 return
             }
@@ -377,9 +296,8 @@ class WalletHomeVM {
             strongSelf.reloadingState = !isUpdated
             
             // notify WalletHomeVC from latest combined state
-            strongSelf.transactions = combinedState?.topTransactions
-            strongSelf.walletHomeVMDelegate?.updateCombinedState(combinedState: combinedState, isUpdated: isUpdated)
-
+            strongSelf.updateCombinedState(combinedState: combinedState, isUpdated: isUpdated)
+            
             strongSelf.updateStatePromise()
         }, error: { [weak self] error in
             guard let strongSelf = self else {
@@ -389,31 +307,15 @@ class WalletHomeVM {
             strongSelf.reloadingState = false
             strongSelf.updateStatePromise()
             
-            if let combinedState = strongSelf.combinedState {
-                // TODO:: strongSelf.headerNode.timestamp = Int32(clamping: combinedState.timestamp)
-            }
-                
-            // TODO::
-//            if strongSelf.isReady, let (_, navigationHeight) = strongSelf.validLayout {
-//                strongSelf.headerNode.update(size: strongSelf.headerNode.bounds.size, navigationHeight: navigationHeight, offset: strongSelf.listOffset ?? 0.0, transition: .immediate, isScrolling: false)
-//            }
-                
+            //if let combinedState = strongSelf.combinedState {
+            // strongSelf.headerNode.timestamp = Int32(clamping: combinedState.timestamp)
+            //}
+            
             strongSelf.loadingMoreTransactions = false
             strongSelf.canLoadMoreTransactions = false
-                
+            
             strongSelf.isRefreshing = false
             
-            // TODO::
-//            if strongSelf.isReady, let (_, navigationHeight) = strongSelf.validLayout {
-//                strongSelf.headerNode.update(size: strongSelf.headerNode.bounds.size, navigationHeight: navigationHeight, offset: strongSelf.listOffset ?? 0.0, transition: .animated(duration: 0.2, curve: .easeInOut), isScrolling: false)
-//            }
-            
-            // TODO::
-//            if !strongSelf.didSetContentReady {
-//                strongSelf.didSetContentReady = true
-//                strongSelf.contentReady.set(.single(true))
-//            }
-
             // refresh error occured
             strongSelf.walletHomeVMDelegate?.refreshErrorOccured(error: error)
         }))
@@ -424,4 +326,194 @@ class WalletHomeVM {
             self.statePromise.set(.single((combinedState, self.reloadingState)))
         }
     }
+    
+    // MARK: - Update Combined State
+    // called on each state update to update needed views
+    func updateCombinedState(combinedState: CombinedWalletState?, isUpdated: Bool) {
+        if let combinedState = combinedState {
+            // TODO:: Show locked balance in a separate label?
+            walletHomeVMDelegate?.updateBalance(balance: combinedState.walletState.effectiveAvailableBalance)
+            
+            walletHomeVMDelegate?.updateHeaderTimestamp(timestamp: Int32(clamping: combinedState.timestamp))
+            
+            var updatedTransactions: [WalletTransaction] = combinedState.topTransactions
+            if updatedTransactions.count > 0 {
+            }
+            if let currentEntries = self.currentEntries {
+                var existingIds = Set<HomeListItemID>()
+                for transaction in updatedTransactions {
+                    existingIds.insert(.transaction(transaction.transactionId))
+                }
+                for entry in currentEntries {
+                    switch entry {
+                    case let .transaction(_, transaction):
+                        switch transaction {
+                        case let .completed(transaction):
+                            if !existingIds.contains(.transaction(transaction.transactionId)) {
+                                existingIds.insert(.transaction(transaction.transactionId))
+                                updatedTransactions.append(transaction)
+                            }
+                        case .pending:
+                            break
+                        }
+                    default:
+                        break
+                    }
+                }
+            }
+            
+            self.transactionsLoaded(isReload: true, isEmpty: false, transactions: updatedTransactions, pendingTransactions: combinedState.pendingTransactions)
+            
+            //            if isUpdated {
+            //                self.headerNode.isRefreshing = false
+            //            }
+            
+            //            if self.isReady, let (_, navigationHeight) = self.validLayout {
+            //                self.headerNode.update(size: self.headerNode.bounds.size, navigationHeight: navigationHeight, offset: self.listOffset ?? 0.0, transition: .animated(duration: 0.2, curve: .easeInOut), isScrolling: false)
+            //            }
+        } else {
+            //            self.transactionsLoaded(isReload: true, isEmpty: true, transactions: [], pendingTransactions: [])
+        }
+        //
+        //        let wasReady = self.isReady
+        //        self.isReady = true
+        //
+        //        if self.isReady && !wasReady {
+        //            if let (layout, navigationHeight) = self.validLayout {
+        //                self.headerNode.update(size: self.headerNode.bounds.size, navigationHeight: navigationHeight, offset: layout.size.height, transition: .immediate, isScrolling: false)
+        //            }
+        //
+        //            self.becameReady(animated: self.didSetContentReady)
+        //        }
+        
+        //        if !self.didSetContentReady {
+        //            self.didSetContentReady = true
+        //            self.contentReady.set(.single(true))
+        //        }
+
+        walletHomeVMDelegate?.updateEmptyView()
+    }
+    
+    private func transactionsLoaded(isReload: Bool,
+                                    isEmpty: Bool,
+                                    transactions: [WalletTransaction],
+                                    pendingTransactions: [PendingWalletTransaction]) {
+        if !isEmpty {
+            self.loadingMoreTransactions = false
+            self.canLoadMoreTransactions = transactions.count > 2
+        }
+        
+        var updatedEntries: [HomeListItemEntry] = []
+        if isReload {
+            var existingIds = Set<HomeListItemID>()
+            for transaction in pendingTransactions {
+                if !existingIds.contains(.pendingTransaction(transaction.bodyHash)) {
+                    existingIds.insert(.pendingTransaction(transaction.bodyHash))
+                    updatedEntries.append(.transaction(updatedEntries.count, .pending(transaction)))
+                }
+            }
+            for transaction in transactions {
+                if !existingIds.contains(.transaction(transaction.transactionId)) {
+                    existingIds.insert(.transaction(transaction.transactionId))
+                    updatedEntries.append(.transaction(updatedEntries.count, .completed(transaction)))
+                }
+            }
+            if updatedEntries.isEmpty {
+                updatedEntries.append(.empty(self.walletInfo.address, isEmpty))
+            }
+        } else {
+            updatedEntries = self.currentEntries ?? []
+            updatedEntries = updatedEntries.filter { entry in
+                if case .empty = entry {
+                    return false
+                } else {
+                    return true
+                }
+            }
+            var existingIds = Set<HomeListItemID>()
+            for entry in updatedEntries {
+                switch entry {
+                case .transaction:
+                    existingIds.insert(entry.stableId)
+                case .empty:
+                    break
+                }
+            }
+            for transaction in transactions {
+                if !existingIds.contains(.transaction(transaction.transactionId)) {
+                    existingIds.insert(.transaction(transaction.transactionId))
+                    updatedEntries.append(.transaction(updatedEntries.count, .completed(transaction)))
+                }
+            }
+            if updatedEntries.isEmpty {
+                updatedEntries.append(.empty(self.walletInfo.address, false))
+            }
+        }
+        
+        self.replaceEntries(updatedEntries)
+    }
+
+    // MARK: - replaceEntries, update the list
+    private func replaceEntries(_ updatedEntries: [HomeListItemEntry]) {
+        let transaction = preparedTransition(from: self.currentEntries ?? [],
+                                             to: updatedEntries)
+        self.currentEntries = updatedEntries
+
+        transactionSections = []
+        for entry in currentEntries ?? [] {
+            switch entry {
+            case .empty(_, _):
+                break
+            case .transaction(_, let trn):
+                let date: Date
+                switch trn {
+                    case .completed(let trnDetails):
+                    date = Date(timeIntervalSince1970: Double(trnDetails.timestamp))
+                    case .pending(let trnDetails):
+                    date = Date(timeIntervalSince1970: Double(trnDetails.timestamp))
+                }
+                let calendar = Calendar.current
+                let startOfDay = calendar.startOfDay(for: date)
+                if transactionSections!.isEmpty {
+                    transactionSections!.append(TransactionSection(date: startOfDay,
+                                                                  transactions: [trn]))
+                } else {
+                    if startOfDay != transactionSections!.last!.date {
+                        transactionSections!.append(TransactionSection(date: startOfDay,
+                                                                      transactions: [trn]))
+                    } else {
+                        transactionSections![transactionSections!.count - 1].transactions.append(trn)
+                    }
+                }
+                break
+            }
+        }
+
+        self.enqueuedTransactions.append(transaction)
+        self.dequeueTransaction()
+    }
+    
+    private func preparedTransition(from fromEntries: [HomeListItemEntry],
+                                    to toEntries: [HomeListItemEntry]) -> HomeListUpdate {
+        let (deleteIndices, indicesAndItems, updateIndices) = mergeListsStableWithUpdates(leftList: fromEntries,
+                                                                                          rightList: toEntries)
+        
+        let deletions = deleteIndices.map { HomeDeleteItem(index: $0, directionHint: nil) }
+        let insertions = indicesAndItems.map { HomeInsertItem(index: $0.0, previousIndex: $0.2, directionHint: nil) }
+        let updates = updateIndices.map { HomeUpdateItem(index: $0.0, previousIndex: $0.2, directionHint: nil) }
+        
+        return HomeListUpdate(deletions: deletions, insertions: insertions, updates: updates)
+    }
+    
+    private func dequeueTransaction() {
+        guard let transaction = self.enqueuedTransactions.first else {
+            return
+        }
+        self.enqueuedTransactions.remove(at: 0)
+
+        walletHomeVMDelegate?.reloadTableView(deleteIndices: transaction.deletions,
+                                              insertIndicesAndItems: transaction.insertions,
+                                              updateIndicesAndItems: transaction.updates)
+    }
+    
 }

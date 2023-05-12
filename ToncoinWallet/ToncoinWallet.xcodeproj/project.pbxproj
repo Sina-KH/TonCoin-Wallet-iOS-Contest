@@ -708,6 +708,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ToncoinWallet/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Toncoin Wallet";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow Toncoin Wallet access to your camera for scanning QR codes.";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Face ID allows you to open your wallet faster without having to enter your password.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow Toncoin Wallet access to your Photo Stream in case you need to scan a QR code from a picture.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -719,7 +722,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.ton.wallet;
+				PRODUCT_BUNDLE_IDENTIFIER = sinakh.ton.wallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -740,6 +743,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ToncoinWallet/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Toncoin Wallet";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow Toncoin Wallet access to your camera for scanning QR codes.";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Face ID allows you to open your wallet faster without having to enter your password.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow Toncoin Wallet access to your Photo Stream in case you need to scan a QR code from a picture.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -751,7 +757,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.ton.wallet;
+				PRODUCT_BUNDLE_IDENTIFIER = sinakh.ton.wallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

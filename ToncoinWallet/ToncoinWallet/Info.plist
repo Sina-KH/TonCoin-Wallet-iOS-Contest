@@ -2,14 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSFaceIDUsageDescription</key>
-	<string>Face ID allows you to open your wallet faster without having to enter your password.</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Please allow Toncoin Wallet access to your camera for scanning QR codes.</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Please allow Toncoin Wallet access to your Photo Stream in case you need to scan a QR code from a picture.</string>
-	<key>UIRequiresPersistentWiFi</key>
-	<true/>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -21,10 +13,6 @@
 				<string>tc</string>
 			</array>
 		</dict>
-	</array>
-	<key>com.apple.developer.associated-domains</key>
-	<array>
-		<string>applinks:wallet.ton.org?mode=developer</string>
 	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
@@ -40,5 +28,11 @@
 		<key>UISceneConfigurations</key>
 		<dict/>
 	</dict>
+	<key>UIRequiresPersistentWiFi</key>
+	<true/>
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applinks:wallet.ton.org?mode=developer</string>
+	</array>
 </dict>
 </plist>

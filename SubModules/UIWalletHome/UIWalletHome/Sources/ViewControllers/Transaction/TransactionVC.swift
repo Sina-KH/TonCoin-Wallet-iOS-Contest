@@ -12,8 +12,8 @@ import WalletCore
 
 class TransactionVC: WViewController {
     
-    private let transaction: WalletTransaction
-    init(transaction: WalletTransaction) {
+    private let transaction: HomeListTransaction
+    init(transaction: HomeListTransaction) {
         self.transaction = transaction
         super.init(nibName: nil, bundle: nil)
     }
@@ -89,7 +89,6 @@ class TransactionVC: WViewController {
         let amountLabel = WAmountLabel(numberFont: UIFont.systemFont(ofSize: 48, weight: .semibold),
                                        decimalsFont: UIFont.systemFont(ofSize: 30, weight: .semibold))
         amountLabel.translatesAutoresizingMaskIntoConstraints = false
-        amountLabel.amount = transaction.transferredValueWithoutFees
         iconAndAmountStackView.addArrangedSubview(amountLabel)
         
         stackView.addArrangedSubview(iconAndAmountStackView)
@@ -100,7 +99,6 @@ class TransactionVC: WViewController {
         // other fee label
         transactionFeeLabel = UILabel()
         transactionFeeLabel.font = .systemFont(ofSize: 15, weight: .regular)
-        transactionFeeLabel.text = WStrings.Wallet_TransactionInfo_OtherFee(otherFee: formatBalanceText(transaction.otherFee))
         stackView.addArrangedSubview(transactionFeeLabel)
         
         // gap
@@ -110,11 +108,37 @@ class TransactionVC: WViewController {
         // TODO:: Pending/Canceled transactions don't have date time!
         dateTimeLabel = UILabel()
         dateTimeLabel.font = .systemFont(ofSize: 15, weight: .regular)
-        dateTimeLabel.text = transaction.timestamp.dateTimeString
         stackView.addArrangedSubview(dateTimeLabel)
 
         // data from transaction
-        let (addressString, descriptionString, _) = transaction.extractAddressAndDescription()
+        let (addressString, descriptionString, _): (String, String, Bool)
+        let addressTitle: String
+        let hashPreview: String
+
+        // Fill fields and init variables required based on transaction type
+        switch transaction {
+        case .completed(let trn):
+            (addressString, descriptionString, _) = trn.extractAddressAndDescription()
+            amountLabel.amount = trn.transferredValueWithoutFees
+            transactionFeeLabel.text = WStrings.Wallet_TransactionInfo_OtherFee(otherFee: formatBalanceText(trn.otherFee))
+            dateTimeLabel.text = trn.timestamp.dateTimeString
+            addressTitle = trn.transferredValueWithoutFees > 0 ?
+                WStrings.Wallet_TransactionInfo_SenderAddress.localized :
+                WStrings.Wallet_TransactionInfo_RecipientAddress.localized
+            hashPreview = trn.hashPreview
+            break
+        case .pending(let trn):
+            (addressString, descriptionString, _) = trn.extractAddressAndDescription()
+            amountLabel.amount = trn.value
+            // TODO:: Fee should be added to the logic
+            transactionFeeLabel.text = nil
+            dateTimeLabel.text = nil
+            // TODO:: Show Pending
+            addressTitle = WStrings.Wallet_TransactionInfo_RecipientAddress.localized
+            hashPreview = trn.hashPreview
+            break
+        }
+        //
 
         // comment bubble view
         if descriptionString.count > 0 {
@@ -143,9 +167,6 @@ class TransactionVC: WViewController {
         // TODO:: Recipient DNS!
 
         // sender/recipient
-        let addressTitle = transaction.transferredValueWithoutFees > 0 ?
-        WStrings.Wallet_TransactionInfo_SenderAddress.localized :
-        WStrings.Wallet_TransactionInfo_RecipientAddress.localized
         addressItem = TitleValueRowView(title: addressTitle, value: formatStartEndAddress(addressString))
         stackView.addArrangedSubview(addressItem)
         constraints.append(contentsOf: [
@@ -155,7 +176,7 @@ class TransactionVC: WViewController {
         
         // transaction
         transactionIDItem = TitleValueRowView(title: WStrings.Wallet_TransactionInfo_Transaction.localized,
-                                              value: transaction.hashPreview)
+                                              value: hashPreview)
         stackView.addArrangedSubview(transactionIDItem)
         constraints.append(contentsOf: [
             transactionIDItem.leftAnchor.constraint(equalTo: stackView.leftAnchor),

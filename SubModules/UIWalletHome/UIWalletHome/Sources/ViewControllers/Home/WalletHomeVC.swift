@@ -17,9 +17,11 @@ public class WalletHomeVC: WViewController {
     // MARK: - Initializer
     let walletContext: WalletContext
     let walletInfo: WalletInfo
-    public init(walletContext: WalletContext, walletInfo: WalletInfo) {
+    var animateHeaderOnLoad: Bool
+    public init(walletContext: WalletContext, walletInfo: WalletInfo, animateHeaderOnLoad: Bool) {
         self.walletContext = walletContext
         self.walletInfo = walletInfo
+        self.animateHeaderOnLoad = animateHeaderOnLoad
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder: NSCoder) {
@@ -31,6 +33,7 @@ public class WalletHomeVC: WViewController {
 
     private var tableView: UITableView!
     private var balanceHeaderView: BalanceHeaderView!
+    private var bottomCornersView: ReversedCornerRadiusView!
     private var emptyWalletView: EmptyWalletView? = nil
 
     // MARK: - Load and SetupView Functions
@@ -49,7 +52,7 @@ public class WalletHomeVC: WViewController {
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        UIApplication.shared.open(URL(string: "tc://?v=2&id=7200057313a31397feb70171404b1935d2ed771c8951f9acd3d07bb8d7e9f269&r=%7B%22manifestUrl%22%3A%22https%3A%2F%2Fgist.githubusercontent.com%2Fsiandreev%2F75f1a2ccf2f3b4e2771f6089aeb06d7f%2Fraw%2Fd4986344010ec7a2d1cc8a2a9baa57de37aaccb8%2Fgistfile1.txt%22%2C%22items%22%3A%5B%7B%22name%22%3A%22ton_addr%22%7D%5D%7D")!)
+//        UIApplication.shared.open(URL(string: "tc://?v=2&id=7200057313a31397feb70171404b1935d2ed771c8951f9acd3d07bb8d7e9f269&r=%7B%22manifestUrl%22%3A%22https%3A%2F%2Fgist.githubusercontent.com%2Fsiandreev%2F75f1a2ccf2f3b4e2771f6089aeb06d7f%2Fraw%2Fd4986344010ec7a2d1cc8a2a9baa57de37aaccb8%2Fgistfile1.txt%22%2C%22items%22%3A%5B%7B%22name%22%3A%22ton_addr%22%7D%5D%7D")!)
     }
 
     public override func loadView() {
@@ -120,7 +123,7 @@ public class WalletHomeVC: WViewController {
         ])
 
         // reversed bottom corner radius for balance header view!
-        let bottomCornersView = ReversedCornerRadiusView()
+        bottomCornersView = ReversedCornerRadiusView()
         bottomCornersView.translatesAutoresizingMaskIntoConstraints = false
         bottomCornersView.backgroundColor = WTheme.balanceHeaderView.background
         view.addSubview(bottomCornersView)
@@ -129,12 +132,69 @@ public class WalletHomeVC: WViewController {
             bottomCornersView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
             bottomCornersView.topAnchor.constraint(equalTo: balanceHeaderView.bottomAnchor),
             bottomCornersView.heightAnchor.constraint(equalToConstant: ReversedCornerRadiusView.radius),
-            emptyWalletView!.topAnchor.constraint(equalTo: balanceHeaderView.bottomAnchor)
+            emptyWalletView!.topAnchor.constraint(equalTo: bottomCornersView.topAnchor)
         ])
 
     }
     
-    // MARK: - Update View Functions
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if animateHeaderOnLoad {
+            animateHeaderOnLoad = false
+            // hide everything before first render!
+            balanceHeaderView.alpha = 0
+            bottomCornersView.alpha = 0
+            emptyWalletView?.alpha = 0
+            view.layoutIfNeeded()
+            DispatchQueue.main.async {
+                // animate table view to desired position (collapsed mode) after first render
+                self.tableView.setContentOffset(CGPoint(x: 0, y: BalanceHeaderView.defaultHeight + self.view.safeAreaInsets.top), animated: false)
+                // animate balance and reversed corners to show
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.balanceHeaderView.alpha = 1
+                    self.bottomCornersView.alpha = 1
+                }) { _ in
+                    // now animate and show everything in normal position
+                    DispatchQueue.main.async {
+                        self.tableView.setContentOffset(CGPoint.zero, animated: true)
+                    }
+                    UIView.animate(withDuration: 0.3) {
+                        self.emptyWalletView?.alpha = 1
+                        self.view.layoutIfNeeded()
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+// MARK: - UITableView DataSource and Delgate
+extension WalletHomeVC: UITableViewDataSource, UITableViewDelegate {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        balanceHeaderView.updateHeight(scrollOffset: scrollView.contentOffset.y)
+    }
+    public func numberOfSections(in tableView: UITableView) -> Int {
+        return walletHomeVM.transactionSections?.count ?? 0
+    }
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return walletHomeVM.transactionSections?[section].transactions.count ?? 0
+    }
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Transaction", for: indexPath) as! WalletTransactionCell
+        cell.configure(with: walletHomeVM.transactionSections![indexPath.section].transactions[indexPath.row])
+        return cell
+    }
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let transactionVC = TransactionVC(transaction: walletHomeVM.transactionSections![indexPath.section].transactions[indexPath.row])
+        present(bottomSheet: transactionVC)
+    }
+}
+
+// MARK: - WalletHome ViewModel Delegate Methods
+extension WalletHomeVC: WalletHomeVMDelegate {
     func updateBalance(balance: Int64) {
         balanceHeaderView.update(balance: balance)
     }
@@ -148,107 +208,19 @@ public class WalletHomeVC: WViewController {
     }
 
     func updateEmptyView() {
-        if walletHomeVM.transactions?.count == 0 {
+        if walletHomeVM.transactionSections?.count == 0 {
+            // switch from loading view to wallet created view
             emptyWalletView?.showWalletCreatedView(address: walletInfo.address)
-        } else if walletHomeVM.transactions?.count ?? 0 > 0 {
+        } else if walletHomeVM.transactionSections?.count ?? 0 > 0 {
             emptyWalletView?.hideAnimated()
             // don't need it anymore, let it dealloc!
             emptyWalletView = nil
         }
     }
-}
-
-// MARK: - UITableView DataSource and Delgate
-extension WalletHomeVC: UITableViewDataSource, UITableViewDelegate {
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        balanceHeaderView.updateHeight(scrollOffset: scrollView.contentOffset.y)
-    }
-    public func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return walletHomeVM.transactions?.count ?? 0
-    }
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Transaction", for: indexPath) as! WalletTransactionCell
-        cell.configure(with: walletHomeVM.transactions![indexPath.row])
-        return cell
-    }
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let transactionVC = TransactionVC(transaction: walletHomeVM.transactions![indexPath.row])
-        present(bottomSheet: transactionVC)
-    }
-}
-
-// MARK: - WalletHome ViewModel Delegate Methods
-extension WalletHomeVC: WalletHomeVMDelegate {
-    // called on each state update to update views
-    func updateCombinedState(combinedState: CombinedWalletState?, isUpdated: Bool) {
+    
+    func reloadTableView(deleteIndices: [HomeDeleteItem], insertIndicesAndItems: [HomeInsertItem], updateIndicesAndItems: [HomeUpdateItem]) {
+        // TODO:: Animate
         tableView.reloadData()
-        
-        if let combinedState = combinedState {
-            // TODO:: Show locked balance in a separate label?
-            updateBalance(balance: combinedState.walletState.effectiveAvailableBalance)
-
-            updateHeaderTimestamp(timestamp: Int32(clamping: combinedState.timestamp))
-
-            var updatedTransactions: [WalletTransaction] = combinedState.topTransactions
-            if updatedTransactions.count > 0 {
-            }
-//            if let currentEntries = self.currentEntries {
-//                var existingIds = Set<WalletInfoListEntryId>()
-//                for transaction in updatedTransactions {
-//                    existingIds.insert(.transaction(transaction.transactionId))
-//                }
-//                for entry in currentEntries {
-//                    switch entry {
-//                    case let .transaction(_, transaction):
-//                    switch transaction {
-//                    case let .completed(transaction):
-//                        if !existingIds.contains(.transaction(transaction.transactionId)) {
-//                            existingIds.insert(.transaction(transaction.transactionId))
-//                            updatedTransactions.append(transaction)
-//                        }
-//                    case .pending:
-//                        break
-//                    }
-//                    default:
-//                        break
-//                    }
-//                }
-//            }
-
-//            self.transactionsLoaded(isReload: true, isEmpty: false, transactions: updatedTransactions, pendingTransactions: combinedState.pendingTransactions)
-
-//            if isUpdated {
-//                self.headerNode.isRefreshing = false
-//            }
-
-//            if self.isReady, let (_, navigationHeight) = self.validLayout {
-//                self.headerNode.update(size: self.headerNode.bounds.size, navigationHeight: navigationHeight, offset: self.listOffset ?? 0.0, transition: .animated(duration: 0.2, curve: .easeInOut), isScrolling: false)
-//            }
-        } else {
-//            self.transactionsLoaded(isReload: true, isEmpty: true, transactions: [], pendingTransactions: [])
-        }
-//
-//        let wasReady = self.isReady
-//        self.isReady = true
-//
-//        if self.isReady && !wasReady {
-//            if let (layout, navigationHeight) = self.validLayout {
-//                self.headerNode.update(size: self.headerNode.bounds.size, navigationHeight: navigationHeight, offset: layout.size.height, transition: .immediate, isScrolling: false)
-//            }
-//
-//            self.becameReady(animated: self.didSetContentReady)
-//        }
-        
-//        if !self.didSetContentReady {
-//            self.didSetContentReady = true
-//            self.contentReady.set(.single(true))
-//        }
-        
-        updateEmptyView()
     }
     
     func updateUpdateProgress(to progress: Int) {

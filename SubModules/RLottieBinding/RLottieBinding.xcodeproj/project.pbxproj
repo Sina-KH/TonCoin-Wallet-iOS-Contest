@@ -815,7 +815,7 @@
 					"-D__TIME__=\"redacted\"",
 					"-Dpixman_region_selfcheck(x)=1",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.ton.wallet.RLottieBinding;
+				PRODUCT_BUNDLE_IDENTIFIER = sinakh.ton.wallet.RLottieBinding;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -851,7 +851,7 @@
 					"-D__TIME__=\"redacted\"",
 					"-Dpixman_region_selfcheck(x)=1",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.ton.wallet.RLottieBinding;
+				PRODUCT_BUNDLE_IDENTIFIER = sinakh.ton.wallet.RLottieBinding;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;

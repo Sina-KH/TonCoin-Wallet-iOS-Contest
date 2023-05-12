@@ -53,7 +53,7 @@ class SplashVC: WViewController {
             underSafeAreaView.rightAnchor.constraint(equalTo: view.rightAnchor),
             underSafeAreaView.bottomAnchor.constraint(equalTo: balanceHeaderBackground.topAnchor)
         ])
-        
+
         let bottomCornersView = ReversedCornerRadiusView()
         bottomCornersView.translatesAutoresizingMaskIntoConstraints = false
         bottomCornersView.backgroundColor = WTheme.balanceHeaderView.background
@@ -72,28 +72,27 @@ class SplashVC: WViewController {
         startApp()
     }
 
-    func replaceVC(with vc: WViewController, animateHeader: Bool) {
+    func replaceVC(with vc: WViewController, animateOutBlackHeader: Bool) {
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
+        navVC.modalTransitionStyle = .crossDissolve
         func presentNav() {
-            present(navVC, animated: false) { [weak self] in
+            present(navVC, animated: true) { [weak self] in
                 guard let self else {return}
                 if let nextDeeplink {
                     self.handle(deeplink: nextDeeplink)
                 }
             }
         }
-        if animateHeader {
+        if animateOutBlackHeader {
             UIView.animate(withDuration: 0.3, animations: {
                 self.topAnchorConstraint.constant = -BalanceHeaderView.defaultHeight - self.view.safeAreaInsets.top - 16
                 self.view.layoutIfNeeded()
             }) { finished in
                 presentNav()
-                vc.view.layer.animateAlpha(from: 0.0, to: 1.0, duration: 0.3)
             }
         } else {
             presentNav()
-            vc.view.layer.animateAlpha(from: 0.0, to: 1.0, duration: 0.3)
         }
     }
     
@@ -105,23 +104,23 @@ class SplashVC: WViewController {
 
 extension SplashVC: SplashVMDelegate {
     func navigateToIntro(walletContext: WalletContext) {
-        replaceVC(with: IntroVC(walletContext: walletContext), animateHeader: true)
+        replaceVC(with: IntroVC(walletContext: walletContext), animateOutBlackHeader: true)
     }
     
     func navigateToWalletCreated(walletContext: WalletContext, walletInfo: WalletInfo) {
-        replaceVC(with: WalletCreatedVC(walletContext: walletContext, walletInfo: walletInfo, wordList: []), animateHeader: true)
+        replaceVC(with: WalletCreatedVC(walletContext: walletContext, walletInfo: walletInfo, wordList: []), animateOutBlackHeader: true)
     }
     
     func navigateToWalletImported(walletContext: WalletContext, importedWalletInfo: ImportedWalletInfo) {
-        replaceVC(with: ImportSuccessVC(walletContext: walletContext, importedWalletInfo: importedWalletInfo), animateHeader: true)
+        replaceVC(with: ImportSuccessVC(walletContext: walletContext, importedWalletInfo: importedWalletInfo), animateOutBlackHeader: true)
     }
     
     func navigateToWalletImported(walletContext: WalletContext, walletInfo: WalletInfo) {
-        replaceVC(with: ImportSuccessVC(walletContext: walletContext, walletInfo: walletInfo), animateHeader: true)
+        replaceVC(with: ImportSuccessVC(walletContext: walletContext, walletInfo: walletInfo), animateOutBlackHeader: true)
     }
 
     func navigateToHome(walletContext: WalletContext, walletInfo: WalletInfo) {
-        replaceVC(with: WalletHomeVC(walletContext: walletContext, walletInfo: walletInfo), animateHeader: false)
+        replaceVC(with: WalletHomeVC(walletContext: walletContext, walletInfo: walletInfo, animateHeaderOnLoad: false), animateOutBlackHeader: false)
     }
     
     func navigateToSetPasscode() {
