@@ -13,6 +13,8 @@ ADNL TonLib Repository](https://github.com/ton-blockchain/ton) (2023.03, because
 
 :white_check_mark: **TON Connect 2 Support** as documented in [Ton-Connect Repository](https://github.com/ton-blockchain/ton-connect). `Bridge` and `Session Protocol` are implemented. `tc://` is available as unified deeplink of the ton connect. `Universal Link` is also support and can be set after deploying the `Bridge instance`.
 
+:white_check_mark: **Wallet Balance** is also shown for the `selected currency` when home screen's header is scrolled and collapsed, like the design. (using [tonapi.io](https://tonapi.io))
+
 :white_check_mark: `iOS 12.2+` support.
 
 :white_check_mark: Supports all the iOS-devices starting from `iPhone 5s` and `4" display size`.
