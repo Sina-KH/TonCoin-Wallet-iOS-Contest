@@ -19,6 +19,12 @@ ADNL TonLib Repository](https://github.com/ton-blockchain/ton) (2023.04).
 
 :white_check_mark: App size (the final universal `.ipa file`) is **around 6 megabytes**.
 
+## :weary:  Known issues / Missing features
+
+- [ ] **WIP:** `Wallet versions logic` is not implemented yet, and the settings ui only shows the `v3R2` wallet version. I've tried to implement this feature inside the app using `tonlib` / `tonutils-go` / `tongo library` and `ton kotlin` but all of them had some issues that prevented me to add this feature in contest's limited time.
+- [x] **Fixed:** If you change/remove passcode of the device, the app forces you to re-import or create a new wallet, but after that, on restarts, the app still shows the same error. This issue exists from the original application wallet record checks.
+**Solution:** Fixed by using latest records from the storage to check wallet status! We can consider removing old records, also.
+
 ## :beers: How to Build
 
 1. Install xcode on your mac. The latest version of xcode (14.3) is highly 
@@ -38,7 +44,7 @@ builds `OpenSSL` and `Tonlib`, create the universal `.a` lib files and put
 them inside the `TonBinding` project. (The final output will only contain 
 required parts of the libs, btw.)
 
-1. Run `ToncoinWallet.xcworkspace` using xcode and the project should 
+1. Run `ToncoinWallet.xcworkspace` using Xcode, Select `Toncoin Wallet` target and the project should 
 build successfully both on simulator and real devices.
 
 ## :cat:  Technical Considerations

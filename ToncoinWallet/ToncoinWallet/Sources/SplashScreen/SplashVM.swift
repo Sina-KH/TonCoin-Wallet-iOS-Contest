@@ -210,7 +210,7 @@ class SplashVM: NSObject {
                 walletContext.keychain.encryptionPublicKey()
             )
             |> deliverOnMainQueue).start(next: { [weak self] records, publicKey in
-                if let record = records.first {
+                if let record = records.last {
                     if let publicKey = publicKey {
                         let recordPublicKey: Data
                         switch record.info {
@@ -262,7 +262,6 @@ class SplashVM: NSObject {
                             self?.splashVMDelegate?.navigateToIntro(walletContext: walletContext)
                         }
                     } else {
-                        print("secure storage not available")
                         self?.appStarted = true
                         self?.splashVMDelegate?.navigateToSecuritySettingsChanged(walletContext: walletContext, type: .notAvailable)
                     }
