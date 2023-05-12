@@ -195,6 +195,7 @@ public class SendConfirmVC: WViewController {
     }
     
     @objc private func continuePressed() {
+        view.endEditing(true)
         sendConfirmVM.calculateFee(to: addressToSend, amount: amount, comment: commentInput.text, toSend: true)
     }
     
@@ -258,7 +259,7 @@ extension SendConfirmVC: WKeyboardObserverDelegate {
 
 extension SendConfirmVC: SendConfirmVMDelegate {
     func feeAmountUpdated(fee: Int64) {
-        feeRowView.setValueText(formatBalanceText(fee))
+        feeRowView.setValueText("≈ \(formatBalanceText(fee))")
     }
     func sendConfirmationRequired(fee: Int64, canNotEncryptComment: Bool) {
         let amountString = formatBalanceText(amount)

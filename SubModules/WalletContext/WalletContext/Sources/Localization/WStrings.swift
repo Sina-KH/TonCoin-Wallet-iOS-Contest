@@ -250,7 +250,7 @@ public enum WStrings: String {
                                                            fee: NSAttributedString) -> NSMutableAttributedString {
         return fillValues(WStrings.Wallet_SendConfirm_ConfirmationText.localized,
                           textAttr: textAttr,
-                          values: [address, amount, fee])
+                          values: [amount, address, fee])
     }
     
     public static func Wallet_Sent_Text(amount: String) -> String {

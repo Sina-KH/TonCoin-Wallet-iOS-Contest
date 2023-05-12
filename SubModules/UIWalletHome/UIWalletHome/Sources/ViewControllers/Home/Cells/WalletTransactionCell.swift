@@ -167,7 +167,7 @@ class WalletTransactionCell: UITableViewCell {
         case .pending(let transaction):
             
             // set amount
-            amountLabel.amount = transaction.value
+            amountLabel.amount = -transaction.value
 
             // prepare address and description texts
             let (addressString, descriptionString, _) = transaction.extractAddressAndDescription()
@@ -191,7 +191,7 @@ class WalletTransactionCell: UITableViewCell {
                 }
             } else {
                 if bubbleView.superview == nil {
-                    verticalStackView.addSubview(bubbleView)
+                    verticalStackView.addArrangedSubview(bubbleView)
                 }
                 bubbleView.text = descriptionString
             }

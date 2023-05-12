@@ -55,10 +55,11 @@ public class SentVC: WViewController {
         ])
 
         // header, center of top view
+        let description = "\(WStrings.Wallet_Sent_Text(amount: formatBalanceText(amount)))\n\n\(formatAddress(address))"
         let headerView = HeaderView(animationName: "Success",
                                     animationPlaybackMode: .loop,
                                     title: WStrings.Wallet_Sent_Title.localized,
-                                    description: WStrings.Wallet_Sent_Text(amount: formatBalanceText(amount)))
+                                    description: description)
         topView.addSubview(headerView)
         NSLayoutConstraint.activate([
             headerView.leftAnchor.constraint(equalTo: topView.leftAnchor, constant: 32),
