@@ -9,7 +9,7 @@ re-using the best of the exiting, original codebase.
 is backward compatible and almost reused. Only a few changes applied to support new flows.
 
 :white_check_mark: **Updated tonlib:** The application is now using the latest version of the [
-ADNL TonLib Repository](https://github.com/ton-blockchain/ton) (2023.04).
+ADNL TonLib Repository](https://github.com/ton-blockchain/ton) (2023.03, because 2023.04 was leading to crash on parsing list of transactions).
 
 :white_check_mark: **TON Connect 2 Support** as documented in [Ton-Connect Repository](https://github.com/ton-blockchain/ton-connect). `Bridge` and `Session Protocol` are implemented. `tc://` is available as unified deeplink of the ton connect. `Universal Link` is also support and can be set after deploying the `Bridge instance`.
 
@@ -19,9 +19,10 @@ ADNL TonLib Repository](https://github.com/ton-blockchain/ton) (2023.04).
 
 :white_check_mark: App size (the final universal `.ipa file`) is **around 6 megabytes**.
 
-## :weary:  Known issues / Missing features
+## :weary:  Known issues / Missing features / Notices
 
-- [ ] **WIP:** `Wallet versions logic` is not implemented yet, and the settings ui only shows the `v3R2` wallet version. I've tried to implement this feature inside the app using `tonlib` / `tonutils-go` / `tongo library` and `ton kotlin` but all of them had some issues that prevented me to add this feature in contest's limited time.
+- [ ] **WIP Feature:** `Wallet versions logic` is not implemented yet, and the settings ui only shows the `v3R2` wallet version. I've tried to implement this feature inside the app using `tonlib` / `tonutils-go` / `tongo library` and `ton kotlin` but all of them had some issues that prevented me to add this feature in contest's limited time.
+- [ ] **Notice:** I've implemented lock screen, but because the original logic of the app uses keychain hardware encryption, so for lower-level access, like showing the recovery phrase, the app still depends on the iOS unlock mechanism.
 - [x] **Fixed:** If you change/remove passcode of the device, the app forces you to re-import or create a new wallet, but after that, on restarts, the app still shows the same error. This issue exists from the original application wallet record checks.
 **Solution:** Fixed by using latest records from the storage to check wallet status! We can consider removing old records, also.
 

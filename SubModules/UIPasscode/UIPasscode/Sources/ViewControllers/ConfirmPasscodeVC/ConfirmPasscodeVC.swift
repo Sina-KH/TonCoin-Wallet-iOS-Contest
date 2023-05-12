@@ -74,6 +74,7 @@ public class ConfirmPasscodeVC: WViewController {
         // setup passcode input view
         passcodeInputView = PasscodeInputView(delegate: self)
         passcodeInputView.translatesAutoresizingMaskIntoConstraints = false
+        passcodeInputView.passcodeLength = selectedPasscode.count
         view.addSubview(passcodeInputView)
         NSLayoutConstraint.activate([
             passcodeInputView.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: 40),

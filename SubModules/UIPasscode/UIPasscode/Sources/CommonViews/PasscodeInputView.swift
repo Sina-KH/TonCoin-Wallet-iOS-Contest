@@ -118,8 +118,11 @@ class PasscodeInputView: UIStackView {
 extension PasscodeInputView: UIKeyInput {
     var hasText: Bool { return true }
     func insertText(_ text: String) {
+        guard let num = Int(text.normalizeArabicPersianNumeralStringToWestern()) else {
+            return
+        }
         if currentPasscode.count < passcodeLength {
-            currentPasscode += text
+            currentPasscode += "\(num)"
         }
     }
     func deleteBackward() {
