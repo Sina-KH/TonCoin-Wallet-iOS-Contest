@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import UITonConnect
 import WalletContext
+import WalletUrl
 
 enum Deeplink {
     case tonConnect2(requestLink: TonConnectRequestLink)
@@ -57,11 +58,12 @@ class DeeplinkHandler {
     }
     
     private func handleTonInvoice(with url: URL) {
-        guard let params = url.queryParameters,
-              let address = params["address"] else {
+        guard let parsedWalletURL = parseWalletUrl(url) else {
             return
         }
         
-        deeplinkNavigator?.handle(deeplink: Deeplink.invoice(address: address, amount: Int64(params["amount"] ?? ""), comment: params["comment"]))
+        deeplinkNavigator?.handle(deeplink: Deeplink.invoice(address: parsedWalletURL.address,
+                                                             amount: parsedWalletURL.amount,
+                                                             comment: parsedWalletURL.comment))
     }
 }

@@ -161,7 +161,7 @@ final class WalletContextImpl: NSObject, WalletContext, UIImagePickerControllerD
     
     func openUrl(_ url: String) {
         if let parsedUrl = URL(string: url) {
-            UIApplication.shared.openURL(parsedUrl)
+            UIApplication.shared.open(parsedUrl)
         }
     }
     
@@ -170,14 +170,8 @@ final class WalletContextImpl: NSObject, WalletContext, UIImagePickerControllerD
             self.presentNativeController(UIActivityViewController(activityItems: [parsedUrl], applicationActivities: nil))
         }
     }
-    
-    func openPlatformSettings() {
-        if let url = URL(string: UIApplication.openSettingsURLString) {
-            UIApplication.shared.openURL(url)
-        }
-    }
-    
-    func authorizeAccessToCamera(completion: @escaping () -> Void) {
+
+    func authorizeAccessToCamera(completion: @escaping (_ granted: Bool) -> Void) {
         AVCaptureDevice.requestAccess(for: AVMediaType.video) { [weak self] response in
             Queue.mainQueue().async {
                 guard let strongSelf = self else {
@@ -185,13 +179,9 @@ final class WalletContextImpl: NSObject, WalletContext, UIImagePickerControllerD
                 }
                 
                 if response {
-                    completion()
+                    completion(true)
                 } else {
-//                    let presentationData = strongSelf.presentationData
-//                    let controller = standardTextAlertController(theme: presentationData.theme.alert, title: presentationData.strings.Wallet_AccessDenied_Title, text: presentationData.strings.Wallet_AccessDenied_Camera, actions: [TextAlertAction(type: .defaultAction, title: presentationData.strings.Wallet_Intro_NotNow, action: {}), TextAlertAction(type: .genericAction, title: presentationData.strings.Wallet_AccessDenied_Settings, action: {
-//                        strongSelf.openPlatformSettings()
-//                    })])
-//                    strongSelf.window.present(controller, on: .root)
+                    completion(false)
                 }
             }
         }

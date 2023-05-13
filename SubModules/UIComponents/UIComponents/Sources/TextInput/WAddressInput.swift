@@ -37,14 +37,10 @@ public class WAddressInput: UITextView {
         setup()
     }
     
-    private var heightConstraint: NSLayoutConstraint!
-    
     private func setup() {
         translatesAutoresizingMaskIntoConstraints = false
-        heightConstraint = heightAnchor.constraint(equalToConstant: 50)
-        NSLayoutConstraint.activate([
-            heightConstraint,
-        ])
+
+        isScrollEnabled = false
 
         delegate = self
 
@@ -79,9 +75,6 @@ public class WAddressInput: UITextView {
 extension WAddressInput: UITextViewDelegate {
     public func textViewDidChange(_ textView: UITextView) {
         placeholderLabel.isHidden = !textView.text.isEmpty
-
-        heightConstraint.constant = max(50, textView.contentSize.height)
-        layoutIfNeeded()
 
         addressDelegate?.addressTextChanged()
     }

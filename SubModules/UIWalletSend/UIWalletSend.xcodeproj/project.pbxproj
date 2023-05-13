@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		270CDAFE29FAFD3900308DFF /* SendConfirmVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270CDAFD29FAFD3900308DFF /* SendConfirmVM.swift */; };
 		273F7FF029F9B83F0075E2E8 /* SendConfirmVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273F7FEF29F9B83F0075E2E8 /* SendConfirmVC.swift */; };
+		2741A9642A1055CA0075DC56 /* UIQRScan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2741A9632A1055CA0075DC56 /* UIQRScan.framework */; };
+		2741A9682A1055F70075DC56 /* WalletUrl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2741A9672A1055F70075DC56 /* WalletUrl.framework */; };
 		2749341E29F5D014009976B5 /* UIWalletSend.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2749341D29F5D014009976B5 /* UIWalletSend.docc */; };
 		2749342429F5D014009976B5 /* UIWalletSend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2749341929F5D014009976B5 /* UIWalletSend.framework */; };
 		2749342929F5D014009976B5 /* UIWalletSendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749342829F5D014009976B5 /* UIWalletSendTests.swift */; };
@@ -38,6 +40,8 @@
 /* Begin PBXFileReference section */
 		270CDAFD29FAFD3900308DFF /* SendConfirmVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendConfirmVM.swift; sourceTree = "<group>"; };
 		273F7FEF29F9B83F0075E2E8 /* SendConfirmVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendConfirmVC.swift; sourceTree = "<group>"; };
+		2741A9632A1055CA0075DC56 /* UIQRScan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIQRScan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2741A9672A1055F70075DC56 /* WalletUrl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletUrl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2749341929F5D014009976B5 /* UIWalletSend.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIWalletSend.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2749341C29F5D014009976B5 /* UIWalletSend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIWalletSend.h; sourceTree = "<group>"; };
 		2749341D29F5D014009976B5 /* UIWalletSend.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = UIWalletSend.docc; sourceTree = "<group>"; };
@@ -62,8 +66,10 @@
 			files = (
 				27EDEF3929FC45B80057EF71 /* UIPasscode.framework in Frameworks */,
 				2749345C29F5D24A009976B5 /* WalletCore.framework in Frameworks */,
+				2741A9642A1055CA0075DC56 /* UIQRScan.framework in Frameworks */,
 				2749345F29F5D24D009976B5 /* UIComponents.framework in Frameworks */,
 				2749345829F5D244009976B5 /* WalletContext.framework in Frameworks */,
+				2741A9682A1055F70075DC56 /* WalletUrl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +170,8 @@
 		2749345629F5D244009976B5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2741A9672A1055F70075DC56 /* WalletUrl.framework */,
+				2741A9632A1055CA0075DC56 /* UIQRScan.framework */,
 				27EDEF3829FC45B80057EF71 /* UIPasscode.framework */,
 				2749345E29F5D24D009976B5 /* UIComponents.framework */,
 				2749345B29F5D24A009976B5 /* WalletCore.framework */,
@@ -518,6 +526,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.ton.wallet.UIWalletSendTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -534,6 +543,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.ton.wallet.UIWalletSendTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

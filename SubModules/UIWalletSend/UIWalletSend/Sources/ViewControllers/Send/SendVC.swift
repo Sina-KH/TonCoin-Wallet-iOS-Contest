@@ -9,17 +9,21 @@ import UIKit
 import UIComponents
 import WalletContext
 import WalletCore
+import UIQRScan
+import WalletUrl
 
 public class SendVC: WViewController {
     
     // MARK: - Initializer
     private let walletContext: WalletContext
     private let walletInfo: WalletInfo
-    private let balance: Int64
-    public init(walletContext: WalletContext, walletInfo: WalletInfo, balance: Int64) {
+    private let balance: Int64?
+    private let defaultAddress: String?
+    public init(walletContext: WalletContext, walletInfo: WalletInfo, balance: Int64?, defaultAddress: String? = nil) {
         self.walletContext = walletContext
         self.walletInfo = walletInfo
         self.balance = balance
+        self.defaultAddress = defaultAddress
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder: NSCoder) {
@@ -159,8 +163,12 @@ public class SendVC: WViewController {
 
         #if DEBUG
         addressField.text = "EQAbrFKnUptp9c5qP5aqtvnuh5ZqzHezqcsithIXHxd4O2ha"
-        addressField.textViewDidChange(addressField)
+        addressField.textViewDidChange(self.addressField)
         #endif
+        if let defaultAddress {
+            addressField.text = defaultAddress
+            addressField.textViewDidChange(self.addressField)
+        }
     }
     
     func updateTheme() {
@@ -185,9 +193,17 @@ public class SendVC: WViewController {
     }
     
     @objc func scanPressed() {
-        walletContext.authorizeAccessToCamera(completion: {
-            
-        })
+        navigationController?.pushViewController(QRScanVC(walletContext: walletContext,
+                                                          walletInfo: walletInfo,
+                                                          callback: { [weak self] url in
+            guard let self else {
+                return
+            }
+            if let parsedURL = parseWalletUrl(url) {
+                addressField.text = parsedURL.address
+                addressField.textViewDidChange(addressField)
+            }
+        }), animated: true)
     }
     
     @objc func continuePressed() {

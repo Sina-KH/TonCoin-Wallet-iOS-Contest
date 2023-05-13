@@ -41,8 +41,7 @@ public protocol WalletContext {
     func idleTimerExtension() -> Disposable
     func openUrl(_ url: String)
     func shareUrl(_ url: String)
-    func openPlatformSettings()
-    func authorizeAccessToCamera(completion: @escaping () -> Void)
+    func authorizeAccessToCamera(completion: @escaping (_ granted: Bool) -> Void)
     func pickImage(present: @escaping (UIViewController) -> Void, completion: @escaping (UIImage) -> Void)
 
     func restartApp()

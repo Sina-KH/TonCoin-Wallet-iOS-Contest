@@ -7,9 +7,9 @@
 
 import UIKit
 
-extension UINavigationController {
+public extension UINavigationController {
 
-    public func pushViewController(_ viewController: UIViewController,
+    func pushViewController(_ viewController: UIViewController,
                                    animated: Bool,
                                    completion: (() -> Void)?) {
         CATransaction.begin()
@@ -18,9 +18,9 @@ extension UINavigationController {
         CATransaction.commit()
     }
 
-    public func pushViewController(_ viewController: UIViewController,
-                                   animated: Bool,
-                                   clearStack: Bool) {
+    func pushViewController(_ viewController: UIViewController,
+                            animated: Bool,
+                            clearStack: Bool) {
         pushViewController(viewController, animated: animated) { [weak self] in
             guard let self else {return}
             viewControllers = [viewControllers[viewControllers.count - 1]]

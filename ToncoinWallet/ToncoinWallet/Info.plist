@@ -16,6 +16,12 @@
 	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>NSCameraUsageDescription</key>
+	<string>Please allow Toncoin Wallet access to your camera for scanning QR codes.</string>
+    <key>NSFaceIDUsageDescription</key>
+    <string>For better security, please allow Toncoin Wallet to use your Face ID to authenticate payments.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Please allow Toncoin Wallet access to your Photo Stream in case you need to scan a QR code from a picture.</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

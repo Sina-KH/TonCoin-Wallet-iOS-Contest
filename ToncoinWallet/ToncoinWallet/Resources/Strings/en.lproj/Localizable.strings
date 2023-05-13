@@ -241,6 +241,12 @@
 "Wallet.TonConnectTransfer.Confirm" = "Confirm"; // NEW
 "Wallet.TonConnectTransfer.Cancel" = "Cancel"; // NEW
 
+// QRScan
+"Wallet.QRScan.Title" = "Scan QR Code";
+"Wallet.QRScan.NoAccessTitle" = "No Camera Access";
+"Wallet.QRScan.NoAccessCamera" = "TON Wallet doesn’t have access to the camera. Please enable camera access to scan QR codes.";
+"Wallet.QRScan.NoAccessOpenSettings" = "Open Settings";
+
 // Navigation
 "Wallet.Navigation.Back" = "Back";
 "Wallet.Navigation.Done" = "Done";
@@ -265,70 +271,7 @@
 //////////////////////////
 
 // Original App //////////
-// Commented ones are not used!
-//"Wallet.Updated.JustNow" = "updated just now";
-//"Wallet.Updated.MinutesAgo_0" = "%@ minutes ago"; //three to ten
-//"Wallet.Updated.MinutesAgo_1" = "1 minute ago"; //one
-//"Wallet.Updated.MinutesAgo_2" = "2 minutes ago"; //two
-//"Wallet.Updated.MinutesAgo_3_10" = "%@ minutes ago"; //three to ten
-//"Wallet.Updated.MinutesAgo_many" = "%@ minutes ago"; // more than ten
-//"Wallet.Updated.MinutesAgo_any" = "%@ minutes ago"; // more than ten
-//"Wallet.Updated.HoursAgo_0" = "%@ hours ago";
-//"Wallet.Updated.HoursAgo_1" = "1 hour ago";
-//"Wallet.Updated.HoursAgo_2" = "2 hours ago";
-//"Wallet.Updated.HoursAgo_3_10" = "%@ hours ago";
-//"Wallet.Updated.HoursAgo_any" = "%@ hours ago";
-//"Wallet.Updated.HoursAgo_many" = "%@ hours ago";
-//"Wallet.Updated.HoursAgo_0" = "%@ hours ago";
-//"Wallet.Updated.YesterdayAt" = "yesterday at %@";
-//"Wallet.Updated.AtDate" = "%@";
-//"Wallet.Updated.TodayAt" = "today at %@";
 "Wallet.Qr.ScanCode" = "Scan QR Code";
 "Wallet.Qr.Title" = "QR Code";
-//"Wallet.Send.Title" = "Send TON";
-//"Wallet.Send.Balance" = "Balance: %@";
-//"Wallet.Send.AmountText" = "TON to send";
 "Wallet.Send.TransactionInProgress" = "Please wait until the current transaction is completed.";
 "Wallet.Send.SyncInProgress" = "Please wait while the wallet finishes syncing with the TON Blockchain.";
-//"Wallet.Send.EncryptComment" = "Encrypt Text";
-//"Wallet.Settings.Configuration" = "Server Settings";
-//"Wallet.Settings.ConfigurationInfo" = "Advanced Settings";
-//"Wallet.Settings.BackupWallet" = "Backup Wallet";
-//"Wallet.Intro.NotNow" = "Not Now";
-//"Wallet.Intro.Terms" = "By creating a wallet you accept the\n[Terms of Conditions]().";
-//"Wallet.SecureStorageNotAvailable.Title" = "Set a Passcode";
-//"Wallet.SecureStorageNotAvailable.Text" = "Please set up a Passcode on your device to enable secure payments with your TON Wallet.";
-//"Wallet.Receive.CreateInvoice" = "Create Invoice";
-//"Wallet.Receive.CreateInvoiceInfo" = "You can specify the amount and purpose of the payment to save the sender some time.";
-//"Wallet.Configuration.Title" = "Server Settings";
-//"Wallet.Configuration.Apply" = "Save";
-//"Wallet.Configuration.SourceHeader" = "SOURCE";
-//"Wallet.Configuration.SourceURL" = "URL";
-//"Wallet.Configuration.SourceJSON" = "JSON";
-//"Wallet.Configuration.SourceInfo" = "Using a different configuration allows you to change Lite Server addresses.";
-//"Wallet.Configuration.BlockchainIdHeader" = "BLOCKCHAIN ID";
-//"Wallet.Configuration.BlockchainIdPlaceholder" = "Blockchain ID";
-//"Wallet.Configuration.BlockchainIdInfo" = "This setting is for developers. Change it only if you are working on creating your own TON network.";
-//"Wallet.Configuration.ApplyErrorTitle" = "Error";
-//"Wallet.Configuration.ApplyErrorTextURLInvalid" = "The URL you have entered is invalid. Please try again.";
-//"Wallet.Configuration.ApplyErrorTextURLUnreachable" = "There was an error while downloading configuration from %@\nPlease try again.";
-//"Wallet.Configuration.ApplyErrorTextURLInvalidData" = "This blockchain configuration is invalid. Please try again.";
-//"Wallet.Configuration.ApplyErrorTextJSONInvalidData" = "This blockchain configuration is invalid. Please try again.";
-//"Wallet.Configuration.BlockchainNameChangedTitle" = "Warning";
-//"Wallet.Configuration.BlockchainNameChangedText" = "Are you sure you want to change the blockchain ID?\n\nIf you proceed, you will need to reconnect your wallet using 24 secret words.";
-//"Wallet.Configuration.BlockchainNameChangedProceed" = "Proceed";
-//"Wallet.CreateInvoice.Title" = "Create Invoice";
-//"Wallet.Navigation.Close" = "Close";
-//"Wallet.Alert.Cancel" = "Cancel";
-//"Wallet.Weekday.Today" = "Today";
-//"Wallet.Weekday.Yesterday" = "Yesterday";
-//"Wallet.Info.TransactionDateHeader" = "%1$@ %2$@";
-//"Wallet.Info.TransactionDateHeaderYear" = "%1$@ %2$@, %3$@";
-//"Wallet.UnknownError" = "An error occurred. Please try again later.";
-//"Wallet.ContextMenuCopy" = "Copy";
-
-//"Wallet.VoiceOver.Editing.ClearText" = "Clear text";
-//"Wallet.Receive.ShareInvoiceUrlInfo" = "Share this link to receive %@ TON.";
-"Wallet.AccessDenied.Title" = "Please Allow Access";
-"Wallet.AccessDenied.Camera" = "TON Wallet needs access to your camera to take photos and videos.\n\nPlease go to Settings > Privacy > Camera and set TON Wallet to ON.";
-"Wallet.AccessDenied.Settings" = "Settings";

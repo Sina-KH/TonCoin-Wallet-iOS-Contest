@@ -174,20 +174,26 @@ extension SplashVC: DeeplinkNavigator {
                 break
                 
             case .invoice(address: let address, amount: let amount, comment: let comment):
-                let vc: UIViewController!
+                let nav = UINavigationController()
+                let sendVC = SendVC(walletContext: splashVM.walletContext!,
+                                    walletInfo: walletInfo,
+                                    balance: nil,
+                                    defaultAddress: address)
+                let sendAmountVC = SendAmountVC(walletContext: splashVM.walletContext!,
+                                                walletInfo: walletInfo,
+                                                addressToSend: address,
+                                                balance: nil)
                 if let amount = amount {
-                    vc = SendConfirmVC(walletContext: splashVM.walletContext!,
+                    let sendConfirmVC = SendConfirmVC(walletContext: splashVM.walletContext!,
                                                 walletInfo: walletInfo,
                                                 addressToSend: address,
                                                 amount: amount,
                                                 defaultComment: comment)
+                    nav.viewControllers = [sendVC, sendAmountVC, sendConfirmVC]
                 } else {
-                    vc = SendAmountVC(walletContext: splashVM.walletContext!,
-                                               walletInfo: walletInfo,
-                                               addressToSend: address,
-                                               balance: nil)
+                    nav.viewControllers = [sendVC, sendAmountVC]
                 }
-                topViewController()?.present(UINavigationController(rootViewController: vc), animated: true)
+                topViewController()?.present(nav, animated: true)
                 break
 
             }

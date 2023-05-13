@@ -38,3 +38,9 @@ extension CGSize {
         return CGSize(width: floor(self.width * scale), height: floor(self.height * scale))
     }
 }
+
+public extension CGRect {
+    var center: CGPoint {
+        return CGPoint(x: self.midX, y: self.midY)
+    }
+}

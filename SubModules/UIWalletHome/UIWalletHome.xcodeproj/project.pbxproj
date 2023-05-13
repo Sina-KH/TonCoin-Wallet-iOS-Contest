@@ -15,6 +15,7 @@
 		273F47562A09C498000C5263 /* ReversedCornerRadiusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273F47552A09C497000C5263 /* ReversedCornerRadiusView.swift */; };
 		274080A72A0C2CE20098838D /* RatesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274080A62A0C2CE20098838D /* RatesResponse.swift */; };
 		274080AE2A0C51B10098838D /* Bridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274080AD2A0C51B10098838D /* Bridge.framework */; };
+		2741A9512A102C580075DC56 /* UIQRScan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2741A9502A102C580075DC56 /* UIQRScan.framework */; };
 		2749344E29F5D084009976B5 /* UIWalletSend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2749344D29F5D084009976B5 /* UIWalletSend.framework */; };
 		275C09ED2A0385A200CBB232 /* SettingsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C09EC2A0385A200CBB232 /* SettingsVM.swift */; };
 		275C09EF2A038CC400CBB232 /* PickerPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C09EE2A038CC400CBB232 /* PickerPopupView.swift */; };
@@ -59,6 +60,7 @@
 		273F47552A09C497000C5263 /* ReversedCornerRadiusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReversedCornerRadiusView.swift; sourceTree = "<group>"; };
 		274080A62A0C2CE20098838D /* RatesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesResponse.swift; sourceTree = "<group>"; };
 		274080AD2A0C51B10098838D /* Bridge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bridge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2741A9502A102C580075DC56 /* UIQRScan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIQRScan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2749344D29F5D084009976B5 /* UIWalletSend.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIWalletSend.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		275C09EC2A0385A200CBB232 /* SettingsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVM.swift; sourceTree = "<group>"; };
 		275C09EE2A038CC400CBB232 /* PickerPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerPopupView.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			files = (
 				27764E5C29F1750A00A45DAF /* UIComponents.framework in Frameworks */,
 				274080AE2A0C51B10098838D /* Bridge.framework in Frameworks */,
+				2741A9512A102C580075DC56 /* UIQRScan.framework in Frameworks */,
 				2749344E29F5D084009976B5 /* UIWalletSend.framework in Frameworks */,
 				2719622729F1C71600B5B59F /* SwiftSignalKit.framework in Frameworks */,
 			);
@@ -196,6 +199,7 @@
 		27764E5A29F1750A00A45DAF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2741A9502A102C580075DC56 /* UIQRScan.framework */,
 				274080AD2A0C51B10098838D /* Bridge.framework */,
 				2749344D29F5D084009976B5 /* UIWalletSend.framework */,
 				2719622629F1C71600B5B59F /* SwiftSignalKit.framework */,
@@ -626,6 +630,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.ton.wallet.UIWalletHomeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -642,6 +647,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.ton.wallet.UIWalletHomeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

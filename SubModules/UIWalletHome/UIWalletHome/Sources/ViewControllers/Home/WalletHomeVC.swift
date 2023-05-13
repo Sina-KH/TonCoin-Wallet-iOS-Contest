@@ -7,6 +7,7 @@
 
 import UIKit
 import UIWalletSend
+import UIQRScan
 import UIComponents
 import WalletContext
 import WalletCore
@@ -289,7 +290,9 @@ extension WalletHomeVC: WalletHomeVMDelegate {
 // MARK: - `BalanceHeaderView` Delegate Functions
 extension WalletHomeVC: BalanceHeaderViewDelegate {
     public func scanPressed() {
-        // TODO::
+        navigationController?.pushViewController(QRScanVC(walletContext: walletContext, walletInfo: walletInfo, callback: { url in
+            UIApplication.shared.open(url)
+        }), animated: true)
     }
     public func settingsPressed() {
         let settingsVC = SettingsVC(walletContext: walletContext,

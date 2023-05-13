@@ -37,6 +37,13 @@ public class HeaderView: UIView {
                   title: title,
                   description: description)
     }
+    
+    public init(title: String,
+                description: String? = nil) {
+        super.init(frame: CGRect.zero)
+        setupView(title: title,
+                  description: description)
+    }
 
     override public init(frame: CGRect) {
         fatalError()
@@ -48,6 +55,7 @@ public class HeaderView: UIView {
 
     // MARK: - Public subviews
     public var animatedSticker: WAnimatedSticker?
+    public var lblTitle: UILabel!
     public var lblDescription: UILabel!
 
     // MARK: - HeaderView with animation
@@ -101,13 +109,22 @@ public class HeaderView: UIView {
         
         addTitleAndDescription(topView: iconImageView, title: title, description: description)
     }
+    
+    // MARK: - HeaderView with texts only
+    private func setupView(title: String,
+                           description: String? = nil) {
+        translatesAutoresizingMaskIntoConstraints = false
+        isUserInteractionEnabled = false
+
+        addTitleAndDescription(topView: nil, title: title, description: description)
+    }
 
     // MARK: - Shared functions to generate required views
-    private func addTitleAndDescription(topView: UIView,
+    private func addTitleAndDescription(topView: UIView?,
                                         title: String,
                                         description: String? = nil) {
         // title
-        let lblTitle = UILabel()
+        lblTitle = UILabel()
         lblTitle.translatesAutoresizingMaskIntoConstraints = false
         lblTitle.text = title
         lblTitle.font = UIFont.systemFont(ofSize: 28, weight: .semibold)
@@ -115,7 +132,7 @@ public class HeaderView: UIView {
         lblTitle.textAlignment = .center
         addSubview(lblTitle)
         NSLayoutConstraint.activate([
-            lblTitle.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: 12),
+            lblTitle.topAnchor.constraint(equalTo: topView?.bottomAnchor ?? topAnchor, constant: 12),
             lblTitle.leftAnchor.constraint(equalTo: leftAnchor),
             lblTitle.rightAnchor.constraint(equalTo: rightAnchor)
         ])
