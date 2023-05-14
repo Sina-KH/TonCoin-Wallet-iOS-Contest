@@ -746,6 +746,39 @@ public final class TonInstance {
             return disposable
         }
     }
+    
+    fileprivate func resolveDNSAddress(address: String) -> Signal<String, ResolveDNSError> {
+        return Signal { subscriber in
+            let disposable = MetaDisposable()
+            
+            self.impl.with { impl in
+                impl.withInstance { ton in
+                    let cancel = ton.resolvedDNS(withRootDNSAccountAddress: nil,
+                                                 domainName: address,
+                                                 category: "wallet",
+                                                 ttl: 10).start(next: { result in
+                        guard let dns = result as? TONDNS else {
+                            subscriber.putError(.generic)
+                            return
+                        }
+                        guard let entry = dns.entries.compactMap({ $0 as? TONDNSEntrySMCAddress }).first else {
+                            subscriber.putError(.generic)
+                            return
+                        }
+                        subscriber.putNext(entry.address)
+                        subscriber.putCompletion()
+                    }, error: { error in
+                        subscriber.putError(.generic)
+                    }, completed: nil)
+                    disposable.set(ActionDisposable {
+                        cancel?.dispose()
+                    })
+                }
+            }
+            
+            return disposable
+        }
+    }
 }
 
 public struct WalletPublicKey: Codable, Hashable {
@@ -1255,6 +1288,10 @@ public func sendGramsFromWallet(storage: WalletStorageInterface, tonInstance: To
     }
 }
 
+public func resolveDNSAddress(tonInstance: TonInstance, address: String) -> Signal<String, ResolveDNSError> {
+    return tonInstance.resolveDNSAddress(address: address)
+}
+
 public struct WalletTransactionId: Codable, Hashable {
     public var lt: Int64
     public var transactionHash: Data
@@ -1747,4 +1784,8 @@ public struct WalletValidateConfigResult {
 public enum WalletValidateConfigError {
     case generic
     
+}
+
+public enum ResolveDNSError {
+    case generic
 }

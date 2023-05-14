@@ -32,6 +32,7 @@ public class WalletHomeVC: WViewController {
     // MARK: - View Model and UI Components
     lazy var walletHomeVM = WalletHomeVM(walletContext: walletContext, walletInfo: walletInfo, walletHomeVMDelegate: self)
 
+    private var popRecognizer: InteractivePopRecognizer?
     private var tableView: UITableView!
     private var headerContainerView: UIView!
     private var headerContainerViewHeightConstraint: NSLayoutConstraint? = nil
@@ -139,6 +140,15 @@ public class WalletHomeVC: WViewController {
                 headerContainerViewHeightConstraint!
             ])
         }
+        
+        // activate swipe back for presenting views on navigation controller (with hidden navigation bar)
+        setInteractiveRecognizer()
+    }
+    
+    private func setInteractiveRecognizer() {
+        guard let controller = navigationController else { return }
+        popRecognizer = InteractivePopRecognizer(controller: controller)
+        controller.interactivePopGestureRecognizer?.delegate = popRecognizer
     }
     
     public override func viewWillAppear(_ animated: Bool) {

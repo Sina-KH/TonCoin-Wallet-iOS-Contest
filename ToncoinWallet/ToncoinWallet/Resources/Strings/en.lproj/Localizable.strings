@@ -246,6 +246,7 @@
 "Wallet.QRScan.NoAccessTitle" = "No Camera Access";
 "Wallet.QRScan.NoAccessCamera" = "TON Wallet doesn’t have access to the camera. Please enable camera access to scan QR codes.";
 "Wallet.QRScan.NoAccessOpenSettings" = "Open Settings";
+"Wallet.QRScan.NoValidQRDetected" = "No valid QR code detected.";
 
 // Navigation
 "Wallet.Navigation.Back" = "Back";

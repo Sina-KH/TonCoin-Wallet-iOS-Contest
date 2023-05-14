@@ -19,4 +19,6 @@ class SendVM {
     init(sendVMDelegate: SendVMDelegate) {
         self.sendVMDelegate = sendVMDelegate
     }
+    
+    
 }

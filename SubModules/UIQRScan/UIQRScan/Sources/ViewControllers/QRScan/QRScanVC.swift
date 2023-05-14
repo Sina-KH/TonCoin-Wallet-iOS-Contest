@@ -10,6 +10,7 @@ import UIComponents
 import WalletContext
 import WalletCore
 import SwiftSignalKit
+import WalletUrl
 
 public class QRScanVC: WViewController {
     
@@ -45,9 +46,23 @@ public class QRScanVC: WViewController {
     }
 
     private func setupViews() {
-        navigationController?.setNavigationBarHidden(false, animated: false)
-
         view.backgroundColor = .black
+        
+        // navigation bar
+        let backItem = WNavigationBarButton(text: WStrings.Wallet_Navigation_Back.localized,
+                                            icon: UIImage(named: "LeftIcon")!.withRenderingMode(.alwaysTemplate),
+                                            onPress: { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
+        })
+        let navigationBar = WNavigationBar(leadingItem: backItem)
+        navigationBar.tintColor = .white
+        view.addSubview(navigationBar)
+        NSLayoutConstraint.activate([
+            navigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            navigationBar.leftAnchor.constraint(equalTo: view.leftAnchor),
+            navigationBar.rightAnchor.constraint(equalTo: view.rightAnchor)
+        ])
+
         authorizeAccessToCamera()
     }
         
@@ -82,10 +97,44 @@ public class QRScanVC: WViewController {
     private func showScanView() {
         noAccessView?.removeFromSuperview()
 
-        qrScanView = QRScanView()
+        qrScanView = QRScanView(presentGallery: { [weak self] in
+            guard let self else {
+                return
+            }
+            walletContext.pickImage(completion: { [weak self] image in
+                guard let self else {
+                    return
+                }
+                let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])!
+                if let ciImage = CIImage(image: image) {
+                    var options: [String: Any]
+                    if ciImage.properties.keys.contains((kCGImagePropertyOrientation as String)) {
+                        options = [CIDetectorImageOrientation: ciImage.properties[(kCGImagePropertyOrientation as String)] ?? 1]
+                    } else {
+                        options = [CIDetectorImageOrientation: 1]
+                    }
+                    
+                    let features = detector.features(in: ciImage, options: options)
+                    for case let row as CIQRCodeFeature in features {
+                        guard let message = row.messageString else {
+                            continue
+                        }
+                        if let url = URL(string: message), let _ = parseWalletUrl(url) {
+                            navigationController?.popViewController(animated: true, completion: {
+                                self.callback(url)
+                            })
+                            return
+                        }
+                    }
+                }
+                showAlert(title: nil, text: WStrings.Wallet_QRScan_NoValidQRDetected.localized,
+                          button: WStrings.Wallet_Alert_OK.localized)
+            })
+        
+        })
         qrScanView?.translatesAutoresizingMaskIntoConstraints = false
 
-        view.addSubview(qrScanView!)
+        view.insertSubview(qrScanView!, at: 0)
         NSLayoutConstraint.activate([
             qrScanView!.leftAnchor.constraint(equalTo: view.leftAnchor),
             qrScanView!.rightAnchor.constraint(equalTo: view.rightAnchor),
@@ -116,7 +165,7 @@ public class QRScanVC: WViewController {
             noAccessView = NoCameraAccessView()
         }
         if noAccessView?.superview == nil {
-            view.addSubview(noAccessView!)
+            view.insertSubview(noAccessView!, at: 0)
             NSLayoutConstraint.activate([
                 noAccessView!.leftAnchor.constraint(equalTo: view.leftAnchor),
                 noAccessView!.rightAnchor.constraint(equalTo: view.rightAnchor),

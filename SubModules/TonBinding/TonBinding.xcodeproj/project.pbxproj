@@ -162,6 +162,8 @@
 		275EC61829E81E8F00EE8B66 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 275EC61729E81E8F00EE8B66 /* config.h */; };
 		275EC61A29E81EA400EE8B66 /* Destructor.h in Headers */ = {isa = PBXBuildFile; fileRef = 275EC61929E81EA400EE8B66 /* Destructor.h */; };
 		275EC61C29E81EBC00EE8B66 /* bits.h in Headers */ = {isa = PBXBuildFile; fileRef = 275EC61B29E81EBC00EE8B66 /* bits.h */; };
+		27712C042A10EA07006EDEC1 /* NSData+SHA256.h in Headers */ = {isa = PBXBuildFile; fileRef = 27712C022A10E9FF006EDEC1 /* NSData+SHA256.h */; };
+		27712C052A10EA07006EDEC1 /* NSData+SHA256.m in Sources */ = {isa = PBXBuildFile; fileRef = 27712C032A10EA07006EDEC1 /* NSData+SHA256.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -336,6 +338,8 @@
 		275EC61729E81E8F00EE8B66 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		275EC61929E81EA400EE8B66 /* Destructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Destructor.h; sourceTree = "<group>"; };
 		275EC61B29E81EBC00EE8B66 /* bits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bits.h; sourceTree = "<group>"; };
+		27712C022A10E9FF006EDEC1 /* NSData+SHA256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SHA256.h"; sourceTree = "<group>"; };
+		27712C032A10EA07006EDEC1 /* NSData+SHA256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SHA256.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -413,6 +417,8 @@
 		275C57AF29E04F2C002531AF /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				27712C022A10E9FF006EDEC1 /* NSData+SHA256.h */,
+				27712C032A10EA07006EDEC1 /* NSData+SHA256.m */,
 				275C57B029E04F2C002531AF /* TON.mm */,
 				275C57B129E04F2C002531AF /* TON.h */,
 			);
@@ -786,6 +792,7 @@
 				275EC56D29E8129600EE8B66 /* storeerr.h in Headers */,
 				275EC53D29E8129600EE8B66 /* x509v3.h in Headers */,
 				275EC54A29E8129600EE8B66 /* uierr.h in Headers */,
+				27712C042A10EA07006EDEC1 /* NSData+SHA256.h in Headers */,
 				275EC55729E8129600EE8B66 /* srp.h in Headers */,
 				275EC56C29E8129600EE8B66 /* cryptoerr.h in Headers */,
 				275EC55C29E8129600EE8B66 /* md4.h in Headers */,
@@ -945,6 +952,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				275C57B229E04F2C002531AF /* TON.mm in Sources */,
+				27712C052A10EA07006EDEC1 /* NSData+SHA256.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

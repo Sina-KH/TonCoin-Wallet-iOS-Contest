@@ -162,6 +162,54 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
+#pragma mark - GTDNSEntry
+
+@protocol TONDNSEntry <NSObject>
+@end
+
+#pragma mark - GTDNSEntryText
+
+@interface TONDNSEntryText : NSObject <TONDNSEntry>
+
+@property (nonatomic, strong, readonly) NSString *text;
+
+- (instancetype)initWithText:(NSString *)text;
+
+@end
+
+#pragma mark - GTDNSEntrySMCAddress
+
+@interface TONDNSEntrySMCAddress : NSObject <TONDNSEntry>
+
+@property (nonatomic, strong, readonly) NSString *address;
+
+- (instancetype)initWithAddress:(NSString *)address;
+
+@end
+
+#pragma mark - GTDNSEntryNextResolver
+
+@interface TONDNSEntryNextResolver : NSObject <TONDNSEntry>
+
+@property (nonatomic, strong, readonly) NSString *address;
+
+- (instancetype)initWithAddress:(NSString *)address;
+
+@end
+
+#pragma mark - GTDNS
+
+@interface TONDNS : NSObject
+
+@property (nonatomic, strong, readonly) NSString *name;
+@property (nonatomic, strong, readonly) NSArray<TONDNSEntry> *entries;
+
+- (instancetype)initWithName:(NSString *)name
+                     entries:(NSArray<TONDNSEntry> *)entries;
+
+@end
+
 @interface TON : NSObject
 
 - (instancetype)initWithKeystoreDirectory:(NSString *)keystoreDirectory config:(NSString *)config blockchainName:(NSString *)blockchainName performExternalRequest:(void (^)(TONExternalRequest * _Nonnull))performExternalRequest enableExternalRequests:(bool)enableExternalRequests syncStateUpdated:(void (^)(float))syncStateUpdated;
@@ -189,7 +237,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 // MARK: - NEW METHODS IN THIS VERSION
 //
-
+- (SSignal *)resolvedDNSWithRootDNSAccountAddress:(NSString * _Nullable)rootDNSAccountAddress
+                                       domainName:(NSString *)domainName
+                                         category:(NSString *)category
+                                              ttl:(int32_t)ttl;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -13,18 +13,27 @@ import QuartzCore
 
 class QRScanView: UIView, UIScrollViewDelegate {
 
-    private var previewNode: CameraPreviewNode!
+    private var previewView: CameraPreviewNode!
+
     private var focusView: UIView!
     // focus view constraints that hold it center of the screen, filled if no focused rect found
     private var focusViewConstraints: [NSLayoutConstraint]!
+
     // focus view constraints after qr code found
     private var focusViewLeftConstraint: NSLayoutConstraint? = nil
     private var focusViewTopConstraint: NSLayoutConstraint? = nil
     private var focusViewWidthConstraint: NSLayoutConstraint? = nil
     private var focusViewHeightConstraint: NSLayoutConstraint? = nil
-    //    private let galleryButtonNode: GlassButtonNode
-    //    private let torchButtonNode: GlassButtonNode
-    private var titleNode: UILabel!
+
+    private var leftDimView: UIView!
+    private var topDimView: UIView!
+    private var rightDimView: UIView!
+    private var bottomDimView: UIView!
+
+    private var galleryButton: GlassButton!
+    private var torchButton: GlassButton!
+
+    private var titleView: UILabel!
     
     private var camera: Camera!
     private let codeDisposable = MetaDisposable()
@@ -32,13 +41,14 @@ class QRScanView: UIView, UIScrollViewDelegate {
     let focusedCode = ValuePromise<CameraCode?>(ignoreRepeated: true)
     
     var presentGallery: (() -> Void)?
-    
-    init() {
+
+    init(presentGallery: (() -> Void)?) {
+        self.presentGallery = presentGallery
         super.init(frame: .zero)
         setupViews()
         setupCamera()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -66,15 +76,15 @@ class QRScanView: UIView, UIScrollViewDelegate {
     }
     
     private func setupViews() {
-        previewNode = CameraPreviewNode()
-        previewNode.translatesAutoresizingMaskIntoConstraints = false
-        previewNode.backgroundColor = .black
-        addSubview(previewNode)
+        previewView = CameraPreviewNode()
+        previewView.translatesAutoresizingMaskIntoConstraints = false
+        previewView.backgroundColor = .black
+        addSubview(previewView)
         NSLayoutConstraint.activate([
-            previewNode.leftAnchor.constraint(equalTo: leftAnchor),
-            previewNode.rightAnchor.constraint(equalTo: rightAnchor),
-            previewNode.topAnchor.constraint(equalTo: topAnchor),
-            previewNode.bottomAnchor.constraint(equalTo: bottomAnchor)
+            previewView.leftAnchor.constraint(equalTo: leftAnchor),
+            previewView.rightAnchor.constraint(equalTo: rightAnchor),
+            previewView.topAnchor.constraint(equalTo: topAnchor),
+            previewView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
         
         focusView = UIView()
@@ -84,91 +94,100 @@ class QRScanView: UIView, UIScrollViewDelegate {
         focusViewConstraints = defaultFocusAreaConstraints()
         NSLayoutConstraint.activate(focusViewConstraints)
         
-        let topDimNode = UIView()
-        topDimNode.translatesAutoresizingMaskIntoConstraints = false
-        topDimNode.alpha = 0.625
-        topDimNode.backgroundColor = .black.withAlphaComponent(0.8)
-        addSubview(topDimNode)
+        topDimView = UIView()
+        topDimView.translatesAutoresizingMaskIntoConstraints = false
+        topDimView.alpha = 0.625
+        topDimView.backgroundColor = .black.withAlphaComponent(0.8)
+        addSubview(topDimView)
         NSLayoutConstraint.activate([
-            topDimNode.leftAnchor.constraint(equalTo: leftAnchor),
-            topDimNode.rightAnchor.constraint(equalTo: rightAnchor),
-            topDimNode.topAnchor.constraint(equalTo: topAnchor),
-            topDimNode.bottomAnchor.constraint(equalTo: focusView.topAnchor)
+            topDimView.leftAnchor.constraint(equalTo: leftAnchor),
+            topDimView.rightAnchor.constraint(equalTo: rightAnchor),
+            topDimView.topAnchor.constraint(equalTo: topAnchor),
+            topDimView.bottomAnchor.constraint(equalTo: focusView.topAnchor)
         ])
         
-        let bottomDimNode = UIView()
-        bottomDimNode.translatesAutoresizingMaskIntoConstraints = false
-        bottomDimNode.alpha = 0.625
-        bottomDimNode.backgroundColor = .black.withAlphaComponent(0.8)
-        addSubview(bottomDimNode)
+        bottomDimView = UIView()
+        bottomDimView.translatesAutoresizingMaskIntoConstraints = false
+        bottomDimView.alpha = 0.625
+        bottomDimView.backgroundColor = .black.withAlphaComponent(0.8)
+        addSubview(bottomDimView)
         NSLayoutConstraint.activate([
-            bottomDimNode.leftAnchor.constraint(equalTo: leftAnchor),
-            bottomDimNode.rightAnchor.constraint(equalTo: rightAnchor),
-            bottomDimNode.topAnchor.constraint(equalTo: focusView.bottomAnchor),
-            bottomDimNode.bottomAnchor.constraint(equalTo: bottomAnchor)
+            bottomDimView.leftAnchor.constraint(equalTo: leftAnchor),
+            bottomDimView.rightAnchor.constraint(equalTo: rightAnchor),
+            bottomDimView.topAnchor.constraint(equalTo: focusView.bottomAnchor),
+            bottomDimView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
         
-        let leftDimNode = UIView()
-        leftDimNode.translatesAutoresizingMaskIntoConstraints = false
-        leftDimNode.alpha = 0.625
-        leftDimNode.backgroundColor = .black.withAlphaComponent(0.8)
-        addSubview(leftDimNode)
+        leftDimView = UIView()
+        leftDimView.translatesAutoresizingMaskIntoConstraints = false
+        leftDimView.alpha = 0.625
+        leftDimView.backgroundColor = .black.withAlphaComponent(0.8)
+        addSubview(leftDimView)
         NSLayoutConstraint.activate([
-            leftDimNode.leftAnchor.constraint(equalTo: leftAnchor),
-            leftDimNode.rightAnchor.constraint(equalTo: focusView.leftAnchor),
-            leftDimNode.topAnchor.constraint(equalTo: focusView.topAnchor),
-            leftDimNode.bottomAnchor.constraint(equalTo: focusView.bottomAnchor)
+            leftDimView.leftAnchor.constraint(equalTo: leftAnchor),
+            leftDimView.rightAnchor.constraint(equalTo: focusView.leftAnchor),
+            leftDimView.topAnchor.constraint(equalTo: focusView.topAnchor),
+            leftDimView.bottomAnchor.constraint(equalTo: focusView.bottomAnchor)
         ])
         
-        let rightDimNode = UIView()
-        rightDimNode.translatesAutoresizingMaskIntoConstraints = false
-        rightDimNode.alpha = 0.625
-        rightDimNode.backgroundColor = .black.withAlphaComponent(0.8)
-        addSubview(rightDimNode)
+        rightDimView = UIView()
+        rightDimView.translatesAutoresizingMaskIntoConstraints = false
+        rightDimView.alpha = 0.625
+        rightDimView.backgroundColor = .black.withAlphaComponent(0.8)
+        addSubview(rightDimView)
         NSLayoutConstraint.activate([
-            rightDimNode.leftAnchor.constraint(equalTo: focusView.rightAnchor),
-            rightDimNode.rightAnchor.constraint(equalTo: rightAnchor),
-            rightDimNode.topAnchor.constraint(equalTo: focusView.topAnchor),
-            rightDimNode.bottomAnchor.constraint(equalTo: focusView.bottomAnchor)
+            rightDimView.leftAnchor.constraint(equalTo: focusView.rightAnchor),
+            rightDimView.rightAnchor.constraint(equalTo: rightAnchor),
+            rightDimView.topAnchor.constraint(equalTo: focusView.topAnchor),
+            rightDimView.bottomAnchor.constraint(equalTo: focusView.bottomAnchor)
         ])
 
-        let frameNode = UIImageView()
-        frameNode.translatesAutoresizingMaskIntoConstraints = false
-        frameNode.image = generateFrameImage()
-        addSubview(frameNode)
+        let frameView = UIImageView()
+        frameView.translatesAutoresizingMaskIntoConstraints = false
+        frameView.image = generateFrameImage()
+        addSubview(frameView)
         NSLayoutConstraint.activate([
-            frameNode.leftAnchor.constraint(equalTo: focusView.leftAnchor, constant: -2),
-            frameNode.rightAnchor.constraint(equalTo: focusView.rightAnchor, constant: 2),
-            frameNode.topAnchor.constraint(equalTo: focusView.topAnchor, constant: -2),
-            frameNode.bottomAnchor.constraint(equalTo: focusView.bottomAnchor, constant: 2)
+            frameView.leftAnchor.constraint(equalTo: focusView.leftAnchor, constant: -2),
+            frameView.rightAnchor.constraint(equalTo: focusView.rightAnchor, constant: 2),
+            frameView.topAnchor.constraint(equalTo: focusView.topAnchor, constant: -2),
+            frameView.bottomAnchor.constraint(equalTo: focusView.bottomAnchor, constant: 2)
         ])
         
-        //        self.galleryButtonNode = GlassButtonNode(icon: UIImage(bundleImageName: "Wallet/CameraGalleryIcon")!, label: nil)
-        //        self.torchButtonNode = GlassButtonNode(icon: UIImage(bundleImageName: "Wallet/CameraFlashIcon")!, label: nil)
-        
-        titleNode = UILabel()
-        titleNode.translatesAutoresizingMaskIntoConstraints = false
-        titleNode.font = .systemFont(ofSize: 28, weight: .semibold)
-        titleNode.textColor = .white
-        titleNode.text = WStrings.Wallet_QRScan_Title.localized
-        addSubview(titleNode)
+        titleView = UILabel()
+        titleView.translatesAutoresizingMaskIntoConstraints = false
+        titleView.font = .systemFont(ofSize: 28, weight: .semibold)
+        titleView.textColor = .white
+        titleView.text = WStrings.Wallet_QRScan_Title.localized
+        addSubview(titleView)
         NSLayoutConstraint.activate([
-            titleNode.bottomAnchor.constraint(equalTo: focusView.topAnchor, constant: -44),
-            titleNode.centerXAnchor.constraint(equalTo: centerXAnchor)
+            titleView.bottomAnchor.constraint(equalTo: focusView.topAnchor, constant: -44),
+            titleView.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
-        
-        self.camera = Camera(configuration: .init(preset: .hd1920x1080, position: .back, audio: false))
-        
-        //        self.addSubview(self.galleryButtonNode)
-        //        self.addSubview(self.torchButtonNode)
-        
-        //        self.galleryButtonNode.addTarget(self, action: #selector(self.galleryPressed), forControlEvents: .touchUpInside)
-        //        self.torchButtonNode.addTarget(self, action: #selector(self.torchPressed), forControlEvents: .touchUpInside)
-        
+
+        camera = Camera(configuration: .init(preset: .hd1920x1080, position: .back, audio: false))
+
+        galleryButton = GlassButton(icon: UIImage(named: "GalleryIcon")!)
+        addSubview(galleryButton)
+        NSLayoutConstraint.activate([
+            galleryButton.widthAnchor.constraint(equalToConstant: 72),
+            galleryButton.heightAnchor.constraint(equalToConstant: 72),
+            galleryButton.centerXAnchor.constraint(equalTo: centerXAnchor, constant: -80),
+            galleryButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 246)
+        ])
+        galleryButton.addTarget(self, action: #selector(galleryPressed), for: .touchUpInside)
+        torchButton = GlassButton(icon: UIImage(named: "FlashIcon")!)
+        addSubview(torchButton)
+        NSLayoutConstraint.activate([
+            torchButton.widthAnchor.constraint(equalToConstant: 72),
+            torchButton.heightAnchor.constraint(equalToConstant: 72),
+            torchButton.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 80),
+            torchButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 246)
+        ])
+        torchButton.addTarget(self, action: #selector(torchPressed), for: .touchUpInside)
     }
-    
+
     private func setupCamera() {
-        self.camera.attachPreviewNode(previewNode)
+        self.camera.attachPreviewNode(previewView)
         self.camera.startCapture()
         
         let throttledSignal = self.camera.detectedCodes
@@ -207,6 +226,15 @@ class QRScanView: UIView, UIScrollViewDelegate {
                     guard let self else {
                         return
                     }
+
+                    leftDimView.alpha = 1
+                    topDimView.alpha = 1
+                    rightDimView.alpha = 1
+                    bottomDimView.alpha = 1
+                    titleView.alpha = 0
+                    galleryButton.alpha = 0
+                    torchButton.alpha = 0
+
                     NSLayoutConstraint.deactivate(focusViewConstraints)
                     focusViewConstraints = []
                     focusViewLeftConstraint = focusView.leftAnchor.constraint(equalTo: leftAnchor, constant: focusedRect.minX)
@@ -219,6 +247,7 @@ class QRScanView: UIView, UIScrollViewDelegate {
                         focusViewWidthConstraint!,
                         focusViewHeightConstraint!
                     ])
+
                     layoutIfNeeded()
                 }
             } else {
@@ -235,15 +264,24 @@ class QRScanView: UIView, UIScrollViewDelegate {
                 }
             }
         } else {
-            // was on focused area, reset
+            // was on focused area, now reset to default view
             if focusViewConstraints.isEmpty {
                 focusViewConstraints = defaultFocusAreaConstraints()
 
                 // update focus rect
-                UIView.animate(withDuration: 0.2) { [weak self] in
+                UIView.animate(withDuration: 0.4) { [weak self] in
                     guard let self else {
                         return
                     }
+
+                    leftDimView.alpha = 0.625
+                    topDimView.alpha = 0.625
+                    rightDimView.alpha = 0.625
+                    bottomDimView.alpha = 0.625
+                    titleView.alpha = 1
+                    galleryButton.alpha = 1
+                    torchButton.alpha = 1
+
                     NSLayoutConstraint.deactivate([
                         focusViewLeftConstraint!,
                         focusViewTopConstraint!,
@@ -251,12 +289,21 @@ class QRScanView: UIView, UIScrollViewDelegate {
                         focusViewHeightConstraint!
                     ])
                     NSLayoutConstraint.activate(focusViewConstraints)
+
                     layoutIfNeeded()
                 }
             }
         }
     }
-
+    
+    @objc private func galleryPressed() {
+        self.presentGallery?()
+    }
+    
+    @objc private func torchPressed() {
+        self.torchButton.isSelected = !torchButton.isSelected
+        self.camera.setTorchActive(torchButton.isSelected)
+    }
 }
 
 // MARK: - Generate a frame for focused area

@@ -20,6 +20,7 @@
 		2741A9582A1032980075DC56 /* WalletContext.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2741A9572A1032980075DC56 /* WalletContext.framework */; };
 		2741A95C2A1032A10075DC56 /* WalletCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2741A95B2A1032A10075DC56 /* WalletCore.framework */; };
 		2741A9602A103E030075DC56 /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2741A95F2A103E030075DC56 /* UIComponents.framework */; };
+		27AC9C9E2A113D3300E4F054 /* GlassButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AC9C9D2A113D3300E4F054 /* GlassButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		2741A9572A1032980075DC56 /* WalletContext.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletContext.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2741A95B2A1032A10075DC56 /* WalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2741A95F2A103E030075DC56 /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27AC9C9D2A113D3300E4F054 /* GlassButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 			children = (
 				2741A94B2A1023330075DC56 /* NoCameraAccessView.swift */,
 				2741A9542A1032180075DC56 /* QRScanView.swift */,
+				27AC9C9D2A113D3300E4F054 /* GlassButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				2741A9412A10228B0075DC56 /* CameraPreviewNode.swift in Sources */,
 				2741A9432A10228B0075DC56 /* CameraInput.swift in Sources */,
 				2741A94C2A1023330075DC56 /* NoCameraAccessView.swift in Sources */,
+				27AC9C9E2A113D3300E4F054 /* GlassButton.swift in Sources */,
 				2741A9442A10228B0075DC56 /* CameraOutput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		270CDAFC29FAD55900308DFF /* TitleValueRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270CDAFB29FAD55900308DFF /* TitleValueRowView.swift */; };
 		2719622029F1BD6F00B5B59F /* WAmountLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719621F29F1BD6F00B5B59F /* WAmountLabel.swift */; };
+		2728AF1E2A114F9000FA92DD /* InteractivePopRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2728AF1D2A114F9000FA92DD /* InteractivePopRecognizer.swift */; };
 		273521CD29E94D4E007C4E96 /* WViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273521CC29E94D4E007C4E96 /* WViewController.swift */; };
 		2735220829E98EDB007C4E96 /* WalletContext.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2735220729E98EDB007C4E96 /* WalletContext.framework */; };
 		2735220F29E9C359007C4E96 /* WWordInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2735220E29E9C359007C4E96 /* WWordInput.swift */; };
@@ -68,6 +69,7 @@
 /* Begin PBXFileReference section */
 		270CDAFB29FAD55900308DFF /* TitleValueRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleValueRowView.swift; sourceTree = "<group>"; };
 		2719621F29F1BD6F00B5B59F /* WAmountLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WAmountLabel.swift; sourceTree = "<group>"; };
+		2728AF1D2A114F9000FA92DD /* InteractivePopRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractivePopRecognizer.swift; sourceTree = "<group>"; };
 		273521CC29E94D4E007C4E96 /* WViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WViewController.swift; sourceTree = "<group>"; };
 		2735220729E98EDB007C4E96 /* WalletContext.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletContext.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2735220E29E9C359007C4E96 /* WWordInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWordInput.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 		273A60AF29E0324D007CA6F0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				2728AF1D2A114F9000FA92DD /* InteractivePopRecognizer.swift */,
 				273A60B029E0325B007CA6F0 /* UIColorUtils.swift */,
 				2786FB5629E874060023FE21 /* CAAnimationUtils.swift */,
 				2786FB5829E874A80023FE21 /* UIKitUtils.swift */,
@@ -472,6 +475,7 @@
 				273A608D29E030B5007CA6F0 /* SoftwareAnimationRenderer.swift in Sources */,
 				2740809B2A0C15A60098838D /* WAddressLabel.swift in Sources */,
 				27EBE5AA29EDE6C9006ECFFB /* UINavigationControllerUtils.swift in Sources */,
+				2728AF1E2A114F9000FA92DD /* InteractivePopRecognizer.swift in Sources */,
 				2735220F29E9C359007C4E96 /* WWordInput.swift in Sources */,
 				27E643D129F41E0D006B20FC /* QrCode.swift in Sources */,
 				27CFA28929FD8FE400A65283 /* WBottomSheetViewController.swift in Sources */,

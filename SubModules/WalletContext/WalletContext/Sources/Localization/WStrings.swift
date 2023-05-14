@@ -185,6 +185,7 @@ public enum WStrings: String {
     case Wallet_QRScan_NoAccessTitle = "Wallet.QRScan.NoAccessTitle"
     case Wallet_QRScan_NoAccessCamera = "Wallet.QRScan.NoAccessCamera"
     case Wallet_QRScan_NoAccessOpenSettings = "Wallet.QRScan.NoAccessOpenSettings"
+    case Wallet_QRScan_NoValidQRDetected = "Wallet.QRScan.NoValidQRDetected"
     case Wallet_Navigation_Back = "Wallet.Navigation.Back"
     case Wallet_Navigation_Done = "Wallet.Navigation.Done"
     case Wallet_Navigation_Cancel = "Wallet.Navigation.Cancel"

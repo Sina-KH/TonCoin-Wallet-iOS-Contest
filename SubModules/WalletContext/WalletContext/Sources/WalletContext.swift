@@ -42,7 +42,7 @@ public protocol WalletContext {
     func openUrl(_ url: String)
     func shareUrl(_ url: String)
     func authorizeAccessToCamera(completion: @escaping (_ granted: Bool) -> Void)
-    func pickImage(present: @escaping (UIViewController) -> Void, completion: @escaping (UIImage) -> Void)
+    func pickImage(completion: @escaping (UIImage) -> Void)
 
     func restartApp()
 }

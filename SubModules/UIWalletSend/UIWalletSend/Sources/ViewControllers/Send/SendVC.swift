@@ -11,6 +11,7 @@ import WalletContext
 import WalletCore
 import UIQRScan
 import WalletUrl
+import SwiftSignalKit
 
 public class SendVC: WViewController {
     
@@ -207,15 +208,39 @@ public class SendVC: WViewController {
     }
     
     @objc func continuePressed() {
-        let isValidAddress = isValidAddress(addressField.text, exactLength: true)
-        let isDNS = addressField.text.lowercased().hasSuffix(".ton")
-        if !isValidAddress && !isDNS {
-            showWrongAddressToast()
+        let address = addressField.text ?? ""
+        let isValid = isValidAddress(address, exactLength: true)
+        if isValid {
+            navigateToSendVC(address: address)
             return
         }
+        let isDNS = address.lowercased().hasSuffix(".ton")
+        if isDNS {
+            _ = (resolveDNSAddress(tonInstance: walletContext.tonInstance, address: address)
+            |> deliverOnMainQueue).start(next: { [weak self] resolvedAddress in
+                guard let self else {
+                    return
+                }
+                if isValidAddress(resolvedAddress, exactLength: true) {
+                    navigateToSendVC(address: resolvedAddress)
+                } else {
+                    showWrongAddressToast()
+                }
+            }, error: { [weak self] error in
+                guard let self else {
+                    return
+                }
+                showWrongAddressToast()
+            })
+            return
+        }
+        showWrongAddressToast()
+    }
+    
+    func navigateToSendVC(address: String) {
         navigationController?.pushViewController(SendAmountVC(walletContext: walletContext,
                                                               walletInfo: walletInfo,
-                                                              addressToSend: addressField.text,
+                                                              addressToSend: address,
                                                               balance: balance),
                                                  animated: true)
     }

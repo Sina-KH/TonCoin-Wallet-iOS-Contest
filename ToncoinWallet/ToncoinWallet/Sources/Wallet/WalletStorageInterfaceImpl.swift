@@ -152,7 +152,7 @@ final class WalletContextImpl: NSObject, WalletContext, UIImagePickerControllerD
     }
     
     func presentNativeController(_ controller: UIViewController) {
-//        self.window.presentNative(controller)
+        topViewController()?.present(controller, animated: true)
     }
     
     func idleTimerExtension() -> Disposable {
@@ -187,7 +187,7 @@ final class WalletContextImpl: NSObject, WalletContext, UIImagePickerControllerD
         }
     }
     
-    func pickImage(present: @escaping (UIViewController) -> Void, completion: @escaping (UIImage) -> Void) {
+    func pickImage(completion: @escaping (UIImage) -> Void) {
         self.currentImagePickerCompletion = completion
         
         let pickerController = UIImagePickerController()
@@ -201,12 +201,13 @@ final class WalletContextImpl: NSObject, WalletContext, UIImagePickerControllerD
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let currentImagePickerCompletion = self.currentImagePickerCompletion
         self.currentImagePickerCompletion = nil
-        if let image = info[.editedImage] as? UIImage {
-            currentImagePickerCompletion?(image)
-        } else if let image = info[.originalImage] as? UIImage {
-            currentImagePickerCompletion?(image)
-        }
-        picker.presentingViewController?.dismiss(animated: true, completion: nil)
+        picker.presentingViewController?.dismiss(animated: true, completion: {
+            if let image = info[.editedImage] as? UIImage {
+                currentImagePickerCompletion?(image)
+            } else if let image = info[.originalImage] as? UIImage {
+                currentImagePickerCompletion?(image)
+            }
+        })
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
