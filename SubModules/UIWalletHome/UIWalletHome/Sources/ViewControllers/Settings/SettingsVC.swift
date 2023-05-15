@@ -342,6 +342,7 @@ class SettingsVC: WViewController {
             |> deliverOnMainQueue).start(error: { _ in
                 
             }, completed: { [weak self] in
+                KeychainHelper.deleteWallet()
                 guard let self else {
                     return
                 }

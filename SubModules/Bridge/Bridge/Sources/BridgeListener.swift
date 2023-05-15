@@ -10,22 +10,19 @@ import Sodium
 
 public protocol BridgeListenerDelegate {
     func connected()
-    func onMessage()
+    func onMessage(id: String?, event: String?, data: String?)
 }
 
 public class BridgeListener {
     let url: String
-    let appPublicKey: Bytes
     let walletKeyPair: Box.KeyPair
-    var lastEventID: String?
+    var lastEventID: Int
     let delegate: BridgeListenerDelegate
     public init(url: String,
-                appPublicKey: Bytes,
                 walletKeyPair: Box.KeyPair,
-                lastEventID: String?,
+                lastEventID: Int,
                 delegate: BridgeListenerDelegate) {
         self.url = url
-        self.appPublicKey = appPublicKey
         self.walletKeyPair = walletKeyPair
         self.lastEventID = lastEventID
         self.delegate = delegate
@@ -33,16 +30,16 @@ public class BridgeListener {
     
     private var eventSource: EventSource? = nil
 
-    func connect() {
+    public func connect() {
         guard let serverURL = URL(string: url) else {
             return
         }
 
-        eventSource = EventSource(url: serverURL, headers: [:])
+        eventSource = EventSource(url: URL(string: "\(serverURL)/events?client_id=\(walletKeyPair.publicKey.toHex)")!, headers: [:])
             eventSource?.connect()
                 
             eventSource?.onComplete({ [self] (statusCode, reconnect, error) in
-                eventSource?.connect(lastEventId: self.lastEventID)
+                eventSource?.connect(lastEventId: "\(self.lastEventID)")
             })
                 
             eventSource?.onOpen {
@@ -53,21 +50,16 @@ public class BridgeListener {
                 guard let id = id else {
                     return
                 }
-                lastEventID = id
+                lastEventID = Int(id) ?? 0
 
                 guard let dataString = data else {
                     return
                 }
                 
-                print("DATAAAAA")
-                print(dataString)
-//                guard let dict = dataString.convertToDictionary(text: dataString) else {
-//                    return
-//                }
-//                self.delegate.onMessage(message: dict)
+                delegate.onMessage(id: id, event: event, data: data)
             })
     }
     
-    func send() {
+    public func send() {
     }
 }

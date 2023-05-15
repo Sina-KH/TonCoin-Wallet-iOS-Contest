@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CryptoSwift
 import Sodium
 
 public class BridgeEmitter {
@@ -13,7 +14,7 @@ public class BridgeEmitter {
     private init() {}
     
     public static func emit(url: String,
-                            walletPrivateKey: Data,
+                            walletPrivateKey: Bytes,
                             walletPublicKey: String,
                             appPublicKey: String,
                             message: Data,
@@ -32,9 +33,9 @@ public class BridgeEmitter {
         request.httpMethod = "POST"
         
         let signedData = SessionProtocol.sign(message: [UInt8](message),
-                                              recipientPublicKey: Sodium().utils.hex2bin(appPublicKey)!,
-                                              privateKey: [UInt8](walletPrivateKey))!
-        request.httpBody = Data(bytes: signedData, count: signedData.count)
+                                              recipientPublicKey: Array<UInt8>.init(hex: appPublicKey),
+                                              privateKey: walletPrivateKey)!
+        request.httpBody = Data(bytes: signedData, count: signedData.count).base64EncodedData()
 
         // create dataTask using the session object to send data to the server
         let task = session.dataTask(with: request) { data, response, error in
@@ -49,6 +50,7 @@ public class BridgeEmitter {
                 callback(false)
                 return
             }
+            print(httpResponse)
             callback(true)
         }
 

@@ -131,7 +131,7 @@ struct TonConnectEventSuccessPayloadDeviceInfo: Codable {
     let appName: String
     let appVersion: String
     let maxProtocolVersion: Int
-    let features: TonConnectFeature
+    let features: [String]//TonConnectFeature
 }
 
 struct TonConnectFeature: Codable {

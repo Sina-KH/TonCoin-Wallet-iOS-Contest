@@ -74,6 +74,7 @@
 		2730428F2A127CD900C8B9F9 /* Configuration.Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730424C2A127CD800C8B9F9 /* Configuration.Network.swift */; };
 		273042902A127CD900C8B9F9 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730424D2A127CD800C8B9F9 /* Configuration.swift */; };
 		273042912A127CD900C8B9F9 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730424F2A127CD800C8B9F9 /* Key.swift */; };
+		275C612D2A129DA500373F2F /* TON3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275C612C2A129DA500373F2F /* TON3.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -145,6 +146,7 @@
 		2730424C2A127CD800C8B9F9 /* Configuration.Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.Network.swift; sourceTree = "<group>"; };
 		2730424D2A127CD800C8B9F9 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		2730424F2A127CD800C8B9F9 /* Key.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
+		275C612C2A129DA500373F2F /* TON3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TON3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				275C612D2A129DA500373F2F /* TON3.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +166,7 @@
 			children = (
 				273041EF2A127CB600C8B9F9 /* SwiftyTON */,
 				273041EE2A127CB600C8B9F9 /* Products */,
+				275C612B2A129DA500373F2F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -430,6 +434,14 @@
 				2730424F2A127CD800C8B9F9 /* Key.swift */,
 			);
 			path = Key;
+			sourceTree = "<group>";
+		};
+		275C612B2A129DA500373F2F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				275C612C2A129DA500373F2F /* TON3.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -302,7 +302,12 @@ extension SendConfirmVC: SendConfirmVMDelegate {
 
     // authorize and then finalize the pre-send process
     private func authorizeToConfirm(onAuth: @escaping () -> Void) {
-        let context = LAContext()
+        onAuth()
+        return
+        
+        // onAuth() function will ask for authentication because of keychain lock!
+
+        /*let context = LAContext()
         var error: NSError?
 
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
@@ -322,7 +327,7 @@ extension SendConfirmVC: SendConfirmVMDelegate {
             }
         } else {
             present(UnlockVC(onAuth: onAuth), animated: true)
-        }
+        }*/
     }
 
     // navigate to sending page and send!

@@ -17,12 +17,19 @@ class SessionProtocol {
     }
 
     static func sign(message: Bytes, recipientPublicKey: Box.PublicKey, privateKey: Box.SecretKey) -> Bytes? {
-        return Sodium().box.seal(message: message, recipientPublicKey: recipientPublicKey, senderSecretKey: privateKey, nonce: sodium.randomBytes.buf(length: 24)!)
+        var result = sodium.randomBytes.buf(length: 24)!
+        let msg = Sodium().box.seal(message: message,
+                                    recipientPublicKey: recipientPublicKey,
+                                    senderSecretKey: privateKey,
+                                    nonce: result)!
+        result.append(contentsOf: msg)
+        return result
     }
 
-    static func decrypt(message: Bytes, keyPair: Box.KeyPair) -> Bytes? {
-        return sodium.box.open(anonymousCipherText: message,
-                               recipientPublicKey: keyPair.publicKey,
-                               recipientSecretKey: keyPair.secretKey)
+    static func decrypt(message: Bytes, senderPublicKey: Box.PublicKey, recipientSecretKey: Box.SecretKey) -> Bytes? {
+        return sodium.box.open(authenticatedCipherText: Array(message[24...]),
+                               senderPublicKey: senderPublicKey,
+                               recipientSecretKey: recipientSecretKey,
+                               nonce: Array(message[0..<24]))
     }
 }

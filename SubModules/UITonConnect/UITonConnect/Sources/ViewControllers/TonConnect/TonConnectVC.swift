@@ -47,6 +47,7 @@ public class TonConnectVC: WViewController {
     private var titleLabel: UILabel!
     private var textLabel: UILabel!
     private var connectButton: WButton!
+    private var checkIcon: UIImageView!
     
     public override func loadView() {
         super.loadView()
@@ -132,6 +133,19 @@ public class TonConnectVC: WViewController {
         connectButton.addTarget(self, action: #selector(connectPressed), for: .touchUpInside)
         verticalStackView.addArrangedSubview(connectButton)
         
+        // check icon
+        checkIcon = UIImageView(image: UIImage(named: "CheckIcon")!.withRenderingMode(.alwaysTemplate))
+        checkIcon.translatesAutoresizingMaskIntoConstraints = false
+        checkIcon.tintColor = WTheme.primaryButton.background
+        checkIcon.alpha = 0
+        verticalStackView.addSubview(checkIcon)
+        NSLayoutConstraint.activate([
+            checkIcon.widthAnchor.constraint(equalToConstant: 34),
+            checkIcon.heightAnchor.constraint(equalToConstant: 34),
+            checkIcon.centerXAnchor.constraint(equalTo: connectButton.centerXAnchor),
+            checkIcon.centerYAnchor.constraint(equalTo: connectButton.centerYAnchor)
+        ])
+
         // close button
         let closeButton = UIButton(type: .system)
         closeButton.translatesAutoresizingMaskIntoConstraints = false
@@ -202,10 +216,26 @@ extension TonConnectVC: TonConnectVMDelegate {
     }
     func errorOccured() {
         isLoading = false
-        // TODO::
     }
+
     func tonConnected() {
         AudioServicesPlaySystemSound(SystemSoundID(1394))
-        print("CONNECTEDDDDDDDDDD@@!#!@#!@E")
+        UIView.animate(withDuration: 0.25, animations: { [weak self] in
+            guard let self else {
+                return
+            }
+            connectButton.alpha = 0
+            view.layoutIfNeeded()
+        }) { [weak self] _ in
+            UIView.animate(withDuration: 0.25, animations: { [weak self] in
+                guard let self else {
+                    return
+                }
+                checkIcon.alpha = 1
+                view.layoutIfNeeded()
+            }) { [weak self] _ in
+                self?.dismiss(animated: true)
+            }
+        }
     }
 }

@@ -17,7 +17,7 @@ public extension WalletInfo {
         case 31:
             Task {
                 guard let initialCondition =
-                        try? await Wallet3.initial(revision: .r1, deserializedPublicKey: publicKey.rawValue.data(using: .utf8)!)
+                        try? await Wallet3.initial(revision: .r1, deserializedPublicKey: publicKey.deserializedPublicKey!)
                 else {
                     callback(nil)
                     return
@@ -28,7 +28,7 @@ public extension WalletInfo {
         case 32:
             Task {
                 guard let initialCondition =
-                        try? await Wallet3.initial(revision: .r2, deserializedPublicKey: publicKey.rawValue.data(using: .utf8)!)
+                        try? await Wallet3.initial(revision: .r2, deserializedPublicKey: publicKey.deserializedPublicKey!)
                 else {
                     callback(nil)
                     return
@@ -39,7 +39,7 @@ public extension WalletInfo {
         case 42:
             Task {
                 guard let initialCondition =
-                        try? await Wallet4.initial(revision: .r2, deserializedPublicKey: publicKey.rawValue.data(using: .utf8)!)
+                        try? await Wallet4.initial(revision: .r2, deserializedPublicKey: publicKey.deserializedPublicKey!)
                 else {
                     callback(nil)
                     return

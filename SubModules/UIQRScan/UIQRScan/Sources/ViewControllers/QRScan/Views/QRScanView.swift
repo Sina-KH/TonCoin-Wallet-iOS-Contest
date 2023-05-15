@@ -200,7 +200,16 @@ class QRScanView: UIView, UIScrollViewDelegate {
             guard let strongSelf = self else {
                 return
             }
-            let filteredCodes = codes.filter { $0.message.hasPrefix("ton://") }
+            let filteredCodes = codes.filter {
+                #if DEBUG
+                return $0.message.hasPrefix("ton://") ||
+                        $0.message.hasPrefix("tc://") ||
+                        $0.message.hasPrefix("https://app.tonkeeper.com/ton-connect?")
+                #else
+                return $0.message.hasPrefix("ton://") ||
+                        $0.message.hasPrefix("tc://")
+                #endif
+            }
             if let code = filteredCodes.first, CGRect(x: 0.3, y: 0.3, width: 0.4, height: 0.4).contains(code.boundingBox.center) {
                 strongSelf.focusedCode.set(code)
                 strongSelf.updateFocusedRect(code.boundingBox)

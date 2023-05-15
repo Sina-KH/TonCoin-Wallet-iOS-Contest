@@ -15,18 +15,18 @@ ADNL TonLib Repository](https://github.com/ton-blockchain/ton) (2023.03, because
 
 Other modules like `SwiftyTON` `TON3` and `SwiftyJS` in the project are responsible for local logics like providing wallet initial state that can be ported into our main codebase. GlossyTON is removed from these modules and they has nothing to do with the server. *We can consider switching to SwiftyTON, but for now, I just stick with the original TONBinding implementation of tonlib to prevent any possible issues.*
 
-:white_check_mark: **TON Connect 2 Support** as documented in [Ton-Connect Repository](https://github.com/ton-blockchain/ton-connect). `Bridge` and `Session Protocol` are implemented. `tc://` is available as unified deeplink of the ton connect. `Universal Link` is also support and can be set after deploying the `Bridge instance`.
+:white_check_mark: **TON Connect 2 Support** as documented in [Ton-Connect Repository](https://github.com/ton-blockchain/ton-connect). `Bridge` and `Session Protocol` are implemented. `tc://` is available as unified deeplink of the ton connect. `Universal Link` is also support and can be set after deploying the `Bridge instance`. **To test this feature, it's possible to use in-app qr scanner [here](https://ton-connect.github.io/demo-dapp/). It's using `TonKeeper Bridge` for development tests**
 
 :white_check_mark: **Wallet Balance** is also shown for the `selected currency` when home screen's header is scrolled and collapsed, like the design. (using [tonapi.io](https://tonapi.io))
 
 :white_check_mark: `iOS 13.0+` support. (If I remove async/await and actor codes used in SwiftyTON, TON3 and SwiftyJS modules, or even remove these modules from the porject, We can even support iOS 12.2+ with the same app size. No other os dependent features limited to iOS 13+ is used in the application.)
 
-:white_check_mark: App size (the final universal `.ipa file`) is **around 6 megabytes**.
+:white_check_mark: App size (the final universal `.ipa file`) is **around 7 megabytes**.
 
 ## :weary:  Known issues / Missing features / Notices
 
 - [ ] **WIP Feature:** `Wallet versions logic` is not implemented yet, and the settings ui only shows the `v3R2` wallet version. I've tried to implement this feature inside the app using `tonlib` / `tonutils-go` / `tongo library` and `ton kotlin` but all of them had some issues that prevented me to add this feature in contest's limited time.
-- [ ] **Notice:** I've implemented lock screen, but because the original logic of the app uses keychain hardware encryption, so for lower-level access, like showing the recovery phrase, the app still depends on the iOS unlock mechanism.
+- [ ] **Notice:** I've implemented lock screen, but because the original logic of the app uses keychain hardware encryption, so for lower-level access (accessing private key), like showing the recovery phrase or sending TON, the app still depends on the iOS unlock mechanism. *We can store the keys another way to prevent need to unlock using out custom `UnlockVC` instead of iOS unlock.*
 - [x] **Fixed:** If you change/remove passcode of the device, the app forces you to re-import or create a new wallet, but after that, on restarts, the app still shows the same error. This issue exists from the original application wallet record checks.
 **Solution:** Fixed by using latest records from the storage to check wallet status! We can consider removing old records, also.
 
@@ -165,7 +165,7 @@ The bridge framework is developed to support Ton Connect feature using the [brid
 
 ### :lock:  Sodium
 
-Sodium is used to implement encryption algorithms in `Bridge API`, on iOS 12+.
+Sodium is used to implement encryption algorithms in `Bridge API`.
 It includes Clibsodium that can be rebuilt and used, from [libsodium repository](https://github.com/jedisct1/libsodium).
 
 ### :hammer: BuildConfig

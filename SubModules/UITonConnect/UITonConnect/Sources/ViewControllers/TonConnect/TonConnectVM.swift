@@ -51,6 +51,7 @@ class TonConnectVM {
             return
         }
         TonConnectCore.connectToApp(url: manifest.url,
+                                    name: manifest.name,
                                     walletContext: walletContext,
                                     walletInfo: walletInfo,
                                     appPublicKey: request.id) { [weak self] success in

@@ -12,6 +12,7 @@ import UIComponents
 import WalletContext
 import WalletCore
 import Bridge
+import UITonConnect
 
 public class WalletHomeVC: WViewController {
 
@@ -47,7 +48,7 @@ public class WalletHomeVC: WViewController {
         walletHomeVM.refreshTransactions()
 
         // connect the application to the wallet applications
-//        BridgeToApp.connect()
+        TonConnectCore.shared.startBridgeConnection()
     }
 
     public override func loadView() {
@@ -180,8 +181,6 @@ public class WalletHomeVC: WViewController {
 
         let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
         keyWindow?.backgroundColor = WTheme.balanceHeaderView.background
-
-        UIApplication.shared.open(URL(string: "tc://?v=2&id=5928816ed2831795470eaa049a6942ddf0a63febb177ab5870a8fbf512276b6a&r=%7B%22manifestUrl%22%3A%22https%3A%2F%2Fgist.githubusercontent.com%2Fsiandreev%2F75f1a2ccf2f3b4e2771f6089aeb06d7f%2Fraw%2Fd4986344010ec7a2d1cc8a2a9baa57de37aaccb8%2Fgistfile1.txt%22%2C%22items%22%3A%5B%7B%22name%22%3A%22ton_addr%22%7D%5D%7D")!)
     }
 
     public override func viewDidDisappear(_ animated: Bool) {
@@ -301,6 +300,12 @@ extension WalletHomeVC: WalletHomeVMDelegate {
 extension WalletHomeVC: BalanceHeaderViewDelegate {
     public func scanPressed() {
         navigationController?.pushViewController(QRScanVC(walletContext: walletContext, walletInfo: walletInfo, callback: { url in
+            #if DEBUG
+            if url.absoluteString.hasPrefix("https://app.tonkeeper.com/ton-connect?") {
+                UIApplication.shared.open(URL(string: "tc://?" + url.absoluteString.components(separatedBy: "?")[1])!)
+                return
+            }
+            #endif
             UIApplication.shared.open(url)
         }), animated: true)
     }

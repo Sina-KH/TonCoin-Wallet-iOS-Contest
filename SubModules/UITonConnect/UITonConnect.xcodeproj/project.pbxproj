@@ -25,6 +25,9 @@
 		274DFA1C2A0CFC1C0042A6A6 /* WalletCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274DFA1B2A0CFC1C0042A6A6 /* WalletCore.framework */; };
 		274DFA202A0CFC210042A6A6 /* Bridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274DFA1F2A0CFC210042A6A6 /* Bridge.framework */; };
 		274DFA242A0D02FE0042A6A6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274DFA232A0D02FE0042A6A6 /* AVFoundation.framework */; };
+		275C613C2A12D33800373F2F /* LinkedDApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C613B2A12D33800373F2F /* LinkedDApp.swift */; };
+		275C613E2A12D53900373F2F /* TonConnectedDApps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C613D2A12D53900373F2F /* TonConnectedDApps.swift */; };
+		275C61402A12DA3100373F2F /* TonConnectKeyPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C613F2A12DA3100373F2F /* TonConnectKeyPair.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,9 @@
 		274DFA1B2A0CFC1C0042A6A6 /* WalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		274DFA1F2A0CFC210042A6A6 /* Bridge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bridge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		274DFA232A0D02FE0042A6A6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		275C613B2A12D33800373F2F /* LinkedDApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedDApp.swift; sourceTree = "<group>"; };
+		275C613D2A12D53900373F2F /* TonConnectedDApps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TonConnectedDApps.swift; sourceTree = "<group>"; };
+		275C613F2A12DA3100373F2F /* TonConnectKeyPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TonConnectKeyPair.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +76,7 @@
 		2711D9762A0A187300AD35DF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				275C613A2A12D31800373F2F /* LinkedDApp */,
 				2711D97C2A0A218000AD35DF /* Requests_App2Wallet */,
 				2711D97B2A0A216D00AD35DF /* Events_Wallet2App */,
 			);
@@ -185,8 +192,18 @@
 			isa = PBXGroup;
 			children = (
 				274DFA0A2A0CEF560042A6A6 /* TonConnectCore.swift */,
+				275C613D2A12D53900373F2F /* TonConnectedDApps.swift */,
 			);
 			path = TonConnctCore;
+			sourceTree = "<group>";
+		};
+		275C613A2A12D31800373F2F /* LinkedDApp */ = {
+			isa = PBXGroup;
+			children = (
+				275C613B2A12D33800373F2F /* LinkedDApp.swift */,
+				275C613F2A12DA3100373F2F /* TonConnectKeyPair.swift */,
+			);
+			path = LinkedDApp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,6 +288,7 @@
 			files = (
 				2711D97A2A0A1D7800AD35DF /* TonConnectEventError.swift in Sources */,
 				274DFA0B2A0CEF560042A6A6 /* TonConnectCore.swift in Sources */,
+				275C613E2A12D53900373F2F /* TonConnectedDApps.swift in Sources */,
 				274080A22A0C1DDB0098838D /* TonTransferVM.swift in Sources */,
 				273F47502A09BF7B000C5263 /* TonConnectRequestConnect.swift in Sources */,
 				274080A02A0C1D200098838D /* TonTransferVC.swift in Sources */,
@@ -280,6 +298,8 @@
 				2711D9822A0A229400AD35DF /* TonConnectEvent.swift in Sources */,
 				2711D9802A0A221200AD35DF /* TonConnectRequest.swift in Sources */,
 				273F47542A09C281000C5263 /* TonConnectVM.swift in Sources */,
+				275C61402A12DA3100373F2F /* TonConnectKeyPair.swift in Sources */,
+				275C613C2A12D33800373F2F /* LinkedDApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,7 +12,7 @@ public struct KeychainHelper {
 
     // MARK: - Passcode
     private static let passcodeKey = "passcode"
-    public static func save(passcode: String) {
+    public static func save(passcode: String?) {
         KeychainHelper.save(passcode, forKey: passcodeKey)
     }
     public static func passcode() -> String? {
@@ -20,11 +20,58 @@ public struct KeychainHelper {
     }
     // MARK: - Biometric
     private static let biometricKey = "biometric"
-    public static func save(biometric: Bool) {
+    public static func save(biometric: Bool?) {
+        guard let biometric else {
+            KeychainHelper.save(nil, forKey: biometricKey)
+            return
+        }
         KeychainHelper.save(biometric ? "1" : "0", forKey: biometricKey)
     }
     public static func isBiometricActivated() -> Bool {
         KeychainHelper.load(withKey: KeychainHelper.biometricKey) == "1"
+    }
+    
+    // MARK: - Ton Connect KeyPair
+    private static var tonConnectKeyPairKey = "tonConnectKeyPair"
+    public static func save(keyPair: String?) {
+        KeychainHelper.save(keyPair, forKey: tonConnectKeyPairKey)
+    }
+    public static func tonConnectKeyPair() -> String? {
+        KeychainHelper.load(withKey: tonConnectKeyPairKey)
+    }
+    
+    // MARK: - Ton Connect LastEventID
+    private static var tonConnectLastEventIDKey = "tonConnectLastEventID"
+    public static func save(lastEventID: Int?) {
+        guard let lastEventID else {
+            KeychainHelper.save(nil, forKey: tonConnectLastEventIDKey)
+            return
+        }
+        KeychainHelper.save("\(lastEventID)", forKey: tonConnectLastEventIDKey)
+    }
+    public static func tonConnectLastEventID() -> Int? {
+        if let lastEvent = KeychainHelper.load(withKey: tonConnectLastEventIDKey) {
+            return Int(lastEvent)
+        }
+        return nil
+    }
+    
+    // MARK: - Ton Connect DApps
+    private static var tonConnectDApps = "tonConnectDApps"
+    public static func save(DApps: String?) {
+        KeychainHelper.save(DApps, forKey: tonConnectDApps)
+    }
+    public static func dApps() -> String? {
+        KeychainHelper.load(withKey: tonConnectDApps)
+    }
+    
+    // MARK: - Delete Wallet
+    public static func deleteWallet() {
+        KeychainHelper.save(passcode: nil)
+        KeychainHelper.save(biometric: nil)
+        KeychainHelper.save(keyPair: nil)
+        KeychainHelper.save(lastEventID: nil)
+        KeychainHelper.save(DApps: nil)
     }
 
     // MARK: - Private base keychain functionalities

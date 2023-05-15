@@ -17,6 +17,8 @@
 		275C577F29E04E82002531AF /* WalletCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 275C577E29E04E82002531AF /* WalletCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		275C578629E04E9D002531AF /* WalletCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C578529E04E9D002531AF /* WalletCore.swift */; };
 		275C586B29E052F6002531AF /* TonBinding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275C57B529E04F51002531AF /* TonBinding.framework */; };
+		275C61312A129DC600373F2F /* SwiftyTON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275C61302A129DC600373F2F /* SwiftyTON.framework */; };
+		275C61352A12B2F600373F2F /* PublicKeyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C61342A12B2F600373F2F /* PublicKeyUtils.swift */; };
 		27DB29B029EC697E00988800 /* SwiftSignalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29AF29EC697E00988800 /* SwiftSignalKit.framework */; };
 		27E391D529F68A2F00E91CBC /* SSignalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E391D429F68A2F00E91CBC /* SSignalKit.framework */; };
 /* End PBXBuildFile section */
@@ -35,6 +37,8 @@
 		275C578529E04E9D002531AF /* WalletCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCore.swift; sourceTree = "<group>"; };
 		275C57B529E04F51002531AF /* TonBinding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TonBinding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		275C586929E052F1002531AF /* SSignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SSignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		275C61302A129DC600373F2F /* SwiftyTON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyTON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		275C61342A12B2F600373F2F /* PublicKeyUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKeyUtils.swift; sourceTree = "<group>"; };
 		27DB29AF29EC697E00988800 /* SwiftSignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftSignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27E391D429F68A2F00E91CBC /* SSignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SSignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -48,6 +52,7 @@
 				273041932A126F8E00C8B9F9 /* BigInt.framework in Frameworks */,
 				2730418F2A126F8B00C8B9F9 /* TON3.framework in Frameworks */,
 				275C586B29E052F6002531AF /* TonBinding.framework in Frameworks */,
+				275C61312A129DC600373F2F /* SwiftyTON.framework in Frameworks */,
 				27DB29B029EC697E00988800 /* SwiftSignalKit.framework in Frameworks */,
 				273041312A12664800C8B9F9 /* CryptoSwift.framework in Frameworks */,
 			);
@@ -79,6 +84,7 @@
 				27491C702A116EF40069F5CA /* StringUtils.swift */,
 				273041342A12669300C8B9F9 /* DataUtils.swift */,
 				273041362A12687700C8B9F9 /* WalletInfoUtils.swift */,
+				275C61342A12B2F600373F2F /* PublicKeyUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -113,6 +119,7 @@
 		275C57B429E04F51002531AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				275C61302A129DC600373F2F /* SwiftyTON.framework */,
 				273041922A126F8E00C8B9F9 /* BigInt.framework */,
 				2730418E2A126F8A00C8B9F9 /* TON3.framework */,
 				273041302A12664800C8B9F9 /* CryptoSwift.framework */,
@@ -205,6 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				275C61352A12B2F600373F2F /* PublicKeyUtils.swift in Sources */,
 				27491C712A116EF40069F5CA /* StringUtils.swift in Sources */,
 				273041372A12687700C8B9F9 /* WalletInfoUtils.swift in Sources */,
 				273041352A12669300C8B9F9 /* DataUtils.swift in Sources */,
