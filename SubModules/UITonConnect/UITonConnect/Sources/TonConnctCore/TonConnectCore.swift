@@ -33,11 +33,16 @@ class TonConnectCore {
             let _ = (walletContext.keychain.decrypt(walletInfo.encryptedSecret)
                      |> deliverOnMainQueue).start(next: { decryptedSecret in
                     
-                    
-                    let reply = TonConnectItemReplyAddr(address: walletInfo.address, // TODO:: TON address raw (`0:<hex>`)
+                walletInfo.walletStateInit { walletInitialState in
+                    guard let walletInitialState else {
+                        callback(false)
+                        return
+                    }
+
+                    let reply = TonConnectItemReplyAddr(address: walletInfo.rawAddress!,
                                                         network: configuration.testNet.customId == "mainnet" ? .mainnet : .testnet,
                                                         publicKey: walletInfo.publicKey.rawValue, // TODO:: HEX WITHOUT 0x
-                                                        walletStateInit: walletInfo.publicKey.rawValue)
+                                                        walletStateInit: walletInitialState)
                     let platform: TonConnectEventSuccessPayloadDeviceInfo.Platform
                     switch UIDevice.current.userInterfaceIdiom {
                     case .pad:
@@ -74,9 +79,9 @@ class TonConnectCore {
                         return
                     }
 
-                    BridgeEmitter.emit(url: url,
+                    BridgeEmitter.emit(url: "https://bridge.tonapi.io/bridge",
                                        walletPrivateKey: decryptedSecret,
-                                       walletPublicKey: walletInfo.publicKey.rawValue.data(using: .ascii)!.hexEncodedString(),
+                                       walletPublicKey: walletInfo.publicKey.rawValue.data(using: .utf8)!.hexEncodedString(),
                                        appPublicKey: appPublicKey,
                                        message: messageData) { success in
                         if success {
@@ -85,7 +90,9 @@ class TonConnectCore {
                         callback(success)
                     }
                     
-                }, error: { _ in
+                }
+
+            }, error: { _ in
                     callback(false)
                 })
         })

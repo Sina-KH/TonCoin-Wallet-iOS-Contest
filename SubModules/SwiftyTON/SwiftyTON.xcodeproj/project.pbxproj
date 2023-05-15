@@ -1,0 +1,796 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		273041F12A127CB600C8B9F9 /* SwiftyTON.h in Headers */ = {isa = PBXBuildFile; fileRef = 273041F02A127CB600C8B9F9 /* SwiftyTON.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		273042502A127CD900C8B9F9 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273041F92A127CD100C8B9F9 /* Date.swift */; };
+		273042512A127CD900C8B9F9 /* ContiguousBytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273041FA2A127CD100C8B9F9 /* ContiguousBytes.swift */; };
+		273042522A127CD900C8B9F9 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273041FB2A127CD100C8B9F9 /* Data.swift */; };
+		273042532A127CD900C8B9F9 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273041FC2A127CD100C8B9F9 /* Functions.swift */; };
+		273042542A127CD900C8B9F9 /* BytesConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273041FD2A127CD100C8B9F9 /* BytesConvertible.swift */; };
+		273042552A127CD900C8B9F9 /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273041FE2A127CD100C8B9F9 /* URLSession.swift */; };
+		273042562A127CD900C8B9F9 /* NSRegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273041FF2A127CD100C8B9F9 /* NSRegularExpression.swift */; };
+		273042572A127CD900C8B9F9 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042002A127CD100C8B9F9 /* String.swift */; };
+		273042582A127CD900C8B9F9 /* CheckedContinuation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042012A127CD100C8B9F9 /* CheckedContinuation.swift */; };
+		273042592A127CD900C8B9F9 /* JettonWallet1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042052A127CD200C8B9F9 /* JettonWallet1.swift */; };
+		2730425A2A127CD900C8B9F9 /* JettonMinter1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042062A127CD200C8B9F9 /* JettonMinter1.swift */; };
+		2730425B2A127CD900C8B9F9 /* JettonWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042072A127CD200C8B9F9 /* JettonWallet.swift */; };
+		2730425C2A127CD900C8B9F9 /* JettonMinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042082A127CD200C8B9F9 /* JettonMinter.swift */; };
+		2730425D2A127CD900C8B9F9 /* JettonWallet.Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042092A127CD200C8B9F9 /* JettonWallet.Convenience.swift */; };
+		2730425E2A127CD900C8B9F9 /* JettonMinter.Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730420A2A127CD200C8B9F9 /* JettonMinter.Convenience.swift */; };
+		2730425F2A127CD900C8B9F9 /* Wallet2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730420D2A127CD200C8B9F9 /* Wallet2.swift */; };
+		273042602A127CD900C8B9F9 /* Wallet2.Revision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730420E2A127CD200C8B9F9 /* Wallet2.Revision.swift */; };
+		273042612A127CD900C8B9F9 /* AnyWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730420F2A127CD200C8B9F9 /* AnyWallet.swift */; };
+		273042622A127CD900C8B9F9 /* Wallet4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042112A127CD200C8B9F9 /* Wallet4.swift */; };
+		273042632A127CD900C8B9F9 /* Wallet4.Revision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042122A127CD200C8B9F9 /* Wallet4.Revision.swift */; };
+		273042642A127CD900C8B9F9 /* Wallet4.SubwalletID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042132A127CD200C8B9F9 /* Wallet4.SubwalletID.swift */; };
+		273042652A127CD900C8B9F9 /* Wallet3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042152A127CD200C8B9F9 /* Wallet3.swift */; };
+		273042662A127CD900C8B9F9 /* Wallet3.SubwalletID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042162A127CD200C8B9F9 /* Wallet3.SubwalletID.swift */; };
+		273042672A127CD900C8B9F9 /* Wallet3.Revision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042172A127CD200C8B9F9 /* Wallet3.Revision.swift */; };
+		273042682A127CD900C8B9F9 /* Wallet.Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042182A127CD200C8B9F9 /* Wallet.Convenience.swift */; };
+		273042692A127CD900C8B9F9 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042192A127CD200C8B9F9 /* Wallet.swift */; };
+		2730426A2A127CD900C8B9F9 /* CurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730421B2A127CD200C8B9F9 /* CurrencyFormatter.swift */; };
+		2730426B2A127CD900C8B9F9 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730421C2A127CD200C8B9F9 /* Currency.swift */; };
+		2730426C2A127CD900C8B9F9 /* Transaction.ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730421E2A127CD300C8B9F9 /* Transaction.ID.swift */; };
+		2730426D2A127CD900C8B9F9 /* Transaction.Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730421F2A127CD300C8B9F9 /* Transaction.Message.swift */; };
+		2730426E2A127CD900C8B9F9 /* Transaction.Message.Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042202A127CD300C8B9F9 /* Transaction.Message.Content.swift */; };
+		2730426F2A127CD900C8B9F9 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042212A127CD300C8B9F9 /* Transaction.swift */; };
+		273042702A127CD900C8B9F9 /* Contract.InitialCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042232A127CD300C8B9F9 /* Contract.InitialCondition.swift */; };
+		273042712A127CD900C8B9F9 /* Contract.Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042242A127CD300C8B9F9 /* Contract.Info.swift */; };
+		273042722A127CD900C8B9F9 /* Contract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042252A127CD300C8B9F9 /* Contract.swift */; };
+		273042732A127CD900C8B9F9 /* Contract.ExecutionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042262A127CD300C8B9F9 /* Contract.ExecutionResult.swift */; };
+		273042742A127CD900C8B9F9 /* Contract.Kind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042272A127CD300C8B9F9 /* Contract.Kind.swift */; };
+		273042752A127CD900C8B9F9 /* UndefinedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042292A127CD400C8B9F9 /* UndefinedError.swift */; };
+		273042762A127CD900C8B9F9 /* MessageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730422A2A127CD400C8B9F9 /* MessageError.swift */; };
+		273042772A127CD900C8B9F9 /* RetryableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730422B2A127CD400C8B9F9 /* RetryableError.swift */; };
+		273042782A127CD900C8B9F9 /* LiteserverError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730422C2A127CD400C8B9F9 /* LiteserverError.swift */; };
+		273042792A127CD900C8B9F9 /* ContractError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730422D2A127CD400C8B9F9 /* ContractError.swift */; };
+		2730427A2A127CD900C8B9F9 /* KeyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730422E2A127CD400C8B9F9 /* KeyError.swift */; };
+		2730427B2A127CD900C8B9F9 /* AddressError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730422F2A127CD400C8B9F9 /* AddressError.swift */; };
+		2730427C2A127CD900C8B9F9 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042312A127CD400C8B9F9 /* Address.swift */; };
+		2730427D2A127CD900C8B9F9 /* DNSAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042322A127CD400C8B9F9 /* DNSAddress.swift */; };
+		2730427E2A127CD900C8B9F9 /* ConcreteAddress.Flags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042332A127CD400C8B9F9 /* ConcreteAddress.Flags.swift */; };
+		2730427F2A127CD900C8B9F9 /* DisplayableAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042342A127CD400C8B9F9 /* DisplayableAddress.swift */; };
+		273042802A127CD900C8B9F9 /* CustomConcreteAddressConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042352A127CD400C8B9F9 /* CustomConcreteAddressConvertible.swift */; };
+		273042812A127CD900C8B9F9 /* Address.Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042362A127CD400C8B9F9 /* Address.Converter.swift */; };
+		273042822A127CD900C8B9F9 /* ConcreteAddress.StringRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042372A127CD400C8B9F9 /* ConcreteAddress.StringRepresentation.swift */; };
+		273042832A127CD900C8B9F9 /* ConcreteAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042382A127CD400C8B9F9 /* ConcreteAddress.swift */; };
+		273042842A127CD900C8B9F9 /* GlossyTONWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730423A2A127CD500C8B9F9 /* GlossyTONWrapper.swift */; };
+		273042852A127CD900C8B9F9 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730423C2A127CD500C8B9F9 /* Message.swift */; };
+		273042862A127CD900C8B9F9 /* SwiftyTON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730423D2A127CD600C8B9F9 /* SwiftyTON.swift */; };
+		273042872A127CD900C8B9F9 /* BOC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730423F2A127CD600C8B9F9 /* BOC.swift */; };
+		273042882A127CD900C8B9F9 /* AnnouncementConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042422A127CD700C8B9F9 /* AnnouncementConfiguration.swift */; };
+		273042892A127CD900C8B9F9 /* AnnouncementSynchronization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042432A127CD700C8B9F9 /* AnnouncementSynchronization.swift */; };
+		2730428A2A127CD900C8B9F9 /* AnnouncementCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042442A127CD700C8B9F9 /* AnnouncementCenter.swift */; };
+		2730428B2A127CD900C8B9F9 /* Announcement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273042452A127CD700C8B9F9 /* Announcement.swift */; };
+		2730428C2A127CD900C8B9F9 /* testnet in Resources */ = {isa = PBXBuildFile; fileRef = 273042482A127CD700C8B9F9 /* testnet */; };
+		2730428D2A127CD900C8B9F9 /* mainnet in Resources */ = {isa = PBXBuildFile; fileRef = 273042492A127CD700C8B9F9 /* mainnet */; };
+		2730428E2A127CD900C8B9F9 /* Configuration.Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730424B2A127CD800C8B9F9 /* Configuration.Logging.swift */; };
+		2730428F2A127CD900C8B9F9 /* Configuration.Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730424C2A127CD800C8B9F9 /* Configuration.Network.swift */; };
+		273042902A127CD900C8B9F9 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730424D2A127CD800C8B9F9 /* Configuration.swift */; };
+		273042912A127CD900C8B9F9 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730424F2A127CD800C8B9F9 /* Key.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		273041ED2A127CB600C8B9F9 /* SwiftyTON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyTON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		273041F02A127CB600C8B9F9 /* SwiftyTON.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyTON.h; sourceTree = "<group>"; };
+		273041F92A127CD100C8B9F9 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		273041FA2A127CD100C8B9F9 /* ContiguousBytes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContiguousBytes.swift; sourceTree = "<group>"; };
+		273041FB2A127CD100C8B9F9 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		273041FC2A127CD100C8B9F9 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		273041FD2A127CD100C8B9F9 /* BytesConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BytesConvertible.swift; sourceTree = "<group>"; };
+		273041FE2A127CD100C8B9F9 /* URLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
+		273041FF2A127CD100C8B9F9 /* NSRegularExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRegularExpression.swift; sourceTree = "<group>"; };
+		273042002A127CD100C8B9F9 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		273042012A127CD100C8B9F9 /* CheckedContinuation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckedContinuation.swift; sourceTree = "<group>"; };
+		273042052A127CD200C8B9F9 /* JettonWallet1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JettonWallet1.swift; sourceTree = "<group>"; };
+		273042062A127CD200C8B9F9 /* JettonMinter1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JettonMinter1.swift; sourceTree = "<group>"; };
+		273042072A127CD200C8B9F9 /* JettonWallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JettonWallet.swift; sourceTree = "<group>"; };
+		273042082A127CD200C8B9F9 /* JettonMinter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JettonMinter.swift; sourceTree = "<group>"; };
+		273042092A127CD200C8B9F9 /* JettonWallet.Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JettonWallet.Convenience.swift; sourceTree = "<group>"; };
+		2730420A2A127CD200C8B9F9 /* JettonMinter.Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JettonMinter.Convenience.swift; sourceTree = "<group>"; };
+		2730420D2A127CD200C8B9F9 /* Wallet2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wallet2.swift; sourceTree = "<group>"; };
+		2730420E2A127CD200C8B9F9 /* Wallet2.Revision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wallet2.Revision.swift; sourceTree = "<group>"; };
+		2730420F2A127CD200C8B9F9 /* AnyWallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyWallet.swift; sourceTree = "<group>"; };
+		273042112A127CD200C8B9F9 /* Wallet4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wallet4.swift; sourceTree = "<group>"; };
+		273042122A127CD200C8B9F9 /* Wallet4.Revision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wallet4.Revision.swift; sourceTree = "<group>"; };
+		273042132A127CD200C8B9F9 /* Wallet4.SubwalletID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wallet4.SubwalletID.swift; sourceTree = "<group>"; };
+		273042152A127CD200C8B9F9 /* Wallet3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wallet3.swift; sourceTree = "<group>"; };
+		273042162A127CD200C8B9F9 /* Wallet3.SubwalletID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wallet3.SubwalletID.swift; sourceTree = "<group>"; };
+		273042172A127CD200C8B9F9 /* Wallet3.Revision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wallet3.Revision.swift; sourceTree = "<group>"; };
+		273042182A127CD200C8B9F9 /* Wallet.Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wallet.Convenience.swift; sourceTree = "<group>"; };
+		273042192A127CD200C8B9F9 /* Wallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
+		2730421B2A127CD200C8B9F9 /* CurrencyFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyFormatter.swift; sourceTree = "<group>"; };
+		2730421C2A127CD200C8B9F9 /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		2730421E2A127CD300C8B9F9 /* Transaction.ID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.ID.swift; sourceTree = "<group>"; };
+		2730421F2A127CD300C8B9F9 /* Transaction.Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.Message.swift; sourceTree = "<group>"; };
+		273042202A127CD300C8B9F9 /* Transaction.Message.Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.Message.Content.swift; sourceTree = "<group>"; };
+		273042212A127CD300C8B9F9 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		273042232A127CD300C8B9F9 /* Contract.InitialCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contract.InitialCondition.swift; sourceTree = "<group>"; };
+		273042242A127CD300C8B9F9 /* Contract.Info.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contract.Info.swift; sourceTree = "<group>"; };
+		273042252A127CD300C8B9F9 /* Contract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contract.swift; sourceTree = "<group>"; };
+		273042262A127CD300C8B9F9 /* Contract.ExecutionResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contract.ExecutionResult.swift; sourceTree = "<group>"; };
+		273042272A127CD300C8B9F9 /* Contract.Kind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contract.Kind.swift; sourceTree = "<group>"; };
+		273042292A127CD400C8B9F9 /* UndefinedError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UndefinedError.swift; sourceTree = "<group>"; };
+		2730422A2A127CD400C8B9F9 /* MessageError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageError.swift; sourceTree = "<group>"; };
+		2730422B2A127CD400C8B9F9 /* RetryableError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetryableError.swift; sourceTree = "<group>"; };
+		2730422C2A127CD400C8B9F9 /* LiteserverError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiteserverError.swift; sourceTree = "<group>"; };
+		2730422D2A127CD400C8B9F9 /* ContractError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractError.swift; sourceTree = "<group>"; };
+		2730422E2A127CD400C8B9F9 /* KeyError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyError.swift; sourceTree = "<group>"; };
+		2730422F2A127CD400C8B9F9 /* AddressError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressError.swift; sourceTree = "<group>"; };
+		273042312A127CD400C8B9F9 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		273042322A127CD400C8B9F9 /* DNSAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNSAddress.swift; sourceTree = "<group>"; };
+		273042332A127CD400C8B9F9 /* ConcreteAddress.Flags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcreteAddress.Flags.swift; sourceTree = "<group>"; };
+		273042342A127CD400C8B9F9 /* DisplayableAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayableAddress.swift; sourceTree = "<group>"; };
+		273042352A127CD400C8B9F9 /* CustomConcreteAddressConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomConcreteAddressConvertible.swift; sourceTree = "<group>"; };
+		273042362A127CD400C8B9F9 /* Address.Converter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.Converter.swift; sourceTree = "<group>"; };
+		273042372A127CD400C8B9F9 /* ConcreteAddress.StringRepresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcreteAddress.StringRepresentation.swift; sourceTree = "<group>"; };
+		273042382A127CD400C8B9F9 /* ConcreteAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcreteAddress.swift; sourceTree = "<group>"; };
+		2730423A2A127CD500C8B9F9 /* GlossyTONWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossyTONWrapper.swift; sourceTree = "<group>"; };
+		2730423C2A127CD500C8B9F9 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		2730423D2A127CD600C8B9F9 /* SwiftyTON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyTON.swift; sourceTree = "<group>"; };
+		2730423F2A127CD600C8B9F9 /* BOC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BOC.swift; sourceTree = "<group>"; };
+		273042422A127CD700C8B9F9 /* AnnouncementConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementConfiguration.swift; sourceTree = "<group>"; };
+		273042432A127CD700C8B9F9 /* AnnouncementSynchronization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementSynchronization.swift; sourceTree = "<group>"; };
+		273042442A127CD700C8B9F9 /* AnnouncementCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementCenter.swift; sourceTree = "<group>"; };
+		273042452A127CD700C8B9F9 /* Announcement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Announcement.swift; sourceTree = "<group>"; };
+		273042482A127CD700C8B9F9 /* testnet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testnet; sourceTree = "<group>"; };
+		273042492A127CD700C8B9F9 /* mainnet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mainnet; sourceTree = "<group>"; };
+		2730424B2A127CD800C8B9F9 /* Configuration.Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.Logging.swift; sourceTree = "<group>"; };
+		2730424C2A127CD800C8B9F9 /* Configuration.Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.Network.swift; sourceTree = "<group>"; };
+		2730424D2A127CD800C8B9F9 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		2730424F2A127CD800C8B9F9 /* Key.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		273041EA2A127CB600C8B9F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		273041E32A127CB600C8B9F9 = {
+			isa = PBXGroup;
+			children = (
+				273041EF2A127CB600C8B9F9 /* SwiftyTON */,
+				273041EE2A127CB600C8B9F9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		273041EE2A127CB600C8B9F9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				273041ED2A127CB600C8B9F9 /* SwiftyTON.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		273041EF2A127CB600C8B9F9 /* SwiftyTON */ = {
+			isa = PBXGroup;
+			children = (
+				273041F72A127CC300C8B9F9 /* Sources */,
+				273041F02A127CB600C8B9F9 /* SwiftyTON.h */,
+			);
+			path = SwiftyTON;
+			sourceTree = "<group>";
+		};
+		273041F72A127CC300C8B9F9 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				273042302A127CD400C8B9F9 /* Address */,
+				273042402A127CD700C8B9F9 /* AnnouncementCenter */,
+				2730423E2A127CD600C8B9F9 /* BOC */,
+				2730424A2A127CD800C8B9F9 /* Configuration */,
+				273042222A127CD300C8B9F9 /* Contract */,
+				2730421A2A127CD200C8B9F9 /* Currency */,
+				273042282A127CD400C8B9F9 /* Errors */,
+				273041F82A127CD100C8B9F9 /* Extensions */,
+				273042392A127CD500C8B9F9 /* GlossyTONWrapper */,
+				2730424E2A127CD800C8B9F9 /* Key */,
+				2730423B2A127CD500C8B9F9 /* Message */,
+				273042462A127CD700C8B9F9 /* Resources */,
+				273042022A127CD200C8B9F9 /* SMC */,
+				2730423D2A127CD600C8B9F9 /* SwiftyTON.swift */,
+				2730421D2A127CD300C8B9F9 /* Transaction */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		273041F82A127CD100C8B9F9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				273041F92A127CD100C8B9F9 /* Date.swift */,
+				273041FA2A127CD100C8B9F9 /* ContiguousBytes.swift */,
+				273041FB2A127CD100C8B9F9 /* Data.swift */,
+				273041FC2A127CD100C8B9F9 /* Functions.swift */,
+				273041FD2A127CD100C8B9F9 /* BytesConvertible.swift */,
+				273041FE2A127CD100C8B9F9 /* URLSession.swift */,
+				273041FF2A127CD100C8B9F9 /* NSRegularExpression.swift */,
+				273042002A127CD100C8B9F9 /* String.swift */,
+				273042012A127CD100C8B9F9 /* CheckedContinuation.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		273042022A127CD200C8B9F9 /* SMC */ = {
+			isa = PBXGroup;
+			children = (
+				273042032A127CD200C8B9F9 /* Jettons */,
+				2730420B2A127CD200C8B9F9 /* Wallets */,
+			);
+			path = SMC;
+			sourceTree = "<group>";
+		};
+		273042032A127CD200C8B9F9 /* Jettons */ = {
+			isa = PBXGroup;
+			children = (
+				273042042A127CD200C8B9F9 /* Jetton1 */,
+				273042072A127CD200C8B9F9 /* JettonWallet.swift */,
+				273042082A127CD200C8B9F9 /* JettonMinter.swift */,
+				273042092A127CD200C8B9F9 /* JettonWallet.Convenience.swift */,
+				2730420A2A127CD200C8B9F9 /* JettonMinter.Convenience.swift */,
+			);
+			path = Jettons;
+			sourceTree = "<group>";
+		};
+		273042042A127CD200C8B9F9 /* Jetton1 */ = {
+			isa = PBXGroup;
+			children = (
+				273042052A127CD200C8B9F9 /* JettonWallet1.swift */,
+				273042062A127CD200C8B9F9 /* JettonMinter1.swift */,
+			);
+			path = Jetton1;
+			sourceTree = "<group>";
+		};
+		2730420B2A127CD200C8B9F9 /* Wallets */ = {
+			isa = PBXGroup;
+			children = (
+				2730420C2A127CD200C8B9F9 /* Wallet2 */,
+				2730420F2A127CD200C8B9F9 /* AnyWallet.swift */,
+				273042102A127CD200C8B9F9 /* Wallet4 */,
+				273042142A127CD200C8B9F9 /* Wallet3 */,
+				273042182A127CD200C8B9F9 /* Wallet.Convenience.swift */,
+				273042192A127CD200C8B9F9 /* Wallet.swift */,
+			);
+			path = Wallets;
+			sourceTree = "<group>";
+		};
+		2730420C2A127CD200C8B9F9 /* Wallet2 */ = {
+			isa = PBXGroup;
+			children = (
+				2730420D2A127CD200C8B9F9 /* Wallet2.swift */,
+				2730420E2A127CD200C8B9F9 /* Wallet2.Revision.swift */,
+			);
+			path = Wallet2;
+			sourceTree = "<group>";
+		};
+		273042102A127CD200C8B9F9 /* Wallet4 */ = {
+			isa = PBXGroup;
+			children = (
+				273042112A127CD200C8B9F9 /* Wallet4.swift */,
+				273042122A127CD200C8B9F9 /* Wallet4.Revision.swift */,
+				273042132A127CD200C8B9F9 /* Wallet4.SubwalletID.swift */,
+			);
+			path = Wallet4;
+			sourceTree = "<group>";
+		};
+		273042142A127CD200C8B9F9 /* Wallet3 */ = {
+			isa = PBXGroup;
+			children = (
+				273042152A127CD200C8B9F9 /* Wallet3.swift */,
+				273042162A127CD200C8B9F9 /* Wallet3.SubwalletID.swift */,
+				273042172A127CD200C8B9F9 /* Wallet3.Revision.swift */,
+			);
+			path = Wallet3;
+			sourceTree = "<group>";
+		};
+		2730421A2A127CD200C8B9F9 /* Currency */ = {
+			isa = PBXGroup;
+			children = (
+				2730421B2A127CD200C8B9F9 /* CurrencyFormatter.swift */,
+				2730421C2A127CD200C8B9F9 /* Currency.swift */,
+			);
+			path = Currency;
+			sourceTree = "<group>";
+		};
+		2730421D2A127CD300C8B9F9 /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+				2730421E2A127CD300C8B9F9 /* Transaction.ID.swift */,
+				2730421F2A127CD300C8B9F9 /* Transaction.Message.swift */,
+				273042202A127CD300C8B9F9 /* Transaction.Message.Content.swift */,
+				273042212A127CD300C8B9F9 /* Transaction.swift */,
+			);
+			path = Transaction;
+			sourceTree = "<group>";
+		};
+		273042222A127CD300C8B9F9 /* Contract */ = {
+			isa = PBXGroup;
+			children = (
+				273042232A127CD300C8B9F9 /* Contract.InitialCondition.swift */,
+				273042242A127CD300C8B9F9 /* Contract.Info.swift */,
+				273042252A127CD300C8B9F9 /* Contract.swift */,
+				273042262A127CD300C8B9F9 /* Contract.ExecutionResult.swift */,
+				273042272A127CD300C8B9F9 /* Contract.Kind.swift */,
+			);
+			path = Contract;
+			sourceTree = "<group>";
+		};
+		273042282A127CD400C8B9F9 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				273042292A127CD400C8B9F9 /* UndefinedError.swift */,
+				2730422A2A127CD400C8B9F9 /* MessageError.swift */,
+				2730422B2A127CD400C8B9F9 /* RetryableError.swift */,
+				2730422C2A127CD400C8B9F9 /* LiteserverError.swift */,
+				2730422D2A127CD400C8B9F9 /* ContractError.swift */,
+				2730422E2A127CD400C8B9F9 /* KeyError.swift */,
+				2730422F2A127CD400C8B9F9 /* AddressError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		273042302A127CD400C8B9F9 /* Address */ = {
+			isa = PBXGroup;
+			children = (
+				273042312A127CD400C8B9F9 /* Address.swift */,
+				273042322A127CD400C8B9F9 /* DNSAddress.swift */,
+				273042332A127CD400C8B9F9 /* ConcreteAddress.Flags.swift */,
+				273042342A127CD400C8B9F9 /* DisplayableAddress.swift */,
+				273042352A127CD400C8B9F9 /* CustomConcreteAddressConvertible.swift */,
+				273042362A127CD400C8B9F9 /* Address.Converter.swift */,
+				273042372A127CD400C8B9F9 /* ConcreteAddress.StringRepresentation.swift */,
+				273042382A127CD400C8B9F9 /* ConcreteAddress.swift */,
+			);
+			path = Address;
+			sourceTree = "<group>";
+		};
+		273042392A127CD500C8B9F9 /* GlossyTONWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				2730423A2A127CD500C8B9F9 /* GlossyTONWrapper.swift */,
+			);
+			path = GlossyTONWrapper;
+			sourceTree = "<group>";
+		};
+		2730423B2A127CD500C8B9F9 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				2730423C2A127CD500C8B9F9 /* Message.swift */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		2730423E2A127CD600C8B9F9 /* BOC */ = {
+			isa = PBXGroup;
+			children = (
+				2730423F2A127CD600C8B9F9 /* BOC.swift */,
+			);
+			path = BOC;
+			sourceTree = "<group>";
+		};
+		273042402A127CD700C8B9F9 /* AnnouncementCenter */ = {
+			isa = PBXGroup;
+			children = (
+				273042412A127CD700C8B9F9 /* Announcements */,
+				273042442A127CD700C8B9F9 /* AnnouncementCenter.swift */,
+				273042452A127CD700C8B9F9 /* Announcement.swift */,
+			);
+			path = AnnouncementCenter;
+			sourceTree = "<group>";
+		};
+		273042412A127CD700C8B9F9 /* Announcements */ = {
+			isa = PBXGroup;
+			children = (
+				273042422A127CD700C8B9F9 /* AnnouncementConfiguration.swift */,
+				273042432A127CD700C8B9F9 /* AnnouncementSynchronization.swift */,
+			);
+			path = Announcements;
+			sourceTree = "<group>";
+		};
+		273042462A127CD700C8B9F9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				273042472A127CD700C8B9F9 /* Configurations */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		273042472A127CD700C8B9F9 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				273042482A127CD700C8B9F9 /* testnet */,
+				273042492A127CD700C8B9F9 /* mainnet */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
+		2730424A2A127CD800C8B9F9 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				2730424B2A127CD800C8B9F9 /* Configuration.Logging.swift */,
+				2730424C2A127CD800C8B9F9 /* Configuration.Network.swift */,
+				2730424D2A127CD800C8B9F9 /* Configuration.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		2730424E2A127CD800C8B9F9 /* Key */ = {
+			isa = PBXGroup;
+			children = (
+				2730424F2A127CD800C8B9F9 /* Key.swift */,
+			);
+			path = Key;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		273041E82A127CB600C8B9F9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				273041F12A127CB600C8B9F9 /* SwiftyTON.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		273041EC2A127CB600C8B9F9 /* SwiftyTON */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 273041F42A127CB600C8B9F9 /* Build configuration list for PBXNativeTarget "SwiftyTON" */;
+			buildPhases = (
+				273041E82A127CB600C8B9F9 /* Headers */,
+				273041E92A127CB600C8B9F9 /* Sources */,
+				273041EA2A127CB600C8B9F9 /* Frameworks */,
+				273041EB2A127CB600C8B9F9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftyTON;
+			productName = SwiftyTON;
+			productReference = 273041ED2A127CB600C8B9F9 /* SwiftyTON.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		273041E42A127CB600C8B9F9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					273041EC2A127CB600C8B9F9 = {
+						CreatedOnToolsVersion = 14.3;
+						LastSwiftMigration = 1430;
+					};
+				};
+			};
+			buildConfigurationList = 273041E72A127CB600C8B9F9 /* Build configuration list for PBXProject "SwiftyTON" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 273041E32A127CB600C8B9F9;
+			productRefGroup = 273041EE2A127CB600C8B9F9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				273041EC2A127CB600C8B9F9 /* SwiftyTON */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		273041EB2A127CB600C8B9F9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2730428C2A127CD900C8B9F9 /* testnet in Resources */,
+				2730428D2A127CD900C8B9F9 /* mainnet in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		273041E92A127CB600C8B9F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				273042882A127CD900C8B9F9 /* AnnouncementConfiguration.swift in Sources */,
+				273042692A127CD900C8B9F9 /* Wallet.swift in Sources */,
+				273042652A127CD900C8B9F9 /* Wallet3.swift in Sources */,
+				2730425C2A127CD900C8B9F9 /* JettonMinter.swift in Sources */,
+				273042752A127CD900C8B9F9 /* UndefinedError.swift in Sources */,
+				2730426C2A127CD900C8B9F9 /* Transaction.ID.swift in Sources */,
+				273042712A127CD900C8B9F9 /* Contract.Info.swift in Sources */,
+				273042842A127CD900C8B9F9 /* GlossyTONWrapper.swift in Sources */,
+				273042802A127CD900C8B9F9 /* CustomConcreteAddressConvertible.swift in Sources */,
+				273042642A127CD900C8B9F9 /* Wallet4.SubwalletID.swift in Sources */,
+				273042502A127CD900C8B9F9 /* Date.swift in Sources */,
+				273042542A127CD900C8B9F9 /* BytesConvertible.swift in Sources */,
+				273042812A127CD900C8B9F9 /* Address.Converter.swift in Sources */,
+				273042912A127CD900C8B9F9 /* Key.swift in Sources */,
+				2730427C2A127CD900C8B9F9 /* Address.swift in Sources */,
+				2730428F2A127CD900C8B9F9 /* Configuration.Network.swift in Sources */,
+				273042702A127CD900C8B9F9 /* Contract.InitialCondition.swift in Sources */,
+				273042892A127CD900C8B9F9 /* AnnouncementSynchronization.swift in Sources */,
+				2730427E2A127CD900C8B9F9 /* ConcreteAddress.Flags.swift in Sources */,
+				273042742A127CD900C8B9F9 /* Contract.Kind.swift in Sources */,
+				273042872A127CD900C8B9F9 /* BOC.swift in Sources */,
+				273042612A127CD900C8B9F9 /* AnyWallet.swift in Sources */,
+				273042622A127CD900C8B9F9 /* Wallet4.swift in Sources */,
+				2730427B2A127CD900C8B9F9 /* AddressError.swift in Sources */,
+				273042762A127CD900C8B9F9 /* MessageError.swift in Sources */,
+				273042682A127CD900C8B9F9 /* Wallet.Convenience.swift in Sources */,
+				273042852A127CD900C8B9F9 /* Message.swift in Sources */,
+				2730425F2A127CD900C8B9F9 /* Wallet2.swift in Sources */,
+				2730427F2A127CD900C8B9F9 /* DisplayableAddress.swift in Sources */,
+				2730425D2A127CD900C8B9F9 /* JettonWallet.Convenience.swift in Sources */,
+				273042552A127CD900C8B9F9 /* URLSession.swift in Sources */,
+				273042902A127CD900C8B9F9 /* Configuration.swift in Sources */,
+				2730426B2A127CD900C8B9F9 /* Currency.swift in Sources */,
+				273042832A127CD900C8B9F9 /* ConcreteAddress.swift in Sources */,
+				273042562A127CD900C8B9F9 /* NSRegularExpression.swift in Sources */,
+				273042602A127CD900C8B9F9 /* Wallet2.Revision.swift in Sources */,
+				273042592A127CD900C8B9F9 /* JettonWallet1.swift in Sources */,
+				273042632A127CD900C8B9F9 /* Wallet4.Revision.swift in Sources */,
+				2730426F2A127CD900C8B9F9 /* Transaction.swift in Sources */,
+				2730427A2A127CD900C8B9F9 /* KeyError.swift in Sources */,
+				2730425E2A127CD900C8B9F9 /* JettonMinter.Convenience.swift in Sources */,
+				273042522A127CD900C8B9F9 /* Data.swift in Sources */,
+				273042792A127CD900C8B9F9 /* ContractError.swift in Sources */,
+				273042512A127CD900C8B9F9 /* ContiguousBytes.swift in Sources */,
+				2730428A2A127CD900C8B9F9 /* AnnouncementCenter.swift in Sources */,
+				273042732A127CD900C8B9F9 /* Contract.ExecutionResult.swift in Sources */,
+				273042572A127CD900C8B9F9 /* String.swift in Sources */,
+				273042822A127CD900C8B9F9 /* ConcreteAddress.StringRepresentation.swift in Sources */,
+				273042672A127CD900C8B9F9 /* Wallet3.Revision.swift in Sources */,
+				2730425A2A127CD900C8B9F9 /* JettonMinter1.swift in Sources */,
+				273042782A127CD900C8B9F9 /* LiteserverError.swift in Sources */,
+				2730428B2A127CD900C8B9F9 /* Announcement.swift in Sources */,
+				273042582A127CD900C8B9F9 /* CheckedContinuation.swift in Sources */,
+				2730426D2A127CD900C8B9F9 /* Transaction.Message.swift in Sources */,
+				273042662A127CD900C8B9F9 /* Wallet3.SubwalletID.swift in Sources */,
+				2730428E2A127CD900C8B9F9 /* Configuration.Logging.swift in Sources */,
+				2730426E2A127CD900C8B9F9 /* Transaction.Message.Content.swift in Sources */,
+				2730427D2A127CD900C8B9F9 /* DNSAddress.swift in Sources */,
+				273042772A127CD900C8B9F9 /* RetryableError.swift in Sources */,
+				273042862A127CD900C8B9F9 /* SwiftyTON.swift in Sources */,
+				2730425B2A127CD900C8B9F9 /* JettonWallet.swift in Sources */,
+				2730426A2A127CD900C8B9F9 /* CurrencyFormatter.swift in Sources */,
+				273042722A127CD900C8B9F9 /* Contract.swift in Sources */,
+				273042532A127CD900C8B9F9 /* Functions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		273041F22A127CB600C8B9F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		273041F32A127CB600C8B9F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		273041F52A127CB600C8B9F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = sinakh.ton.wallet.SwiftyTON;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		273041F62A127CB600C8B9F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = sinakh.ton.wallet.SwiftyTON;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		273041E72A127CB600C8B9F9 /* Build configuration list for PBXProject "SwiftyTON" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				273041F22A127CB600C8B9F9 /* Debug */,
+				273041F32A127CB600C8B9F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		273041F42A127CB600C8B9F9 /* Build configuration list for PBXNativeTarget "SwiftyTON" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				273041F52A127CB600C8B9F9 /* Debug */,
+				273041F62A127CB600C8B9F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 273041E42A127CB600C8B9F9 /* Project object */;
+}

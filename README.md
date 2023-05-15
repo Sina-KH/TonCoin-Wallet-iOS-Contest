@@ -11,13 +11,15 @@ is backward compatible and almost reused. Only a few changes applied to support 
 :white_check_mark: **Updated tonlib:** The application is now using the latest version of the [
 ADNL TonLib Repository](https://github.com/ton-blockchain/ton) (2023.03, because 2023.04 was leading to crash on parsing list of transactions).
 
+:white_check_mark: **Only ADNL is being used:** All the communications to TON Blockchain is through ADNL and `tonlib`. The main wrapper that connects the app to the network, is `TonBinding`, just like the original app, plus some modifications to make it support new features.
+
+Other modules like `SwiftyTON` `TON3` and `SwiftyJS` in the project are responsible for local logics like providing wallet initial state that can be ported into our main codebase. GlossyTON is removed from these modules and they has nothing to do with the server. *We can consider switching to SwiftyTON, but for now, I just stick with the original TONBinding implementation of tonlib to prevent any possible issues.*
+
 :white_check_mark: **TON Connect 2 Support** as documented in [Ton-Connect Repository](https://github.com/ton-blockchain/ton-connect). `Bridge` and `Session Protocol` are implemented. `tc://` is available as unified deeplink of the ton connect. `Universal Link` is also support and can be set after deploying the `Bridge instance`.
 
 :white_check_mark: **Wallet Balance** is also shown for the `selected currency` when home screen's header is scrolled and collapsed, like the design. (using [tonapi.io](https://tonapi.io))
 
-:white_check_mark: `iOS 12.2+` support.
-
-:white_check_mark: Supports all the iOS-devices starting from `iPhone 5s` and `4" display size`.
+:white_check_mark: `iOS 13.0+` support. (If I remove async/await and actor codes used in SwiftyTON, TON3 and SwiftyJS modules, or even remove these modules from the porject, We can even support iOS 12.2+ with the same app size. No other os dependent features limited to iOS 13+ is used in the application.)
 
 :white_check_mark: App size (the final universal `.ipa file`) is **around 6 megabytes**.
 

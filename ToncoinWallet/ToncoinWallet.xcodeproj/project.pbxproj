@@ -17,6 +17,19 @@
 		2719624229F1E0F200B5B59F /* Success.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 2719623829F1E01E00B5B59F /* Success.tgs */; };
 		2719624329F1E0F200B5B59F /* Test Time.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 2719623929F1E01F00B5B59F /* Test Time.tgs */; };
 		2719624429F1E0F200B5B59F /* Waiting TON.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 2719623529F1E01C00B5B59F /* Waiting TON.tgs */; };
+		2730412E2A12663E00C8B9F9 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2730412D2A12663E00C8B9F9 /* CryptoSwift.framework */; };
+		2730412F2A12663E00C8B9F9 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2730412D2A12663E00C8B9F9 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		273041582A126DB200C8B9F9 /* TON3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273041572A126DB200C8B9F9 /* TON3.framework */; };
+		273041592A126DB200C8B9F9 /* TON3.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 273041572A126DB200C8B9F9 /* TON3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2730418C2A126F8500C8B9F9 /* BigInt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2730418B2A126F8500C8B9F9 /* BigInt.framework */; };
+		2730418D2A126F8500C8B9F9 /* BigInt.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2730418B2A126F8500C8B9F9 /* BigInt.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		273041B52A12701B00C8B9F9 /* SwiftyJS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273041B42A12701B00C8B9F9 /* SwiftyJS.framework */; };
+		273041B62A12701B00C8B9F9 /* SwiftyJS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 273041B42A12701B00C8B9F9 /* SwiftyJS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		273041DD2A127B3D00C8B9F9 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273041DC2A127B3D00C8B9F9 /* CryptoSwift.framework */; };
+		273041DE2A127B3D00C8B9F9 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 273041DC2A127B3D00C8B9F9 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		273042932A127CE000C8B9F9 /* SwiftyTON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273042922A127CE000C8B9F9 /* SwiftyTON.framework */; };
+		273042942A127CE000C8B9F9 /* SwiftyTON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 273042922A127CE000C8B9F9 /* SwiftyTON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		273042962A1287C100C8B9F9 /* ton3-core.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 273042952A1287C100C8B9F9 /* ton3-core.bundle */; };
 		273521F829E9847A007C4E96 /* WalletContext.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273521F729E9847A007C4E96 /* WalletContext.framework */; };
 		273521F929E9847A007C4E96 /* WalletContext.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 273521F729E9847A007C4E96 /* WalletContext.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		273F47492A09B4EA000C5263 /* UITonConnect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273F47482A09B4EA000C5263 /* UITonConnect.framework */; };
@@ -100,11 +113,15 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				2730412F2A12663E00C8B9F9 /* CryptoSwift.framework in Embed Frameworks */,
 				2786FB4729E8641D0023FE21 /* NumberPluralizationForm.framework in Embed Frameworks */,
 				27764E4C29F135F600A45DAF /* UIWalletHome.framework in Embed Frameworks */,
+				273041DE2A127B3D00C8B9F9 /* CryptoSwift.framework in Embed Frameworks */,
 				275EC64229E857D300EE8B66 /* RLottieBinding.framework in Embed Frameworks */,
 				274080AC2A0C4F570098838D /* Bridge.framework in Embed Frameworks */,
 				2749346629F5D60A009976B5 /* UIWalletSend.framework in Embed Frameworks */,
+				273041592A126DB200C8B9F9 /* TON3.framework in Embed Frameworks */,
+				273042942A127CE000C8B9F9 /* SwiftyTON.framework in Embed Frameworks */,
 				275C585F29E051B8002531AF /* SwiftSignalKit.framework in Embed Frameworks */,
 				274081842A0C577C0098838D /* Sodium.framework in Embed Frameworks */,
 				275EC63929E8562700EE8B66 /* UIComponents.framework in Embed Frameworks */,
@@ -115,11 +132,13 @@
 				2741A94F2A102C4A0075DC56 /* UIQRScan.framework in Embed Frameworks */,
 				275EC63729E855A100EE8B66 /* SSignalKit.framework in Embed Frameworks */,
 				275EC63F29E857BC00EE8B66 /* YuvConversion.framework in Embed Frameworks */,
+				273041B62A12701B00C8B9F9 /* SwiftyJS.framework in Embed Frameworks */,
 				273521F929E9847A007C4E96 /* WalletContext.framework in Embed Frameworks */,
 				27DB29CD29EC6A6200988800 /* BuildConfig.framework in Embed Frameworks */,
 				273F474A2A09B4EA000C5263 /* UITonConnect.framework in Embed Frameworks */,
 				275EC63429E8541E00EE8B66 /* TonBinding.framework in Embed Frameworks */,
 				275C586129E051BA002531AF /* WalletUrl.framework in Embed Frameworks */,
+				2730418D2A126F8500C8B9F9 /* BigInt.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,6 +156,13 @@
 		2719623929F1E01F00B5B59F /* Test Time.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Test Time.tgs"; sourceTree = "<group>"; };
 		2719623A29F1E02000B5B59F /* Loading.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = Loading.tgs; sourceTree = "<group>"; };
 		2719623B29F1E02100B5B59F /* Main.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = Main.tgs; sourceTree = "<group>"; };
+		2730412D2A12663E00C8B9F9 /* CryptoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		273041572A126DB200C8B9F9 /* TON3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TON3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2730418B2A126F8500C8B9F9 /* BigInt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BigInt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		273041B42A12701B00C8B9F9 /* SwiftyJS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		273041DC2A127B3D00C8B9F9 /* CryptoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		273042922A127CE000C8B9F9 /* SwiftyTON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyTON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		273042952A1287C100C8B9F9 /* ton3-core.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = "ton3-core.bundle"; sourceTree = "<group>"; };
 		273521F729E9847A007C4E96 /* WalletContext.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletContext.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		273F47482A09B4EA000C5263 /* UITonConnect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UITonConnect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		274080AA2A0C4F570098838D /* Bridge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bridge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +217,8 @@
 				275EC64129E857D300EE8B66 /* RLottieBinding.framework in Frameworks */,
 				275C585C29E051B6002531AF /* WalletCore.framework in Frameworks */,
 				2749346229F5D34E009976B5 /* UIWalletHome.framework in Frameworks */,
+				273041582A126DB200C8B9F9 /* TON3.framework in Frameworks */,
+				273041DD2A127B3D00C8B9F9 /* CryptoSwift.framework in Frameworks */,
 				275EC63829E8562700EE8B66 /* UIComponents.framework in Frameworks */,
 				27A1280929E0402C002D030A /* UICreateWallet.framework in Frameworks */,
 				275C585E29E051B8002531AF /* SwiftSignalKit.framework in Frameworks */,
@@ -200,11 +228,15 @@
 				275EC63629E855A100EE8B66 /* SSignalKit.framework in Frameworks */,
 				275EC63E29E857BC00EE8B66 /* YuvConversion.framework in Frameworks */,
 				2749346529F5D60A009976B5 /* UIWalletSend.framework in Frameworks */,
+				2730412E2A12663E00C8B9F9 /* CryptoSwift.framework in Frameworks */,
+				2730418C2A126F8500C8B9F9 /* BigInt.framework in Frameworks */,
 				274080AB2A0C4F570098838D /* Bridge.framework in Frameworks */,
 				273521F829E9847A007C4E96 /* WalletContext.framework in Frameworks */,
 				2741A94E2A102C4A0075DC56 /* UIQRScan.framework in Frameworks */,
 				27DB29CC29EC6A6200988800 /* BuildConfig.framework in Frameworks */,
 				275EC63329E8541E00EE8B66 /* TonBinding.framework in Frameworks */,
+				273041B52A12701B00C8B9F9 /* SwiftyJS.framework in Frameworks */,
+				273042932A127CE000C8B9F9 /* SwiftyTON.framework in Frameworks */,
 				274081832A0C577C0098838D /* Sodium.framework in Frameworks */,
 				275C586029E051BA002531AF /* WalletUrl.framework in Frameworks */,
 				273F47492A09B4EA000C5263 /* UITonConnect.framework in Frameworks */,
@@ -231,6 +263,7 @@
 		273A60BB29E0351A007CA6F0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				273042952A1287C100C8B9F9 /* ton3-core.bundle */,
 				27BB29AB29E8CA0C009F5DD7 /* Strings */,
 				273A60BC29E03520007CA6F0 /* Animations */,
 			);
@@ -309,6 +342,12 @@
 		274D3F2B29D62BF3007C47AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				273042922A127CE000C8B9F9 /* SwiftyTON.framework */,
+				273041DC2A127B3D00C8B9F9 /* CryptoSwift.framework */,
+				273041B42A12701B00C8B9F9 /* SwiftyJS.framework */,
+				2730418B2A126F8500C8B9F9 /* BigInt.framework */,
+				273041572A126DB200C8B9F9 /* TON3.framework */,
+				2730412D2A12663E00C8B9F9 /* CryptoSwift.framework */,
 				2741A94D2A102C4A0075DC56 /* UIQRScan.framework */,
 				274081822A0C577C0098838D /* Sodium.framework */,
 				274080AA2A0C4F570098838D /* Bridge.framework */,
@@ -489,6 +528,7 @@
 				2719623C29F1E0F200B5B59F /* Congratulations.tgs in Resources */,
 				2719623D29F1E0F200B5B59F /* Created.tgs in Resources */,
 				2719623E29F1E0F200B5B59F /* Loading.tgs in Resources */,
+				273042962A1287C100C8B9F9 /* ton3-core.bundle in Resources */,
 				2719623F29F1E0F200B5B59F /* Main.tgs in Resources */,
 				2719624029F1E0F200B5B59F /* Recovery Phrase.tgs in Resources */,
 				2719624129F1E0F200B5B59F /* Start.tgs in Resources */,
@@ -722,7 +762,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -757,7 +797,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

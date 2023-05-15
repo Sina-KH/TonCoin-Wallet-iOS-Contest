@@ -38,10 +38,25 @@
       location = "group:SubModules/TonBinding/TonBinding.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:SubModules/SwiftyTON/SwiftyTON.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SubModules/TON3/TON3.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SubModules/SwiftyJS/SwiftyJS.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SubModules/BigInt/BigInt.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:SubModules/Bridge/Bridge.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:SubModules/Sodium/Sodium.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SubModules/CryptoSwift/CryptoSwift.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:SubModules/BuildConfig/BuildConfig.xcodeproj">

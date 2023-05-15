@@ -208,33 +208,18 @@ public class SendVC: WViewController {
     }
     
     @objc func continuePressed() {
-        let address = addressField.text ?? ""
-        let isValid = isValidAddress(address, exactLength: true)
-        if isValid {
-            navigateToSendVC(address: address)
-            return
-        }
-        let isDNS = address.lowercased().hasSuffix(".ton")
-        if isDNS {
-            _ = (resolveDNSAddress(tonInstance: walletContext.tonInstance, address: address)
-            |> deliverOnMainQueue).start(next: { [weak self] resolvedAddress in
-                guard let self else {
-                    return
-                }
-                if isValidAddress(resolvedAddress, exactLength: true) {
-                    navigateToSendVC(address: resolvedAddress)
-                } else {
-                    showWrongAddressToast()
-                }
-            }, error: { [weak self] error in
-                guard let self else {
-                    return
-                }
+        let address = addressField.text.lowercased()
+        ContextAddressHelpers.toBase64Address(unknownAddress: address,
+                                              walletContext: walletContext) { [weak self] base64Address in
+            guard let self else {
+                return
+            }
+            guard let base64Address else {
                 showWrongAddressToast()
-            })
-            return
+                return
+            }
+            navigateToSendVC(address: base64Address)
         }
-        showWrongAddressToast()
     }
     
     func navigateToSendVC(address: String) {
