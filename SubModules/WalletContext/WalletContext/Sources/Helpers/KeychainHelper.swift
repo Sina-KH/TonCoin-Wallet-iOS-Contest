@@ -10,6 +10,19 @@ import Security
 
 public struct KeychainHelper {
 
+    // MARK: - Wallet Version
+    private static let walletVersionKey = "walletVersion"
+    public static func save(walletVersion: Int?) {
+        guard let walletVersion else {
+            KeychainHelper.save(nil, forKey: walletVersionKey)
+            return
+        }
+        KeychainHelper.save("\(walletVersion)", forKey: walletVersionKey)
+    }
+    public static func walletVersion() -> Int? {
+        Int(KeychainHelper.load(withKey: KeychainHelper.walletVersionKey) ?? "")
+    }
+    
     // MARK: - Passcode
     private static let passcodeKey = "passcode"
     public static func save(passcode: String?) {
@@ -42,6 +55,7 @@ public struct KeychainHelper {
 
     // MARK: - Delete Wallet
     public static func deleteWallet() {
+        KeychainHelper.save(walletVersion: nil)
         KeychainHelper.save(passcode: nil)
         KeychainHelper.save(biometric: nil)
         for walletVersion in [31, 32, 42] {

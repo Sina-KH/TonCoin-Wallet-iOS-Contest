@@ -236,11 +236,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSData * __nullable)decrypt:(NSData *)encryptedData secret:(NSData *)data;
 
 // MARK: - NEW METHODS IN THIS VERSION
-//
+
 - (SSignal *)resolvedDNSWithRootDNSAccountAddress:(NSString * _Nullable)rootDNSAccountAddress
                                        domainName:(NSString *)domainName
                                          category:(NSString *)category
                                               ttl:(int32_t)ttl;
+
+- (SSignal *)accountAddressWithCode:(NSData *)code
+                               data:(NSData *)data
+                          workchain:(int32_t)workchain;
+
 @end
 
 NS_ASSUME_NONNULL_END

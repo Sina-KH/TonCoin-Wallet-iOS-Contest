@@ -3,31 +3,40 @@
 The `Toncoin Wallet` application re-written from the scratch, while 
 re-using the best of the exiting, original codebase.
 
+*Build instructions are available in this readme file, below features and notices sections.*
+
 ## :boom: Features
 
 :white_check_mark: **Backward-compatible:** All the `wallet storage logic` 
 is backward compatible and almost reused. Only a few changes applied to support new flows.
 
-:white_check_mark: **Updated tonlib:** The application is now using the latest version of the [
-ADNL TonLib Repository](https://github.com/ton-blockchain/ton) (2023.03, because 2023.04 was leading to crash on parsing list of transactions).
+:white_check_mark: **Support Ton Wallet v3R1, v3R2 and v3R3**: The application is now using the latest version of the [
+ADNL TonLib Repository](https://github.com/ton-blockchain/ton) (2023.03, because 2023.04 was leading to crash on parsing list of transactions). To support switching between wallet versions, the new address is created based on selected wallet version and all the tonlib function calls use the new address. **To support wallets created using ton keepper app, the subwallet id used in the new version is updated** to `698983191`, but a new option is available in the wallet version section, with name **Original App (v3R2)** that still uses `4085333890` subwallet id, and is selected by default. *We can consider using the original app's subwallet id only, or maybe changing default sub-wallet id for the new wallets to be sync with tonkeeper, or any other possible solution...*
+
+:white_check_mark: **TON Connect 2 Support** as documented in [Ton-Connect Repository](https://github.com/ton-blockchain/ton-connect). `Bridge` and `Session Protocol` are implemented. `tc://` is available as unified deeplink of the ton connect. `Universal Link` is also support and can be set after deploying the `Bridge instance`. **To test this feature, it's possible to use in-app qr scanner [here](https://ton-connect.github.io/demo-dapp/). It's using `TonKeeper Bridge` for development tests**
+
+:white_check_mark: **Wallet Balance (in USD, EUR and RUB)** is also shown for the `selected currency` when home screen's header is scrolled and collapsed, like the design. (using [tonapi.io](https://tonapi.io))
 
 :white_check_mark: **Only ADNL is being used:** All the communications to TON Blockchain is through ADNL and `tonlib`. The main wrapper that connects the app to the network, is `TonBinding`, just like the original app, plus some modifications to make it support new features.
 
 Other modules like `SwiftyTON` `TON3` and `SwiftyJS` in the project are responsible for local logics like providing wallet initial state that can be ported into our main codebase. GlossyTON is removed from these modules and they has nothing to do with the server. *We can consider switching to SwiftyTON, but for now, I just stick with the original TONBinding implementation of tonlib to prevent any possible issues.*
 
-:white_check_mark: **TON Connect 2 Support** as documented in [Ton-Connect Repository](https://github.com/ton-blockchain/ton-connect). `Bridge` and `Session Protocol` are implemented. `tc://` is available as unified deeplink of the ton connect. `Universal Link` is also support and can be set after deploying the `Bridge instance`. **To test this feature, it's possible to use in-app qr scanner [here](https://ton-connect.github.io/demo-dapp/). It's using `TonKeeper Bridge` for development tests**
+:white_check_mark: **DNS and raw addresses:** Both `DNS` and `Raw` addresses are supported.
 
-:white_check_mark: **Wallet Balance** is also shown for the `selected currency` when home screen's header is scrolled and collapsed, like the design. (using [tonapi.io](https://tonapi.io))
+:white_check_mark: **Deeplinks:** `ton` and `tc` app schemas are implemented.
 
 :white_check_mark: `iOS 13.0+` support. (If I remove async/await and actor codes used in SwiftyTON, TON3 and SwiftyJS modules, or even remove these modules from the porject, We can even support iOS 12.2+ with the same app size. No other os dependent features limited to iOS 13+ is used in the application.)
 
 :white_check_mark: App size (the final universal `.ipa file`) is **around 7 megabytes**.
 
-## :weary:  Known issues / Missing features / Notices
+## :exclamation:  Notices
 
-- [ ] **WIP Feature:** `Wallet versions logic` is not implemented yet, and the settings ui only shows the `v3R2` wallet version. I've tried to implement this feature inside the app using `tonlib` / `tonutils-go` / `tongo library` and `ton kotlin` but all of them had some issues that prevented me to add this feature in contest's limited time.
-- [ ] **Notice:** I've implemented lock screen, but because the original logic of the app uses keychain hardware encryption, so for lower-level access (accessing private key), like showing the recovery phrase or sending TON, the app still depends on the iOS unlock mechanism. *We can store the keys another way to prevent need to unlock using out custom `UnlockVC` instead of iOS unlock.*
-- [x] **Fixed:** If you change/remove passcode of the device, the app forces you to re-import or create a new wallet, but after that, on restarts, the app still shows the same error. This issue exists from the original application wallet record checks.
+- [ ] **PushNotifications:** Push Notification implementation should be done by developing a back-end server for the application.
+- [ ] **Bridge's exclusive instance:** Wallet's bridge instance should be deployed on the back-end, for now it uses ton keeper's wallet url.
+- [ ] **Wallet listings:** Wallet should be listed in the toncoin wallet listings.
+- [ ] **Lock:** I've implemented lock screen, but because the original logic of the app uses keychain hardware encryption, so for lower-level access (accessing private key), like showing the recovery phrase or sending TON, the app still depends on the iOS unlock mechanism. *We can store the keys another way to prevent need to unlock using out custom `UnlockVC` instead of iOS unlock, or even force migrate the srorage data on application update.*
+Auto-lock feature can be activated, easily, also!
+- [x] **Fixed:** If you change/remove passcode of the device, because of the keychain hardware encryption, the app forces you to re-import or create a new wallet, but after that, on restarts, the app still shows the same error. This issue exists from the original application wallet record checks.
 **Solution:** Fixed by using latest records from the storage to check wallet status! We can consider removing old records, also.
 
 ## :beers: How to Build
@@ -54,7 +63,7 @@ them inside the `TonBinding` project. (The final output will only contain
 required parts of the libs, btw.)
 
 1. Run `ToncoinWallet.xcworkspace` using Xcode, Select `Toncoin Wallet` target and the project should 
-build successfully both on simulator and real devices.
+build successfully both on simulator and real devices. If you've faced any build issues, it can be due to xcode's internal issues on first build, related to build race-conditions(!), just try again. :)
 
 ## :cat:  Technical Considerations
 

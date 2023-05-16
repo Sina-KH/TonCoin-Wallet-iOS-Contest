@@ -1374,6 +1374,8 @@ typedef enum {
     }] startOn:[SQueue mainQueue]] deliverOn:[SQueue mainQueue]];
 }
 
+// MARK: - NEW METHODS IN THIS VERSION
+
 - (SSignal *)resolvedDNSWithRootDNSAccountAddress:(NSString * _Nullable)rootDNSAccountAddress
                                        domainName:(NSString *)domainName
                                          category:(NSString *)category
@@ -1451,6 +1453,45 @@ typedef enum {
             makeString(domainNameData),
             td::Bits256(category_bytes),
             ttl
+        );
+        
+        self->_client->send({ requestId, std::move(query) });
+        
+        return [[SBlockDisposable alloc] initWithBlock:^{
+        }];
+    }] startOn:[SQueue mainQueue]] deliverOn:[SQueue mainQueue]];
+}
+
+- (SSignal *)accountAddressWithCode:(NSData *)code
+                               data:(NSData *)data
+                          workchain:(int32_t)workchain {
+    return [[[[SSignal alloc] initWithGenerator:^id<SDisposable>(SSubscriber *subscriber) {
+        
+        uint64_t requestId = self->_nextRequestId;
+        self->_nextRequestId += 1;
+        
+        self->_requestHandlers[@(requestId)] = [[TONRequestHandler alloc] initWithCompletion:^(tonlib_api::object_ptr<tonlib_api::Object> &object) {
+            if (object->get_id() == tonlib_api::error::ID) {
+                auto error = tonlib_api::move_object_as<tonlib_api::error>(object);
+                [subscriber putError:[[TONError alloc] initWithText:[[NSString alloc] initWithUTF8String:error->message_.c_str()]]];
+            } else if (object->get_id() == tonlib_api::accountAddress::ID) {
+                auto result = tonlib_api::move_object_as<tonlib_api::accountAddress>(object);
+                [subscriber putNext:[[NSString alloc] initWithUTF8String:result->account_address_.c_str()]];
+                [subscriber putCompletion];
+            } else {
+                assert(false);
+            }
+        }];
+        
+        tonlib_api::object_ptr<tonlib_api::InitialAccountState> initialAccountState = tonlib_api::move_object_as<tonlib_api::InitialAccountState>(make_object<tonlib_api::raw_initialAccountState>(
+            makeString(code),
+            makeString(data)
+        ));
+        
+        auto query = make_object<tonlib_api::getAccountAddress>(
+            tonlib_api::move_object_as<tonlib_api::InitialAccountState>(initialAccountState),
+            0, // revision is empty because we manually passed the initial data
+            workchain
         );
         
         self->_client->send({ requestId, std::move(query) });

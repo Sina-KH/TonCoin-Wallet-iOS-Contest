@@ -70,7 +70,7 @@ class PickerPopupView: UIView {
             itemsStackView.leftAnchor.constraint(equalTo: popupView.leftAnchor),
             itemsStackView.rightAnchor.constraint(equalTo: popupView.rightAnchor),
             itemsStackView.bottomAnchor.constraint(equalTo: popupView.bottomAnchor),
-            itemsStackView.widthAnchor.constraint(equalToConstant: 100)
+            itemsStackView.widthAnchor.constraint(equalToConstant: 200)
         ])
         itemsStackView.axis = .vertical
         for (i, item) in pickerView.items.enumerated() {

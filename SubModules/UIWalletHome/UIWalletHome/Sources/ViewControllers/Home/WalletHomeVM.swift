@@ -158,8 +158,8 @@ class WalletHomeVM {
                 var encryptedTransactions: [WalletTransactionId: WalletTransaction] = [:]
                 for entry in currentEntries {
                     switch entry {
-                    case .empty:
-                        break
+                    //case .empty:
+                    //    break
                     case let .transaction(_, transaction):
                         switch transaction {
                         case let .completed(transaction):
@@ -202,8 +202,8 @@ class WalletHomeVM {
                         var updatedEntries: [HomeListItemEntry] = []
                         for entry in currentEntries {
                             switch entry {
-                            case .empty:
-                                updatedEntries.append(entry)
+                            //case .empty:
+                            //    updatedEntries.append(entry)
                             case let .transaction(index, transaction):
                                 switch transaction {
                                 case .pending:
@@ -343,8 +343,8 @@ class WalletHomeVM {
                 case .pending:
                     break
                 }
-            case .empty:
-                break
+            //case .empty:
+            //    break
             }
         }
         let transactionDecryptionKey = self.transactionDecryptionKey
@@ -468,25 +468,25 @@ class WalletHomeVM {
                     updatedEntries.append(.transaction(updatedEntries.count, .completed(transaction)))
                 }
             }
-            if updatedEntries.isEmpty {
-                updatedEntries.append(.empty(self.walletInfo.address, isEmpty))
-            }
+            //if updatedEntries.isEmpty {
+            //    updatedEntries.append(.empty(self.walletInfo.address, isEmpty))
+            //}
         } else {
             updatedEntries = self.currentEntries ?? []
             updatedEntries = updatedEntries.filter { entry in
-                if case .empty = entry {
-                    return false
-                } else {
+                //if case .empty = entry {
+                //    return false
+                //} else {
                     return true
-                }
+                //}
             }
             var existingIds = Set<HomeListItemID>()
             for entry in updatedEntries {
                 switch entry {
                 case .transaction:
                     existingIds.insert(entry.stableId)
-                case .empty:
-                    break
+                //case .empty:
+                //    break
                 }
             }
             for transaction in transactions {
@@ -496,7 +496,7 @@ class WalletHomeVM {
                 }
             }
             if updatedEntries.isEmpty {
-                updatedEntries.append(.empty(self.walletInfo.address, false))
+                //updatedEntries.append(.empty(self.walletInfo.address, false))
             }
         }
         
@@ -512,8 +512,8 @@ class WalletHomeVM {
         transactions = []
         for entry in currentEntries ?? [] {
             switch entry {
-            case .empty(_, _):
-                break
+            //case .empty(_, _):
+            //    break
             case .transaction(_, let trn):
                 transactions?.append(trn)
                 break

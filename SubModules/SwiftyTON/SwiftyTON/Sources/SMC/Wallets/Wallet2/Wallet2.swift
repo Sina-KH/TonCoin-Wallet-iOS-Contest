@@ -36,20 +36,20 @@ public struct Wallet2: Wallet {
     }
     
     /// - returns: Initial data for wallet V2
-//    public static func initial(
-//        revision: Revision = .r2,
-//        deserializedPublicKey: Data
-//    ) async throws -> Contract.InitialCondition {
-//        let builder = try await TON3.Builder()
-//        await builder.store(UInt32(0)) // seqno
-//        await builder.store(deserializedPublicKey.bytes)
-//        
-//        let boc = try await builder.boc()
-//        return Contract.InitialCondition(
-//            kind: revision.kind,
-//            data: Data(hex: boc)
-//        )
-//    }
+    public static func initial(
+        revision: Revision = .r2,
+        deserializedPublicKey: Data
+    ) async throws -> Contract.InitialCondition {
+        let builder = try await TON3.Builder()
+        await builder.store(UInt32(0)) // seqno
+        await builder.store(deserializedPublicKey.bytes)
+        
+        let boc = try await builder.boc()
+        return Contract.InitialCondition(
+            kind: revision.kind,
+            data: Data(hex: boc)
+        )
+    }
 //    
 //    public func subsequentExternalMessage() async throws -> [UInt8] {
 //        let seqno = (try? await seqno) ?? 0

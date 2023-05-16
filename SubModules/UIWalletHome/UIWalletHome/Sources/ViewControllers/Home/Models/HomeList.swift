@@ -20,13 +20,13 @@ enum HomeListItemID: Hashable {
 }
 
 enum HomeListItemEntry: Equatable, Comparable, Identifiable {
-    case empty(String, Bool)
+    //case empty(String, Bool)
     case transaction(Int, HomeListTransaction)
     
     var stableId: HomeListItemID {
         switch self {
-        case .empty:
-            return .empty
+        //case .empty:
+        //    return .empty
         case let .transaction(_, transaction):
             switch transaction {
             case let .completed(completed):
@@ -39,17 +39,17 @@ enum HomeListItemEntry: Equatable, Comparable, Identifiable {
     
     static func <(lhs: HomeListItemEntry, rhs: HomeListItemEntry) -> Bool {
         switch lhs {
-        case .empty:
+        /*case .empty:
             switch rhs {
             case .empty:
                 return false
             case .transaction:
                 return true
-            }
+            }*/
         case let .transaction(lhsIndex, _):
             switch rhs {
-            case .empty:
-                return false
+            //case .empty:
+            //    return false
             case let .transaction(rhsIndex, _):
                 return lhsIndex < rhsIndex
             }

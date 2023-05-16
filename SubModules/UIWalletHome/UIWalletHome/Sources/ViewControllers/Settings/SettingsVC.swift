@@ -92,6 +92,7 @@ class SettingsVC: WViewController {
         addressPicker = addPickerItem(position: .middle,
                                       title: WStrings.Wallet_Settings_ActiveAddress.localized,
                                       items: [
+                                        PickerViewItem(id: -1, name: "Original App (v3R2)"), // uses subwallet id: 4085333890
                                         PickerViewItem(id: 31, name: "v3R1"),
                                         PickerViewItem(id: 32, name: "v3R2"),
                                         PickerViewItem(id: 42, name: "v4R2")
@@ -317,7 +318,22 @@ class SettingsVC: WViewController {
         addressPicker.pickerPressed()
     }
     @objc func onAddressChanged() {
-        // TODO::
+        let walletVersion = addressPicker.selectedID
+        let _ = (setWalletVersion(to: walletVersion,
+                                 tonInstance: walletContext.tonInstance,
+                                 walletInfo: walletInfo,
+                                 storage: walletContext.storage)
+        |> deliverOnMainQueue).start(error: { _ in
+            
+        }, completed: { [weak self] in
+            KeychainHelper.save(walletVersion: walletVersion)
+            guard let self else {
+                return
+            }
+            DispatchQueue.main.async {
+                self.walletContext.restartApp()
+            }
+        })
     }
     
     @objc func currencySelected(sender: Any) {
