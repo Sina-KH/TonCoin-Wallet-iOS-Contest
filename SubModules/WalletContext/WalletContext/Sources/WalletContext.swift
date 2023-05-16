@@ -34,7 +34,9 @@ public protocol WalletContext {
     
     func getServerSalt() -> Signal<Data, WalletContextGetServerSaltError>
     
-    func updateResolvedWalletConfiguration(configuration: LocalWalletConfiguration, source: LocalWalletConfigurationSource, resolvedConfig: String) -> Signal<Never, NoError>
+    func updateResolvedWalletConfiguration(configuration: LocalWalletConfiguration,
+                                           source: LocalWalletConfigurationSource,
+                                           resolvedConfig: String) -> Signal<Never, NoError>
     
     func presentNativeController(_ controller: UIViewController)
     
@@ -44,5 +46,6 @@ public protocol WalletContext {
     func authorizeAccessToCamera(completion: @escaping (_ granted: Bool) -> Void)
     func pickImage(completion: @escaping (UIImage) -> Void)
 
+    func setReadyWalletInfo(walletInfo: WalletInfo)
     func restartApp()
 }

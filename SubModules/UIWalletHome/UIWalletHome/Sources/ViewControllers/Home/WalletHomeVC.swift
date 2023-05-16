@@ -46,9 +46,6 @@ public class WalletHomeVC: WViewController {
         super.viewDidLoad()
         
         walletHomeVM.refreshTransactions()
-
-        // connect the application to the wallet applications
-        TonConnectCore.shared.startBridgeConnection()
     }
 
     public override func loadView() {
@@ -176,11 +173,17 @@ public class WalletHomeVC: WViewController {
         }
     }
     
+    var firstAppear = true
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
         keyWindow?.backgroundColor = WTheme.balanceHeaderView.background
+        
+        if firstAppear {
+            walletContext.setReadyWalletInfo(walletInfo: walletInfo)
+            firstAppear = false
+        }
     }
 
     public override func viewDidDisappear(_ animated: Bool) {

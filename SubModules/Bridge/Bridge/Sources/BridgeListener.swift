@@ -7,24 +7,31 @@
 
 import Foundation
 import Sodium
+import WalletContext
 
 public protocol BridgeListenerDelegate {
     func connected()
-    func onMessage(id: String?, event: String?, data: String?)
+    func onMessage(walletVersion: Int, id: String?, event: String?, from: Bytes, data: Data)
 }
 
 public class BridgeListener {
     let url: String
+    public let dAppURL: String
     let walletKeyPair: Box.KeyPair
-    var lastEventID: Int
+    var lastEventID: Int64
+    public let walletVersion: Int
     let delegate: BridgeListenerDelegate
     public init(url: String,
+                dAppURL: String,
                 walletKeyPair: Box.KeyPair,
-                lastEventID: Int,
+                lastEventID: Int64,
+                walletVersion: Int,
                 delegate: BridgeListenerDelegate) {
         self.url = url
+        self.dAppURL = dAppURL
         self.walletKeyPair = walletKeyPair
         self.lastEventID = lastEventID
+        self.walletVersion = walletVersion
         self.delegate = delegate
     }
     
@@ -50,16 +57,39 @@ public class BridgeListener {
                 guard let id = id else {
                     return
                 }
-                lastEventID = Int(id) ?? 0
+                if let lastEventID = Int(id) {
+                    if self.lastEventID >= lastEventID {
+                        return
+                    }
+                }
 
-                guard let dataString = data else {
+                guard let data = data?.data(using: .utf8) else {
                     return
                 }
-                
-                delegate.onMessage(id: id, event: event, data: data)
+                guard let bridgeMessage = try? JSONDecoder().decode(BridgeMessage.self, from: data) else {
+                    return
+                }
+                guard let internalMessage = SessionProtocol.decrypt(message: [UInt8](bridgeMessage.message),
+                                                              senderPublicKey: Array<UInt8>.init(hex: bridgeMessage.from),
+                                                                    recipientSecretKey: walletKeyPair.secretKey) else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.delegate.onMessage(walletVersion: self.walletVersion,
+                                            id: id,
+                                            event: event,
+                                            from: Array<UInt8>(hex: bridgeMessage.from),
+                                            data: Data(bytes: internalMessage, count: internalMessage.count))
+                }
             })
     }
     
-    public func send() {
+    public func disconnect() {
+        eventSource?.disconnect()
     }
+    
+    public func destroy() {
+        eventSource = nil
+    }
+    
 }

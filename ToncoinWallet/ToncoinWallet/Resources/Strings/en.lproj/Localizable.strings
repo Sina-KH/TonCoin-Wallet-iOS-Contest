@@ -49,6 +49,8 @@
 
 // Import Successful
 "Wallet.ImportSuccessful.Title" = "Your wallet has just been imported!"; // NEW
+"Wallet.ImportSuccessful.ErrorTitle" = "Error";
+"Wallet.ImportSuccessful.ErrorText" = "Couldn't sync the wallet, please try again.";
 
 // RestoreFailed
 "Wallet.RestoreFailed.Title" = "Too Bad!"; // Updated

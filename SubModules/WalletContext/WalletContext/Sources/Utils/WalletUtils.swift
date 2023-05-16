@@ -20,7 +20,6 @@ public func walletVersionString(version: Int) -> String {
     }
 }
 
-// TODO:: Read from WStrings?
 fileprivate let decimalSeparator = "."
 
 public let walletAddressLength: Int = 48

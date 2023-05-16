@@ -13,7 +13,7 @@ import SwiftSignalKit
 protocol ImportSuccessVMDelegate: AnyObject {
     var isLoading: Bool { get set }
     func importCompleted(walletInfo: WalletInfo)
-    func errorOccured(text: String)
+    func errorOccured()
 }
 
 class ImportSuccessVM {
@@ -23,7 +23,7 @@ class ImportSuccessVM {
         self.importSuccessVMDelegate = importSuccessVMDelegate
     }
     
-    // TODO:: Handle errors! Here we have the wallet but not loaded completely!
+    // TODO:: Handle adnl timeout errors! Sometimes lite client receives errors that are not handled!
     public func loadWalletInfo(walletContext: WalletContext, importedInfo: ImportedWalletInfo) {
         if importSuccessVMDelegate?.isLoading ?? true {
             return
@@ -70,11 +70,13 @@ class ImportSuccessVM {
         _ = signal.start(next: { [weak self] state in
             self?.importSuccessVMDelegate?.isLoading = false
             guard let state else {
-                self?.importSuccessVMDelegate?.errorOccured(text: "")
+                self?.importSuccessVMDelegate?.errorOccured()
                 return
             }
             // wallet import completed
             self?.importSuccessVMDelegate?.importCompleted(walletInfo: state.info)
+        }, error: { [weak self] error in
+            self?.importSuccessVMDelegate?.errorOccured()
         })
     }
 }

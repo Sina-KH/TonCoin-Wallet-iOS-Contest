@@ -9,6 +9,7 @@ import UIKit
 import UIComponents
 import WalletContext
 import LocalAuthentication
+import AVFoundation
 
 public class UnlockVC: WViewController {
     
@@ -60,7 +61,7 @@ extension UnlockVC: PasscodeScreenViewDelegate {
             }
         } else {
             passcodeScreenView.passcodeInputView.currentPasscode = ""
-            // TODO:: Show wrong psas error
+            AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) { }
         }
     }
     

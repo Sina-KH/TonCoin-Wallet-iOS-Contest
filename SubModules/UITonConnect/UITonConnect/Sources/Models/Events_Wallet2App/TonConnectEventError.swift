@@ -7,19 +7,20 @@
 
 import Foundation
 
-struct TonConnectEventError {
+// failed to connect dapp error
+struct TonConnectEventError: Codable {
     let event: String
-    let id: Int
+    let id: Int64
     let payload: TonConnectEventErrorPayload
     
-    init(id: Int, payload: TonConnectEventErrorPayload) {
-        self.event = "connect_error"
+    public init(event: String, id: Int64, payload: TonConnectEventErrorPayload) {
+        self.event = event
         self.id = id
         self.payload = payload
     }
 }
 
-struct TonConnectEventErrorPayload {
+public struct TonConnectEventErrorPayload: Codable {
     let code: TonConnectEventErrorCode
     let message: String
     
@@ -29,11 +30,12 @@ struct TonConnectEventErrorPayload {
     }
 }
 
-enum TonConnectEventErrorCode: Int {
+public enum TonConnectEventErrorCode: Int, Codable {
     case unknown = 0
     case badRequest = 1
     case manifestNotFound = 2
     case manifestContentError = 3
     case unknownApp = 100
     case userDeclinedTheConnection = 300
+    case methodNotSupported = 400
 }

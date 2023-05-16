@@ -10,6 +10,7 @@ import UICreateWallet
 import WalletContext
 import WalletCore
 import SwiftSignalKit
+import UITonConnect
 
 protocol SplashVMDelegate: AnyObject {
     func errorOccured()
@@ -28,10 +29,21 @@ protocol SplashVMDelegate: AnyObject {
     // called when the wallet data is complete and user should see wallet home screen (wallet info)
     func navigateToHome(walletContext: WalletContext, walletInfo: WalletInfo)
 
-    // Called if original version updated to this version, to have a passcode!
+    // called when app received and validated ton connect transaction request
+    func openTonConnectTransfer(walletContext: WalletContext,
+                                walletInfo: WalletInfo,
+                                dApp: LinkedDApp,
+                                requestID: Int64,
+                                address: String,
+                                amount: Int64)
+    
+    // called if original version updated to this version, to have a passcode!
     func navigateToSetPasscode()
 
     func navigateToSecuritySettingsChanged(walletContext: WalletContext, type: SecuritySettingsChangedType)
+
+    // called from wallet context if wallet is completely created and home page is open
+    func setWalletReadyWalletInfo(walletInfo: WalletInfo)
 
     // called from wallet context if wallet is deleted
     func restartApp()
@@ -42,17 +54,22 @@ class SplashVM: NSObject {
     private weak var splashVMDelegate: SplashVMDelegate?
     init(splashVMDelegate: SplashVMDelegate) {
         self.splashVMDelegate = splashVMDelegate
+        super.init()
+        TonConnectCore.shared.delegate = self
     }
     
     private (set) var walletContext: WalletContextImpl? = nil
-    private (set) var readyWalletInfo: WalletInfo? = nil
     private (set) var appStarted = false
     
+    // this variable is filled when home page appears, using wallet context functions.
+    var readyWalletInfo: WalletInfo? = nil
+
     // get wallet data and present correct page on the navigation controller
     func startApp() {
         appStarted = false
         walletContext = nil
         readyWalletInfo = nil
+        TonConnectCore.shared.stopBridgeConnection()
 
         let presentationData = WalletPresentationData(
             // TODO:: Move into WalletContext like WStrings and Theme
@@ -189,15 +206,19 @@ class SplashVM: NSObject {
                         if previousBlockchainName != blockchainName {
                             previousBlockchainName = blockchainName
 
-                            let _ = (deleteAllLocalWalletsData(storage: walletContext.storage, tonInstance: walletContext.tonInstance)
-                            |> deliverOnMainQueue).start(error: { error in
-                                print(error)
-                                // Error happened!
-                                // TODO::
-                            }, completed: { [weak self] in
-                                // start app again
-                                self?.splashVMDelegate?.restartApp()
-                            })
+                            func deleteAndReset() {
+                                let _ = (deleteAllLocalWalletsData(storage: walletContext.storage, tonInstance: walletContext.tonInstance)
+                                         |> deliverOnMainQueue).start(error: { error in
+                                    print(error)
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                        deleteAndReset()
+                                    }
+                                }, completed: { [weak self] in
+                                    // start app again
+                                    self?.splashVMDelegate?.restartApp()
+                                })
+                            }
+                            deleteAndReset()
                         }
                     })
                 })
@@ -223,7 +244,6 @@ class SplashVM: NSObject {
                                 print(".ready")
                                 if exportCompleted == .yes {
                                     validateBlockchain { [weak self] in
-                                        self?.readyWalletInfo = info
                                         self?.appStarted = true
                                         self?.splashVMDelegate?.navigateToHome(walletContext: walletContext, walletInfo: info)
                                     }
@@ -266,5 +286,39 @@ class SplashVM: NSObject {
                 }
             })
         })
+    }
+}
+
+// MARK: - TonConnect Core Delegate Functions to handle
+extension SplashVM: TonConnectCoreDelegate {
+    func tonConnectSendTransaction(dApp: LinkedDApp, requestID: Int64, request: TonConnectSendTransaction) {
+        readyWalletInfo?.walletStateInit { [weak self] walletInitialState in
+            guard let self, let walletInitialState else {
+                return
+            }
+            if request.stateInit == walletInitialState {
+                return
+            }
+            guard let walletContext = walletContext, let walletInfo = readyWalletInfo else {
+                return
+            }
+            ContextAddressHelpers.toBase64Address(unknownAddress: request.address,
+                                                  walletContext: walletContext) { [weak self] base64Address in
+                guard let self else {
+                    return
+                }
+                guard let base64Address else {
+                    return
+                }
+                DispatchQueue.main.async { [weak self] in
+                    self?.splashVMDelegate?.openTonConnectTransfer(walletContext: walletContext,
+                                                                   walletInfo: walletInfo,
+                                                                   dApp: dApp,
+                                                                   requestID: requestID,
+                                                                   address: base64Address,
+                                                                   amount: Int64(request.amount) ?? 0)
+                }
+            }
+        }
     }
 }

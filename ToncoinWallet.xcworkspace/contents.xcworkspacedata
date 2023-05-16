@@ -26,6 +26,9 @@
       location = "group:SubModules/UIComponents/UIComponents.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:SubModules/Bridge/Bridge.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:SubModules/WalletContext/WalletContext.xcodeproj">
    </FileRef>
    <FileRef
@@ -48,9 +51,6 @@
    </FileRef>
    <FileRef
       location = "group:SubModules/BigInt/BigInt.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:SubModules/Bridge/Bridge.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:SubModules/Sodium/Sodium.xcodeproj">

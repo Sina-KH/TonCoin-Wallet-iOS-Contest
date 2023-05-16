@@ -231,7 +231,7 @@ class WalletHomeVM {
         self.reloadingState = true
         self.updateStatePromise()
         
-        // TODO::
+        // TODO:: pull to refresh required (?)
         isRefreshing = true
         
         let subject: CombinedWalletStateSubject = .wallet(self.walletInfo)

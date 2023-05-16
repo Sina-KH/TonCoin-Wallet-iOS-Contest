@@ -78,12 +78,7 @@ class SplashVC: WViewController {
         navVC.modalPresentationStyle = .fullScreen
         navVC.modalTransitionStyle = .crossDissolve
         func presentNav() {
-            present(navVC, animated: true) { [weak self] in
-                guard let self else {return}
-                if let nextDeeplink {
-                    self.handle(deeplink: nextDeeplink)
-                }
-            }
+            present(navVC, animated: true)
         }
         if animateOutBlackHeader {
             UIView.animate(withDuration: 0.3, animations: {
@@ -104,6 +99,7 @@ class SplashVC: WViewController {
 }
 
 extension SplashVC: SplashVMDelegate {
+    
     func navigateToIntro(walletContext: WalletContext) {
         replaceVC(with: IntroVC(walletContext: walletContext), animateOutBlackHeader: true)
     }
@@ -124,6 +120,29 @@ extension SplashVC: SplashVMDelegate {
         replaceVC(with: WalletHomeVC(walletContext: walletContext, walletInfo: walletInfo, animateHeaderOnLoad: false), animateOutBlackHeader: false)
     }
     
+    func openTonConnectTransfer(walletContext: WalletContext,
+                                walletInfo: WalletInfo,
+                                dApp: LinkedDApp,
+                                requestID: Int64,
+                                address: String,
+                                amount: Int64) {
+        let tonTransferVC = TonTransferVC(walletContext: walletContext,
+                                          walletInfo: walletInfo,
+                                          dApp: dApp,
+                                          requestID: requestID,
+                                          addressToSend: address,
+                                          amount: amount)
+        var topVC = topViewController()
+        if let navVC = topVC as? UINavigationController {
+            topVC = navVC.topViewController
+        }
+        if let topVC = topVC as? WViewController {
+            topVC.present(bottomSheet: tonTransferVC)
+        } else {
+            topVC?.present(tonTransferVC, animated: true)
+        }
+    }
+    
     func navigateToSetPasscode() {
         // TODO:: should be called if original version updated to this version, to have a passcode!
     }
@@ -133,7 +152,21 @@ extension SplashVC: SplashVMDelegate {
     }
     
     func errorOccured() {
-        // TODO::
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            self?.splashVM.startApp()
+        }
+    }
+
+    // this function is called from wallet context implementation, after home vc opens up, to handle deeplinks and connect to DApps
+    func setWalletReadyWalletInfo(walletInfo: WalletCore.WalletInfo) {
+        splashVM.readyWalletInfo = walletInfo
+        if let nextDeeplink {
+            self.handle(deeplink: nextDeeplink)
+        }
+        // connect the application to the wallet applications
+        //  it generates new keys if not exists (or deleted before)
+        //  connection requests are only processed if the app is ready and wallet is connected.
+        TonConnectCore.shared.startBridgeConnection(walletInfo: walletInfo)
     }
     
     func restartApp() {
@@ -152,6 +185,7 @@ extension SplashVC: DeeplinkNavigator {
     func handle(deeplink: Deeplink) {
         if splashVM.appStarted {
             guard let walletInfo = splashVM.readyWalletInfo else {
+                // we ignore depplinks when wallet is not ready yet, wallet gets ready when home page appears
                 nextDeeplink = nil
                 return
             }
@@ -170,6 +204,8 @@ extension SplashVC: DeeplinkNavigator {
                 }
                 if let topVC = topVC as? WViewController {
                     topVC.present(bottomSheet: tonConnectVC)
+                } else {
+                    topVC?.present(tonConnectVC, animated: true)
                 }
                 break
                 

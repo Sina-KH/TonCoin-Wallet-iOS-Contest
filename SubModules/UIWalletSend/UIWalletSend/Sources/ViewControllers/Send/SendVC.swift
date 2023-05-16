@@ -183,6 +183,13 @@ public class SendVC: WViewController {
                                text: WStrings.Wallet_Send_ErrorInvalidAddressText.localized)
     }
 
+    var isLoading: Bool = false {
+        didSet {
+            continueButton.showLoading = isLoading
+            view.isUserInteractionEnabled = !isLoading
+        }
+    }
+
     // MARK: - Actions
     @objc func cancelPressed() {
         dismiss(animated: true)
@@ -208,12 +215,14 @@ public class SendVC: WViewController {
     }
     
     @objc func continuePressed() {
+        isLoading = true
         let address = addressField.text.lowercased()
         ContextAddressHelpers.toBase64Address(unknownAddress: address,
                                               walletContext: walletContext) { [weak self] base64Address in
             guard let self else {
                 return
             }
+            isLoading = false
             guard let base64Address else {
                 showWrongAddressToast()
                 return

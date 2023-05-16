@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct LinkedDApp: Codable {
+public struct LinkedDApp: Codable {
     let url: String
     let name: String
     
@@ -15,5 +15,6 @@ struct LinkedDApp: Codable {
     let privateKey: Data
     let appPublicKey: Data
 
-    let lastEventID: Int
+    var lastEventID: Int64
+    let bridgeLastEventID: Int64?
 }

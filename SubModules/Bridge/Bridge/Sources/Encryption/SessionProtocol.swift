@@ -8,7 +8,7 @@
 import Foundation
 import Sodium
 
-class SessionProtocol {
+public class SessionProtocol {
     
     static let sodium = Sodium()
 
@@ -26,7 +26,7 @@ class SessionProtocol {
         return result
     }
 
-    static func decrypt(message: Bytes, senderPublicKey: Box.PublicKey, recipientSecretKey: Box.SecretKey) -> Bytes? {
+    public static func decrypt(message: Bytes, senderPublicKey: Box.PublicKey, recipientSecretKey: Box.SecretKey) -> Bytes? {
         return sodium.box.open(authenticatedCipherText: Array(message[24...]),
                                senderPublicKey: senderPublicKey,
                                recipientSecretKey: recipientSecretKey,

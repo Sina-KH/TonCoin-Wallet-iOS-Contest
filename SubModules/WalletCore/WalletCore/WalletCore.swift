@@ -1251,7 +1251,17 @@ public func verifySendGramsRequestAndEstimateFees(tonInstance: TonInstance, wall
 }
 
 public func sendGramsFromWallet(storage: WalletStorageInterface, tonInstance: TonInstance, walletInfo: WalletInfo, decryptedSecret: Data, localPassword: Data, toAddress: String, amount: Int64, comment: Data, encryptComment: Bool, forceIfDestinationNotInitialized: Bool, timeout: Int32, randomId: Int64) -> Signal<PendingWalletTransaction, SendGramsFromWalletError> {
-    return tonInstance.prepareSendGramsFromWalletQuery(decryptedSecret: decryptedSecret, localPassword: localPassword, walletInfo: walletInfo, fromAddress: walletInfo.address, toAddress: toAddress, amount: amount, comment: comment, encryptComment: encryptComment, forceIfDestinationNotInitialized: forceIfDestinationNotInitialized, timeout: timeout, randomId: randomId)
+    return tonInstance.prepareSendGramsFromWalletQuery(decryptedSecret: decryptedSecret,
+                                                       localPassword: localPassword,
+                                                       walletInfo: walletInfo,
+                                                       fromAddress: walletInfo.address,
+                                                       toAddress: toAddress,
+                                                       amount: amount,
+                                                       comment: comment,
+                                                       encryptComment: encryptComment,
+                                                       forceIfDestinationNotInitialized: forceIfDestinationNotInitialized,
+                                                       timeout: timeout,
+                                                       randomId: randomId)
     |> mapToSignal { preparedQuery -> Signal<PendingWalletTransaction, SendGramsFromWalletError> in
         return tonInstance.commitPreparedSendGramsQuery(preparedQuery)
         |> retryTonRequest(isNetworkError: { error in

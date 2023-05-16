@@ -174,7 +174,7 @@ class TransactionVC: WViewController {
             detailsLabel.leftAnchor.constraint(equalTo: stackView.leftAnchor, constant: 16)
         )
         
-        // TODO:: Recipient DNS!
+        // TODO:: Recipient DNS (?!)
 
         // sender/recipient
         addressItem = TitleValueRowView(title: addressTitle, value: formatStartEndAddress(addressString))

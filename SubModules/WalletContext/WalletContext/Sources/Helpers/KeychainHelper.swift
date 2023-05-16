@@ -30,48 +30,23 @@ public struct KeychainHelper {
     public static func isBiometricActivated() -> Bool {
         KeychainHelper.load(withKey: KeychainHelper.biometricKey) == "1"
     }
-    
-    // MARK: - Ton Connect KeyPair
-    private static var tonConnectKeyPairKey = "tonConnectKeyPair"
-    public static func save(keyPair: String?) {
-        KeychainHelper.save(keyPair, forKey: tonConnectKeyPairKey)
-    }
-    public static func tonConnectKeyPair() -> String? {
-        KeychainHelper.load(withKey: tonConnectKeyPairKey)
-    }
-    
-    // MARK: - Ton Connect LastEventID
-    private static var tonConnectLastEventIDKey = "tonConnectLastEventID"
-    public static func save(lastEventID: Int?) {
-        guard let lastEventID else {
-            KeychainHelper.save(nil, forKey: tonConnectLastEventIDKey)
-            return
-        }
-        KeychainHelper.save("\(lastEventID)", forKey: tonConnectLastEventIDKey)
-    }
-    public static func tonConnectLastEventID() -> Int? {
-        if let lastEvent = KeychainHelper.load(withKey: tonConnectLastEventIDKey) {
-            return Int(lastEvent)
-        }
-        return nil
-    }
-    
+
     // MARK: - Ton Connect DApps
     private static var tonConnectDApps = "tonConnectDApps"
-    public static func save(DApps: String?) {
-        KeychainHelper.save(DApps, forKey: tonConnectDApps)
+    public static func save(DApps: String?, walletVersion: Int) {
+        KeychainHelper.save(DApps, forKey: "\(tonConnectDApps)_\(walletVersion)")
     }
-    public static func dApps() -> String? {
-        KeychainHelper.load(withKey: tonConnectDApps)
+    public static func dApps(walletVersion: Int) -> String? {
+        KeychainHelper.load(withKey: "\(tonConnectDApps)_\(walletVersion)")
     }
-    
+
     // MARK: - Delete Wallet
     public static func deleteWallet() {
         KeychainHelper.save(passcode: nil)
         KeychainHelper.save(biometric: nil)
-        KeychainHelper.save(keyPair: nil)
-        KeychainHelper.save(lastEventID: nil)
-        KeychainHelper.save(DApps: nil)
+        for walletVersion in [31, 32, 42] {
+            KeychainHelper.save(DApps: nil, walletVersion: walletVersion)
+        }
     }
 
     // MARK: - Private base keychain functionalities

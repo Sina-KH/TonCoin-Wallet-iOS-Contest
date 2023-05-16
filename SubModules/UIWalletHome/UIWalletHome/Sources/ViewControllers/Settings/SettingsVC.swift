@@ -96,7 +96,7 @@ class SettingsVC: WViewController {
                                         PickerViewItem(id: 32, name: "v3R2"),
                                         PickerViewItem(id: 42, name: "v4R2")
                                       ],
-                                      selectedID: 32,
+                                      selectedID: walletInfo.version,
                                       selector: #selector(addressSelected),
                                       onChangeSelector: #selector(onAddressChanged))
         // primary currency

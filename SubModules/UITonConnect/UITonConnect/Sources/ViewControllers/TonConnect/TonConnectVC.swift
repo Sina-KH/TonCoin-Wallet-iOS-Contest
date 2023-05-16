@@ -10,6 +10,8 @@ import UIComponents
 import WalletContext
 import WalletCore
 import AVFoundation
+import LocalAuthentication
+import UIPasscode
 
 public class TonConnectVC: WViewController {
 
@@ -165,14 +167,43 @@ public class TonConnectVC: WViewController {
     
     @objc func closePressed() {
         dismiss(animated: true)
+        tonConnectViewModel.connectRequestCanceled(request: tonConnectRequestLink)
     }
     
     @objc func connectPressed() {
         if isLoading {
             return
         }
-        isLoading = true
-        tonConnectViewModel.connect(request: tonConnectRequestLink)
+        
+        let onAuth = { [weak self] in
+            guard let self else {
+                return
+            }
+            isLoading = true
+            tonConnectViewModel.connect(request: tonConnectRequestLink)
+        }
+        
+        // authorize to use `TON Connect`
+        let context = LAContext()
+        var error: NSError?
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            let reason = WStrings.Wallet_Biometric_Reason.localized
+
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) {
+                [weak self] success, authenticationError in
+
+                DispatchQueue.main.async { [weak self] in
+                    if success {
+                        onAuth()
+                    } else {
+                        // error
+                        self?.present(UnlockVC(onAuth: onAuth), animated: true)
+                    }
+                }
+            }
+        } else {
+            present(UnlockVC(onAuth: onAuth), animated: true)
+        }
     }
     
     var isLoading = false {
@@ -233,8 +264,10 @@ extension TonConnectVC: TonConnectVMDelegate {
                 }
                 checkIcon.alpha = 1
                 view.layoutIfNeeded()
-            }) { [weak self] _ in
-                self?.dismiss(animated: true)
+            }) { _ in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                    self?.dismiss(animated: true)
+                }
             }
         }
     }

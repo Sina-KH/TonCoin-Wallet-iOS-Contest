@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct TonConnectRequest {
+struct TonConnectAppRequest: Codable {
     let method: String
     let params: [String]
-    let id: String
+    let id: Int64
 }

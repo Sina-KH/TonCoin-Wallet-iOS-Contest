@@ -118,7 +118,10 @@ extension ImportSuccessVC: ImportSuccessVMDelegate {
         navigationController?.pushViewController(nextVC, animated: true)
     }
     
-    public func errorOccured(text: String) {
-        // TODO::
+    public func errorOccured() {
+        isLoading = false
+        showAlert(title: WStrings.Wallet_ImportSuccessful_ErrorTitle.localized,
+                  text: WStrings.Wallet_ImportSuccessful_ErrorText.localized,
+                  button: WStrings.Wallet_Alert_OK.localized)
     }
 }

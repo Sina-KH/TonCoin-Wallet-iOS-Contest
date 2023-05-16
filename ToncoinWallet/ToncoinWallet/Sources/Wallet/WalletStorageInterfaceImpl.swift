@@ -110,6 +110,7 @@ final class WalletStorageInterfaceImpl: WalletStorageInterface {
 }
 
 final class WalletContextImpl: NSObject, WalletContext, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     var storage: WalletStorageInterface {
         return self.storageImpl
     }
@@ -215,6 +216,9 @@ final class WalletContextImpl: NSObject, WalletContext, UIImagePickerControllerD
         picker.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
+    func setReadyWalletInfo(walletInfo: WalletCore.WalletInfo) {
+        splashVMDelegate.setWalletReadyWalletInfo(walletInfo: walletInfo)
+    }
     func restartApp() {
         splashVMDelegate.restartApp()
     }

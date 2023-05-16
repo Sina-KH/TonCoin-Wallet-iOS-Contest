@@ -18,6 +18,8 @@
 		274DFA132A0CF5D90042A6A6 /* PublicKeyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274DFA122A0CF5D90042A6A6 /* PublicKeyUtils.swift */; };
 		275C61372A12CE7E00373F2F /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275C61362A12CE7E00373F2F /* CryptoSwift.framework */; };
 		275F3E302A0A7AAA00665136 /* BridgeListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275F3E2F2A0A7AAA00665136 /* BridgeListener.swift */; };
+		278DB2732A13715900354B4C /* WalletContext.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 278DB2722A13715900354B4C /* WalletContext.framework */; };
+		278DB2772A13718000354B4C /* BridgeMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278DB2762A13718000354B4C /* BridgeMessage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,8 @@
 		274DFA122A0CF5D90042A6A6 /* PublicKeyUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKeyUtils.swift; sourceTree = "<group>"; };
 		275C61362A12CE7E00373F2F /* CryptoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		275F3E2F2A0A7AAA00665136 /* BridgeListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeListener.swift; sourceTree = "<group>"; };
+		278DB2722A13715900354B4C /* WalletContext.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletContext.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		278DB2762A13718000354B4C /* BridgeMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				278DB2732A13715900354B4C /* WalletContext.framework in Frameworks */,
 				274081872A0C57830098838D /* Sodium.framework in Frameworks */,
 				275C61372A12CE7E00373F2F /* CryptoSwift.framework in Frameworks */,
 			);
@@ -77,6 +82,7 @@
 		2711D9972A0A298900AD35DF /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				278DB2782A13718F00354B4C /* Models */,
 				274080B82A0C56880098838D /* Encryption */,
 				274080B12A0C53B00098838D /* EventSource */,
 				274DFA112A0CF5CC0042A6A6 /* Utils */,
@@ -108,6 +114,7 @@
 		274081852A0C57830098838D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				278DB2722A13715900354B4C /* WalletContext.framework */,
 				275C61362A12CE7E00373F2F /* CryptoSwift.framework */,
 				274081862A0C57830098838D /* Sodium.framework */,
 			);
@@ -120,6 +127,14 @@
 				274DFA122A0CF5D90042A6A6 /* PublicKeyUtils.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		278DB2782A13718F00354B4C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				278DB2762A13718000354B4C /* BridgeMessage.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,6 +220,7 @@
 				274DFA132A0CF5D90042A6A6 /* PublicKeyUtils.swift in Sources */,
 				274080B72A0C53C10098838D /* Event.swift in Sources */,
 				274DFA0E2A0CF2C10042A6A6 /* BridgeEmitter.swift in Sources */,
+				278DB2772A13718000354B4C /* BridgeMessage.swift in Sources */,
 				274DFA102A0CF3C80042A6A6 /* BridgeHelpers.swift in Sources */,
 				274080B62A0C53C10098838D /* EventStreamParser.swift in Sources */,
 				275F3E302A0A7AAA00665136 /* BridgeListener.swift in Sources */,

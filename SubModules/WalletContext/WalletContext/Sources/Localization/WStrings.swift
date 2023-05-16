@@ -41,6 +41,8 @@ public enum WStrings: String {
     case Wallet_WordImport_IncorrectTitle = "Wallet.WordImport.IncorrectTitle"
     case Wallet_WordImport_IncorrectText = "Wallet.WordImport.IncorrectText"
     case Wallet_ImportSuccessful_Title = "Wallet.ImportSuccessful.Title"
+    case Wallet_ImportSuccessful_ErrorTitle = "Wallet.ImportSuccessful.ErrorTitle"
+    case Wallet_ImportSuccessful_ErrorText = "Wallet.ImportSuccessful.ErrorText"
     case Wallet_RestoreFailed_Title = "Wallet.RestoreFailed.Title"
     case Wallet_RestoreFailed_Text = "Wallet.RestoreFailed.Text"
     case Wallet_RestoreFailed_EnterWords = "Wallet.RestoreFailed.EnterWords"

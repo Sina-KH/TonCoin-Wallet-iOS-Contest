@@ -58,4 +58,17 @@ class TonConnectVM {
             self?.tonConnectVMDelegate?.tonConnected()
         }
     }
+    func connectRequestCanceled(request: TonConnectRequestLink) {
+        guard let manifest = manifest else {
+            tonConnectVMDelegate?.errorOccured()
+            return
+        }
+        TonConnectCore.connectRequestCanceled(url: manifest.url,
+                                              name: manifest.name,
+                                              walletContext: walletContext,
+                                              walletInfo: walletInfo,
+                                              appPublicKey: request.id) { [weak self] success in
+            self?.tonConnectVMDelegate?.tonConnected()
+        }
+    }
 }
