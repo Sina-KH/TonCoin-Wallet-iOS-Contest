@@ -125,6 +125,8 @@ These modules are defined inside the project:
 The main module containing `AppDelegate`, `Strings`, `Animations` and the 
 app `startup codes`.
 
+The `deeplinks logic` is also handled in this module, inside `SplashVC`
+
 ### :popcorn: UICreateWallet:
 
 The UI implementation of the create wallet flow, including `Intro`, 
@@ -142,11 +144,23 @@ The UI implementation of the home (main) page of the wallet.
 
 The UI implementation of the send TON screen pages.
 
+### :movie_camera:  UIQRScan
+
+QRScanner to scan `ton`, `tc` and also `tonkeeper`'s bridge url. (last one is for test purposes on debug mode, only.)
+
+### :rocket:  UITonConnect
+
+`TonConnect 2` connection and transfer features. Welcome DApps! :fist_right: :fist_left: 
+
 ### :jack_o_lantern: UIComponents
 
 All the UIKit implementation of the components provided inside Figma and 
 used to build the app.
 This module also contains util functions for view classes and elements.
+
+### :link: Bridge
+
+The bridge framework is developed to support Ton Connect feature using the [bridge api documentation](https://github.com/ton-blockchain/ton-connect/blob/main/bridge.md).
 
 ### :books: WalletContext
 
@@ -161,16 +175,16 @@ functionalities for the `UI Layer`.
 
 ### :thread: WalletUrl
 
-Parses wallet deeplink urls and returns the addres, amount and comment 
+Parses wallet `ton` deeplink urls and returns the addres, amount and comment 
 from the `ton://transfer` urls.
 
 ### :yarn: TonBinding
 
 The binding between the wallet project and the `tonlib` library.
 
-### :link:  Bridge
+### :ambulance:  SwiftyTON, TON3, SwiftyJS, BigInt, CryptoSwift
 
-The bridge framework is developed to support Ton Connect feature using the [bridge api documentation](https://github.com/ton-blockchain/ton-connect/blob/main/bridge.md).
+All these modules are used to process wallet related logics (InitStates, diferrent wallet version addresses, and more...)
 
 ### :lock:  Sodium
 
