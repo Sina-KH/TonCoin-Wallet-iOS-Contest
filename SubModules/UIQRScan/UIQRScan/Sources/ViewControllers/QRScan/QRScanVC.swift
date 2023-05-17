@@ -54,8 +54,7 @@ public class QRScanVC: WViewController {
                                             onPress: { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         })
-        let navigationBar = WNavigationBar(leadingItem: backItem)
-        navigationBar.tintColor = .white
+        let navigationBar = WNavigationBar(leadingItem: backItem, tintColor: .white)
         view.addSubview(navigationBar)
         NSLayoutConstraint.activate([
             navigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),

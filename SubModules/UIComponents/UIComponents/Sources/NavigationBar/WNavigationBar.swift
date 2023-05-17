@@ -26,11 +26,15 @@ public class WNavigationBar: UIView {
     private let trailingItem: WNavigationBarButton?
     public init(title: String? = nil,
                 leadingItem: WNavigationBarButton? = nil,
-                trailingItem: WNavigationBarButton? = nil) {
+                trailingItem: WNavigationBarButton? = nil,
+                tintColor: UIColor? = nil) {
         self.title = title
         self.leadingItem = leadingItem
         self.trailingItem = trailingItem
         super.init(frame: .zero)
+        if let tintColor {
+            self.tintColor = tintColor
+        }
         setupViews()
     }
     
@@ -57,6 +61,7 @@ public class WNavigationBar: UIView {
             let leadingButton = WButton.setupInstance(.secondary)
             if let icon = leadingItem.icon {
                 leadingButton.setImage(icon, for: .normal)
+                leadingButton.imageView?.tintColor = tintColor
                 leadingButton.centerTextAndImage(spacing: 8)
             }
             leadingButton.setTitle(leadingItem.text, for: .normal)
@@ -74,6 +79,8 @@ public class WNavigationBar: UIView {
             let trailingButton = WButton.setupInstance(.secondary)
             if let icon = trailingItem.icon {
                 trailingButton.setImage(icon, for: .normal)
+                trailingButton.imageView?.tintColor = tintColor // sometimes it didn't work without this line
+                trailingButton.centerTextAndImage(spacing: 8)
             }
             trailingButton.setTitle(trailingItem.text, for: .normal)
             trailingButton.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
