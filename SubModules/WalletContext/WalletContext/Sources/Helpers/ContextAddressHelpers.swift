@@ -21,7 +21,7 @@ public struct ContextAddressHelpers {
         }
         let isDNS = isTONDNSDomain(string: unknownAddress)
         if isDNS {
-            _ = (resolveDNSAddress(tonInstance: walletContext.tonInstance, address: unknownAddress)
+            _ = (resolveDNSAddress(tonInstance: walletContext.tonInstance, address: unknownAddress.lowercased())
             |> deliverOnMainQueue).start(next: { resolvedAddress in
                 if isValidAddress(resolvedAddress, exactLength: true) {
                     callback(resolvedAddress)

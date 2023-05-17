@@ -216,7 +216,7 @@ public class SendVC: WViewController {
     
     @objc func continuePressed() {
         isLoading = true
-        let address = addressField.text.lowercased()
+        let address = addressField.text ?? ""
         ContextAddressHelpers.toBase64Address(unknownAddress: address,
                                               walletContext: walletContext) { [weak self] base64Address in
             guard let self else {
