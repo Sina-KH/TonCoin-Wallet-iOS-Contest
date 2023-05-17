@@ -9,14 +9,14 @@ import UIKit
 
 public class InteractivePopRecognizer: NSObject, UIGestureRecognizerDelegate {
 
-    var navigationController: UINavigationController
+    weak var navigationController: UINavigationController?
 
     public init(controller: UINavigationController) {
         self.navigationController = controller
     }
 
     public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return navigationController.viewControllers.count > 1
+        return navigationController?.viewControllers.count ?? 0 > 1
     }
 
     // This is necessary because without it, subviews of your top controller can

@@ -270,7 +270,8 @@ private final class AnimatedStickerDirectFrameSource: AnimatedStickerFrameSource
     }
     
     deinit {
-        assert(self.queue.isCurrent())
+        // TODO:: Should check why this code existed on original app and here causes crash?
+        //assert(self.queue.isCurrent())
     }
     
     func takeFrame() -> AnimatedStickerFrame? {

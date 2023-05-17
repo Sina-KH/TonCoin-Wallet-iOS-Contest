@@ -113,6 +113,12 @@ class WalletHomeVM {
             guard let strongSelf = self, let state = state else {
                 return
             }
+
+            // check if delegate exists yet, otherwise, dispose to prevent memory leak
+            guard strongSelf.walletHomeVMDelegate != nil else {
+                self?.watchCombinedStateDisposable?.dispose()
+                return
+            }
             
             if state.pendingTransactions != strongSelf.combinedState?.pendingTransactions || state.timestamp != strongSelf.combinedState?.timestamp {
                 if !strongSelf.reloadingState {

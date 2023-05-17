@@ -198,8 +198,8 @@ class SettingsVC: WViewController {
                                selectedID: Int,
                                selector: Selector,
                                onChangeSelector: Selector) -> PickerView {
-        let pickerView = PickerView(items: items, selectedID: selectedID, onChange: { _ in
-            self.perform(onChangeSelector)
+        let pickerView = PickerView(items: items, selectedID: selectedID, onChange: { [weak self] _ in
+            self?.perform(onChangeSelector)
         })
         pickerView.translatesAutoresizingMaskIntoConstraints = false
         addItem(position: position, title: title, rightView: pickerView, selector: selector)
@@ -330,8 +330,8 @@ class SettingsVC: WViewController {
             guard let self else {
                 return
             }
-            DispatchQueue.main.async {
-                self.walletContext.restartApp()
+            DispatchQueue.main.async { [weak self] in
+                self?.walletContext.restartApp()
             }
         })
     }

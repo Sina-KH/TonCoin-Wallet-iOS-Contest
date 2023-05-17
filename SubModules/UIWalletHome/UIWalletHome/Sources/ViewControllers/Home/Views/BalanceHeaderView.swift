@@ -31,7 +31,7 @@ public class BalanceHeaderView: UIView {
     public static let defaultHeight = contentHeight + bottomGap
 
     private var walletInfo: WalletInfo
-    private weak var delegate: BalanceHeaderViewDelegate!
+    private weak var delegate: BalanceHeaderViewDelegate?
     private var heightConstraint: NSLayoutConstraint!
     private var actionsStackView: UIStackView!
     private var shortAddressLabel: UILabel!
@@ -234,11 +234,11 @@ public class BalanceHeaderView: UIView {
     }
 
     @objc func receivePressed() {
-        delegate.receivePressed()
+        delegate?.receivePressed()
     }
     
     @objc func sendPressed() {
-        delegate.sendPressed()
+        delegate?.sendPressed()
     }
     
     // MARK: - Currency Rates

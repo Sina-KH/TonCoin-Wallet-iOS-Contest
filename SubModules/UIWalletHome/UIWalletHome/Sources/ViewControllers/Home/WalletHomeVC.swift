@@ -13,6 +13,7 @@ import WalletContext
 import WalletCore
 import Bridge
 import UITonConnect
+import SwiftSignalKit
 
 public class WalletHomeVC: WViewController {
 
@@ -297,7 +298,7 @@ extension WalletHomeVC: WalletHomeVMDelegate {
 // MARK: - `BalanceHeaderView` Delegate Functions
 extension WalletHomeVC: BalanceHeaderViewDelegate {
     public func scanPressed() {
-        navigationController?.pushViewController(QRScanVC(walletContext: walletContext, walletInfo: walletInfo, callback: { url in
+        navigationController?.pushViewController(QRScanVC(walletContext: walletContext, walletInfo: walletInfo, callback: { [weak self] url in
             #if DEBUG
             if url.absoluteString.hasPrefix("https://app.tonkeeper.com/ton-connect?") {
                 UIApplication.shared.open(URL(string: "tc://?" + url.absoluteString.components(separatedBy: "?")[1])!)
