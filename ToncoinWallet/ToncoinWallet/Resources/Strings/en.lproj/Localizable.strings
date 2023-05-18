@@ -144,7 +144,7 @@
 "Wallet.Send.Scan" = "Scan"; // NEW
 "Wallet.Send.Continue" = "Continue"; // NEW
 "Wallet.Send.Recents" = "Recents"; // NEW
-"Wallet.Send.Clear" = "Clear"; // NEW
+"Wallet.Send.Clear" = "CLEAR"; // NEW
 "Wallet.Send.ErrorInvalidAddressTitle" = "Invalid Address"; // NEW
 "Wallet.Send.ErrorInvalidAddressText" = "Address entered does not belong to TON"; // NEW
 "Wallet.Send.OwnAddressAlertTitle" = "Warning";

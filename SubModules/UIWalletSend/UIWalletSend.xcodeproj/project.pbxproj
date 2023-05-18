@@ -15,7 +15,6 @@
 		2749342429F5D014009976B5 /* UIWalletSend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2749341929F5D014009976B5 /* UIWalletSend.framework */; };
 		2749342929F5D014009976B5 /* UIWalletSendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749342829F5D014009976B5 /* UIWalletSendTests.swift */; };
 		2749342A29F5D014009976B5 /* UIWalletSend.h in Headers */ = {isa = PBXBuildFile; fileRef = 2749341C29F5D014009976B5 /* UIWalletSend.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2749345229F5D0AF009976B5 /* SendVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749345029F5D0AE009976B5 /* SendVM.swift */; };
 		2749345329F5D0AF009976B5 /* SendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749345129F5D0AF009976B5 /* SendVC.swift */; };
 		2749345529F5D0B6009976B5 /* SendAmountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749345429F5D0B6009976B5 /* SendAmountVC.swift */; };
 		2749345829F5D244009976B5 /* WalletContext.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2749345729F5D244009976B5 /* WalletContext.framework */; };
@@ -24,6 +23,9 @@
 		2779A84629FBB74400E39FF5 /* SendingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779A84529FBB74400E39FF5 /* SendingVC.swift */; };
 		2779A84829FBBB8200E39FF5 /* SendingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779A84729FBBB8200E39FF5 /* SendingVM.swift */; };
 		2779A84B29FBC94300E39FF5 /* SentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779A84A29FBC94300E39FF5 /* SentVC.swift */; };
+		27DDA38B2A16870600DDC0F5 /* RecentAddressesHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DDA38A2A16870600DDC0F5 /* RecentAddressesHelpers.swift */; };
+		27DDA38E2A16872600DDC0F5 /* RecentAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DDA38D2A16872600DDC0F5 /* RecentAddress.swift */; };
+		27DDA3912A16894200DDC0F5 /* RecentAddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DDA3902A16894200DDC0F5 /* RecentAddressCell.swift */; };
 		27EDEF3929FC45B80057EF71 /* UIPasscode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EDEF3829FC45B80057EF71 /* UIPasscode.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,7 +49,6 @@
 		2749341D29F5D014009976B5 /* UIWalletSend.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = UIWalletSend.docc; sourceTree = "<group>"; };
 		2749342329F5D014009976B5 /* UIWalletSendTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UIWalletSendTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2749342829F5D014009976B5 /* UIWalletSendTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWalletSendTests.swift; sourceTree = "<group>"; };
-		2749345029F5D0AE009976B5 /* SendVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendVM.swift; sourceTree = "<group>"; };
 		2749345129F5D0AF009976B5 /* SendVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendVC.swift; sourceTree = "<group>"; };
 		2749345429F5D0B6009976B5 /* SendAmountVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendAmountVC.swift; sourceTree = "<group>"; };
 		2749345729F5D244009976B5 /* WalletContext.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WalletContext.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +57,9 @@
 		2779A84529FBB74400E39FF5 /* SendingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingVC.swift; sourceTree = "<group>"; };
 		2779A84729FBBB8200E39FF5 /* SendingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingVM.swift; sourceTree = "<group>"; };
 		2779A84A29FBC94300E39FF5 /* SentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentVC.swift; sourceTree = "<group>"; };
+		27DDA38A2A16870600DDC0F5 /* RecentAddressesHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentAddressesHelpers.swift; sourceTree = "<group>"; };
+		27DDA38D2A16872600DDC0F5 /* RecentAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentAddress.swift; sourceTree = "<group>"; };
+		27DDA3902A16894200DDC0F5 /* RecentAddressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentAddressCell.swift; sourceTree = "<group>"; };
 		27EDEF3829FC45B80057EF71 /* UIPasscode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIPasscode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -133,6 +137,8 @@
 		2749343329F5D023009976B5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				27DDA38C2A16871B00DDC0F5 /* Models */,
+				27DDA3892A1686FA00DDC0F5 /* Helpers */,
 				2749343429F5D029009976B5 /* ViewControllers */,
 			);
 			path = Sources;
@@ -153,8 +159,8 @@
 		2749344B29F5D05F009976B5 /* Send */ = {
 			isa = PBXGroup;
 			children = (
+				27DDA38F2A16893700DDC0F5 /* Cells */,
 				2749345129F5D0AF009976B5 /* SendVC.swift */,
-				2749345029F5D0AE009976B5 /* SendVM.swift */,
 			);
 			path = Send;
 			sourceTree = "<group>";
@@ -195,6 +201,30 @@
 				2779A84A29FBC94300E39FF5 /* SentVC.swift */,
 			);
 			path = Sent;
+			sourceTree = "<group>";
+		};
+		27DDA3892A1686FA00DDC0F5 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				27DDA38A2A16870600DDC0F5 /* RecentAddressesHelpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		27DDA38C2A16871B00DDC0F5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				27DDA38D2A16872600DDC0F5 /* RecentAddress.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		27DDA38F2A16893700DDC0F5 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				27DDA3902A16894200DDC0F5 /* RecentAddressCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,13 +338,15 @@
 			files = (
 				2749345529F5D0B6009976B5 /* SendAmountVC.swift in Sources */,
 				2779A84B29FBC94300E39FF5 /* SentVC.swift in Sources */,
-				2749345229F5D0AF009976B5 /* SendVM.swift in Sources */,
 				2749341E29F5D014009976B5 /* UIWalletSend.docc in Sources */,
 				2779A84629FBB74400E39FF5 /* SendingVC.swift in Sources */,
+				27DDA3912A16894200DDC0F5 /* RecentAddressCell.swift in Sources */,
 				273F7FF029F9B83F0075E2E8 /* SendConfirmVC.swift in Sources */,
 				2779A84829FBBB8200E39FF5 /* SendingVM.swift in Sources */,
+				27DDA38E2A16872600DDC0F5 /* RecentAddress.swift in Sources */,
 				2749345329F5D0AF009976B5 /* SendVC.swift in Sources */,
 				270CDAFE29FAFD3900308DFF /* SendConfirmVM.swift in Sources */,
+				27DDA38B2A16870600DDC0F5 /* RecentAddressesHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

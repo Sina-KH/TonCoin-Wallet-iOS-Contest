@@ -41,8 +41,11 @@ public class SendVC: WViewController {
     private var addressField: WAddressInput!
     private var addressHintLabel: UILabel!
     private var recentsLabel: UILabel!
+    private var recentsTableView: UITableView!
     private var continueButton: WButton!
     private var recentsTopStackView: UIStackView!
+    
+    private lazy var _recentAddresses = RecentAddressesHelpers.recentAddresses(walletVersion: walletInfo.version)
 
     func setupViews() {
         navigationItem.title = WStrings.Wallet_Send_Title.localized
@@ -118,12 +121,12 @@ public class SendVC: WViewController {
 
         // recents top bar
         recentsTopStackView = UIStackView()
-        recentsTopStackView.isHidden = true
+        recentsTopStackView.isHidden = _recentAddresses.count == 0
         recentsTopStackView.translatesAutoresizingMaskIntoConstraints = false
         recentsTopStackView.layoutMargins = UIEdgeInsets(top: 24, left: 0, bottom: 0, right: 0)
         recentsTopStackView.isLayoutMarginsRelativeArrangement = true
         NSLayoutConstraint.activate([
-            recentsTopStackView.heightAnchor.constraint(equalToConstant: 18)
+            recentsTopStackView.heightAnchor.constraint(equalToConstant: 42)
         ])
         topStackView.addArrangedSubview(recentsTopStackView)
         
@@ -139,10 +142,19 @@ public class SendVC: WViewController {
         clearRecentsButton.translatesAutoresizingMaskIntoConstraints = false
         clearRecentsButton.setTitle(WStrings.Wallet_Send_Clear.localized, for: .normal)
         clearRecentsButton.titleLabel?.font = .systemFont(ofSize: 13, weight: .regular)
+        clearRecentsButton.addTarget(self, action: #selector(clearRecentsPressed), for: .touchUpInside)
         recentsTopStackView.addArrangedSubview(clearRecentsButton)
 
         // recents table view
-        stackView.addArrangedSubview(UIView())
+        recentsTableView = UITableView()
+        recentsTableView.translatesAutoresizingMaskIntoConstraints = false
+        recentsTableView.delegate = self
+        recentsTableView.dataSource = self
+        recentsTableView.showsVerticalScrollIndicator = false
+        recentsTableView.separatorStyle = .none // we implement it inside cells, to prevent extra lines on older iOS versions
+        recentsTableView.register(RecentAddressCell.self, forCellReuseIdentifier: "RecentAddress")
+        recentsTableView.rowHeight = 60
+        stackView.addArrangedSubview(recentsTableView)
 
         // continue button
         let bottomStackView = UIStackView()
@@ -162,10 +174,7 @@ public class SendVC: WViewController {
 
         updateTheme()
 
-        #if DEBUG
-        addressField.text = "EQAbrFKnUptp9c5qP5aqtvnuh5ZqzHezqcsithIXHxd4O2ha"
-        addressField.textViewDidChange(self.addressField)
-        #endif
+        // defaultAddress can be set from deeplink or other presentor view controllers
         if let defaultAddress {
             addressField.text = defaultAddress
             addressField.textViewDidChange(self.addressField)
@@ -173,6 +182,7 @@ public class SendVC: WViewController {
     }
     
     func updateTheme() {
+        recentsLabel.textColor = WTheme.secondaryLabel
         addressHintLabel.textColor = WTheme.secondaryLabel
     }
 
@@ -198,6 +208,7 @@ public class SendVC: WViewController {
     @objc func pastePressed() {
         let pb: UIPasteboard = UIPasteboard.general
         addressField.text = pb.string
+        addressField.textViewDidChange(addressField)
     }
     
     @objc func scanPressed() {
@@ -214,9 +225,20 @@ public class SendVC: WViewController {
         }), animated: true)
     }
     
+    @objc func clearRecentsPressed() {
+        RecentAddressesHelpers.clearRecentAddresses(walletVersion: walletInfo.version)
+        recentsTopStackView.isHidden = true
+        recentsTableView.reloadData()
+    }
+
     @objc func continuePressed() {
+        processAddress()
+    }
+    
+    func processAddress(changedAddressTo: String? = nil) {
         isLoading = true
-        let address = addressField.text ?? ""
+        // to prevent ui jump, if user tap on a recent address, it is passed to this function to update address field after processing address and pushing next vc
+        let address = changedAddressTo == nil ? (addressField.text ?? "") : changedAddressTo!
         ContextAddressHelpers.toBase64Address(unknownAddress: address,
                                               walletContext: walletContext) { [weak self] base64Address in
             guard let self else {
@@ -227,17 +249,35 @@ public class SendVC: WViewController {
                 showWrongAddressToast()
                 return
             }
-            navigateToSendVC(address: base64Address, addressAlias: base64Address != address ? address : nil)
+            if base64Address == walletInfo.address {
+                showAlert(title: WStrings.Wallet_Send_OwnAddressAlertTitle.localized, text: WStrings.Wallet_Send_OwnAddressAlertText.localized, button: WStrings.Wallet_Navigation_Cancel.localized, secondaryButton: WStrings.Wallet_Send_OwnAddressAlertProceed.localized, secondaryButtonPressed: {
+                    self.navigateToSendVC(address: base64Address,
+                                          addressAlias: base64Address != address.base64URLEscaped() ? address : nil,
+                                          changeAddressTo: changedAddressTo)
+                }, preferPrimary: false)
+            } else {
+                navigateToSendVC(address: base64Address,
+                                 addressAlias: base64Address != address.base64URLEscaped() ? address : nil,
+                                 changeAddressTo: changedAddressTo)
+            }
         }
     }
     
-    func navigateToSendVC(address: String, addressAlias: String?) {
+    func navigateToSendVC(address: String, addressAlias: String?, changeAddressTo: String?) {
         navigationController?.pushViewController(SendAmountVC(walletContext: walletContext,
                                                               walletInfo: walletInfo,
                                                               addressToSend: address,
                                                               balance: balance,
                                                               addressAlias: addressAlias),
-                                                 animated: true)
+                                                 animated: true, completion: { [weak self] in
+            guard let self else {
+                return
+            }
+            if let changeAddressTo {
+                addressField.text = changeAddressTo
+                addressField.textViewDidChange(addressField)
+            }
+        })
     }
 }
 
@@ -260,5 +300,22 @@ extension SendVC: WKeyboardObserverDelegate {
 extension SendVC: WAddressInputDelegate {
     public func addressTextChanged() {
         continueButton.isEnabled = !addressField.text.isEmpty
+    }
+}
+
+extension SendVC: UITableViewDelegate, UITableViewDataSource {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return _recentAddresses.count
+    }
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RecentAddress", for: indexPath) as! RecentAddressCell
+        cell.configure(with: _recentAddresses[indexPath.row])
+        return cell
+    }
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        // did select a recent address
+        let recentAddress = _recentAddresses[indexPath.row]
+        processAddress(changedAddressTo: recentAddress.addressAlias ?? recentAddress.address)
     }
 }

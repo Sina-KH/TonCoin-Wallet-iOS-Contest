@@ -816,7 +816,7 @@ typedef enum {
     }] startOn:[SQueue mainQueue]] deliverOn:[SQueue mainQueue]]];
 }
 
-- (SSignal *)getAccountStateWithAddress:(NSString *)accountAddress {
+/*- (SSignal *)getAccountStateWithAddress:(NSString *)accountAddress {
     return [self wrapSignal:[[[[SSignal alloc] initWithGenerator:^id<SDisposable>(SSubscriber *subscriber) {
         uint64_t requestId = self->_nextRequestId;
         self->_nextRequestId += 1;
@@ -864,7 +864,7 @@ typedef enum {
         return [[SBlockDisposable alloc] initWithBlock:^{
         }];
     }] startOn:[SQueue mainQueue]] deliverOn:[SQueue mainQueue]]];
-}
+}*/
 
 - (SSignal *)generateSendGramsQueryFromKey:(TONKey *)key localPassword:(NSData *)localPassword fromAddress:(NSString *)fromAddress toAddress:(NSString *)address amount:(int64_t)amount comment:(NSData *)comment encryptComment:(bool)encryptComment forceIfDestinationNotInitialized:(bool)forceIfDestinationNotInitialized timeout:(int32_t)timeout randomId:(int64_t)randomId {
     return [self wrapSignal:[[[[SSignal alloc] initWithGenerator:^id<SDisposable>(SSubscriber *subscriber) {
@@ -1499,6 +1499,44 @@ typedef enum {
         return [[SBlockDisposable alloc] initWithBlock:^{
         }];
     }] startOn:[SQueue mainQueue]] deliverOn:[SQueue mainQueue]];
+}
+
+- (SSignal *)getFullAccountStateWithAddress:(NSString *)accountAddress {
+    return [self wrapSignal:[[[[SSignal alloc] initWithGenerator:^id<SDisposable>(SSubscriber *subscriber) {
+        uint64_t requestId = self->_nextRequestId;
+        self->_nextRequestId += 1;
+        
+        self->_requestHandlers[@(requestId)] = [[TONRequestHandler alloc] initWithCompletion:^(tonlib_api::object_ptr<tonlib_api::Object> &object) {
+            if (object->get_id() == tonlib_api::error::ID) {
+                auto error = tonlib_api::move_object_as<tonlib_api::error>(object);
+                [subscriber putError:[[TONError alloc] initWithText:[[NSString alloc] initWithUTF8String:error->message_.c_str()]]];
+            } else if (object->get_id() == tonlib_api::raw_fullAccountState::ID) {
+                auto fullAccountState = tonlib_api::move_object_as<tonlib_api::raw_fullAccountState>(object);
+
+                TONTransactionId *lastTransactionId = nil;
+                if (fullAccountState->last_transaction_id_ != nullptr) {
+                    lastTransactionId = [[TONTransactionId alloc] initWithLt:fullAccountState->last_transaction_id_->lt_
+                                                             transactionHash:makeData(fullAccountState->last_transaction_id_->hash_)];
+                }
+
+                bool isRWallet = false;
+                int64_t unlockedBalance = fullAccountState->balance_;
+
+                [subscriber putNext:[[TONAccountState alloc] initWithIsInitialized:false
+                                                                         isRWallet:isRWallet
+                                                                           balance:fullAccountState->balance_ unlockedBalance:unlockedBalance seqno:-1 lastTransactionId:lastTransactionId syncUtime:fullAccountState->sync_utime_]];
+                [subscriber putCompletion];
+            } else {
+                assert(false);
+            }
+        }];
+        
+        auto query = make_object<tonlib_api::raw_getAccountState>(make_object<tonlib_api::accountAddress>(accountAddress.UTF8String));
+        self->_client->send({ requestId, std::move(query) });
+        
+        return [[SBlockDisposable alloc] initWithBlock:^{
+        }];
+    }] startOn:[SQueue mainQueue]] deliverOn:[SQueue mainQueue]]];
 }
 
 @end

@@ -362,7 +362,7 @@ public final class TonInstance {
             
             self.impl.with { impl in
                 impl.withInstance { ton in
-                    let cancel = ton.getAccountState(withAddress: address).start(next: { state in
+                    let cancel = ton.getFullAccountState(withAddress: address).start(next: { state in
                         guard let state = state as? TONAccountState else {
                             return
                         }
@@ -403,7 +403,7 @@ public final class TonInstance {
             
             self.impl.with { impl in
                 impl.withInstance { ton in
-                    let cancel = ton.getAccountState(withAddress: address).start(next: { state in
+                    let cancel = ton.getFullAccountState(withAddress: address).start(next: { state in
                         guard let state = state as? TONAccountState else {
                             subscriber.putNext(nil)
                             return

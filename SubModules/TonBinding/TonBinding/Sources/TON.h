@@ -220,7 +220,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (SSignal *)createKeyWithLocalPassword:(NSData *)localPassword mnemonicPassword:(NSData *)mnemonicPassword;
 - (SSignal *)getCreatedWalletAccountAddressWithPublicKey:(NSString *)publicKey initialWalletId:(int64_t)initialWalletId;
 - (SSignal *)guessImportedWalletAddressWithPublicKey:(NSString *)publicKey;
-- (SSignal *)getAccountStateWithAddress:(NSString *)accountAddress;
+//- (SSignal *)getAccountStateWithAddress:(NSString *)accountAddress;
 - (SSignal *)generateSendGramsQueryFromKey:(TONKey *)key localPassword:(NSData *)localPassword fromAddress:(NSString *)fromAddress toAddress:(NSString *)address amount:(int64_t)amount comment:(NSData *)comment encryptComment:(bool)encryptComment forceIfDestinationNotInitialized:(bool)forceIfDestinationNotInitialized timeout:(int32_t)timeout randomId:(int64_t)randomId;
 - (SSignal *)generateFakeSendGramsQueryFromAddress:(NSString *)fromAddress toAddress:(NSString *)address amount:(int64_t)amount comment:(NSData *)comment encryptComment:(bool)encryptComment forceIfDestinationNotInitialized:(bool)forceIfDestinationNotInitialized timeout:(int32_t)timeout;
 - (SSignal *)estimateSendGramsQueryFees:(TONPreparedSendGramsQuery *)preparedQuery;
@@ -245,6 +245,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (SSignal *)accountAddressWithCode:(NSData *)code
                                data:(NSData *)data
                           workchain:(int32_t)workchain;
+
+- (SSignal *)getFullAccountStateWithAddress:(NSString *)accountAddress;
 
 @end
 

@@ -20,12 +20,19 @@ public class SendConfirmVC: WViewController {
     private let addressToSend: String
     private let amount: Int64
     private let defaultComment: String?
-    public init(walletContext: WalletContext, walletInfo: WalletInfo, addressToSend: String, amount: Int64, defaultComment: String? = nil) {
+    private let addressAlias: String?
+    public init(walletContext: WalletContext,
+                walletInfo: WalletInfo,
+                addressToSend: String,
+                amount: Int64,
+                defaultComment: String? = nil,
+                addressAlias: String? = nil) { // address alias can be `raw address` or the `dns address`, we store it with address, to show in recents section.
         self.walletContext = walletContext
         self.walletInfo = walletInfo
         self.addressToSend = addressToSend
         self.amount = amount
         self.defaultComment = defaultComment
+        self.addressAlias = addressAlias
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder: NSCoder) {
@@ -297,7 +304,7 @@ extension SendConfirmVC: SendConfirmVMDelegate {
                                             comment: commentInput.text,
                                             encryptComment: !canNotEncryptComment)
             }
-        }, secondaryButton: WStrings.Wallet_Navigation_Cancel.localized)
+        }, secondaryButton: WStrings.Wallet_Navigation_Cancel.localized, preferPrimary: false)
     }
 
     // authorize and then finalize the pre-send process
@@ -332,6 +339,10 @@ extension SendConfirmVC: SendConfirmVMDelegate {
 
     // navigate to sending page and send!
     func navigateToSending(sendInstanceData: SendInstanceData) {
+        // add `address` and `address alias` to recents
+        let recentAddress = RecentAddress(address: addressToSend, addressAlias: addressAlias, timstamp: Int(Date().timeIntervalSince1970))
+        RecentAddressesHelpers.saveRecentAddress(recentAddress: recentAddress, walletVersion: walletInfo.version)
+        // navigate to send
         navigationController?.pushViewController(SendingVC(walletContext: walletContext,
                                                            walletInfo: walletInfo,
                                                            sendInstanceData: sendInstanceData),

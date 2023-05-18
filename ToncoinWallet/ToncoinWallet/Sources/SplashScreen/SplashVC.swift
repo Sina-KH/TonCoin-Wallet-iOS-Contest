@@ -224,7 +224,7 @@ extension SplashVC: DeeplinkNavigator {
                                                     walletInfo: walletInfo,
                                                     addressToSend: addressBase64,
                                                     balance: nil,
-                                                    addressAlias: addressBase64 == address ? nil : address)
+                                                    addressAlias: addressBase64 == address.base64URLEscaped() ? nil : address)
                     if let amount = amount {
                         let sendConfirmVC = SendConfirmVC(walletContext: splashVM.walletContext!,
                                                     walletInfo: walletInfo,

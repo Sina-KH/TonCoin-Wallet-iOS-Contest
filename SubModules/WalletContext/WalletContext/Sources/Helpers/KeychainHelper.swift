@@ -52,6 +52,15 @@ public struct KeychainHelper {
     public static func dApps(walletVersion: Int) -> String? {
         KeychainHelper.load(withKey: "\(tonConnectDApps)_\(walletVersion)")
     }
+    
+    // MARK: - Recent addresses
+    private static var recentAddressesKey = "recentAddresses"
+    public static func save(recentAddresses: String?, walletVersion: Int) {
+        KeychainHelper.save(recentAddresses, forKey: "\(recentAddressesKey)_\(walletVersion)")
+    }
+    public static func recentAddresses(walletVersion: Int) -> String? {
+        KeychainHelper.load(withKey: "\(recentAddressesKey)_\(walletVersion)")
+    }
 
     // MARK: - Delete Wallet
     public static func deleteWallet() {
@@ -64,7 +73,11 @@ public struct KeychainHelper {
     }
 
     // MARK: - Private base keychain functionalities
+    private static var _cachedValues: [String: String?] = [:]
     private static func save(_ string: String?, forKey key: String) {
+        // cache value to prevent sync issues with keychain
+        KeychainHelper._cachedValues[key] = string
+
         let query = keychainQuery(withKey: key)
         let objectData: Data? = string?.data(using: .utf8, allowLossyConversion: false)
 
@@ -83,6 +96,11 @@ public struct KeychainHelper {
     }
     
     private static func load(withKey key: String) -> String? {
+        // load from cache to prevent sync issues with keychain
+        if KeychainHelper._cachedValues.keys.contains(key) {
+            return KeychainHelper._cachedValues[key]! // ! to convert String?? to String?
+        }
+
         let query = keychainQuery(withKey: key)
         query.setValue(kCFBooleanTrue, forKey: kSecReturnData as String)
         query.setValue(kCFBooleanTrue, forKey: kSecReturnAttributes as String)
