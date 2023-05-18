@@ -68,7 +68,7 @@ public class BalanceHeaderView: UIView {
         backgroundColor = WTheme.balanceHeaderView.background
 
         // scan button
-        let scanButton = WButton.setupInstance(.secondary)
+        let scanButton = WBaseButton(type: .system)
         scanButton.translatesAutoresizingMaskIntoConstraints = false
         scanButton.tintColor = WTheme.balanceHeaderView.headIcons
         scanButton.setImage(UIImage(named: "ScanIcon")?.withRenderingMode(.alwaysTemplate), for: .normal)
@@ -82,7 +82,7 @@ public class BalanceHeaderView: UIView {
         ])
 
         // settings button
-        let settingsButton = WButton.setupInstance(.secondary)
+        let settingsButton = WBaseButton(type: .system)
         settingsButton.translatesAutoresizingMaskIntoConstraints = false
         settingsButton.tintColor = WTheme.balanceHeaderView.headIcons
         settingsButton.setImage(UIImage(named: "SettingsIcon")?.withRenderingMode(.alwaysTemplate), for: .normal)
