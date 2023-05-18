@@ -14,7 +14,7 @@ public struct ContextAddressHelpers {
     public static func toBase64Address(unknownAddress: String,
                                 walletContext: WalletContext,
                                 callback: @escaping (String?) -> Void) {
-        let isValid = isValidAddress(unknownAddress, exactLength: true)
+        let isValid = isValidAddress(unknownAddress.base64URLEscaped(), exactLength: true)
         if isValid {
             callback(unknownAddress)
             return
