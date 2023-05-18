@@ -32,7 +32,7 @@ public func formatAddress(_ address: String) -> String {
     return address
 }
 
-public func formatStartEndAddress(_ address: String) -> String {
+public func formatStartEndAddress(_ address: String, prefix: Int = 4, suffix: Int = 4) -> String {
     return "\(address.prefix(4))...\(address.suffix(4))"
 }
 

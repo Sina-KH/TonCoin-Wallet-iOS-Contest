@@ -227,15 +227,16 @@ public class SendVC: WViewController {
                 showWrongAddressToast()
                 return
             }
-            navigateToSendVC(address: base64Address)
+            navigateToSendVC(address: base64Address, addressAlias: base64Address != address ? address : nil)
         }
     }
     
-    func navigateToSendVC(address: String) {
+    func navigateToSendVC(address: String, addressAlias: String?) {
         navigationController?.pushViewController(SendAmountVC(walletContext: walletContext,
                                                               walletInfo: walletInfo,
                                                               addressToSend: address,
-                                                              balance: balance),
+                                                              balance: balance,
+                                                              addressAlias: addressAlias),
                                                  animated: true)
     }
 }

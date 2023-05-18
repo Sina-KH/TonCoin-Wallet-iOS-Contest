@@ -23,11 +23,17 @@ public class SendAmountVC: WViewController {
             }
         }
     }
-    public init(walletContext: WalletContext, walletInfo: WalletInfo, addressToSend: String, balance: Int64? = nil) {
+    private let addressAlias: String?
+    public init(walletContext: WalletContext,
+                walletInfo: WalletInfo,
+                addressToSend: String,
+                balance: Int64? = nil,
+                addressAlias: String? = nil) { // address alias can be `raw address` or the `dns address`
         self.walletContext = walletContext
         self.walletInfo = walletInfo
         self.addressToSend = addressToSend
         self.balance = balance
+        self.addressAlias = addressAlias
         super.init(nibName: nil, bundle: nil)
         
         EventsHelper.observeBalanceUpdate(self, with: #selector(walletBalanceUpdated(notification:)))
@@ -74,6 +80,7 @@ public class SendAmountVC: WViewController {
         let sendToStackView = UIStackView()
         stackView.addArrangedSubview(sendToStackView)
         let sendToLabel = UILabel()
+        sendToStackView.spacing = 4
         sendToLabel.translatesAutoresizingMaskIntoConstraints = false
         let sendToAttributedString = NSMutableAttributedString(string: "\(WStrings.Wallet_SendAmount_SendTo.localized) ",
                                                                attributes: [
@@ -85,6 +92,17 @@ public class SendAmountVC: WViewController {
                                                              NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .regular),
                                                              NSAttributedString.Key.foregroundColor: WTheme.primaryLabel
         ]))
+        if let addressAlias {
+            // it's ton or raw address, if it's ton, we show the address itself.
+            let showingAddressAlias =
+                AddressHelpers.isTONDNSDomain(string: addressAlias) ? addressAlias : formatStartEndAddress(addressAlias, prefix: 6)
+            sendToAttributedString.append(NSAttributedString(string: " \(showingAddressAlias)",
+                                                             attributes: [
+                                                                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .regular),
+                                                                NSAttributedString.Key.foregroundColor: WTheme.secondaryLabel
+                                                             ]))
+        }
+        sendToLabel.setContentCompressionResistancePriority(UILayoutPriority.defaultLow, for: .horizontal)
         sendToLabel.attributedText = sendToAttributedString
         sendToStackView.addArrangedSubview(sendToLabel)
         let editButton = WButton.setupInstance(.secondary)

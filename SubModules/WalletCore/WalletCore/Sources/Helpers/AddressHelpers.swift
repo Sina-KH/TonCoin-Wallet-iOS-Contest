@@ -96,4 +96,20 @@ public class AddressHelpers {
             hash: Array(data[2..<34])
         ).rawValue
     }
+
+    public static func isTONDNSDomain(
+        string: String
+    ) -> Bool {
+        let range = NSRange(location: 0, length: string.count)
+        let regex = NSRegularExpression.tonDNSAddress
+        let matches = regex.matches(in: string, options: [], range: range)
+        
+        guard matches.count == 1,
+              (string as NSString).substring(with: matches[0].range(at: 0)) == string
+        else {
+            return false
+        }
+        
+        return true
+    }
 }

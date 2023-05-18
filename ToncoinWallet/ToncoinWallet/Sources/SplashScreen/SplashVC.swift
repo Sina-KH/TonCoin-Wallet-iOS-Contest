@@ -215,21 +215,28 @@ extension SplashVC: DeeplinkNavigator {
                                     walletInfo: walletInfo,
                                     balance: nil,
                                     defaultAddress: address)
-                let sendAmountVC = SendAmountVC(walletContext: splashVM.walletContext!,
-                                                walletInfo: walletInfo,
-                                                addressToSend: address,
-                                                balance: nil)
-                if let amount = amount {
-                    let sendConfirmVC = SendConfirmVC(walletContext: splashVM.walletContext!,
-                                                walletInfo: walletInfo,
-                                                addressToSend: address,
-                                                amount: amount,
-                                                defaultComment: comment)
-                    nav.viewControllers = [sendVC, sendAmountVC, sendConfirmVC]
-                } else {
-                    nav.viewControllers = [sendVC, sendAmountVC]
+                ContextAddressHelpers.toBase64Address(unknownAddress: address,
+                                                                          walletContext: splashVM.walletContext!) { [weak self] addressBase64 in
+                    guard let self, let addressBase64 else {
+                        return
+                    }
+                    let sendAmountVC = SendAmountVC(walletContext: splashVM.walletContext!,
+                                                    walletInfo: walletInfo,
+                                                    addressToSend: addressBase64,
+                                                    balance: nil,
+                                                    addressAlias: addressBase64 == address ? nil : address)
+                    if let amount = amount {
+                        let sendConfirmVC = SendConfirmVC(walletContext: splashVM.walletContext!,
+                                                    walletInfo: walletInfo,
+                                                    addressToSend: address,
+                                                    amount: amount,
+                                                    defaultComment: comment)
+                        nav.viewControllers = [sendVC, sendAmountVC, sendConfirmVC]
+                    } else {
+                        nav.viewControllers = [sendVC, sendAmountVC]
+                    }
+                    topViewController()?.present(nav, animated: true)
                 }
-                topViewController()?.present(nav, animated: true)
                 break
 
             }

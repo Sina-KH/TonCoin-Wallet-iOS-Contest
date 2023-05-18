@@ -19,7 +19,7 @@ public struct ContextAddressHelpers {
             callback(unknownAddress)
             return
         }
-        let isDNS = isTONDNSDomain(string: unknownAddress)
+        let isDNS = AddressHelpers.isTONDNSDomain(string: unknownAddress)
         if isDNS {
             _ = (resolveDNSAddress(tonInstance: walletContext.tonInstance, address: unknownAddress.lowercased())
             |> deliverOnMainQueue).start(next: { resolvedAddress in
@@ -35,21 +35,5 @@ public struct ContextAddressHelpers {
         } else {
             callback(AddressHelpers.rawToAddress(rawAddress: unknownAddress))
         }
-    }
-    
-    private static func isTONDNSDomain(
-        string: String
-    ) -> Bool {
-        let range = NSRange(location: 0, length: string.count)
-        let regex = NSRegularExpression.tonDNSAddress
-        let matches = regex.matches(in: string, options: [], range: range)
-        
-        guard matches.count == 1,
-              (string as NSString).substring(with: matches[0].range(at: 0)) == string
-        else {
-            return false
-        }
-        
-        return true
     }
 }
