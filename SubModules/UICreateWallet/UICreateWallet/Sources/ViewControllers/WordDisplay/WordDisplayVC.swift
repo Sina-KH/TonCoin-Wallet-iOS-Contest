@@ -36,11 +36,11 @@ class WordDisplayVC: RecoveryPhraseVC {
     override func donePressed() {
         let deltaTime = Date().timeIntervalSince1970 - startTime
         let minimalTimeout: Double
-        #if DEBUG
-        minimalTimeout = 5.0
-        #else
+        //#if DEBUG
+        //minimalTimeout = 5.0
+        //#else
         minimalTimeout = 30.0
-        #endif
+        //#endif
         if deltaTime < minimalTimeout {
             // it's too soon! show error!
             if !notDoneErrorShown {

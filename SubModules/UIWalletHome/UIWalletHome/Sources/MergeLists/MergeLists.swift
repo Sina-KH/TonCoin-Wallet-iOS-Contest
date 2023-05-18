@@ -6,7 +6,7 @@ public func mergeListsStableWithUpdates<T>(leftList: [T], rightList: [T], allUpd
     var insertItems: [(Int, T, Int?)] = []
     var updatedIndices: [(Int, T, Int)] = []
     
-    #if DEBUG
+    /*#if DEBUG
     var existingStableIds: [T.T: T] = [:]
     for item in leftList {
         if let _ = existingStableIds[item.stableId] {
@@ -24,7 +24,7 @@ public func mergeListsStableWithUpdates<T>(leftList: [T], rightList: [T], allUpd
             existingStableIds[item.stableId] = item
         }
     }
-    #endif
+    #endif*/
     
     var currentList = leftList
     
@@ -172,11 +172,11 @@ public func mergeListsStableWithUpdates<T>(leftList: [T], rightList: [T], allUpd
         currentList[index] = item
     }
     
-    #if DEBUG
-    precondition(currentList == rightList, "currentList == rightList")
-    #else
+    //#if DEBUG
+    //precondition(currentList == rightList, "currentList == rightList")
+    //#else
     assert(currentList == rightList, "currentList == rightList")
-    #endif
+    //#endif
     
     return (removeIndices, insertItems, updatedIndices)
 }
@@ -187,7 +187,7 @@ public func mergeListsStableWithUpdates<T>(leftList: [T], rightList: [T], isLess
     var insertItems: [(Int, T, Int?)] = []
     var updatedIndices: [(Int, T, Int)] = []
     
-    #if DEBUG
+    /*#if DEBUG
     var existingStableIds: [AnyHashable: T] = [:]
     for item in leftList {
         if let _ = existingStableIds[getId(item)] {
@@ -205,7 +205,7 @@ public func mergeListsStableWithUpdates<T>(leftList: [T], rightList: [T], isLess
             existingStableIds[getId(item)] = item
         }
     }
-    #endif
+    #endif*/
     
     var leftStableIds: [AnyHashable] = []
     var rightStableIds: [AnyHashable] = []
@@ -390,7 +390,7 @@ public func mergeListsStableWithUpdates<T>(leftList: [T], rightList: [T], isLess
         currentList[index] = item
     }
     
-    #if DEBUG
+    /*#if DEBUG
     if currentList.count != rightList.count {
         precondition(false)
     } else {
@@ -400,7 +400,7 @@ public func mergeListsStableWithUpdates<T>(leftList: [T], rightList: [T], isLess
             }
         }
     }
-    #endif
+    #endif*/
     
     return (removeIndices, insertItems, updatedIndices)
 }
