@@ -147,6 +147,11 @@
 "Wallet.Send.Clear" = "Clear"; // NEW
 "Wallet.Send.ErrorInvalidAddressTitle" = "Invalid Address"; // NEW
 "Wallet.Send.ErrorInvalidAddressText" = "Address entered does not belong to TON"; // NEW
+"Wallet.Send.OwnAddressAlertTitle" = "Warning";
+"Wallet.Send.OwnAddressAlertText" = "Sending TON from a wallet to the same wallet doesn't make sense, you will simply waste a portion of the value on blockchain fees.";
+"Wallet.Send.OwnAddressAlertProceed" = "Proceed";
+"Wallet.Send.TransactionInProgress" = "Please wait until the current transaction is completed.";
+"Wallet.Send.SyncInProgress" = "Please wait while the wallet finishes syncing with the TON Blockchain.";
 
 // SendAmount
 "Wallet.SendAmount.SendTo" = "Send to:"; // NEW

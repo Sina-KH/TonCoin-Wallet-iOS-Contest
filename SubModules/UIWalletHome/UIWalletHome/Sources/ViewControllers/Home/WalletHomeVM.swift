@@ -48,7 +48,7 @@ class WalletHomeVM {
     private var loadingMoreTransactions: Bool = false
     private var canLoadMoreTransactions: Bool = true
     private var currentEntries: [HomeListItemEntry]?
-    private var reloadingState: Bool = false
+    private(set) var reloadingState: Bool = false
     private let statePromise = Promise<(CombinedWalletState, Bool)>()
     
     // list of updates that should be done on transactions list in home page
