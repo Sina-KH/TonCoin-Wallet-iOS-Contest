@@ -36,6 +36,12 @@ public class SendVC: WViewController {
         super.loadView()
         setupViews()
     }
+    
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.tintColor = WTheme.primaryButton.background
+    }
 
     private var stackViewBottomConstraint: NSLayoutConstraint!
     private var addressField: WAddressInput!
@@ -265,6 +271,8 @@ public class SendVC: WViewController {
     }
     
     func navigateToSendVC(address: String, addressAlias: String?, changeAddressTo: String?) {
+        view.endEditing(true)
+
         navigationController?.pushViewController(SendAmountVC(walletContext: walletContext,
                                                               walletInfo: walletInfo,
                                                               addressToSend: address,
@@ -278,6 +286,11 @@ public class SendVC: WViewController {
                 addressField.text = changeAddressTo
                 addressField.textViewDidChange(addressField)
             }
+            RecentAddressesHelpers.saveRecentAddress(recentAddress: RecentAddress(address: address,
+                                                                                  addressAlias: addressAlias,
+                                                                                  timstamp: Date().timeIntervalSince1970), walletVersion: walletInfo.version)
+            _recentAddresses = RecentAddressesHelpers.recentAddresses(walletVersion: walletInfo.version)
+            recentsTableView.reloadData()
         })
     }
 }

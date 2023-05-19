@@ -49,18 +49,20 @@ public class QRScanVC: WViewController {
         view.backgroundColor = .black
         
         // navigation bar
-        let backItem = WNavigationBarButton(text: WStrings.Wallet_Navigation_Back.localized,
-                                            icon: UIImage(named: "LeftIcon")!.withRenderingMode(.alwaysTemplate),
-                                            onPress: { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
-        })
-        let navigationBar = WNavigationBar(leadingItem: backItem, tintColor: .white)
-        view.addSubview(navigationBar)
-        NSLayoutConstraint.activate([
-            navigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            navigationBar.leftAnchor.constraint(equalTo: view.leftAnchor),
-            navigationBar.rightAnchor.constraint(equalTo: view.rightAnchor)
-        ])
+        if navigationController?.isNavigationBarHidden == true {
+            let backItem = WNavigationBarButton(text: WStrings.Wallet_Navigation_Back.localized,
+                                                icon: UIImage(named: "LeftIcon")!.withRenderingMode(.alwaysTemplate),
+                                                onPress: { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            })
+            let navigationBar = WNavigationBar(leadingItem: backItem, tintColor: .white)
+            view.addSubview(navigationBar)
+            NSLayoutConstraint.activate([
+                navigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                navigationBar.leftAnchor.constraint(equalTo: view.leftAnchor),
+                navigationBar.rightAnchor.constraint(equalTo: view.rightAnchor)
+            ])
+        }
 
         authorizeAccessToCamera()
     }
@@ -92,7 +94,13 @@ public class QRScanVC: WViewController {
             strongSelf.qrScanView?.updateInForeground(inForeground)
         })
     }
-
+    
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.tintColor = .white
+    }
+    
     private func showScanView() {
         noAccessView?.removeFromSuperview()
 
