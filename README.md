@@ -56,7 +56,7 @@ using `brew install libmicrohttpd`
 ```export OPENSSL_ROOT_DIR=/usr/local/opt/openssl@3/```
 This is the default path, set in this file, so you don't need to change it if your openssl is installed in this path.
 
-1. Run the Prepare.sh script with `sh Prepare/prepare.sh`, ***This command 
+1. Run the Prepare.sh script with `cd Prepare && sh prepare.sh`, ***This command 
 should run successfully with no errors.*** This script ***automatically*** 
 builds `OpenSSL` and `Tonlib`, create the universal `.a` lib files and put 
 them inside the `TonBinding` project. (The final output will only contain 
