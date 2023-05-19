@@ -165,14 +165,9 @@ class WalletTransactionCell: UITableViewCell {
 
             // show comment (description string) in a bubble view
             if descriptionString.count == 0 {
-                // remove from stackView to remove extra spacing
-                if bubbleView.superview != nil {
-                    bubbleView.removeFromSuperview()
-                }
+                bubbleView.isHidden = true
             } else {
-                if bubbleView.superview == nil {
-                    verticalStackView.addSubview(bubbleView)
-                }
+                bubbleView.isHidden = false
                 bubbleView.text = descriptionString
             }
 
@@ -201,15 +196,10 @@ class WalletTransactionCell: UITableViewCell {
 
             // show comment (description string) in a bubble view
             if descriptionString.count == 0 {
-                // remove from stackView to remove extra spacing
-                if bubbleView.superview != nil {
-                    bubbleView.removeFromSuperview()
-                }
+                bubbleView.isHidden = true
             } else {
-                if bubbleView.superview == nil {
-                    verticalStackView.addArrangedSubview(bubbleView)
-                }
                 bubbleView.text = descriptionString
+                bubbleView.isHidden = false
             }
 
             break
