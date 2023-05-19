@@ -207,7 +207,8 @@ extension WalletHomeVC: UITableViewDataSource, UITableViewDelegate {
     }
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Transaction", for: indexPath) as! WalletTransactionCell
-        cell.configure(with: walletHomeVM.transactions![indexPath.row])
+        cell.configure(with: walletHomeVM.transactions![indexPath.row],
+                       prevItem: indexPath.row > 0 ? walletHomeVM.transactions![indexPath.row - 1] : nil)
         return cell
     }
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
