@@ -77,9 +77,9 @@ class RecentAddressCell: UITableViewCell {
             let sameYear = Date().isInSameYear(as: addressDate)
             let dateFormatter = DateFormatter()
             if sameYear {
-                dateFormatter.timeStyle = .medium
-            } else {
                 dateFormatter.dateFormat = "MMMM d"
+            } else {
+                dateFormatter.timeStyle = .medium
             }
             secondaryLabel.text = dateFormatter.string(from: addressDate)
         }

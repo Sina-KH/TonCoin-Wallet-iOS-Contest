@@ -24,7 +24,7 @@ class RecentAddressesHelpers {
         arrRecents.removeAll { it in
             it.address == recentAddress.address && it.addressAlias == recentAddress.addressAlias
         }
-        arrRecents.append(recentAddress)
+        arrRecents.insert(recentAddress, at: 0)
         let arrRecentsData = try? JSONEncoder().encode(arrRecents)
         if let arrRecentsData {
             KeychainHelper.save(recentAddresses: String(data: arrRecentsData, encoding: .utf8)!, walletVersion: walletVersion)
