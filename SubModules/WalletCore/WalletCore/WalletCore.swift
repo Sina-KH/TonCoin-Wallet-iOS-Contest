@@ -520,71 +520,82 @@ public final class TonInstance {
             self.impl.with { impl in
                 impl.withInstance { ton in
                     
-                    ton.accountLocalID(withAccountAddress: AddressHelpers.addressToRaw(string: walletInfo.address)!).start { localIDResult in
-                        guard let localIDResult = localIDResult as? TONLocalID else {
+                    ton.exportDecryptedKey(withEncryptedKey: GTTONKey(publicKey: walletInfo.publicKey.rawValue,
+                                                                      encryptedSecretKey: walletInfo.encryptedSecret.data),
+                                           withUserPassword: Data()).start { decryptedSecret in
+                        guard let decryptedSecret = decryptedSecret as? Data else {
                             subscriber.putError(.generic)
                             return
                         }
-                        ton.accountLocalID(localIDResult.localID, runGetMethodNamed: "seqno", arguments: []).start { seqnoResult in
-                            guard let seqnoResult = seqnoResult as? TONExecutionResult else {
+
+                        ton.accountLocalID(withAccountAddress: AddressHelpers.addressToRaw(string: walletInfo.address)!).start { localIDResult in
+                            guard let localIDResult = localIDResult as? TONLocalID else {
                                 subscriber.putError(.generic)
                                 return
                             }
-                            var seqno = Int64(0)
-                            if seqnoResult.code == 0,
-                                  let decimal = seqnoResult.stack.last as? TONExecutionResultDecimal,
-                                  let parsedSeqno = Int64(decimal.value) {
-                                seqno = parsedSeqno
-                            }
-                            
-                            TONQueryHelpers.sendTONQueryData(walletInfo: walletInfo,
-                                                             decryptedSecret: decryptedSecret,
-                                                             toAddress: toAddress,
-                                                             bouncable: forceIfDestinationNotInitialized,
-                                                             amount: amount,
-                                                             message: comment,
-                                                             seqno: seqno) { address, initial, body in
-                                DispatchQueue.main.async {
-                                    let cancel = ton.prepareQuery(withDestinationAddress: address.rawValue,
-                                                                  initialAccountStateData: initial?.kind.rawValue.data,
-                                                                  initialAccountStateCode: initial?.data,
-                                                                  body: body,
-                                                                  randomId: randomId).start(next: { result in
-                                        guard let result = result as? TONPreparedSendGramsQuery else {
-                                            subscriber.putError(.generic)
-                                            return
-                                        }
-                                        subscriber.putNext(result)
-                                        subscriber.putCompletion()
-                                    }, error: { error in
-                                        if let error = error as? TONError {
-                                            if error.text.hasPrefix("INVALID_ACCOUNT_ADDRESS") {
-                                                subscriber.putError(.invalidAddress)
-                                            } else if error.text.hasPrefix("DANGEROUS_TRANSACTION") {
-                                                subscriber.putError(.destinationIsNotInitialized)
-                                            } else if error.text.hasPrefix("MESSAGE_TOO_LONG") {
-                                                subscriber.putError(.messageTooLong)
-                                            } else if error.text.hasPrefix("NOT_ENOUGH_FUNDS") {
-                                                subscriber.putError(.notEnoughFunds)
-                                            } else if isTextNetworkError(error.text) {
-                                                subscriber.putError(.network)
+                            ton.accountLocalID(localIDResult.localID, runGetMethodNamed: "seqno", arguments: []).start { seqnoResult in
+                                guard let seqnoResult = seqnoResult as? TONExecutionResult else {
+                                    subscriber.putError(.generic)
+                                    return
+                                }
+                                var seqno = Int64(0)
+                                if seqnoResult.code == 0,
+                                      let decimal = seqnoResult.stack.last as? TONExecutionResultDecimal,
+                                      let parsedSeqno = Int64(decimal.value) {
+                                    seqno = parsedSeqno
+                                }
+                                
+                                TONQueryHelpers.sendTONQueryData(walletInfo: walletInfo,
+                                                                 decryptedKey: decryptedSecret,
+                                                                 toAddress: toAddress,
+                                                                 bouncable: forceIfDestinationNotInitialized,
+                                                                 amount: amount,
+                                                                 message: comment,
+                                                                 seqno: seqno) { address, initial, body in
+                                    DispatchQueue.main.async {
+                                        let cancel = ton.prepareQuery(withDestinationAddress: address.rawValue,
+                                                                      initialAccountStateData: initial?.kind.rawValue.data,
+                                                                      initialAccountStateCode: initial?.data,
+                                                                      body: body,
+                                                                      randomId: randomId).start(next: { result in
+                                            guard let result = result as? TONPreparedSendGramsQuery else {
+                                                subscriber.putError(.generic)
+                                                return
+                                            }
+                                            subscriber.putNext(result)
+                                            subscriber.putCompletion()
+                                        }, error: { error in
+                                            if let error = error as? TONError {
+                                                if error.text.hasPrefix("INVALID_ACCOUNT_ADDRESS") {
+                                                    subscriber.putError(.invalidAddress)
+                                                } else if error.text.hasPrefix("DANGEROUS_TRANSACTION") {
+                                                    subscriber.putError(.destinationIsNotInitialized)
+                                                } else if error.text.hasPrefix("MESSAGE_TOO_LONG") {
+                                                    subscriber.putError(.messageTooLong)
+                                                } else if error.text.hasPrefix("NOT_ENOUGH_FUNDS") {
+                                                    subscriber.putError(.notEnoughFunds)
+                                                } else if isTextNetworkError(error.text) {
+                                                    subscriber.putError(.network)
+                                                } else {
+                                                    subscriber.putError(.generic)
+                                                }
                                             } else {
                                                 subscriber.putError(.generic)
                                             }
-                                        } else {
-                                            subscriber.putError(.generic)
-                                        }
-                                    }, completed: {
-                                        subscriber.putCompletion()
-                                    })
-                                    disposable.set(ActionDisposable {
-                                        cancel?.dispose()
-                                    })
+                                        }, completed: {
+                                            subscriber.putCompletion()
+                                        })
+                                        disposable.set(ActionDisposable {
+                                            cancel?.dispose()
+                                        })
+                                    }
+                                }
+                                
                                 }
                             }
-                            
-                            }
-                        }
+
+                    }
+                    
                     
                     
                     // Old way (used by original app and can not be used due to different wallet version support
@@ -642,6 +653,14 @@ public final class TonInstance {
             self.impl.with { impl in
                 impl.withInstance { ton in
                     
+                    ton.exportDecryptedKey(withEncryptedKey: GTTONKey(publicKey: walletInfo.publicKey.rawValue,
+                                                                      encryptedSecretKey: walletInfo.encryptedSecret.data),
+                                           withUserPassword: Data()).start { decryptedSecret in
+                        guard let decryptedSecret = decryptedSecret as? Data else {
+                            subscriber.putError(.generic)
+                            return
+                        }
+
                     ton.accountLocalID(withAccountAddress: AddressHelpers.addressToRaw(string: walletInfo.address)!).start { localIDResult in
                         guard let localIDResult = localIDResult as? TONLocalID else {
                             subscriber.putError(.generic)
@@ -654,13 +673,13 @@ public final class TonInstance {
                             }
                             var seqno = Int64(0)
                             if seqnoResult.code == 0,
-                                  let decimal = seqnoResult.stack.last as? TONExecutionResultDecimal,
-                                  let parsedSeqno = Int64(decimal.value) {
+                               let decimal = seqnoResult.stack.last as? TONExecutionResultDecimal,
+                               let parsedSeqno = Int64(decimal.value) {
                                 seqno = parsedSeqno
                             }
                             
                             TONQueryHelpers.sendTONQueryData(walletInfo: walletInfo,
-                                                             decryptedSecret: decryptedSecret,
+                                                             decryptedKey: decryptedSecret,
                                                              toAddress: toAddress,
                                                              bouncable: forceIfDestinationNotInitialized,
                                                              amount: amount,
@@ -705,7 +724,7 @@ public final class TonInstance {
                                     })
                                 }
                             }
-                            
+                        }
                         }
                         
                         }

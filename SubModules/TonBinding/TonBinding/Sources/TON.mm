@@ -1809,4 +1809,47 @@ typedef enum {
     }] startOn:[SQueue mainQueue]] deliverOn:[SQueue mainQueue]]];
 }
 
+- (SSignal *)exportDecryptedKeyWithEncryptedKey:(GTTONKey *)encryptedKey
+                               withUserPassword:(NSData *)userPassword {
+    return [[[[SSignal alloc] initWithGenerator:^id<SDisposable>(SSubscriber *subscriber) {
+        NSData *publicKeyData = [encryptedKey.publicKey dataUsingEncoding:NSUTF8StringEncoding];
+        if (publicKeyData == nil) {
+            [subscriber putError:[[TONError alloc] initWithText:@"Error encoding UTF8 string in getWalletAccountAddressWithPublicKey"]];
+            return [[SBlockDisposable alloc] initWithBlock:^{}];
+        }
+
+        uint64_t requestId = self->_nextRequestId;
+        self->_nextRequestId += 1;
+        
+        self->_requestHandlers[@(requestId)] = [[TONRequestHandler alloc] initWithCompletion:^(tonlib_api::object_ptr<tonlib_api::Object> &object) {
+            if (object->get_id() == tonlib_api::error::ID) {
+                auto error = tonlib_api::move_object_as<tonlib_api::error>(object);
+                [subscriber putError:[[TONError alloc] initWithText:[[NSString alloc] initWithUTF8String:error->message_.c_str()]]];
+            } else if (object->get_id() == tonlib_api::exportedUnencryptedKey::ID) {
+                auto result = tonlib_api::move_object_as<tonlib_api::exportedUnencryptedKey>(object);
+                NSData *data = readSecureString(result->data_);
+                [subscriber putNext: data];
+                [subscriber putCompletion];
+            } else {
+                assert(false);
+            }
+        }];
+        
+        auto query = make_object<tonlib_api::exportUnencryptedKey>(
+            make_object<tonlib_api::inputKeyRegular>(
+                make_object<tonlib_api::key>(
+                    makeString(publicKeyData),
+                    makeSecureString(encryptedKey.encryptedSecretKey)
+                ),
+                makeSecureString(userPassword)
+            )
+        );
+
+        self->_client->send({ requestId, std::move(query) });
+        
+        return [[SBlockDisposable alloc] initWithBlock:^{
+        }];
+    }] startOn:[SQueue mainQueue]] deliverOn:[SQueue mainQueue]];
+}
+
 @end

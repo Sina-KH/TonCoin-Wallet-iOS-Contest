@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 #import <SSignalKit/SSignalKit.h>
+#import "GTTONKey.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -326,6 +327,9 @@ NS_ASSUME_NONNULL_BEGIN
                         initialAccountStateCode:(NSData * _Nullable)initialAccountStateCode
                                            body:(NSData *)body
                                        randomId:(int64_t)randomId;
+
+- (SSignal *)exportDecryptedKeyWithEncryptedKey:(GTTONKey *)encryptedKey
+                               withUserPassword:(NSData *)userPassword;
 
 @end
 

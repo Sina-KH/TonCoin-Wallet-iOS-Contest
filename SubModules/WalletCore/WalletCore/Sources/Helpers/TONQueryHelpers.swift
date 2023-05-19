@@ -41,7 +41,7 @@ class TONQueryHelpers {
     // query data to prepare a send ton query
     static func sendTONQueryData(
         walletInfo: WalletInfo,
-        decryptedSecret: Data,
+        decryptedKey: Data,
         toAddress: String,
         bouncable: Bool,
         amount: Int64,
@@ -71,7 +71,7 @@ class TONQueryHelpers {
             
             let boc = BOC(bytes: subsequentExternalMessageBody)
             let bocHash = try await TON3.createBOCHash(data: boc.data)
-            let signiture = GTTONKey.createSignature(with: bocHash, privateKey: decryptedSecret)!
+            let signiture = GTTONKey.createSignature(with: bocHash, privateKey: decryptedKey)!
             let signedBOC = try await boc.signed(with: signiture)
             callback(sourceAddress,
                      seqno == 0 ? initialCondition : nil,
