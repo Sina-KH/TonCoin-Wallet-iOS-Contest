@@ -203,7 +203,33 @@ public class SendConfirmVC: WViewController {
     
     @objc private func continuePressed() {
         view.endEditing(true)
-        sendConfirmVM.calculateFee(to: addressToSend, amount: amount, comment: commentInput.text, toSend: true)
+        
+        let onAuth = { [weak self] in
+            guard let self else {
+                return
+            }
+            sendConfirmVM.calculateFee(to: addressToSend, amount: amount, comment: commentInput.text, toSend: true)
+        }
+
+        let context = LAContext()
+        var error: NSError?
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            let reason = WStrings.Wallet_Biometric_Reason.localized
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) {
+                [weak self] success, authenticationError in
+                DispatchQueue.main.async { [weak self] in
+                    if success {
+                        onAuth()
+                    } else {
+                        // error
+                        self?.present(UnlockVC(onAuth: onAuth), animated: true)
+                    }
+                }
+            }
+        } else {
+            present(UnlockVC(onAuth: onAuth), animated: true)
+        }
+
     }
     
     var isLoading: Bool = false {

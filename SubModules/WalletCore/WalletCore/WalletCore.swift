@@ -502,8 +502,7 @@ public final class TonInstance {
         }
     }
     
-    fileprivate func prepareSendGramsFromWalletQuery(decryptedSecret: Data,
-                                                     localPassword: Data,
+    fileprivate func prepareSendGramsFromWalletQuery(localPassword: Data,
                                                      walletInfo: WalletInfo,
                                                      fromAddress: String,
                                                      toAddress: String,
@@ -1536,9 +1535,8 @@ public func verifySendGramsRequestAndEstimateFees(decryptedSecret: Data, tonInst
     }
 }
 
-public func sendGramsFromWallet(storage: WalletStorageInterface, tonInstance: TonInstance, walletInfo: WalletInfo, decryptedSecret: Data, localPassword: Data, toAddress: String, amount: Int64, comment: Data, encryptComment: Bool, forceIfDestinationNotInitialized: Bool, timeout: Int32, randomId: Int64) -> Signal<PendingWalletTransaction, SendGramsFromWalletError> {
-    return tonInstance.prepareSendGramsFromWalletQuery(decryptedSecret: decryptedSecret,
-                                                       localPassword: localPassword,
+public func sendGramsFromWallet(storage: WalletStorageInterface, tonInstance: TonInstance, walletInfo: WalletInfo, localPassword: Data, toAddress: String, amount: Int64, comment: Data, encryptComment: Bool, forceIfDestinationNotInitialized: Bool, timeout: Int32, randomId: Int64) -> Signal<PendingWalletTransaction, SendGramsFromWalletError> {
+    return tonInstance.prepareSendGramsFromWalletQuery(localPassword: localPassword,
                                                        walletInfo: walletInfo,
                                                        fromAddress: walletInfo.address,
                                                        toAddress: toAddress,

@@ -129,35 +129,15 @@ class SendConfirmVM {
 
             if let serverSalt = serverSalt {
                 if let commentData = comment.data(using: .utf8) {
-
-                    // decrypt wallet secret and send
-                    let _ = (walletContext.keychain.decrypt(walletInfo.encryptedSecret)
-                    |> deliverOnMainQueue).start(next: { [weak self] decryptedSecret in
-                        guard let self else {
-                            return
-                        }
-                        
-                        var randomId: Int64 = 0
-                        arc4random_buf(&randomId, 8)
-                        let sendInstanceData =  SendInstanceData(decryptedSecret: decryptedSecret,
-                                                                 serverSalt: serverSalt,
-                                                                 destinationAddress: address,
-                                                                 amount: amount,
-                                                                 comment: commentData,
-                                                                 encryptComment: encryptComment,
-                                                                 randomId: randomId)
-                        sendConfirmVMDelegate?.navigateToSending(sendInstanceData: sendInstanceData)
-
-                    }, error: { [weak self] error in
-                        guard let self else {
-                            return
-                        }
-                        if case .cancelled = error {
-                        } else {
-                            sendConfirmVMDelegate?.errorOccured(error: error)
-                        }
-                    })
-
+                    var randomId: Int64 = 0
+                    arc4random_buf(&randomId, 8)
+                    let sendInstanceData =  SendInstanceData(serverSalt: serverSalt,
+                                                             destinationAddress: address,
+                                                             amount: amount,
+                                                             comment: commentData,
+                                                             encryptComment: encryptComment,
+                                                             randomId: randomId)
+                    sendConfirmVMDelegate?.navigateToSending(sendInstanceData: sendInstanceData)
                 }
             }
         })

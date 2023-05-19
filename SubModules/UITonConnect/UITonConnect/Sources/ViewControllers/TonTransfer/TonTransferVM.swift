@@ -159,7 +159,6 @@ class TonTransferVM {
             }
         })
     }
-
     // Final step to send tons
     private let actionDisposable = MetaDisposable()
     deinit {
@@ -169,7 +168,6 @@ class TonTransferVM {
         let _ = (sendGramsFromWallet(storage: walletContext.storage,
                                      tonInstance: walletContext.tonInstance,
                                      walletInfo: walletInfo,
-                                     decryptedSecret: decryptedSecret,
                                      localPassword: serverSalt,
                                      toAddress: address,
                                      amount: amount,

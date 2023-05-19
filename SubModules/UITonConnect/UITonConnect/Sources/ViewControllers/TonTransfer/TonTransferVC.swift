@@ -9,6 +9,8 @@ import UIKit
 import UIComponents
 import WalletContext
 import WalletCore
+import LocalAuthentication
+import UIPasscode
 
 public class TonTransferVC: WViewController {
 
@@ -209,12 +211,7 @@ extension TonTransferVC: TonTransferVMDelegate {
 
     // authorize and then finalize the pre-send process
     private func authorizeToConfirm(onAuth: @escaping () -> Void) {
-        onAuth()
-        return
-        
-        // onAuth() function will ask for authentication because of keychain lock!
-
-        /*let context = LAContext()
+        let context = LAContext()
         var error: NSError?
 
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
@@ -234,7 +231,7 @@ extension TonTransferVC: TonTransferVMDelegate {
             }
         } else {
             present(UnlockVC(onAuth: onAuth), animated: true)
-        }*/
+        }
     }
 
     func transferDone() {
