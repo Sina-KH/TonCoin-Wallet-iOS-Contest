@@ -163,12 +163,12 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-#pragma mark - GTDNSEntry
+#pragma mark - TONDNSEntry
 
 @protocol TONDNSEntry <NSObject>
 @end
 
-#pragma mark - GTDNSEntryText
+#pragma mark - TONDNSEntryText
 
 @interface TONDNSEntryText : NSObject <TONDNSEntry>
 
@@ -178,7 +178,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-#pragma mark - GTDNSEntrySMCAddress
+#pragma mark - TONDNSEntrySMCAddress
 
 @interface TONDNSEntrySMCAddress : NSObject <TONDNSEntry>
 
@@ -188,7 +188,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-#pragma mark - GTDNSEntryNextResolver
+#pragma mark - TONDNSEntryNextResolver
 
 @interface TONDNSEntryNextResolver : NSObject <TONDNSEntry>
 
@@ -198,7 +198,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-#pragma mark - GTDNS
+#pragma mark - TONDNS
 
 @interface TONDNS : NSObject
 
@@ -207,6 +207,69 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithName:(NSString *)name
                      entries:(NSArray<TONDNSEntry> *)entries;
+
+@end
+
+#pragma mark - TONLocalID
+
+@interface TONLocalID : NSObject
+
+@property (nonatomic, readonly) int64_t localID;
+
+- (instancetype)initWithID:(int64_t)localID;
+
+@end
+
+@protocol TONExecutionStackValue <NSObject>
+@end
+
+@interface TONExecutionResult : NSObject
+
+@property (nonatomic, assign) int32_t code;
+@property (nonatomic, copy) NSArray<TONExecutionStackValue> *stack;
+
+- (instancetype)initWithCode:(int32_t)code
+                       stack:(NSArray<TONExecutionStackValue> *)stack;
+
+@end
+
+#pragma mark - TONExecutionResultDecimal
+
+@interface TONExecutionResultDecimal : NSObject <TONExecutionStackValue>
+
+@property (nonatomic, copy) NSString *value;
+
+- (instancetype)initWithValue:(NSString *)value;
+
+@end
+
+#pragma mark - TONExecutionResultSlice
+
+@interface TONExecutionResultSlice : NSObject <TONExecutionStackValue>
+
+@property (nonatomic, copy) NSData *hex;
+
+- (instancetype)initWithHEX:(NSData *)hex;
+
+@end
+
+#pragma mark - TONExecutionResultCell
+
+@interface TONExecutionResultCell : NSObject <TONExecutionStackValue>
+
+@property (nonatomic, copy) NSData *hex;
+
+- (instancetype)initWithHEX:(NSData *)hex;
+
+@end
+
+#pragma mark - TONExecutionResultEnumeration
+
+@interface TONExecutionResultEnumeration : NSObject <TONExecutionStackValue>
+
+@property (nonatomic, copy) NSArray<TONExecutionStackValue> *enumeration;
+
+- (instancetype)initWithEnumeration:(NSArray<TONExecutionStackValue> *)enumeration;
 
 @end
 
@@ -221,8 +284,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (SSignal *)getCreatedWalletAccountAddressWithPublicKey:(NSString *)publicKey initialWalletId:(int64_t)initialWalletId;
 - (SSignal *)guessImportedWalletAddressWithPublicKey:(NSString *)publicKey;
 //- (SSignal *)getAccountStateWithAddress:(NSString *)accountAddress;
-- (SSignal *)generateSendGramsQueryFromKey:(TONKey *)key localPassword:(NSData *)localPassword fromAddress:(NSString *)fromAddress toAddress:(NSString *)address amount:(int64_t)amount comment:(NSData *)comment encryptComment:(bool)encryptComment forceIfDestinationNotInitialized:(bool)forceIfDestinationNotInitialized timeout:(int32_t)timeout randomId:(int64_t)randomId;
-- (SSignal *)generateFakeSendGramsQueryFromAddress:(NSString *)fromAddress toAddress:(NSString *)address amount:(int64_t)amount comment:(NSData *)comment encryptComment:(bool)encryptComment forceIfDestinationNotInitialized:(bool)forceIfDestinationNotInitialized timeout:(int32_t)timeout;
+//- (SSignal *)generateSendGramsQueryFromKey:(TONKey *)key localPassword:(NSData *)localPassword fromAddress:(NSString *)fromAddress toAddress:(NSString *)address amount:(int64_t)amount comment:(NSData *)comment encryptComment:(bool)encryptComment forceIfDestinationNotInitialized:(bool)forceIfDestinationNotInitialized timeout:(int32_t)timeout randomId:(int64_t)randomId;
+//- (SSignal *)generateFakeSendGramsQueryFromAddress:(NSString *)fromAddress toAddress:(NSString *)address amount:(int64_t)amount comment:(NSData *)comment encryptComment:(bool)encryptComment forceIfDestinationNotInitialized:(bool)forceIfDestinationNotInitialized timeout:(int32_t)timeout;
 - (SSignal *)estimateSendGramsQueryFees:(TONPreparedSendGramsQuery *)preparedQuery;
 - (SSignal *)commitPreparedSendGramsQuery:(TONPreparedSendGramsQuery *)preparedQuery;
 - (SSignal *)exportKey:(TONKey *)key localPassword:(NSData *)localPassword;
@@ -247,6 +310,22 @@ NS_ASSUME_NONNULL_BEGIN
                           workchain:(int32_t)workchain;
 
 - (SSignal *)getFullAccountStateWithAddress:(NSString *)accountAddress;
+
+//- (int64_t) getCurrentSeqNo;
+
+// Returns local id of account with given address (run local TVM machine)
+- (SSignal *)accountLocalIDWithAccountAddress:(NSString *)accountAddress;
+
+// Returns result of execution `methodName` for account with given `accountLocalID`  (run local TVM machine)
+- (SSignal *)accountLocalID:(int64_t)smartcontractID
+          runGetMethodNamed:(NSString *)methodName
+                  arguments:(NSArray<TONExecutionStackValue> *)arguments;
+
+- (SSignal *)prepareQueryWithDestinationAddress:(NSString *)destinationAddress
+                        initialAccountStateData:(NSData * _Nullable)initialAccountStateData
+                        initialAccountStateCode:(NSData * _Nullable)initialAccountStateCode
+                                           body:(NSData *)body
+                                       randomId:(int64_t)randomId;
 
 @end
 

@@ -20,6 +20,7 @@
 		275C61312A129DC600373F2F /* SwiftyTON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275C61302A129DC600373F2F /* SwiftyTON.framework */; };
 		275C61352A12B2F600373F2F /* PublicKeyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C61342A12B2F600373F2F /* PublicKeyUtils.swift */; };
 		27DB29B029EC697E00988800 /* SwiftSignalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29AF29EC697E00988800 /* SwiftSignalKit.framework */; };
+		27DDA3DF2A17696700DDC0F5 /* TONQueryHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DDA3DE2A17696700DDC0F5 /* TONQueryHelpers.swift */; };
 		27E391D529F68A2F00E91CBC /* SSignalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E391D429F68A2F00E91CBC /* SSignalKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		275C61302A129DC600373F2F /* SwiftyTON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyTON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		275C61342A12B2F600373F2F /* PublicKeyUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKeyUtils.swift; sourceTree = "<group>"; };
 		27DB29AF29EC697E00988800 /* SwiftSignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftSignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27DDA3DE2A17696700DDC0F5 /* TONQueryHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TONQueryHelpers.swift; sourceTree = "<group>"; };
 		27E391D429F68A2F00E91CBC /* SSignalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SSignalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -74,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				27491C6D2A116E870069F5CA /* AddressHelpers.swift */,
+				27DDA3DE2A17696700DDC0F5 /* TONQueryHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				273041372A12687700C8B9F9 /* WalletInfoUtils.swift in Sources */,
 				273041352A12669300C8B9F9 /* DataUtils.swift in Sources */,
 				27491C6E2A116E870069F5CA /* AddressHelpers.swift in Sources */,
+				27DDA3DF2A17696700DDC0F5 /* TONQueryHelpers.swift in Sources */,
 				275C578629E04E9D002531AF /* WalletCore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

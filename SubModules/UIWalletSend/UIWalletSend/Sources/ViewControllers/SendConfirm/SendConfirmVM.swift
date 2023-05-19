@@ -57,35 +57,45 @@ class SendConfirmVM {
         latestComment = comment
         isSending = toSend
         let commentData = comment.data(using: .utf8)
-        let _ = (verifySendGramsRequestAndEstimateFees(tonInstance: walletContext.tonInstance,
-                                                       walletInfo: walletInfo,
-                                                       toAddress: destinationAddress,
-                                                       amount: amount,
-                                                       comment: commentData ?? Data(), encryptComment: false, timeout: 0)
-        |> deliverOnMainQueue).start(next: { [weak self] verificationResult in
-            guard let self else {return}
-            if amount != latestAmount || comment != latestComment  || toSend != isSending {
-                // something is already changed
+        let _ = (walletContext.keychain.decrypt(walletInfo.encryptedSecret)
+                 |> deliverOnMainQueue).start(next: { [weak self] decryptedSecret in
+            guard let self else {
                 return
             }
-            if toSend {
-                isSending = false
-            }
-            let feeAmount = verificationResult.fees.inFwdFee + verificationResult.fees.storageFee + verificationResult.fees.gasFee + verificationResult.fees.fwdFee
-            sendConfirmVMDelegate?.feeAmountUpdated(fee: feeAmount)
-            if toSend {
-                sendConfirmVMDelegate?.sendConfirmationRequired(fee: feeAmount, canNotEncryptComment: verificationResult.canNotEncryptComment)
-            }
-        }, error: { [weak self] error in
-            guard let self else { return }
-            if amount != latestAmount || comment != latestComment || toSend != isSending {
-                // comment or amount is already changed
-                return
-            }
-            if toSend {
-                isSending = false
-            }
-            sendConfirmVMDelegate?.errorOccured(error: error)
+            
+            var randomId: Int64 = 0
+            arc4random_buf(&randomId, 8)
+            let _ = (verifySendGramsRequestAndEstimateFees(decryptedSecret: decryptedSecret,
+                                                           tonInstance: walletContext.tonInstance,
+                                                           walletInfo: walletInfo,
+                                                           toAddress: destinationAddress,
+                                                           amount: amount,
+                                                           comment: commentData ?? Data(), encryptComment: false, timeout: 0, randomId: randomId)
+                     |> deliverOnMainQueue).start(next: { [weak self] verificationResult in
+                guard let self else {return}
+                if amount != latestAmount || comment != latestComment  || toSend != isSending {
+                    // something is already changed
+                    return
+                }
+                if toSend {
+                    isSending = false
+                }
+                let feeAmount = verificationResult.fees.inFwdFee + verificationResult.fees.storageFee + verificationResult.fees.gasFee + verificationResult.fees.fwdFee
+                sendConfirmVMDelegate?.feeAmountUpdated(fee: feeAmount)
+                if toSend {
+                    sendConfirmVMDelegate?.sendConfirmationRequired(fee: feeAmount, canNotEncryptComment: verificationResult.canNotEncryptComment)
+                }
+            }, error: { [weak self] error in
+                guard let self else { return }
+                if amount != latestAmount || comment != latestComment || toSend != isSending {
+                    // comment or amount is already changed
+                    return
+                }
+                if toSend {
+                    isSending = false
+                }
+                sendConfirmVMDelegate?.errorOccured(error: error)
+            })
         })
     }
 
@@ -120,7 +130,7 @@ class SendConfirmVM {
             if let serverSalt = serverSalt {
                 if let commentData = comment.data(using: .utf8) {
 
-                    // decrypt wallet secret adn send
+                    // decrypt wallet secret and send
                     let _ = (walletContext.keychain.decrypt(walletInfo.encryptedSecret)
                     |> deliverOnMainQueue).start(next: { [weak self] decryptedSecret in
                         guard let self else {
