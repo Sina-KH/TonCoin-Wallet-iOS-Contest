@@ -311,7 +311,9 @@ extension WalletHomeVC: BalanceHeaderViewDelegate {
     public func settingsPressed() {
         let settingsVC = SettingsVC(walletContext: walletContext,
                                     walletInfo: walletInfo,
-                                    onCurrencyChanged: { [weak self] currencyID in
+                                    onAddressChanged: { [weak self] in
+            self?.walletHomeVM.disposeAll()
+        }, onCurrencyChanged: { [weak self] currencyID in
             self?.balanceHeaderView?.selectedCurrencyID = currencyID
         })
         present(UINavigationController(rootViewController: settingsVC), animated: true)

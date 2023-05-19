@@ -47,5 +47,6 @@ public protocol WalletContext {
     func pickImage(completion: @escaping (UIImage) -> Void)
 
     func setReadyWalletInfo(walletInfo: WalletInfo)
+    func dismissAll(completion: @escaping () -> Void)
     func restartApp()
 }

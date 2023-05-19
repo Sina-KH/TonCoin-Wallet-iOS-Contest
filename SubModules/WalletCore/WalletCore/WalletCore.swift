@@ -808,7 +808,8 @@ public final class TonInstance {
                                                        address: address,
                                                        encryptedSecret: newWalletInfo.encryptedSecret,
                                                        version: newWalletInfo.version)
-                            _ = updateWalletInfo(newWalletInfo: newWalletInfo, storage: storage).start(next: { result in
+                            _ = updateWalletInfo(newWalletInfo: newWalletInfo,
+                                                 storage: storage).start(next: { result in
                                 subscriber.putNext(result)
                             }, error: { _ in
                             }, completed: {
@@ -888,13 +889,15 @@ public struct CombinedWalletState: Codable, Equatable {
     public var timestamp: Int64
     public var topTransactions: [WalletTransaction]
     public var pendingTransactions: [PendingWalletTransaction]
+    public var walletVersion: Int = -1
     
     public func withTopTransactions(_ topTransactions: [WalletTransaction]) -> CombinedWalletState {
         return CombinedWalletState(
             walletState: self.walletState,
             timestamp: self.timestamp,
             topTransactions: topTransactions,
-            pendingTransactions: self.pendingTransactions
+            pendingTransactions: self.pendingTransactions,
+            walletVersion: self.walletVersion
         )
     }
 }
@@ -942,7 +945,9 @@ public struct WalletStateRecord: Codable, Equatable {
                 exportStatus = exportStatusEnum!
             }
             
-            self.info = .ready(info: info, exportCompleted: exportStatus, state: try? container.decode(Optional<CombinedWalletState>.self, forKey: .state))
+            self.info = .ready(info: info,
+                               exportCompleted: exportStatus,
+                               state: try? container.decode(Optional<CombinedWalletState>.self, forKey: .state))
         } else if let info = try? container.decode(ImportedWalletInfo.self, forKey: .importedInfo) {
             self.info = .imported(info: info)
         } else {
@@ -1237,7 +1242,11 @@ public func getCombinedWalletState(storage: WalletStorageInterface,
                             return true
                         }
                     }
-                    let combinedState = CombinedWalletState(walletState: walletState, timestamp: syncUtime, topTransactions: topTransactions, pendingTransactions: pendingTransactions)
+                    let combinedState = CombinedWalletState(walletState: walletState,
+                                                            timestamp: syncUtime,
+                                                            topTransactions: topTransactions,
+                                                            pendingTransactions: pendingTransactions,
+                                                            walletVersion: walletInfo.version)
                     
                     return storage.updateWalletRecords { records in
                         var records = records

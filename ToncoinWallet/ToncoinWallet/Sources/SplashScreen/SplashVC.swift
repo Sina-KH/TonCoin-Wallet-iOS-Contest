@@ -169,6 +169,14 @@ extension SplashVC: SplashVMDelegate {
         TonConnectCore.shared.startBridgeConnection(walletInfo: walletInfo)
     }
     
+    func dismissAll(completion: @escaping () -> Void) {
+        if topViewController() !== self {
+            dismiss(animated: true) {
+                completion()
+            }
+        }
+    }
+    
     func restartApp() {
         if topViewController() !== self {
             dismiss(animated: true) { [weak self] in

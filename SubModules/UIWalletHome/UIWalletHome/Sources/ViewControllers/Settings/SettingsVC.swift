@@ -23,13 +23,18 @@ class SettingsVC: WViewController {
     // MARK: - Initializer
     let walletContext: WalletContext
     let walletInfo: WalletInfo
+    let onAddressChangedDelegate: () -> Void
     let onCurrencyChangedDelegate: (Int) -> Void
     
     private lazy var settingsViewModel = SettingsVM(settingsVMDelegate: self)
     
-    public init(walletContext: WalletContext, walletInfo: WalletInfo, onCurrencyChanged: @escaping (Int) -> Void) {
+    public init(walletContext: WalletContext,
+                walletInfo: WalletInfo,
+                onAddressChanged: @escaping () -> Void,
+                onCurrencyChanged: @escaping (Int) -> Void) {
         self.walletContext = walletContext
         self.walletInfo = walletInfo
+        self.onAddressChangedDelegate = onAddressChanged
         self.onCurrencyChangedDelegate = onCurrencyChanged
         super.init(nibName: nil, bundle: nil)
     }
@@ -318,22 +323,26 @@ class SettingsVC: WViewController {
         addressPicker.pickerPressed()
     }
     @objc func onAddressChanged() {
+        // notify home to stop using previous wallet
+        onAddressChangedDelegate()
+        // dismiss to prevent furthur view controllers' activity for current version
         let walletVersion = addressPicker.selectedID
-        let _ = (setWalletVersion(to: walletVersion,
-                                 tonInstance: walletContext.tonInstance,
-                                 walletInfo: walletInfo,
-                                 storage: walletContext.storage)
-        |> deliverOnMainQueue).start(error: { _ in
-            
-        }, completed: { [weak self] in
-            KeychainHelper.save(walletVersion: walletVersion)
-            guard let self else {
-                return
-            }
-            DispatchQueue.main.async { [weak self] in
-                self?.walletContext.restartApp()
-            }
-        })
+        let walletContext = walletContext
+        let walletInfo = walletInfo
+        walletContext.dismissAll() { //[weak self] in
+            let _ = (setWalletVersion(to: walletVersion,
+                                      tonInstance: walletContext.tonInstance,
+                                      walletInfo: walletInfo,
+                                      storage: walletContext.storage)
+                     |> deliverOnMainQueue).start(error: { _ in
+                
+            }, completed: {
+                KeychainHelper.save(walletVersion: walletVersion)
+                DispatchQueue.main.async {
+                    walletContext.restartApp()
+                }
+            })
+        }
     }
     
     @objc func currencySelected(sender: Any) {
