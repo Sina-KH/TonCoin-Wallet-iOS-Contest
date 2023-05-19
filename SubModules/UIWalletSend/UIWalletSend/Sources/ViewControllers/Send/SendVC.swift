@@ -227,6 +227,7 @@ public class SendVC: WViewController {
     
     @objc func clearRecentsPressed() {
         RecentAddressesHelpers.clearRecentAddresses(walletVersion: walletInfo.version)
+        _recentAddresses = []
         recentsTopStackView.isHidden = true
         recentsTableView.reloadData()
     }
