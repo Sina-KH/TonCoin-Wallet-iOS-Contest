@@ -4,6 +4,8 @@ import SwiftSignalKit
 import TonBinding
 import SwiftyTON
 
+public let DEFAULT_WALLET_VERSION = 32
+
 public struct TonKeychainEncryptedData: Codable, Equatable {
     public let publicKey: Data
     public let data: Data
@@ -858,7 +860,7 @@ public struct WalletInfo: Codable, Equatable {
         case version
     }
 
-    public init(publicKey: WalletPublicKey, address: String, encryptedSecret: TonKeychainEncryptedData, version: Int = -1) {
+    public init(publicKey: WalletPublicKey, address: String, encryptedSecret: TonKeychainEncryptedData, version: Int = DEFAULT_WALLET_VERSION) {
         self.publicKey = publicKey
         self.address = address
         self.encryptedSecret = encryptedSecret
@@ -870,7 +872,7 @@ public struct WalletInfo: Codable, Equatable {
         publicKey = try values.decode(WalletPublicKey.self, forKey: .publicKey)
         address = try values.decode(String.self, forKey: .address)
         encryptedSecret = try values.decode(TonKeychainEncryptedData.self, forKey: .encryptedSecret)
-        version = (try? values.decode(Int.self, forKey: .version)) ?? -1
+        version = (try? values.decode(Int.self, forKey: .version)) ?? DEFAULT_WALLET_VERSION
     }
 }
 
@@ -928,7 +930,7 @@ public struct CombinedWalletState: Codable, Equatable {
         topTransactions = try container.decode([WalletTransaction].self, forKey: .topTransactions)
         pendingTransactions = try container.decode([PendingWalletTransaction].self, forKey: .pendingTransactions)
         // added in new version
-        walletVersion = (try? container.decode(Int.self, forKey: .walletVersion)) ?? -1
+        walletVersion = (try? container.decode(Int.self, forKey: .walletVersion)) ?? DEFAULT_WALLET_VERSION
     }
 
 }

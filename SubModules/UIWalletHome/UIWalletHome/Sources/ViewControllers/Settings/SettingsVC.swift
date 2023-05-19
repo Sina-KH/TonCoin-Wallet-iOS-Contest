@@ -97,7 +97,7 @@ class SettingsVC: WViewController {
         addressPicker = addPickerItem(position: .middle,
                                       title: WStrings.Wallet_Settings_ActiveAddress.localized,
                                       items: [
-                                        PickerViewItem(id: -1, name: "Original App (v3R2)"), // uses subwallet id: 4085333890
+                                        //PickerViewItem(id: -1, name: "Old App (v3R2)"), // uses subwallet id: 4085333890
                                         PickerViewItem(id: 31, name: "v3R1"),
                                         PickerViewItem(id: 32, name: "v3R2"),
                                         PickerViewItem(id: 42, name: "v4R2")
