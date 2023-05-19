@@ -43,8 +43,6 @@ class WalletCreatedVM {
 
                     walletCreatedVMDelegate?.isLoading = false
                     walletCreatedVMDelegate?.wordsLoaded(words: wordList)
-//                    strongSelf.mode = .created(walletInfo: walletInfo, words: wordList)
-//                    strongSelf.push(WalletWordDisplayScreen(context: strongSelf.context, blockchainNetwork: strongSelf.blockchainNetwork, walletInfo: walletInfo, wordList: wordList, mode: .check, walletCreatedPreloadState: strongSelf.walletCreatedPreloadState))
                 }, error: { [weak self] _ in
                     guard let self else {
                         return
@@ -52,10 +50,6 @@ class WalletCreatedVM {
                     
                     walletCreatedVMDelegate?.isLoading = false
                     walletCreatedVMDelegate?.errorOccured()
-//                    strongSelf.present(standardTextAlertController(theme: strongSelf.presentationData.theme.alert, title: strongSelf.presentationData.strings.Wallet_Created_ExportErrorTitle, text: strongSelf.presentationData.strings.Wallet_Created_ExportErrorText, actions: [
-//                        TextAlertAction(type: .defaultAction, title: strongSelf.presentationData.strings.Wallet_Alert_OK, action: {
-//                        })
-//                    ], actionLayout: .vertical), in: .window(.root))
                 })
             }, error: { [weak self] _ in
                 guard let self else {
