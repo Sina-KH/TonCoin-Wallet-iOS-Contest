@@ -202,12 +202,14 @@ public class SendConfirmVC: WViewController {
     
     @objc private func continuePressed() {
         view.endEditing(true)
-        UnlockVC.presentAuth(on: self, onAuth: { [weak self] in
+        /*UnlockVC.presentAuth(on: self, onAuth: { [weak self] in
             guard let self else {
                 return
             }
             sendConfirmVM.calculateFee(to: addressToSend, amount: amount, comment: commentInput.text, toSend: true)
-        })
+        })*/
+        // Keychain itself requires auth
+        sendConfirmVM.calculateFee(to: addressToSend, amount: amount, comment: commentInput.text, toSend: true)
     }
     
     var isLoading: Bool = false {
@@ -346,8 +348,9 @@ extension SendConfirmVC: SendConfirmVMDelegate {
     // navigate to sending page and send!
     func navigateToSending(sendInstanceData: SendInstanceData) {
         // add `address` and `address alias` to recents
-        let recentAddress = RecentAddress(address: addressToSend, addressAlias: addressAlias, timstamp: Date().timeIntervalSince1970)
-        RecentAddressesHelpers.saveRecentAddress(recentAddress: recentAddress, walletVersion: walletInfo.version)
+        //     Update: Commented because It's added when continue tapped in SendVC...
+        //let recentAddress = RecentAddress(address: addressToSend, addressAlias: addressAlias, timstamp: Date().timeIntervalSince1970)
+        //RecentAddressesHelpers.saveRecentAddress(recentAddress: recentAddress, walletVersion: walletInfo.version)
         // navigate to send
         navigationController?.pushViewController(SendingVC(walletContext: walletContext,
                                                            walletInfo: walletInfo,

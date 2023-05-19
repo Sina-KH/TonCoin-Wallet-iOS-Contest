@@ -12,6 +12,9 @@ import TonBinding
 
 class TONQueryHelpers {
     
+    private static let fakePrivateKey = Data(bytes: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                                             count: 32)
+    
     // return subwallet id for wallet, based on version
     private static func subwalletID(walletInfo: WalletInfo) -> UInt32? {
         switch walletInfo.version {
@@ -41,7 +44,7 @@ class TONQueryHelpers {
     // query data to prepare a send ton query
     static func sendTONQueryData(
         walletInfo: WalletInfo,
-        decryptedKey: Data,
+        decryptedKey: Data? = nil,
         toAddress: String,
         bouncable: Bool,
         amount: Int64,
@@ -71,7 +74,7 @@ class TONQueryHelpers {
             
             let boc = BOC(bytes: subsequentExternalMessageBody)
             let bocHash = try await TON3.createBOCHash(data: boc.data)
-            let signiture = GTTONKey.createSignature(with: bocHash, privateKey: decryptedKey)!
+            let signiture = GTTONKey.createSignature(with: bocHash, privateKey: decryptedKey ?? TONQueryHelpers.fakePrivateKey)!
             let signedBOC = try await boc.signed(with: signiture)
             callback(sourceAddress,
                      seqno == 0 ? initialCondition : nil,

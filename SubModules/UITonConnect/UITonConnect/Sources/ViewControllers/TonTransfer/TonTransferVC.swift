@@ -211,9 +211,10 @@ extension TonTransferVC: TonTransferVMDelegate {
 
     // authorize and then finalize the pre-send process
     private func authorizeToConfirm(onAuth: @escaping () -> Void) {
-        UnlockVC.presentAuth(on: self) {
+        // Keychain itself requires auth
+//        UnlockVC.presentAuth(on: self) {
             onAuth()
-        }
+//        }
     }
 
     func transferDone() {

@@ -56,45 +56,38 @@ class TonTransferVM {
         latestComment = comment
         isSending = toSend
         let commentData = comment.data(using: .utf8)
-        let _ = (walletContext.keychain.decrypt(walletInfo.encryptedSecret)
-                 |> deliverOnMainQueue).start(next: { [weak self] decryptedSecret in
-            guard let self else {
+
+        var randomId: Int64 = 0
+        arc4random_buf(&randomId, 8)
+        let _ = (verifySendGramsRequestAndEstimateFees(tonInstance: walletContext.tonInstance,
+                                                       walletInfo: walletInfo,
+                                                       toAddress: destinationAddress,
+                                                       amount: amount,
+                                                       comment: commentData ?? Data(), encryptComment: false, timeout: 0, randomId: randomId)
+                 |> deliverOnMainQueue).start(next: { [weak self] verificationResult in
+            guard let self else {return}
+            if amount != latestAmount || comment != latestComment  || toSend != isSending {
+                // something is already changed
                 return
             }
-            
-            var randomId: Int64 = 0
-            arc4random_buf(&randomId, 8)
-            let _ = (verifySendGramsRequestAndEstimateFees(decryptedSecret: decryptedSecret,
-                                                           tonInstance: walletContext.tonInstance,
-                                                           walletInfo: walletInfo,
-                                                           toAddress: destinationAddress,
-                                                           amount: amount,
-                                                           comment: commentData ?? Data(), encryptComment: false, timeout: 0, randomId: randomId)
-                     |> deliverOnMainQueue).start(next: { [weak self] verificationResult in
-                guard let self else {return}
-                if amount != latestAmount || comment != latestComment  || toSend != isSending {
-                    // something is already changed
-                    return
-                }
-                if toSend {
-                    isSending = false
-                }
-                let feeAmount = verificationResult.fees.inFwdFee + verificationResult.fees.storageFee + verificationResult.fees.gasFee + verificationResult.fees.fwdFee
-                tonTransferVMDelegate?.feeAmountUpdated(fee: feeAmount)
-                if toSend {
-                    tonTransferVMDelegate?.sendConfirmationRequired(fee: feeAmount, canNotEncryptComment: verificationResult.canNotEncryptComment)
-                }
-            }, error: { [weak self] error in
-                guard let self else { return }
-                if amount != latestAmount || comment != latestComment || toSend != isSending {
-                    // comment or amount is already changed
-                    return
-                }
-                if toSend {
-                    isSending = false
-                }
-                tonTransferVMDelegate?.errorOccured(error: error)
-            })
+            if toSend {
+                isSending = false
+            }
+            let feeAmount = verificationResult.fees.inFwdFee + verificationResult.fees.storageFee + verificationResult.fees.gasFee + verificationResult.fees.fwdFee
+            tonTransferVMDelegate?.feeAmountUpdated(fee: feeAmount)
+            if toSend {
+                tonTransferVMDelegate?.sendConfirmationRequired(fee: feeAmount, canNotEncryptComment: verificationResult.canNotEncryptComment)
+            }
+        }, error: { [weak self] error in
+            guard let self else { return }
+            if amount != latestAmount || comment != latestComment || toSend != isSending {
+                // comment or amount is already changed
+                return
+            }
+            if toSend {
+                isSending = false
+            }
+            tonTransferVMDelegate?.errorOccured(error: error)
         })
     }
 
