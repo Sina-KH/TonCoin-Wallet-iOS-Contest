@@ -23,18 +23,18 @@ class SettingsVC: WViewController {
     // MARK: - Initializer
     let walletContext: WalletContext
     let walletInfo: WalletInfo
-    let onAddressChangedDelegate: () -> Void
+    let disposeAllDisposables: () -> Void
     let onCurrencyChangedDelegate: (Int) -> Void
     
     private lazy var settingsViewModel = SettingsVM(settingsVMDelegate: self)
     
     public init(walletContext: WalletContext,
                 walletInfo: WalletInfo,
-                onAddressChanged: @escaping () -> Void,
+                disposeAllDisposables: @escaping () -> Void,
                 onCurrencyChanged: @escaping (Int) -> Void) {
         self.walletContext = walletContext
         self.walletInfo = walletInfo
-        self.onAddressChangedDelegate = onAddressChanged
+        self.disposeAllDisposables = disposeAllDisposables
         self.onCurrencyChangedDelegate = onCurrencyChanged
         super.init(nibName: nil, bundle: nil)
     }
@@ -323,9 +323,9 @@ class SettingsVC: WViewController {
         addressPicker.pickerPressed()
     }
     @objc func onAddressChanged() {
-        // notify home to stop using previous wallet
-        onAddressChangedDelegate()
-        // dismiss to prevent furthur view controllers' activity for current version
+        // Notify home to stop using previous wallet, instantly.
+        disposeAllDisposables()
+        // dismissAll to prevent furthur view controllers' activity for current version
         let walletVersion = addressPicker.selectedID
         let walletContext = walletContext
         let walletInfo = walletInfo
