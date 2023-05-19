@@ -535,7 +535,6 @@ public final class TonInstance {
                                 seqno = parsedSeqno
                             }
                             
-                            
                             TONQueryHelpers.sendTONQueryData(walletInfo: walletInfo,
                                                              decryptedSecret: decryptedSecret,
                                                              toAddress: toAddress,
@@ -581,9 +580,9 @@ public final class TonInstance {
                                     })
                                 }
                             }
+                            
+                            }
                         }
-                        
-                    }
                     
                     
                     // Old way (used by original app and can not be used due to different wallet version support

@@ -74,7 +74,7 @@ class TONQueryHelpers {
             let signiture = GTTONKey.createSignature(with: bocHash, privateKey: decryptedSecret)!
             let signedBOC = try await boc.signed(with: signiture)
             callback(sourceAddress,
-                     initialCondition,
+                     seqno == 0 ? initialCondition : nil,
                      signedBOC.data)
         }
 
