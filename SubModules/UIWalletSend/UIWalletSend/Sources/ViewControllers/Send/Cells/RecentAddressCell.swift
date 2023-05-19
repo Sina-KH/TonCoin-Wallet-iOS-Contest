@@ -73,7 +73,7 @@ class RecentAddressCell: UITableViewCell {
         } else {
             // show address and submittion date, for addresses with no alias
             primaryLabel.text = formatStartEndAddress(recentAddress.address)
-            let addressDate = Date(timeIntervalSinceReferenceDate: TimeInterval(recentAddress.timstamp))
+            let addressDate = Date(timeIntervalSinceReferenceDate: recentAddress.timstamp)
             let sameYear = Date().isInSameYear(as: addressDate)
             let dateFormatter = DateFormatter()
             if sameYear {

@@ -342,7 +342,7 @@ extension SendConfirmVC: SendConfirmVMDelegate {
     // navigate to sending page and send!
     func navigateToSending(sendInstanceData: SendInstanceData) {
         // add `address` and `address alias` to recents
-        let recentAddress = RecentAddress(address: addressToSend, addressAlias: addressAlias, timstamp: Int(Date().timeIntervalSince1970))
+        let recentAddress = RecentAddress(address: addressToSend, addressAlias: addressAlias, timstamp: Date().timeIntervalSince1970)
         RecentAddressesHelpers.saveRecentAddress(recentAddress: recentAddress, walletVersion: walletInfo.version)
         // navigate to send
         navigationController?.pushViewController(SendingVC(walletContext: walletContext,

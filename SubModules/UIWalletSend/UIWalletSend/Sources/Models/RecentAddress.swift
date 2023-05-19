@@ -10,5 +10,5 @@ import Foundation
 struct RecentAddress: Codable {
     let address: String
     let addressAlias: String?
-    let timstamp: Int
+    let timstamp: Double
 }
