@@ -54,6 +54,7 @@ class WalletTransactionCell: UITableViewCell {
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.font = .systemFont(ofSize: 17, weight: .semibold)
         verticalStackView.addArrangedSubview(dateLabel)
+        verticalStackView.setCustomSpacing(14, after: dateLabel)
 
         // icon and amount stack view
         let iconAndAmountStackView = UIStackView()

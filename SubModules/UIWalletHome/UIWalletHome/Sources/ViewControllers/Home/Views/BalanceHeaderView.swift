@@ -143,6 +143,7 @@ public class BalanceHeaderView: UIView {
             updateStatusView.leftAnchor.constraint(equalTo: updateStatusViewContainer.leftAnchor),
             updateStatusView.rightAnchor.constraint(equalTo: updateStatusViewContainer.rightAnchor),
             updateStatusView.topAnchor.constraint(equalTo: updateStatusViewContainer.topAnchor),
+            updateStatusView.bottomAnchor.constraint(equalTo: updateStatusViewContainer.bottomAnchor),
             updateStatusView.centerXAnchor.constraint(equalTo: updateStatusViewContainer.centerXAnchor),
         ])
 
