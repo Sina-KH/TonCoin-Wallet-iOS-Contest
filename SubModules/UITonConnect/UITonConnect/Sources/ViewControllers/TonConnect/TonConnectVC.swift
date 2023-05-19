@@ -10,7 +10,6 @@ import UIComponents
 import WalletContext
 import WalletCore
 import AVFoundation
-import LocalAuthentication
 import UIPasscode
 
 public class TonConnectVC: WViewController {
@@ -174,36 +173,16 @@ public class TonConnectVC: WViewController {
         if isLoading {
             return
         }
-        
-        let onAuth = { [weak self] in
+
+        // authorize to use `TON Connect`
+        UnlockVC.presentAuth(on: self) { [weak self] in
             guard let self else {
                 return
             }
             isLoading = true
             tonConnectViewModel.connect(request: tonConnectRequestLink)
         }
-        
-        // authorize to use `TON Connect`
-        let context = LAContext()
-        var error: NSError?
-        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-            let reason = WStrings.Wallet_Biometric_Reason.localized
 
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) {
-                [weak self] success, authenticationError in
-
-                DispatchQueue.main.async { [weak self] in
-                    if success {
-                        onAuth()
-                    } else {
-                        // error
-                        self?.present(UnlockVC(onAuth: onAuth), animated: true)
-                    }
-                }
-            }
-        } else {
-            present(UnlockVC(onAuth: onAuth), animated: true)
-        }
     }
     
     var isLoading = false {

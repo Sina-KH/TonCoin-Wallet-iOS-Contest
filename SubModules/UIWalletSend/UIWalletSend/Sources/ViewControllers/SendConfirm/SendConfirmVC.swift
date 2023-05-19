@@ -9,7 +9,6 @@ import UIKit
 import UIComponents
 import WalletContext
 import WalletCore
-import LocalAuthentication
 import UIPasscode
 
 public class SendConfirmVC: WViewController {
@@ -203,7 +202,12 @@ public class SendConfirmVC: WViewController {
     
     @objc private func continuePressed() {
         view.endEditing(true)
-        sendConfirmVM.calculateFee(to: addressToSend, amount: amount, comment: commentInput.text, toSend: true)
+        UnlockVC.presentAuth(on: self, onAuth: { [weak self] in
+            guard let self else {
+                return
+            }
+            sendConfirmVM.calculateFee(to: addressToSend, amount: amount, comment: commentInput.text, toSend: true)
+        })
     }
     
     var isLoading: Bool = false {

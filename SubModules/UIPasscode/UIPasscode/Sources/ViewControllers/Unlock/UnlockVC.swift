@@ -13,6 +13,27 @@ import AVFoundation
 
 public class UnlockVC: WViewController {
     
+    public static func presentAuth(on vc: UIViewController, onAuth: @escaping () -> Void) {
+        let context = LAContext()
+        var error: NSError?
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            let reason = WStrings.Wallet_Biometric_Reason.localized
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) {
+                [weak vc] success, authenticationError in
+                DispatchQueue.main.async { [weak vc] in
+                    if success {
+                        onAuth()
+                    } else {
+                        // error
+                        vc?.present(UnlockVC(onAuth: onAuth), animated: true)
+                    }
+                }
+            }
+        } else {
+            vc.present(UnlockVC(onAuth: onAuth), animated: true)
+        }
+    }
+    
     private var onAuthCallback: () -> Void
     public init(onAuth: @escaping () -> Void) {
         self.onAuthCallback = onAuth

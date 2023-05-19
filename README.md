@@ -34,8 +34,7 @@ Other modules like `SwiftyTON` `TON3` and `SwiftyJS` in the project are responsi
 - [ ] **PushNotifications:** Push Notification implementation should be done by developing a back-end server for the application.
 - [ ] **Bridge's exclusive instance:** Wallet's bridge instance should be deployed on the back-end, for now it uses ton keeper's wallet url.
 - [ ] **Wallet listings:** Wallet should be listed in the toncoin wallet listings.
-- [ ] **Lock:** I've implemented lock screen, but because the original logic of the app uses keychain hardware encryption, so for lower-level access (accessing private key), like showing the recovery phrase or sending TON, the app still depends on the iOS unlock mechanism. *We can store the keys another way to prevent need to unlock using out custom `UnlockVC` instead of iOS unlock, or even force migrate the srorage data on application update.*
-Auto-lock feature can be activated, easily, also!
+- [ ] **Full App-Lock:** *I've implemented lock screen.* **For now, it's only used to authorize before recovering 24 recovery words and sending TON**, but we can implement it as app lock if required.
 - [x] **Fixed:** If you change/remove passcode of the device, because of the keychain hardware encryption, the app forces you to re-import or create a new wallet, but after that, on restarts, the app still shows the same error. This issue exists from the original application wallet record checks.
 **Solution:** Fixed by using latest records from the storage to check wallet status! We can consider removing old records, also.
 
