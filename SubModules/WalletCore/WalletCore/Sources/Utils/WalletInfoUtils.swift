@@ -63,6 +63,7 @@ public extension WalletInfo {
             return
         }
     }
+    
     func walletStateInit(callback: @escaping (String?) -> Void) {
         walletInitialCondition { initialCondition in
             callback(initialCondition?.data.base64EncodedString())

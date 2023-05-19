@@ -51,18 +51,16 @@ public struct BOC: RawRepresentable, ExpressibleByStringLiteral {
     /// - parameter key: user key
     /// - parameter localUserPassword: password to decrypt private key from `key`
     /// - returns: boc with sha256 signature signed with private user key
-//    public func signed(
-//        with key: Key,
-//        localUserPassword: Data
-//    ) async throws -> BOC {
-//        let signature = try await hsignature(with: key, localUserPassword: localUserPassword)
-//        let signed = try await TON3.createBOCWithSignature(
-//            data: data,
-//            signature: signature.bytes
-//        )
-//        
-//        return BOC(code: signed)
-//    }
+    public func signed(
+        with signature: Data
+    ) async throws -> BOC {
+        let signed = try await TON3.createBOCWithSignature(
+            data: data,
+            signature: signature.bytes
+        )
+        
+        return BOC(code: signed)
+    }
     
     /// - returns: cells data without headers and etc
     public func rootCellDataIfAvailable(

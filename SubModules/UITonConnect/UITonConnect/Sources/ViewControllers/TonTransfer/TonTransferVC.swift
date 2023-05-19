@@ -9,6 +9,7 @@ import UIKit
 import UIComponents
 import WalletContext
 import WalletCore
+import LocalAuthentication
 import UIPasscode
 
 public class TonTransferVC: WViewController {

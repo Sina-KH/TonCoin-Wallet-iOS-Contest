@@ -164,6 +164,8 @@
 		275EC61C29E81EBC00EE8B66 /* bits.h in Headers */ = {isa = PBXBuildFile; fileRef = 275EC61B29E81EBC00EE8B66 /* bits.h */; };
 		27712C042A10EA07006EDEC1 /* NSData+SHA256.h in Headers */ = {isa = PBXBuildFile; fileRef = 27712C022A10E9FF006EDEC1 /* NSData+SHA256.h */; };
 		27712C052A10EA07006EDEC1 /* NSData+SHA256.m in Sources */ = {isa = PBXBuildFile; fileRef = 27712C032A10EA07006EDEC1 /* NSData+SHA256.m */; };
+		27DDA39D2A16E58E00DDC0F5 /* GTTONKey.mm in Sources */ = {isa = PBXBuildFile; fileRef = 27DDA39B2A16E58D00DDC0F5 /* GTTONKey.mm */; };
+		27DDA39E2A16E58E00DDC0F5 /* GTTONKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DDA39C2A16E58E00DDC0F5 /* GTTONKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -340,6 +342,8 @@
 		275EC61B29E81EBC00EE8B66 /* bits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bits.h; sourceTree = "<group>"; };
 		27712C022A10E9FF006EDEC1 /* NSData+SHA256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SHA256.h"; sourceTree = "<group>"; };
 		27712C032A10EA07006EDEC1 /* NSData+SHA256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SHA256.m"; sourceTree = "<group>"; };
+		27DDA39B2A16E58D00DDC0F5 /* GTTONKey.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GTTONKey.mm; sourceTree = "<group>"; };
+		27DDA39C2A16E58E00DDC0F5 /* GTTONKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTTONKey.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -421,6 +425,8 @@
 				27712C032A10EA07006EDEC1 /* NSData+SHA256.m */,
 				275C57B029E04F2C002531AF /* TON.mm */,
 				275C57B129E04F2C002531AF /* TON.h */,
+				27DDA39C2A16E58E00DDC0F5 /* GTTONKey.h */,
+				27DDA39B2A16E58D00DDC0F5 /* GTTONKey.mm */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -748,6 +754,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27DDA39E2A16E58E00DDC0F5 /* GTTONKey.h in Headers */,
 				275EC61C29E81EBC00EE8B66 /* bits.h in Headers */,
 				275EC57B29E8129600EE8B66 /* x509err.h in Headers */,
 				275EC5FF29E81C1100EE8B66 /* unique_ptr.h in Headers */,
@@ -953,6 +960,7 @@
 			files = (
 				275C57B229E04F2C002531AF /* TON.mm in Sources */,
 				27712C052A10EA07006EDEC1 /* NSData+SHA256.m in Sources */,
+				27DDA39D2A16E58E00DDC0F5 /* GTTONKey.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -44,6 +44,10 @@ public class AddressHelpers {
     }
     
     public static func addressToRaw(string: String) -> String? {
+        addressToAddressObj(string: string)?.0.rawValue
+    }
+    
+    public static func addressToAddressObj(string: String) -> (Address, ConcreteAddress.Flags)? {
         let unescaped = string.base64URLUnescaped()
         guard let data = Data(base64Encoded: unescaped)
         else {
@@ -75,8 +79,25 @@ public class AddressHelpers {
             return nil
         }
         
+        var tag = address[0]
+        var flags: ConcreteAddress.Flags = []
         var workchain = Int32(-1)
-
+        
+        if tag & Tags.test != 0 {
+            flags.insert(.testable)
+            tag = tag ^ Tags.test
+        }
+        
+        switch tag {
+        case Tags.bounceable:
+            flags.insert(.bounceable)
+        case Tags.nonBounceable:
+            break
+        default:
+            // unknownAddressTags
+            return nil
+        }
+        
         if address[1] == 0xff {
             workchain = -1
         } else if address[1] == 0x00 {
@@ -91,10 +112,10 @@ public class AddressHelpers {
             return nil
         }
         
-        return Address(
+        return (Address(
             workchain: workchain,
             hash: Array(data[2..<34])
-        ).rawValue
+        ), flags)
     }
 
     public static func isTONDNSDomain(
@@ -112,4 +133,10 @@ public class AddressHelpers {
         
         return true
     }
+}
+
+private struct Tags {
+    static let bounceable: UInt8 = 0x11
+    static let nonBounceable: UInt8 = 0x51
+    static let test: UInt8 = 0x80
 }

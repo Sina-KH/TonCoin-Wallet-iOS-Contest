@@ -19,13 +19,13 @@ ADNL TonLib Repository](https://github.com/ton-blockchain/ton) (2023.03, because
 
 :white_check_mark: **Only ADNL is being used:** All the communications to TON Blockchain is through ADNL and `tonlib`. The main wrapper that connects the app to the network, is `TonBinding`, just like the original app, plus some modifications to make it support new features.
 
-Other modules like `SwiftyTON` `TON3` and `SwiftyJS` in the project are responsible for local logics like providing wallet initial state that can be ported into our main codebase. GlossyTON is removed from these modules and they has nothing to do with the server. *We can consider switching to SwiftyTON, but for now, I just stick with the original TONBinding implementation of tonlib to prevent any possible issues.*
+Other modules like `SwiftyTON` `TON3` and `SwiftyJS` in the project are customized for this repository and responsible for local logics like providing wallet initial state and creating BOC, and can be ported into our main codebase. GlossyTON is removed from these modules and they has nothing to do with the network. *We can consider switching to migrate to SwiftyTON in the future, but for now, It is not 100% complete and perfect yet, so I preferred to stay with least changes and original implementation of tonlib.*
 
 :white_check_mark: **DNS and raw addresses:** Both `DNS` and `Raw` addresses are supported.
 
 :white_check_mark: **Deeplinks:** `ton` and `tc` app schemas are implemented.
 
-:white_check_mark: `iOS 13.0+` support. (If I remove async/await and actor codes used in SwiftyTON, TON3 and SwiftyJS modules, or even remove these modules from the porject, We can even support iOS 12.2+ with the same app size. No other os dependent features limited to iOS 13+ is used in the application.)
+:white_check_mark: `iOS 13.0+` support. (If we remove async/await and actor codes used in SwiftyTON, TON3 and SwiftyJS modules, or even remove these modules from the porject, We can even support iOS 12.2+ with the same app size. No other os dependent features limited to iOS 13+ is used in the application.)
 
 :white_check_mark: App size (the final universal `.ipa file`) is **around 7 megabytes**.
 
@@ -34,7 +34,8 @@ Other modules like `SwiftyTON` `TON3` and `SwiftyJS` in the project are responsi
 - [ ] **PushNotifications:** Push Notification implementation should be done by developing a back-end server for the application.
 - [ ] **Bridge's exclusive instance:** Wallet's bridge instance should be deployed on the back-end, for now it uses ton keeper's wallet url.
 - [ ] **Wallet listings:** Wallet should be listed in the toncoin wallet listings.
-- [ ] **Full App-Lock:** *I've implemented lock screen.* **For now, it's only used to authorize before recovering 24 recovery words and sending TON**, but we can implement it as app lock if required.
+- [ ] **Lock:** I've implemented lock screen (and using it to secure transfering TON), but because the original logic of the app uses keychain hardware encryption, so for lower-level access, like showing the recovery phrase, the app still depends on the iOS unlock mechanism. *We can store the keys another way to unlock using our custom `UnlockVC` instead of iOS unlock, and even force migrate the srorage data on application update.*
+Auto-lock feature can be activated, easily, also!
 - [x] **Fixed:** If you change/remove passcode of the device, because of the keychain hardware encryption, the app forces you to re-import or create a new wallet, but after that, on restarts, the app still shows the same error. This issue exists from the original application wallet record checks.
 **Solution:** Fixed by using latest records from the storage to check wallet status! We can consider removing old records, also.
 
@@ -79,7 +80,7 @@ I've also added sub-modules as separate `.xcodeproj` project files, so They are
 easier to maintain and we can change their build-system, easier, if 
 required.
 
-:large_blue_circle: **UIKit to design Application UI:**
+:large_blue_circle: **UIKit to develop Application UI:**
 
 The trade-off between performance and development speed, led me to choose 
 `UIKit` + `Programtically UI Programming`. The original app was using 
