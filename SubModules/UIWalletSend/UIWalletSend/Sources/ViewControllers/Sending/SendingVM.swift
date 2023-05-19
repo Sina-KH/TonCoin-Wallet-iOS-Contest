@@ -17,6 +17,7 @@ protocol SendingVMDelegate: AnyObject {
 }
 
 public struct SendInstanceData {
+    var decryptedSecret: Data
     var serverSalt: Data
     var destinationAddress: String
     var amount: Int64
@@ -41,7 +42,8 @@ class SendingVM {
     }
 
     func sendNow(sendInstanceData: SendInstanceData, forceIfDestinationNotInitialized: Bool) {
-        let _ = (sendGramsFromWallet(storage: walletContext.storage,
+        let _ = (sendGramsFromWallet(decryptedSecret: sendInstanceData.decryptedSecret,
+                                     storage: walletContext.storage,
                                      tonInstance: walletContext.tonInstance,
                                      walletInfo: walletInfo,
                                      localPassword: sendInstanceData.serverSalt,

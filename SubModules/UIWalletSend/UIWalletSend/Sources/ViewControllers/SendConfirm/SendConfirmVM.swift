@@ -124,13 +124,21 @@ class SendConfirmVM {
                 if let commentData = comment.data(using: .utf8) {
                     var randomId: Int64 = 0
                     arc4random_buf(&randomId, 8)
-                    let sendInstanceData =  SendInstanceData(serverSalt: serverSalt,
-                                                             destinationAddress: address,
-                                                             amount: amount,
-                                                             comment: commentData,
-                                                             encryptComment: encryptComment,
-                                                             randomId: randomId)
-                    sendConfirmVMDelegate?.navigateToSending(sendInstanceData: sendInstanceData)
+                    let _ = (walletContext.keychain.decrypt(walletInfo.encryptedSecret)
+                             |> deliverOnMainQueue).start(next: { [weak self] decryptedSecret in
+                        guard let self else {
+                            return
+                        }
+                        let sendInstanceData =  SendInstanceData(
+                                decryptedSecret: decryptedSecret,
+                                serverSalt: serverSalt,
+                                destinationAddress: address,
+                                amount: amount,
+                                comment: commentData,
+                                encryptComment: encryptComment,
+                                randomId: randomId)
+                        sendConfirmVMDelegate?.navigateToSending(sendInstanceData: sendInstanceData)
+                    })
                 }
             }
         })

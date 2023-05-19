@@ -239,7 +239,8 @@ public final class TonInstance {
                             return
                         }
                         let _ = keychain.encrypt(key.secret).start(next: { encryptedSecretData in
-                            subscriber.putNext(ImportedWalletInfo(publicKey: WalletPublicKey(rawValue: key.publicKey), encryptedSecret: encryptedSecretData))
+                            subscriber.putNext(ImportedWalletInfo(publicKey: WalletPublicKey(rawValue: key.publicKey),
+                                                                  encryptedSecret: encryptedSecretData))
                             subscriber.putCompletion()
                         }, error: { _ in
                             subscriber.putError(.generic)
@@ -502,7 +503,8 @@ public final class TonInstance {
         }
     }
     
-    fileprivate func prepareSendGramsFromWalletQuery(localPassword: Data,
+    fileprivate func prepareSendGramsFromWalletQuery(decryptedSecret: Data,
+                                                     localPassword: Data,
                                                      walletInfo: WalletInfo,
                                                      fromAddress: String,
                                                      toAddress: String,
@@ -512,7 +514,6 @@ public final class TonInstance {
                                                      forceIfDestinationNotInitialized: Bool,
                                                      timeout: Int32,
                                                      randomId: Int64) -> Signal<TONPreparedSendGramsQuery, SendGramsFromWalletError> {
-        //let key = TONKey(publicKey: walletInfo.publicKey.rawValue, secret: decryptedSecret)
         return Signal { subscriber in
             let disposable = MetaDisposable()
             
@@ -520,7 +521,7 @@ public final class TonInstance {
                 impl.withInstance { ton in
                     
                     ton.exportDecryptedKey(withEncryptedKey: GTTONKey(publicKey: walletInfo.publicKey.rawValue,
-                                                                      encryptedSecretKey: walletInfo.encryptedSecret.data),
+                                                                      encryptedSecretKey: decryptedSecret),
                                            withUserPassword: Data()).start { decryptedSecret in
                         guard let decryptedSecret = decryptedSecret as? Data else {
                             subscriber.putError(.generic)
@@ -1524,8 +1525,20 @@ public func verifySendGramsRequestAndEstimateFees(tonInstance: TonInstance, wall
     }
 }
 
-public func sendGramsFromWallet(storage: WalletStorageInterface, tonInstance: TonInstance, walletInfo: WalletInfo, localPassword: Data, toAddress: String, amount: Int64, comment: Data, encryptComment: Bool, forceIfDestinationNotInitialized: Bool, timeout: Int32, randomId: Int64) -> Signal<PendingWalletTransaction, SendGramsFromWalletError> {
-    return tonInstance.prepareSendGramsFromWalletQuery(localPassword: localPassword,
+public func sendGramsFromWallet(decryptedSecret: Data,
+                                storage: WalletStorageInterface,
+                                tonInstance: TonInstance,
+                                walletInfo: WalletInfo,
+                                localPassword: Data,
+                                toAddress: String,
+                                amount: Int64,
+                                comment: Data,
+                                encryptComment: Bool,
+                                forceIfDestinationNotInitialized: Bool,
+                                timeout: Int32,
+                                randomId: Int64) -> Signal<PendingWalletTransaction, SendGramsFromWalletError> {
+    return tonInstance.prepareSendGramsFromWalletQuery(decryptedSecret: decryptedSecret,
+                                                       localPassword: localPassword,
                                                        walletInfo: walletInfo,
                                                        fromAddress: walletInfo.address,
                                                        toAddress: toAddress,
