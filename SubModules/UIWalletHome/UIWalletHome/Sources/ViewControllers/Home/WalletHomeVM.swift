@@ -61,6 +61,9 @@ class WalletHomeVM {
     private var prevProgress: Int? = nil
     
     deinit {
+        disposeAll()
+    }
+    func disposeAll() {
         self.stateDisposable.dispose()
         self.transactionListDisposable.dispose()
         //self.updateTimestampTimer?.invalidate()
@@ -289,7 +292,7 @@ class WalletHomeVM {
             var isUpdated = false
             switch value {
             case let .cached(state):
-                if strongSelf.combinedState != nil {
+                if strongSelf.combinedState != nil || state?.walletVersion != strongSelf.walletInfo.version {
                     return
                 }
                 combinedState = state
@@ -393,8 +396,6 @@ class WalletHomeVM {
             walletHomeVMDelegate?.updateHeaderTimestamp(timestamp: Int32(clamping: combinedState.timestamp))
             
             var updatedTransactions: [WalletTransaction] = combinedState.topTransactions
-            if updatedTransactions.count > 0 {
-            }
             if let currentEntries = self.currentEntries {
                 var existingIds = Set<HomeListItemID>()
                 for transaction in updatedTransactions {
@@ -419,33 +420,9 @@ class WalletHomeVM {
             }
             
             self.transactionsLoaded(isReload: true, isEmpty: false, transactions: updatedTransactions, pendingTransactions: combinedState.pendingTransactions)
-            
-            //            if isUpdated {
-            //                self.headerNode.isRefreshing = false
-            //            }
-            
-            //            if self.isReady, let (_, navigationHeight) = self.validLayout {
-            //                self.headerNode.update(size: self.headerNode.bounds.size, navigationHeight: navigationHeight, offset: self.listOffset ?? 0.0, transition: .animated(duration: 0.2, curve: .easeInOut), isScrolling: false)
-            //            }
         } else {
-            //            self.transactionsLoaded(isReload: true, isEmpty: true, transactions: [], pendingTransactions: [])
+            //self.transactionsLoaded(isReload: true, isEmpty: true, transactions: [], pendingTransactions: [])
         }
-        //
-        //        let wasReady = self.isReady
-        //        self.isReady = true
-        //
-        //        if self.isReady && !wasReady {
-        //            if let (layout, navigationHeight) = self.validLayout {
-        //                self.headerNode.update(size: self.headerNode.bounds.size, navigationHeight: navigationHeight, offset: layout.size.height, transition: .immediate, isScrolling: false)
-        //            }
-        //
-        //            self.becameReady(animated: self.didSetContentReady)
-        //        }
-        
-        //        if !self.didSetContentReady {
-        //            self.didSetContentReady = true
-        //            self.contentReady.set(.single(true))
-        //        }
 
         walletHomeVMDelegate?.updateEmptyView()
     }

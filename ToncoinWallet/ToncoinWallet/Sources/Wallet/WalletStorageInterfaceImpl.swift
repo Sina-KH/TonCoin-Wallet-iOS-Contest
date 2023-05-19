@@ -219,6 +219,9 @@ final class WalletContextImpl: NSObject, WalletContext, UIImagePickerControllerD
     func setReadyWalletInfo(walletInfo: WalletCore.WalletInfo) {
         splashVMDelegate.setWalletReadyWalletInfo(walletInfo: walletInfo)
     }
+    func dismissAll(completion: @escaping () -> Void) {
+        splashVMDelegate.dismissAll(completion: completion)
+    }
     func restartApp() {
         splashVMDelegate.restartApp()
     }

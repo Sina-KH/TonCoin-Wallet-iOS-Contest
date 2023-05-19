@@ -967,7 +967,8 @@ public final class TonInstance {
                                                        address: address,
                                                        encryptedSecret: newWalletInfo.encryptedSecret,
                                                        version: newWalletInfo.version)
-                            _ = updateWalletInfo(newWalletInfo: newWalletInfo, storage: storage).start(next: { result in
+                            _ = updateWalletInfo(newWalletInfo: newWalletInfo,
+                                                 storage: storage).start(next: { result in
                                 subscriber.putNext(result)
                             }, error: { _ in
                             }, completed: {
@@ -1047,15 +1048,48 @@ public struct CombinedWalletState: Codable, Equatable {
     public var timestamp: Int64
     public var topTransactions: [WalletTransaction]
     public var pendingTransactions: [PendingWalletTransaction]
+    public var walletVersion: Int
     
     public func withTopTransactions(_ topTransactions: [WalletTransaction]) -> CombinedWalletState {
         return CombinedWalletState(
             walletState: self.walletState,
             timestamp: self.timestamp,
             topTransactions: topTransactions,
-            pendingTransactions: self.pendingTransactions
+            pendingTransactions: self.pendingTransactions,
+            walletVersion: self.walletVersion
         )
     }
+    
+    enum CodingKeys: CodingKey {
+        case walletState
+        case timestamp
+        case topTransactions
+        case pendingTransactions
+        case walletVersion
+    }
+    
+    init(walletState: WalletState,
+         timestamp: Int64,
+         topTransactions: [WalletTransaction],
+         pendingTransactions: [PendingWalletTransaction],
+         walletVersion: Int) {
+        self.walletState = walletState
+        self.timestamp = timestamp
+        self.topTransactions = topTransactions
+        self.pendingTransactions = pendingTransactions
+        self.walletVersion = walletVersion
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        walletState = try container.decode(WalletState.self, forKey: .walletState)
+        timestamp = try container.decode(Int64.self, forKey: .timestamp)
+        topTransactions = try container.decode([WalletTransaction].self, forKey: .topTransactions)
+        pendingTransactions = try container.decode([PendingWalletTransaction].self, forKey: .pendingTransactions)
+        // added in new version
+        walletVersion = (try? container.decode(Int.self, forKey: .walletVersion)) ?? -1
+    }
+
 }
 
 public enum WalletStateRecordDecodingError: Error {
@@ -1101,7 +1135,9 @@ public struct WalletStateRecord: Codable, Equatable {
                 exportStatus = exportStatusEnum!
             }
             
-            self.info = .ready(info: info, exportCompleted: exportStatus, state: try? container.decode(Optional<CombinedWalletState>.self, forKey: .state))
+            self.info = .ready(info: info,
+                               exportCompleted: exportStatus,
+                               state: try? container.decode(Optional<CombinedWalletState>.self, forKey: .state))
         } else if let info = try? container.decode(ImportedWalletInfo.self, forKey: .importedInfo) {
             self.info = .imported(info: info)
         } else {
@@ -1396,7 +1432,11 @@ public func getCombinedWalletState(storage: WalletStorageInterface,
                             return true
                         }
                     }
-                    let combinedState = CombinedWalletState(walletState: walletState, timestamp: syncUtime, topTransactions: topTransactions, pendingTransactions: pendingTransactions)
+                    let combinedState = CombinedWalletState(walletState: walletState,
+                                                            timestamp: syncUtime,
+                                                            topTransactions: topTransactions,
+                                                            pendingTransactions: pendingTransactions,
+                                                            walletVersion: walletInfo.version)
                     
                     return storage.updateWalletRecords { records in
                         var records = records

@@ -45,6 +45,9 @@ protocol SplashVMDelegate: AnyObject {
     // called from wallet context if wallet is completely created and home page is open
     func setWalletReadyWalletInfo(walletInfo: WalletInfo)
 
+    // dismiss all view controllers and stop activity, to get ready for wallet version change
+    func dismissAll(completion: @escaping () -> Void)
+
     // called from wallet context if wallet is deleted
     func restartApp()
 }

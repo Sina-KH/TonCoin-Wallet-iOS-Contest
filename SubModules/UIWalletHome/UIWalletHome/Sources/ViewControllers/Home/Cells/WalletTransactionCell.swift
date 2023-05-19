@@ -24,11 +24,13 @@ class WalletTransactionCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    private let dateFormatter = DateFormatter()
     private var verticalStackView = UIStackView()
+    private var dateLabel: UILabel!
     private var amountLabel: WAmountLabel!
     private var directionLabel: UILabel!
     private var addressLabel: UILabel!
-    private var dateLabel: UILabel!
+    private var timeLabel: UILabel!
     private var storageFeeLabel: UILabel!
     private var bubbleView: BubbleView!
 
@@ -46,6 +48,13 @@ class WalletTransactionCell: UITableViewCell {
             verticalStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
             verticalStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
         ])
+
+        // date label
+        dateLabel = UILabel()
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        dateLabel.font = .systemFont(ofSize: 17, weight: .semibold)
+        verticalStackView.addArrangedSubview(dateLabel)
+        verticalStackView.setCustomSpacing(14, after: dateLabel)
 
         // icon and amount stack view
         let iconAndAmountStackView = UIStackView()
@@ -74,9 +83,9 @@ class WalletTransactionCell: UITableViewCell {
         let topLineStackView = UIStackView()
         topLineStackView.distribution = .equalSpacing
         topLineStackView.addArrangedSubview(iconAndAmountStackView)
-        dateLabel = UILabel()
-        dateLabel.font = WalletTransactionCell.regular15Font
-        topLineStackView.addArrangedSubview(dateLabel)
+        timeLabel = UILabel()
+        timeLabel.font = WalletTransactionCell.regular15Font
+        topLineStackView.addArrangedSubview(timeLabel)
         verticalStackView.addArrangedSubview(topLineStackView)
         NSLayoutConstraint.activate([
             topLineStackView.widthAnchor.constraint(equalTo: verticalStackView.widthAnchor)
@@ -117,14 +126,17 @@ class WalletTransactionCell: UITableViewCell {
     
     func updateTheme() {
         directionLabel.textColor = WTheme.secondaryLabel
-        dateLabel.textColor = WTheme.secondaryLabel
         storageFeeLabel.textColor = WTheme.secondaryLabel
     }
     
-    public func configure(with transactionItem: HomeListTransaction) {
+    public func configure(with transactionItem: HomeListTransaction, prevItem: HomeListTransaction?) {
+        let itemDate: Date
+
         switch transactionItem {
         case .completed(let transaction):
             
+            itemDate = Date(timeIntervalSince1970: TimeInterval(transaction.timestamp))
+
             // set amount
             amountLabel.amount = transaction.transferredValueWithoutFees
 
@@ -146,26 +158,24 @@ class WalletTransactionCell: UITableViewCell {
             addressLabel.text = addressString
 
             // datetime
-            dateLabel.text = stringForTimestamp(timestamp: Int32(clamping: transaction.timestamp))
-            
+            timeLabel.text = stringForTimestamp(timestamp: Int32(clamping: transaction.timestamp))
+            timeLabel.textColor = WTheme.secondaryLabel
+
             // storage fee label
             storageFeeLabel.text = WStrings.Wallet_Home_TransactionStorageFee(storageFee: formatBalanceText(transaction.storageFee))
 
             // show comment (description string) in a bubble view
             if descriptionString.count == 0 {
-                // remove from stackView to remove extra spacing
-                if bubbleView.superview != nil {
-                    bubbleView.removeFromSuperview()
-                }
+                bubbleView.isHidden = true
             } else {
-                if bubbleView.superview == nil {
-                    verticalStackView.addSubview(bubbleView)
-                }
+                bubbleView.isHidden = false
                 bubbleView.text = descriptionString
             }
 
         case .pending(let transaction):
             
+            itemDate = Date(timeIntervalSince1970: TimeInterval(transaction.timestamp))
+
             // set amount
             amountLabel.amount = -transaction.value
 
@@ -178,25 +188,50 @@ class WalletTransactionCell: UITableViewCell {
             addressLabel.text = addressString
 
             // datetime
-            dateLabel.text = stringForTimestamp(timestamp: Int32(clamping: transaction.timestamp))
+            // can use stringForTimestamp(timestamp: Int32(clamping: transaction.timestamp))
+            timeLabel.text = WStrings.Wallet_Home_TransactionPending.localized
+            timeLabel.textColor = WTheme.primaryButton.background
             
             // storage fee label
             storageFeeLabel.text = nil
 
             // show comment (description string) in a bubble view
             if descriptionString.count == 0 {
-                // remove from stackView to remove extra spacing
-                if bubbleView.superview != nil {
-                    bubbleView.removeFromSuperview()
-                }
+                bubbleView.isHidden = true
             } else {
-                if bubbleView.superview == nil {
-                    verticalStackView.addArrangedSubview(bubbleView)
-                }
                 bubbleView.text = descriptionString
+                bubbleView.isHidden = false
             }
 
             break
+        }
+
+        // extract prev item date to compare with current item's date and time
+        var prevItemDate: Date? = nil
+        if let prevItem {
+            switch prevItem {
+            case .completed(let transaction):
+                prevItemDate = Date(timeIntervalSince1970: TimeInterval(transaction.timestamp))
+                break
+            case .pending(let transaction):
+                prevItemDate = Date(timeIntervalSince1970: TimeInterval(transaction.timestamp))
+                break
+            }
+        }
+
+        // show top section date if it's a new day
+        if !(prevItemDate?.isInSameDay(as: itemDate) ?? false) {
+            dateLabel.isHidden = false
+            let sameYear = Date().isInSameYear(as: itemDate)
+            if sameYear {
+                dateFormatter.dateFormat = "MMMM d"
+            } else {
+                dateFormatter.timeStyle = .medium
+            }
+            dateLabel.text = dateFormatter.string(from: itemDate)
+            dateLabel.isHidden = false
+        } else {
+            dateLabel.isHidden = true
         }
     }
     

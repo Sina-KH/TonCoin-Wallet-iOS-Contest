@@ -69,6 +69,7 @@ public struct KeychainHelper {
         KeychainHelper.save(biometric: nil)
         for walletVersion in [31, 32, 42] {
             KeychainHelper.save(DApps: nil, walletVersion: walletVersion)
+            KeychainHelper.save(recentAddresses: nil, walletVersion: walletVersion)
         }
     }
 
