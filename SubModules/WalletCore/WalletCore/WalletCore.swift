@@ -889,7 +889,7 @@ public struct CombinedWalletState: Codable, Equatable {
     public var timestamp: Int64
     public var topTransactions: [WalletTransaction]
     public var pendingTransactions: [PendingWalletTransaction]
-    public var walletVersion: Int = -1
+    public var walletVersion: Int
     
     public func withTopTransactions(_ topTransactions: [WalletTransaction]) -> CombinedWalletState {
         return CombinedWalletState(
@@ -900,6 +900,37 @@ public struct CombinedWalletState: Codable, Equatable {
             walletVersion: self.walletVersion
         )
     }
+    
+    enum CodingKeys: CodingKey {
+        case walletState
+        case timestamp
+        case topTransactions
+        case pendingTransactions
+        case walletVersion
+    }
+    
+    init(walletState: WalletState,
+         timestamp: Int64,
+         topTransactions: [WalletTransaction],
+         pendingTransactions: [PendingWalletTransaction],
+         walletVersion: Int) {
+        self.walletState = walletState
+        self.timestamp = timestamp
+        self.topTransactions = topTransactions
+        self.pendingTransactions = pendingTransactions
+        self.walletVersion = walletVersion
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        walletState = try container.decode(WalletState.self, forKey: .walletState)
+        timestamp = try container.decode(Int64.self, forKey: .timestamp)
+        topTransactions = try container.decode([WalletTransaction].self, forKey: .topTransactions)
+        pendingTransactions = try container.decode([PendingWalletTransaction].self, forKey: .pendingTransactions)
+        // added in new version
+        walletVersion = (try? container.decode(Int.self, forKey: .walletVersion)) ?? -1
+    }
+
 }
 
 public enum WalletStateRecordDecodingError: Error {
