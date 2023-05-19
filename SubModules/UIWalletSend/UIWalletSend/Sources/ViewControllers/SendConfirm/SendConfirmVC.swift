@@ -216,8 +216,6 @@ public class SendConfirmVC: WViewController {
 
 extension SendConfirmVC: WCommentInputDelegate {
     public func commentTextChanged() {
-        continueButton.isEnabled = false
-
         let comment = commentInput.text ?? ""
         // check if comment is too long
         if comment.count > walletTextLimit {
@@ -248,18 +246,22 @@ extension SendConfirmVC: WKeyboardObserverDelegate {
     public func keyboardWillShow(height: CGFloat) {
         scrollView.contentInset.bottom = height + 20
         
-        UIView.animate(withDuration: 0.25) {
-            self.continueButtonBottomConstraint.constant = -height - 12
-            self.view.layoutIfNeeded()
+        if continueButtonBottomConstraint.constant != -height - 12 {
+            UIView.animate(withDuration: 0.25) {
+                self.continueButtonBottomConstraint.constant = -height - 12
+                self.view.layoutIfNeeded()
+            }
         }
     }
     
     public func keyboardWillHide() {
         scrollView.contentInset.bottom = 0
 
-        UIView.animate(withDuration: 0.25) {
-            self.continueButtonBottomConstraint.constant = -12
-            self.view.layoutIfNeeded()
+        if continueButtonBottomConstraint.constant != -12 {
+            UIView.animate(withDuration: 0.25) {
+                self.continueButtonBottomConstraint.constant = -12
+                self.view.layoutIfNeeded()
+            }
         }
     }
 }
