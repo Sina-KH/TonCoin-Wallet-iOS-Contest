@@ -36,6 +36,7 @@ Other modules like `SwiftyTON` `TON3` and `SwiftyJS` in the project are customiz
 - [ ] **Wallet listings:** Wallet should be listed in the toncoin wallet listings.
 - [ ] **Lock:** I've implemented lock screen, but because the original logic of the app uses keychain hardware encryption, so for lower-level access (accessing private key), like showing the recovery phrase or sending TON, the app still depends on the iOS unlock mechanism. *We can store the keys another way to let it unlock using our custom `UnlockVC` instead of iOS unlock, or even force migrate the storage data on application update.*
 Auto-lock feature can be activated, easily, also!
+- [ ] **Check TODOs** Some small details of the application needs to be double-checked. For example if the DApp requests more than 1 message in sendTransaction request, how should the app present the ton transfer popup? These details are flaged using TODO:: comments in code.
 - [x] **Fixed:** If you change/remove passcode of the device, because of the keychain hardware encryption, the app forces you to re-import or create a new wallet, but after that, on restarts, the app still shows the same error. This issue exists from the original application wallet record checks.
 **Solution:** Fixed by using latest records from the storage to check wallet status! We can consider removing old records, also.
 
