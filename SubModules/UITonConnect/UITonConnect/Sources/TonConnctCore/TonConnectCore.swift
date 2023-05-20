@@ -273,7 +273,10 @@ extension TonConnectCore: BridgeListenerDelegate {
                     dApp.lastEventID = lastEventID
                     TonConnectedDApps.saveDApp(dApp: dApp, walletVersion: walletVersion)
                 }
-                // TODO:: Check desired behaviour for more than one message.
+                if sendTransactionRequests.messages.count > 1 {
+                    // TODO:: Check desired behaviour for more than one message. (UI design/flow, seems to be required)
+                    return
+                }
                 for sendTransactionRequest in sendTransactionRequests.messages {
                     delegate?.tonConnectSendTransaction(
                         dApp: dApp,
