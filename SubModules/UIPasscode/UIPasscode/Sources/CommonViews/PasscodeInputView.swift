@@ -83,6 +83,7 @@ class PasscodeInputView: UIStackView {
         if passcodeLength == num {
             return
         }
+        passcodeLength = num
         currentPasscode = ""
         if num < 1 || num > maxPasscodeLength {
             return
