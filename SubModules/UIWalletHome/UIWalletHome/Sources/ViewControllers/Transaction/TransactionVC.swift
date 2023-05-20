@@ -217,6 +217,17 @@ class TransactionVC: WViewController {
         // bottom button
         let bottomButton = WButton.setupInstance(.primary)
         // TODO:: Retry button if transaction is canceled
+        switch transaction {
+        case .completed(let walletTransaction):
+            if walletTransaction.extractAddress() == nil {
+                // hide bottom button for unknown transactions
+                bottomButton.isHidden = true
+                // indicate that it's an unknown transaction instead of address title
+                addressItem.setValueText(WStrings.Wallet_Home_UnknownTransaction.localized)
+            }
+        case .pending:
+            break
+        }
         bottomButton.setTitle(WStrings.Wallet_TransactionInfo_SendTONToThisAddress.localized, for: .normal)
         bottomButton.addTarget(self, action: #selector(bottomButtonPressed), for: .touchUpInside)
         stackView.addArrangedSubview(bottomButton)

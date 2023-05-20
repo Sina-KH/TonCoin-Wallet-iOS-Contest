@@ -114,7 +114,7 @@
 "Wallet.Home.TransactionStorageFee" = "%1$@ storage fee"; // NEW
 "Wallet.Home.TransactionPending" = "Pending"; // Renamed
 "Wallet.Home.InitTransaction" = "Wallet initialized"; // NEW
-"Wallet.Home.UnknownTransaction" = "Unknown"; // NEW
+"Wallet.Home.UnknownTransaction" = "Unknown transaction"; // NEW
 
 // Transaction
 "Wallet.TransactionInfo.Title" = "Transaction";

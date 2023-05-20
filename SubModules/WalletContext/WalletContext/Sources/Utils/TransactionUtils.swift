@@ -10,7 +10,7 @@ import WalletCore
 extension WalletTransaction {
     
     public func extractAddress() -> String? {
-        if self.transferredValueWithoutFees < 0 {
+        if self.transferredValueWithoutFees <= 0 {
             // sent
             if self.outMessages.isEmpty {
                 return nil

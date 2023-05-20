@@ -142,12 +142,15 @@ class WalletTransactionCell: UITableViewCell {
 
             // prepare address and description texts
             let (addressString, descriptionString, _) = transaction.extractAddressAndDescription()
+            var isEmpty = false
 
             // direction label string
-            if transaction.transferredValueWithoutFees < 0 {
+            if transaction.transferredValueWithoutFees <= 0 {
                 // sent
                 if transaction.outMessages.isEmpty {
-                    directionLabel.text = ""
+                    directionLabel.text =
+                        transaction.isInitialization ? WStrings.Wallet_Home_InitTransaction.localized : WStrings.Wallet_Home_UnknownTransaction.localized
+                    isEmpty = true
                 } else {
                     directionLabel.text = WStrings.Wallet_Home_TransactionTo.localized
                 }
@@ -155,25 +158,35 @@ class WalletTransactionCell: UITableViewCell {
                 directionLabel.text = WStrings.Wallet_Home_TransactionFrom.localized
             }
 
-            addressLabel.text = addressString
-
             // datetime
             timeLabel.text = stringForTimestamp(timestamp: Int32(clamping: transaction.timestamp))
             timeLabel.textColor = WTheme.secondaryLabel
-
-            // storage fee label
-            storageFeeLabel.text = WStrings.Wallet_Home_TransactionStorageFee(storageFee: formatBalanceText(transaction.storageFee))
-
-            // show comment (description string) in a bubble view
-            if descriptionString.count == 0 {
+            
+            if isEmpty {
+                // hide labels on empty/unknown transaction
+                storageFeeLabel.isHidden = true
+                addressLabel.isHidden = true
                 bubbleView.isHidden = true
+                amountLabel.text = nil
             } else {
-                bubbleView.isHidden = false
-                bubbleView.text = descriptionString
+                storageFeeLabel.isHidden = false
+                addressLabel.isHidden = false
+                addressLabel.text = addressString
+                
+                // storage fee label
+                storageFeeLabel.text = WStrings.Wallet_Home_TransactionStorageFee(storageFee: formatBalanceText(transaction.storageFee))
+                
+                // show comment (description string) in a bubble view
+                if descriptionString.count == 0 {
+                    bubbleView.isHidden = true
+                } else {
+                    bubbleView.isHidden = false
+                    bubbleView.text = descriptionString
+                }
             }
 
         case .pending(let transaction):
-            
+
             itemDate = Date(timeIntervalSince1970: TimeInterval(transaction.timestamp))
 
             // set amount
@@ -202,6 +215,10 @@ class WalletTransactionCell: UITableViewCell {
                 bubbleView.text = descriptionString
                 bubbleView.isHidden = false
             }
+
+            // should show all labels
+            storageFeeLabel.isHidden = false
+            addressLabel.isHidden = false
 
             break
         }
