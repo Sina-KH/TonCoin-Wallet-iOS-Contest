@@ -18,18 +18,21 @@ public class SendConfirmVC: WViewController {
     private let walletInfo: WalletInfo
     private let addressToSend: String
     private let amount: Int64
+    private let sendMode: Int
     private let defaultComment: String?
     private let addressAlias: String?
     public init(walletContext: WalletContext,
                 walletInfo: WalletInfo,
                 addressToSend: String,
                 amount: Int64,
+                sendMode: Int = 3, // send modes:: 1: fee from sending amount, 3: separated fee payment from balance
                 defaultComment: String? = nil,
                 addressAlias: String? = nil) { // address alias can be `raw address` or the `dns address`, we store it with address, to show in recents section.
         self.walletContext = walletContext
         self.walletInfo = walletInfo
         self.addressToSend = addressToSend
         self.amount = amount
+        self.sendMode = sendMode
         self.defaultComment = defaultComment
         self.addressAlias = addressAlias
         super.init(nibName: nil, bundle: nil)
@@ -49,7 +52,7 @@ public class SendConfirmVC: WViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        sendConfirmVM.calculateFee(to: addressToSend, amount: amount, comment: "")
+        sendConfirmVM.calculateFee(to: addressToSend, amount: amount, comment: "", sendMode: sendMode)
     }
     
     private var scrollView: UIScrollView!
@@ -153,8 +156,7 @@ public class SendConfirmVC: WViewController {
         NSLayoutConstraint.activate([
             labelView.topAnchor.constraint(equalTo: labelLabel.bottomAnchor, constant: 4),
             labelView.leftAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leftAnchor, constant: 16),
-            labelView.rightAnchor.constraint(equalTo: scrollView.contentLayoutGuide.rightAnchor, constant: -16),
-            labelView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -70)
+            labelView.rightAnchor.constraint(equalTo: scrollView.contentLayoutGuide.rightAnchor, constant: -16)
         ])
         let labelStackView = UIStackView()
         labelStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -178,6 +180,26 @@ public class SendConfirmVC: WViewController {
             labelStackView.bottomAnchor.constraint(equalTo: labelView.bottomAnchor)
         ])
 
+        if sendMode == 1 {
+            let feeFromAmountLabel = UILabel()
+            feeFromAmountLabel.translatesAutoresizingMaskIntoConstraints = false
+            feeFromAmountLabel.textColor = WTheme.secondaryLabel
+            feeFromAmountLabel.text = WStrings.Wallet_SendConfirm_FeeFromAmount.localized
+            feeFromAmountLabel.font = .systemFont(ofSize: 13)
+            feeFromAmountLabel.numberOfLines = -1
+            scrollView.addSubview(feeFromAmountLabel)
+            NSLayoutConstraint.activate([
+                feeFromAmountLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 32),
+                feeFromAmountLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -32),
+                feeFromAmountLabel.topAnchor.constraint(equalTo: labelView.bottomAnchor, constant: 6),
+                feeFromAmountLabel.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -70)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                labelView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -70)
+            ])
+        }
+
         // continue button
         continueButton = WButton.setupInstance(.primary)
         continueButton.translatesAutoresizingMaskIntoConstraints = false
@@ -193,7 +215,7 @@ public class SendConfirmVC: WViewController {
 
         if let defaultComment {
             commentInput.text = defaultComment
-            commentTextChanged()
+            commentInput.textViewDidChange(commentInput)
         }
 
         // listen for keyboard
@@ -209,7 +231,7 @@ public class SendConfirmVC: WViewController {
             sendConfirmVM.calculateFee(to: addressToSend, amount: amount, comment: commentInput.text, toSend: true)
         })*/
         // Keychain itself requires auth
-        sendConfirmVM.calculateFee(to: addressToSend, amount: amount, comment: commentInput.text, toSend: true)
+        sendConfirmVM.calculateFee(to: addressToSend, amount: amount, comment: commentInput.text, toSend: true, sendMode: sendMode)
     }
     
     var isLoading: Bool = false {
@@ -242,7 +264,7 @@ extension SendConfirmVC: WCommentInputDelegate {
                 return
             }
             if commentInput.text ?? "" == comment {
-                sendConfirmVM.calculateFee(to: addressToSend, amount: amount, comment: comment)
+                sendConfirmVM.calculateFee(to: addressToSend, amount: amount, comment: comment, sendMode: sendMode)
             }
         }
     }
@@ -310,7 +332,8 @@ extension SendConfirmVC: SendConfirmVMDelegate {
                 sendConfirmVM.sendConfirmed(address: addressToSend,
                                             amount: amount,
                                             comment: commentInput.text,
-                                            encryptComment: !canNotEncryptComment)
+                                            encryptComment: !canNotEncryptComment,
+                                            sendMode: sendMode)
             }
         }, secondaryButton: WStrings.Wallet_Navigation_Cancel.localized, preferPrimary: false)
     }

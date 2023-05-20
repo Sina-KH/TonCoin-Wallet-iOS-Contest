@@ -63,7 +63,11 @@ class TonTransferVM {
                                                        walletInfo: walletInfo,
                                                        toAddress: destinationAddress,
                                                        amount: amount,
-                                                       comment: commentData ?? Data(), encryptComment: false, timeout: 0, randomId: randomId)
+                                                       comment: commentData ?? Data(),
+                                                       encryptComment: false,
+                                                       sendMode: 3,
+                                                       timeout: 0,
+                                                       randomId: randomId)
                  |> deliverOnMainQueue).start(next: { [weak self] verificationResult in
             guard let self else {return}
             if amount != latestAmount || comment != latestComment  || toSend != isSending {
@@ -173,6 +177,7 @@ class TonTransferVM {
                                          comment: "".data(using: .utf8)!,
                                          encryptComment: false,
                                          forceIfDestinationNotInitialized: true,
+                                         sendMode: 3,
                                          timeout: 0,
                                          randomId: randomId)
                      |> deliverOnMainQueue).start(next: { [weak self] sentTransaction in

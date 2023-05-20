@@ -512,6 +512,7 @@ public final class TonInstance {
                                                      comment: Data,
                                                      encryptComment: Bool,
                                                      forceIfDestinationNotInitialized: Bool,
+                                                     sendMode: Int,
                                                      timeout: Int32,
                                                      randomId: Int64) -> Signal<TONPreparedSendGramsQuery, SendGramsFromWalletError> {
         return Signal { subscriber in
@@ -551,7 +552,8 @@ public final class TonInstance {
                                                                  bouncable: forceIfDestinationNotInitialized,
                                                                  amount: amount,
                                                                  message: comment,
-                                                                 seqno: seqno) { address, initial, body in
+                                                                 seqno: seqno,
+                                                                 sendMode: sendMode) { address, initial, body in
                                     DispatchQueue.main.async {
                                         let cancel = ton.prepareQuery(withDestinationAddress: address.rawValue,
                                                                       initialAccountStateData: initial?.kind.rawValue.data,
@@ -644,6 +646,7 @@ public final class TonInstance {
                                                          comment: Data,
                                                          encryptComment: Bool,
                                                          forceIfDestinationNotInitialized: Bool,
+                                                         sendMode: Int,
                                                          timeout: Int32,
                                                          randomId: Int64) -> Signal<TONPreparedSendGramsQuery, SendGramsFromWalletError> {
         return Signal { subscriber in
@@ -674,7 +677,8 @@ public final class TonInstance {
                                                              bouncable: forceIfDestinationNotInitialized,
                                                              amount: amount,
                                                              message: comment,
-                                                             seqno: seqno) { address, initial, body in
+                                                             seqno: seqno,
+                                                             sendMode: sendMode) { address, initial, body in
                                 
                                 DispatchQueue.main.async {
                                     let cancel = ton.prepareQuery(withDestinationAddress: address.rawValue,
@@ -1497,19 +1501,45 @@ public struct SendGramsVerificationResult {
     public let canNotEncryptComment: Bool
 }
 
-public func verifySendGramsRequestAndEstimateFees(tonInstance: TonInstance, walletInfo: WalletInfo, toAddress: String, amount: Int64, comment: Data, encryptComment: Bool, timeout: Int32, randomId: Int64) -> Signal<SendGramsVerificationResult, SendGramsFromWalletError> {
+public func verifySendGramsRequestAndEstimateFees(tonInstance: TonInstance,
+                                                  walletInfo: WalletInfo,
+                                                  toAddress: String,
+                                                  amount: Int64,
+                                                  comment: Data,
+                                                  encryptComment: Bool,
+                                                  sendMode: Int,
+                                                  timeout: Int32,
+                                                  randomId: Int64) -> Signal<SendGramsVerificationResult, SendGramsFromWalletError> {
     struct QueryWithInfo {
         let query: TONPreparedSendGramsQuery
         let canNotEncryptComment: Bool
     }
-    return tonInstance.prepareFakeSendGramsFromWalletQuery(walletInfo: walletInfo, fromAddress: walletInfo.address, toAddress: toAddress, amount: amount, comment: comment, encryptComment: false, forceIfDestinationNotInitialized: false, timeout: timeout, randomId: randomId)
+    return tonInstance.prepareFakeSendGramsFromWalletQuery(walletInfo: walletInfo,
+                                                           fromAddress: walletInfo.address,
+                                                           toAddress: toAddress,
+                                                           amount: amount,
+                                                           comment: comment,
+                                                           encryptComment: false,
+                                                           forceIfDestinationNotInitialized: false,
+                                                           sendMode: sendMode,
+                                                           timeout: timeout,
+                                                           randomId: randomId)
     |> map { query -> QueryWithInfo in
         return QueryWithInfo(query: query, canNotEncryptComment: false)
     }
     |> `catch` { error -> Signal<QueryWithInfo, SendGramsFromWalletError> in
         switch error {
         case .destinationIsNotInitialized:
-            return tonInstance.prepareFakeSendGramsFromWalletQuery(walletInfo: walletInfo, fromAddress: walletInfo.address, toAddress: toAddress, amount: amount, comment: comment, encryptComment: false, forceIfDestinationNotInitialized: true, timeout: timeout, randomId: randomId)
+            return tonInstance.prepareFakeSendGramsFromWalletQuery(walletInfo: walletInfo,
+                                                                   fromAddress: walletInfo.address,
+                                                                   toAddress: toAddress,
+                                                                   amount: amount,
+                                                                   comment: comment,
+                                                                   encryptComment: false,
+                                                                   forceIfDestinationNotInitialized: true,
+                                                                   sendMode: sendMode,
+                                                                   timeout: timeout,
+                                                                   randomId: randomId)
             |> map { query -> QueryWithInfo in
                 return QueryWithInfo(query: query, canNotEncryptComment: encryptComment)
             }
@@ -1535,6 +1565,7 @@ public func sendGramsFromWallet(decryptedSecret: Data,
                                 comment: Data,
                                 encryptComment: Bool,
                                 forceIfDestinationNotInitialized: Bool,
+                                sendMode: Int,
                                 timeout: Int32,
                                 randomId: Int64) -> Signal<PendingWalletTransaction, SendGramsFromWalletError> {
     return tonInstance.prepareSendGramsFromWalletQuery(decryptedSecret: decryptedSecret,
@@ -1546,6 +1577,7 @@ public func sendGramsFromWallet(decryptedSecret: Data,
                                                        comment: comment,
                                                        encryptComment: encryptComment,
                                                        forceIfDestinationNotInitialized: forceIfDestinationNotInitialized,
+                                                       sendMode: sendMode,
                                                        timeout: timeout,
                                                        randomId: randomId)
     |> mapToSignal { preparedQuery -> Signal<PendingWalletTransaction, SendGramsFromWalletError> in

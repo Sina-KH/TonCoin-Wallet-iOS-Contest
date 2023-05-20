@@ -211,15 +211,17 @@ public class SendAmountVC: WViewController {
         let amount = amountValue(amountView.text)
 
         let sendConfirmVC = SendConfirmVC(walletContext: walletContext, walletInfo: walletInfo,
-                                          addressToSend: addressToSend, amount: amount)
+                                          addressToSend: addressToSend, amount: amount, sendMode: sendAllSwitch.isOn ? 1 : 3)
         navigationController?.pushViewController(sendConfirmVC, animated: true)
     }
     
     @objc func walletBalanceUpdated(notification: Notification) {
         if let userInfo = notification.userInfo, let balance = userInfo["balance"] as? Int64 {
-            self.balance = balance
-            sendAllStackView.isHidden = false
-            amountChanged()
+            if self.balance != balance {
+                self.balance = balance
+                sendAllStackView.isHidden = false
+                amountChanged()
+            }
         }
     }
 }
@@ -252,5 +254,6 @@ extension SendAmountVC: WAmountInputDelegate {
             amountView.textColor = WTheme.primaryLabel
             continueButton.isEnabled = true
         }
+        sendAllSwitch.isOn = amount == balance
     }
 }

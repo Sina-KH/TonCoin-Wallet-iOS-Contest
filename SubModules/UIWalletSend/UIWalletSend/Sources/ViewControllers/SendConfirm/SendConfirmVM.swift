@@ -46,7 +46,7 @@ class SendConfirmVM {
             sendConfirmVMDelegate?.isLoading = isSending
         }
     }
-    func calculateFee(to destinationAddress: String, amount: Int64, comment: String, toSend: Bool = false) {
+    func calculateFee(to destinationAddress: String, amount: Int64, comment: String, toSend: Bool = false, sendMode: Int) {
         if isSending {
             return
         }
@@ -64,7 +64,11 @@ class SendConfirmVM {
                                                        walletInfo: walletInfo,
                                                        toAddress: destinationAddress,
                                                        amount: amount,
-                                                       comment: commentData ?? Data(), encryptComment: false, timeout: 0, randomId: randomId)
+                                                       comment: commentData ?? Data(),
+                                                       encryptComment: false,
+                                                       sendMode: sendMode,
+                                                       timeout: 0,
+                                                       randomId: randomId)
                  |> deliverOnMainQueue).start(next: { [weak self] verificationResult in
             guard let self else {return}
             if amount != latestAmount || comment != latestComment  || toSend != isSending {
@@ -92,7 +96,7 @@ class SendConfirmVM {
         })
     }
 
-    func sendConfirmed(address: String, amount: Int64, comment: String, encryptComment: Bool) {
+    func sendConfirmed(address: String, amount: Int64, comment: String, encryptComment: Bool, sendMode: Int) {
         let progressSignal = Signal<Never, NoError> { subscriber in
             /*let controller = OverlayStatusController(theme: presentationData.theme,  type: .loading(cancelled: nil))
             presentControllerImpl?(controller, nil)*/
@@ -136,6 +140,7 @@ class SendConfirmVM {
                                 amount: amount,
                                 comment: commentData,
                                 encryptComment: encryptComment,
+                                sendMode: sendMode,
                                 randomId: randomId)
                         sendConfirmVMDelegate?.navigateToSending(sendInstanceData: sendInstanceData)
                     })

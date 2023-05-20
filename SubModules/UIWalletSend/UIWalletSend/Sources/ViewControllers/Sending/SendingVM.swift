@@ -23,6 +23,7 @@ public struct SendInstanceData {
     var amount: Int64
     var comment: Data
     var encryptComment: Bool
+    var sendMode: Int
     var randomId: Int64
 }
 
@@ -52,6 +53,7 @@ class SendingVM {
                                      comment: sendInstanceData.comment,
                                      encryptComment: sendInstanceData.encryptComment,
                                      forceIfDestinationNotInitialized: forceIfDestinationNotInitialized,
+                                     sendMode: sendInstanceData.sendMode,
                                      timeout: 0,
                                      randomId: sendInstanceData.randomId)
         |> deliverOnMainQueue).start(next: { [weak self] sentTransaction in

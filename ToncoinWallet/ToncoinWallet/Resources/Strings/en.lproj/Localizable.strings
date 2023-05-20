@@ -181,6 +181,7 @@
 "Wallet.SendConfirm.Recipient" = "Recipient"; // NEW
 "Wallet.SendConfirm.Amount" = "Amount"; // NEW
 "Wallet.SendConfirm.Fee" = "Fee"; // NEW
+"Wallet.SendConfirm.FeeFromAmount" = "When sending all the balance, the fee will be deducted from the transfer amount."; // NEW
 "Wallet.SendConfirm.ConfirmAndSend" = "Confirm and send"; // NEW
 "Wallet.SendConfirm.NetworkErrorTitle" = "No network"; // Renamed
 "Wallet.SendConfirm.NetworkErrorText" = "Couldn't send TON. Please make sure your internet connection is working and try again."; // Renamed

@@ -139,6 +139,7 @@ public enum WStrings: String {
     case Wallet_SendConfirm_Recipient = "Wallet.SendConfirm.Recipient"
     case Wallet_SendConfirm_Amount = "Wallet.SendConfirm.Amount"
     case Wallet_SendConfirm_Fee = "Wallet.SendConfirm.Fee"
+    case Wallet_SendConfirm_FeeFromAmount = "Wallet.SendConfirm.FeeFromAmount"
     case Wallet_SendConfirm_ConfirmAndSend = "Wallet.SendConfirm.ConfirmAndSend"
     case Wallet_SendConfirm_NetworkErrorTitle = "Wallet.SendConfirm.NetworkErrorTitle"
     case Wallet_SendConfirm_NetworkErrorText = "Wallet.SendConfirm.NetworkErrorText"

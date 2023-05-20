@@ -27,7 +27,7 @@ class TONQueryHelpers {
         }
     }
     
-    private static func subsequentExternalMessage(walletInfo: WalletInfo, seqno: Int64) async throws -> [UInt8] {
+    private static func subsequentExternalMessage(walletInfo: WalletInfo, seqno: Int64, sendMode: Int) async throws -> [UInt8] {
         let builder = try await TON3.Builder()
         await builder.store(TONQueryHelpers.subwalletID(walletInfo: walletInfo)!)
         await builder.store(UInt32(Date().timeIntervalSince1970 + 60))
@@ -35,7 +35,7 @@ class TONQueryHelpers {
         if walletInfo.version == 42 {
             await builder.store(UInt8(0)) // op
         }
-        await builder.store(UInt8(3)) // 3 default `send mode`
+        await builder.store(UInt8(sendMode))
 
         let boc = try await builder.boc()
         return [UInt8](hex: boc)
@@ -50,6 +50,7 @@ class TONQueryHelpers {
         amount: Int64,
         message: Data,
         seqno: Int64,
+        sendMode: Int,
         callback: @escaping (Address, Contract.InitialCondition?, Data) -> Void
     ) {
         walletInfo.walletInitialCondition { initialCondition in
@@ -61,7 +62,7 @@ class TONQueryHelpers {
         let (tonToAddress, _) = AddressHelpers.addressToAddressObj(string: toAddress)!
 
         Task {
-            let external = try await TONQueryHelpers.subsequentExternalMessage(walletInfo: walletInfo, seqno: seqno)
+            let external = try await TONQueryHelpers.subsequentExternalMessage(walletInfo: walletInfo, seqno: seqno, sendMode: sendMode)
             let subsequentExternalMessageBody = try await TON3.transfer(
                 external: external,
                 workchain: tonToAddress.workchain,
