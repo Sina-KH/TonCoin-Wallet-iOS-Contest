@@ -556,8 +556,8 @@ public final class TonInstance {
                                                                  sendMode: sendMode) { address, initial, body in
                                     DispatchQueue.main.async {
                                         let cancel = ton.prepareQuery(withDestinationAddress: address.rawValue,
-                                                                      initialAccountStateData: initial?.kind.rawValue.data,
-                                                                      initialAccountStateCode: initial?.data,
+                                                                      initialAccountStateData: initial?.data,
+                                                                      initialAccountStateCode: initial?.kind.rawValue.data,
                                                                       body: body,
                                                                       randomId: randomId).start(next: { result in
                                             guard let result = result as? TONPreparedSendGramsQuery else {
@@ -682,8 +682,8 @@ public final class TonInstance {
                                 
                                 DispatchQueue.main.async {
                                     let cancel = ton.prepareQuery(withDestinationAddress: address.rawValue,
-                                                                  initialAccountStateData: initial?.kind.rawValue.data,
-                                                                  initialAccountStateCode: initial?.data,
+                                                                  initialAccountStateData: initial?.data,
+                                                                  initialAccountStateCode: initial?.kind.rawValue.data,
                                                                   body: body,
                                                                   randomId: randomId).start(next: { result in
                                         guard let result = result as? TONPreparedSendGramsQuery else {
