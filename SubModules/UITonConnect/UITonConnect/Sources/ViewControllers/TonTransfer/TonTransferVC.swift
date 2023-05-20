@@ -195,7 +195,8 @@ extension TonTransferVC: TonTransferVMDelegate {
 
         showAlert(title: WStrings.Wallet_SendConfirm_Confirmation.localized,
                   textAttr: textAttr,
-                  button: WStrings.Wallet_SendConfirm_ConfirmationConfirm.localized, buttonPressed: { [weak self] in
+                  button: WStrings.Wallet_Navigation_Cancel.localized,
+                  secondaryButton: WStrings.Wallet_SendConfirm_ConfirmationConfirm.localized) { [weak self] in
             guard let self else { return }
 
             authorizeToConfirm { [weak self] in
@@ -206,7 +207,7 @@ extension TonTransferVC: TonTransferVMDelegate {
                                                    comment: "",
                                                    encryptComment: !canNotEncryptComment)
             }
-        }, secondaryButton: WStrings.Wallet_Navigation_Cancel.localized)
+        }
     }
 
     // authorize and then finalize the pre-send process
