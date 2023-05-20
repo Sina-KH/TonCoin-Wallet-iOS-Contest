@@ -72,6 +72,7 @@ class PasscodeScreenView: UIView {
         // passcode input view
         passcodeInputView = PasscodeInputView(delegate: delegate, theme: WTheme.unlockPasscodeInput)
         passcodeInputView.isUserInteractionEnabled = false
+        passcodeInputView.setCirclesCount(to: KeychainHelper.passcode()?.count ?? 4)
         unlockView.addArrangedSubview(passcodeInputView)
 
         // gap
