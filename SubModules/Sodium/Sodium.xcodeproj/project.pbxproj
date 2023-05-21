@@ -96,22 +96,7 @@
 		274081802A0C57650098838D /* Sodium.h in Headers */ = {isa = PBXBuildFile; fileRef = 274081282A0C57640098838D /* Sodium.h */; };
 		274081812A0C57650098838D /* SecretBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274081292A0C57640098838D /* SecretBox.swift */; };
 		274DF9FE2A0CC7A30042A6A6 /* Clibsodium.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274DF9FC2A0CC78B0042A6A6 /* Clibsodium.xcframework */; };
-		274DF9FF2A0CC7A30042A6A6 /* Clibsodium.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 274DF9FC2A0CC78B0042A6A6 /* Clibsodium.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		274DFA002A0CC7A30042A6A6 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				274DF9FF2A0CC7A30042A6A6 /* Clibsodium.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		274080C52A0C573E0098838D /* Sodium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sodium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -441,7 +426,6 @@
 				274080C12A0C573E0098838D /* Sources */,
 				274080C22A0C573E0098838D /* Frameworks */,
 				274080C32A0C573E0098838D /* Resources */,
-				274DFA002A0CC7A30042A6A6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

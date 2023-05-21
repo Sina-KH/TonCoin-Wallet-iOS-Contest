@@ -87,6 +87,8 @@
 		27DB29CD29EC6A6200988800 /* BuildConfig.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29CB29EC6A6200988800 /* BuildConfig.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		27DB29CF29EC6AC700988800 /* UIPasscode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29CE29EC6AC700988800 /* UIPasscode.framework */; };
 		27DB29D029EC6AC700988800 /* UIPasscode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29CE29EC6AC700988800 /* UIPasscode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		27E93C6E2A1AB45500733E13 /* Clibsodium.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E93C6D2A1AB45500733E13 /* Clibsodium.xcframework */; };
+		27E93C6F2A1AB45500733E13 /* Clibsodium.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27E93C6D2A1AB45500733E13 /* Clibsodium.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +129,7 @@
 				275EC63929E8562700EE8B66 /* UIComponents.framework in Embed Frameworks */,
 				275C585D29E051B6002531AF /* WalletCore.framework in Embed Frameworks */,
 				27A1280A29E0402C002D030A /* UICreateWallet.framework in Embed Frameworks */,
+				27E93C6F2A1AB45500733E13 /* Clibsodium.xcframework in Embed Frameworks */,
 				27DB29D029EC6AC700988800 /* UIPasscode.framework in Embed Frameworks */,
 				275EC63C29E8574D00EE8B66 /* GZip.framework in Embed Frameworks */,
 				2741A94F2A102C4A0075DC56 /* UIQRScan.framework in Embed Frameworks */,
@@ -204,6 +207,7 @@
 		27BB29AD29E8CA0C009F5DD7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		27DB29CB29EC6A6200988800 /* BuildConfig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BuildConfig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27DB29CE29EC6AC700988800 /* UIPasscode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIPasscode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27E93C6D2A1AB45500733E13 /* Clibsodium.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Clibsodium.xcframework; path = ../SubModules/Sodium/Sodium/Clibsodium.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +241,7 @@
 				275EC63329E8541E00EE8B66 /* TonBinding.framework in Frameworks */,
 				273041B52A12701B00C8B9F9 /* SwiftyJS.framework in Frameworks */,
 				273042932A127CE000C8B9F9 /* SwiftyTON.framework in Frameworks */,
+				27E93C6E2A1AB45500733E13 /* Clibsodium.xcframework in Frameworks */,
 				274081832A0C577C0098838D /* Sodium.framework in Frameworks */,
 				275C586029E051BA002531AF /* WalletUrl.framework in Frameworks */,
 				273F47492A09B4EA000C5263 /* UITonConnect.framework in Frameworks */,
@@ -342,6 +347,7 @@
 		274D3F2B29D62BF3007C47AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				27E93C6D2A1AB45500733E13 /* Clibsodium.xcframework */,
 				273042922A127CE000C8B9F9 /* SwiftyTON.framework */,
 				273041DC2A127B3D00C8B9F9 /* CryptoSwift.framework */,
 				273041B42A12701B00C8B9F9 /* SwiftyJS.framework */,
@@ -749,17 +755,19 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 200;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = NV933FT9S4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ToncoinWallet/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Toncoin Wallet";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow Toncoin Wallet access to your camera for scanning QR codes.";
-				INFOPLIST_KEY_NSFaceIDUsageDescription = "Face ID allows you to open your wallet faster without having to enter your password.";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "For better security, please allow Toncoin Wallet to use your Face ID to authenticate payments.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow Toncoin Wallet access to your Photo Stream in case you need to scan a QR code from a picture.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow Toncoin Wallet access to your Photo Stream in case you need to scan a QR code from a picture.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -784,17 +792,19 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 200;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = NV933FT9S4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ToncoinWallet/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Toncoin Wallet";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow Toncoin Wallet access to your camera for scanning QR codes.";
-				INFOPLIST_KEY_NSFaceIDUsageDescription = "Face ID allows you to open your wallet faster without having to enter your password.";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "For better security, please allow Toncoin Wallet to use your Face ID to authenticate payments.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow Toncoin Wallet access to your Photo Stream in case you need to scan a QR code from a picture.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow Toncoin Wallet access to your Photo Stream in case you need to scan a QR code from a picture.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
