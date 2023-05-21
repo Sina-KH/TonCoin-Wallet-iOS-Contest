@@ -310,14 +310,6 @@ extension WalletHomeVC: WalletHomeVMDelegate {
     }
     
     func reloadTableView(deleteIndices: [HomeDeleteItem], insertIndicesAndItems: [HomeInsertItem], updateIndicesAndItems: [HomeUpdateItem]) {
-        print("APPLYING CHANGES")
-        print("INSERTS")
-        print(insertIndicesAndItems)
-        print("DELETES")
-        print(deleteIndices)
-        print("UPDATES")
-        print(updateIndicesAndItems)
-        print("#####")
         tableView.beginUpdates()
         tableView.deleteRows(at: deleteIndices.map({ it in
             IndexPath(row: it.index, section: 0)
