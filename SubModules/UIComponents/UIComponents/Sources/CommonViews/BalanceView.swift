@@ -34,7 +34,7 @@ public class BalanceView: UIView {
     // space between animation and the balance
     private var spacingConstraint: NSLayoutConstraint!
     // scale of the view
-    private var scale: CGFloat = 1
+    private var scale: CGFloat? = nil
 
     // -2: not loaded, -1: empty
     public var balance: Int64 = -2 {
@@ -107,12 +107,12 @@ public class BalanceView: UIView {
         // TODO:: Balance label component required
         let components = formatBalanceText(balance > -1 ? balance : 0).components(separatedBy: ".")
         let attr = NSMutableAttributedString(string: "\(components[0])", attributes: [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17 + 62 * (scale - 0.5), weight: .semibold),
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17 + 62 * ((scale ?? 1) - 0.5), weight: .semibold),
             NSAttributedString.Key.foregroundColor: textColor ?? WTheme.primaryLabel
         ])
         if components.count > 1 {
             attr.append(NSAttributedString(string: ".\(components[1])", attributes: [
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17 + 26 * (scale - 0.5), weight: .semibold),
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17 + 26 * ((scale ?? 1) - 0.5), weight: .semibold),
                 NSAttributedString.Key.foregroundColor: textColor ?? WTheme.primaryLabel
             ]))
         }

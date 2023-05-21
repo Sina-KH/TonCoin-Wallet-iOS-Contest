@@ -126,9 +126,12 @@ public class BalanceHeaderView: UIView {
         rateLabel.alpha = 0
         rateLabel.textAlignment = .center
         addSubview(rateLabel)
+        let rateLabelTopConstraint = rateLabel.topAnchor.constraint(equalTo: balanceView.bottomAnchor)
+        rateLabelTopConstraint.priority = .defaultHigh
         constraints.append(contentsOf: [
-            rateLabel.topAnchor.constraint(equalTo: balanceView.bottomAnchor),
-            rateLabel.centerXAnchor.constraint(equalTo: balanceView.centerXAnchor)
+            rateLabelTopConstraint,
+            rateLabel.centerXAnchor.constraint(equalTo: balanceView.centerXAnchor),
+            rateLabel.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor, constant: -6),
         ])
 
         // update status view
@@ -206,7 +209,7 @@ public class BalanceHeaderView: UIView {
         updateStatusViewContainer.alpha = scale == 1.5 ? 1 : max(0, scale - 0.9) * 10 / 6
         
         // show rate value for selected currency if scrolled up
-        rateLabel.alpha = scale > 0.9 ? 0 : 1 - (scale - 0.5) * 10 / 4
+        //rateLabel.alpha = scale > 0.9 ? 0 : 1 - (scale - 0.5) * 10 / 4
 
         return newHeight
     }
@@ -300,6 +303,11 @@ public class BalanceHeaderView: UIView {
             break
         default:
             break
+        }
+        if rateLabel.alpha == 0 {
+            UIView.animate(withDuration: 0.3) { [weak self] in
+                self?.rateLabel.alpha = 1
+            }
         }
     }
 }
