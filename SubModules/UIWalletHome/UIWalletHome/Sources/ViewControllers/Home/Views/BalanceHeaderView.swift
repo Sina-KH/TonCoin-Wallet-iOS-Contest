@@ -304,8 +304,8 @@ public class BalanceHeaderView: UIView {
         default:
             break
         }        
-        // formatted balance makes minus values positive, so we use real val from balanceView to check if wallet is empty
-        rateLabel.isHidden = balanceView.balance <= 0
+        // formatted balance makes minus values positive, so we use real val from balanceView to check for flags (-1: empty and -2: loading)
+        rateLabel.isHidden = balanceView.balance == -2
         if rateLabel.alpha == 0 && !rateLabel.isHidden {
             UIView.animate(withDuration: 0.3) { [weak self] in
                 self?.rateLabel.alpha = 1
