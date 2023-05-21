@@ -521,86 +521,117 @@ public final class TonInstance {
             self.impl.with { impl in
                 impl.withInstance { ton in
                     
-                    ton.exportDecryptedKey(withEncryptedKey: GTTONKey(publicKey: walletInfo.publicKey.rawValue,
-                                                                      encryptedSecretKey: decryptedSecret),
-                                           withUserPassword: Data()).start { decryptedSecret in
-                        guard let decryptedSecret = decryptedSecret as? Data else {
-                            subscriber.putError(.generic)
-                            return
-                        }
-
-                        ton.accountLocalID(withAccountAddress: AddressHelpers.addressToRaw(string: walletInfo.address)!).start { localIDResult in
-                            guard let localIDResult = localIDResult as? TONLocalID else {
+                    // function to be called, when we are sure about the destination state (or force forceIfDestinationNotInitialized == true)
+                    func prepareSendNow() {
+                        ton.exportDecryptedKey(withEncryptedKey: GTTONKey(publicKey: walletInfo.publicKey.rawValue,
+                                                                          encryptedSecretKey: decryptedSecret),
+                                               withUserPassword: Data()).start { decryptedSecret in
+                            guard let decryptedSecret = decryptedSecret as? Data else {
                                 subscriber.putError(.generic)
                                 return
                             }
-                            ton.accountLocalID(localIDResult.localID, runGetMethodNamed: "seqno", arguments: []).start { seqnoResult in
-                                guard let seqnoResult = seqnoResult as? TONExecutionResult else {
+
+                            ton.accountLocalID(withAccountAddress: AddressHelpers.addressToRaw(string: walletInfo.address)!).start { localIDResult in
+                                guard let localIDResult = localIDResult as? TONLocalID else {
                                     subscriber.putError(.generic)
                                     return
                                 }
-                                var seqno = Int64(0)
-                                if seqnoResult.code == 0,
-                                      let decimal = seqnoResult.stack.last as? TONExecutionResultDecimal,
-                                      let parsedSeqno = Int64(decimal.value) {
-                                    seqno = parsedSeqno
-                                }
-                                
-                                TONQueryHelpers.sendTONQueryData(walletInfo: walletInfo,
-                                                                 decryptedKey: decryptedSecret,
-                                                                 toAddress: toAddress,
-                                                                 bouncable: forceIfDestinationNotInitialized,
-                                                                 amount: amount,
-                                                                 message: comment,
-                                                                 seqno: seqno,
-                                                                 sendMode: sendMode) { address, initial, body in
-                                    DispatchQueue.main.async {
-                                        let cancel = ton.prepareQuery(withDestinationAddress: address.rawValue,
-                                                                      initialAccountStateData: initial?.data,
-                                                                      initialAccountStateCode: initial?.kind.rawValue.data,
-                                                                      body: body,
-                                                                      randomId: randomId).start(next: { result in
-                                            guard let result = result as? TONPreparedSendGramsQuery else {
-                                                subscriber.putError(.generic)
-                                                return
-                                            }
-                                            subscriber.putNext(result)
-                                            subscriber.putCompletion()
-                                        }, error: { error in
-                                            if let error = error as? TONError {
-                                                if error.text.hasPrefix("INVALID_ACCOUNT_ADDRESS") {
-                                                    subscriber.putError(.invalidAddress)
-                                                } else if error.text.hasPrefix("DANGEROUS_TRANSACTION") {
-                                                    subscriber.putError(.destinationIsNotInitialized)
-                                                } else if error.text.hasPrefix("MESSAGE_TOO_LONG") {
-                                                    subscriber.putError(.messageTooLong)
-                                                } else if error.text.hasPrefix("NOT_ENOUGH_FUNDS") {
-                                                    subscriber.putError(.notEnoughFunds)
-                                                } else if isTextNetworkError(error.text) {
-                                                    subscriber.putError(.network)
+                                ton.accountLocalID(localIDResult.localID, runGetMethodNamed: "seqno", arguments: []).start { seqnoResult in
+                                    guard let seqnoResult = seqnoResult as? TONExecutionResult else {
+                                        subscriber.putError(.generic)
+                                        return
+                                    }
+                                    var seqno = Int64(0)
+                                    if seqnoResult.code == 0,
+                                          let decimal = seqnoResult.stack.last as? TONExecutionResultDecimal,
+                                          let parsedSeqno = Int64(decimal.value) {
+                                        seqno = parsedSeqno
+                                    }
+                                    
+                                    TONQueryHelpers.sendTONQueryData(walletInfo: walletInfo,
+                                                                     decryptedKey: decryptedSecret,
+                                                                     toAddress: toAddress,
+                                                                     forceIfDestinationNotInitialized: forceIfDestinationNotInitialized,
+                                                                     amount: amount,
+                                                                     message: comment,
+                                                                     seqno: seqno,
+                                                                     sendMode: sendMode) { address, initial, body in
+                                        DispatchQueue.main.async {
+                                            let cancel = ton.prepareQuery(withDestinationAddress: address.rawValue,
+                                                                          initialAccountStateData: initial?.data,
+                                                                          initialAccountStateCode: initial?.kind.rawValue.data,
+                                                                          body: body,
+                                                                          randomId: randomId).start(next: { result in
+                                                guard let result = result as? TONPreparedSendGramsQuery else {
+                                                    subscriber.putError(.generic)
+                                                    return
+                                                }
+                                                subscriber.putNext(result)
+                                                subscriber.putCompletion()
+                                            }, error: { error in
+                                                if let error = error as? TONError {
+                                                    if error.text.hasPrefix("INVALID_ACCOUNT_ADDRESS") {
+                                                        subscriber.putError(.invalidAddress)
+                                                    } else if error.text.hasPrefix("DANGEROUS_TRANSACTION") {
+                                                        subscriber.putError(.destinationIsNotInitialized)
+                                                    } else if error.text.hasPrefix("MESSAGE_TOO_LONG") {
+                                                        subscriber.putError(.messageTooLong)
+                                                    } else if error.text.hasPrefix("NOT_ENOUGH_FUNDS") {
+                                                        subscriber.putError(.notEnoughFunds)
+                                                    } else if isTextNetworkError(error.text) {
+                                                        subscriber.putError(.network)
+                                                    } else {
+                                                        subscriber.putError(.generic)
+                                                    }
                                                 } else {
                                                     subscriber.putError(.generic)
                                                 }
-                                            } else {
-                                                subscriber.putError(.generic)
-                                            }
-                                        }, completed: {
-                                            subscriber.putCompletion()
-                                        })
-                                        disposable.set(ActionDisposable {
-                                            cancel?.dispose()
-                                        })
+                                            }, completed: {
+                                                subscriber.putCompletion()
+                                            })
+                                            disposable.set(ActionDisposable {
+                                                cancel?.dispose()
+                                            })
+                                        }
+                                    }
+                                    
                                     }
                                 }
-                                
-                                }
-                            }
 
+                        }
+                    }
+                    
+                    if !forceIfDestinationNotInitialized {
+                        // check destination exists
+                        ton.getFullAccountState(withAddress: toAddress).start(next: { state in
+                            guard let state = state as? TONAccountState else {
+                                return
+                            }
+                            if state.isInitialized {
+                                prepareSendNow()
+                            } else {
+                                subscriber.putError(.destinationIsNotInitialized)
+                            }
+                        }, error: { error in
+                            if let error = error as? TONError {
+                                if isTextNetworkError(error.text) {
+                                    subscriber.putError(.network)
+                                } else {
+                                    subscriber.putError(.generic)
+                                }
+                            } else {
+                                subscriber.putError(.generic)
+                            }
+                        }, completed: {
+                            prepareSendNow()
+                        })
+                    } else {
+                        prepareSendNow()
                     }
                     
                     
                     
-                    // Old way (used by original app and can not be used due to different wallet version support
+                    // Old way (used by original app and can not be used due to different wallet version support)
                     /*let cancel = ton.generateSendGramsQuery(from: key, localPassword: localPassword, fromAddress: fromAddress, toAddress: toAddress, amount: amount, comment: comment, encryptComment: encryptComment, forceIfDestinationNotInitialized: forceIfDestinationNotInitialized, timeout: timeout, randomId: randomId).start(next: { result in
                         guard let result = result as? TONPreparedSendGramsQuery else {
                             subscriber.putError(.generic)
@@ -645,7 +676,6 @@ public final class TonInstance {
                                                          amount: Int64,
                                                          comment: Data,
                                                          encryptComment: Bool,
-                                                         forceIfDestinationNotInitialized: Bool,
                                                          sendMode: Int,
                                                          timeout: Int32,
                                                          randomId: Int64) -> Signal<TONPreparedSendGramsQuery, SendGramsFromWalletError> {
@@ -674,7 +704,7 @@ public final class TonInstance {
                             
                             TONQueryHelpers.sendTONQueryData(walletInfo: walletInfo,
                                                              toAddress: toAddress,
-                                                             bouncable: forceIfDestinationNotInitialized,
+                                                             forceIfDestinationNotInitialized: true,
                                                              amount: amount,
                                                              message: comment,
                                                              seqno: seqno,
@@ -1520,7 +1550,6 @@ public func verifySendGramsRequestAndEstimateFees(tonInstance: TonInstance,
                                                            amount: amount,
                                                            comment: comment,
                                                            encryptComment: false,
-                                                           forceIfDestinationNotInitialized: false,
                                                            sendMode: sendMode,
                                                            timeout: timeout,
                                                            randomId: randomId)
@@ -1529,20 +1558,19 @@ public func verifySendGramsRequestAndEstimateFees(tonInstance: TonInstance,
     }
     |> `catch` { error -> Signal<QueryWithInfo, SendGramsFromWalletError> in
         switch error {
-        case .destinationIsNotInitialized:
-            return tonInstance.prepareFakeSendGramsFromWalletQuery(walletInfo: walletInfo,
-                                                                   fromAddress: walletInfo.address,
-                                                                   toAddress: toAddress,
-                                                                   amount: amount,
-                                                                   comment: comment,
-                                                                   encryptComment: false,
-                                                                   forceIfDestinationNotInitialized: true,
-                                                                   sendMode: sendMode,
-                                                                   timeout: timeout,
-                                                                   randomId: randomId)
-            |> map { query -> QueryWithInfo in
-                return QueryWithInfo(query: query, canNotEncryptComment: encryptComment)
-            }
+//        case .destinationIsNotInitialized:
+//            return tonInstance.prepareFakeSendGramsFromWalletQuery(walletInfo: walletInfo,
+//                                                                   fromAddress: walletInfo.address,
+//                                                                   toAddress: toAddress,
+//                                                                   amount: amount,
+//                                                                   comment: comment,
+//                                                                   encryptComment: false,
+//                                                                   sendMode: sendMode,
+//                                                                   timeout: timeout,
+//                                                                   randomId: randomId)
+//            |> map { query -> QueryWithInfo in
+//                return QueryWithInfo(query: query, canNotEncryptComment: encryptComment)
+//            }
         default:
             return .fail(error)
         }

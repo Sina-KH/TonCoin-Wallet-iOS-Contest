@@ -46,7 +46,7 @@ class TONQueryHelpers {
         walletInfo: WalletInfo,
         decryptedKey: Data? = nil,
         toAddress: String,
-        bouncable: Bool,
+        forceIfDestinationNotInitialized: Bool,
         amount: Int64,
         message: Data,
         seqno: Int64,
@@ -68,7 +68,7 @@ class TONQueryHelpers {
                 workchain: tonToAddress.workchain,
                 address: tonToAddress.hash,
                 amount: amount,
-                bounceable: bouncable,
+                bounceable: !forceIfDestinationNotInitialized,
                 payload: message.bytes,
                 state: nil
             )

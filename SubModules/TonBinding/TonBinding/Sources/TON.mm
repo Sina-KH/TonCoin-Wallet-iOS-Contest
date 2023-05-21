@@ -1602,7 +1602,7 @@ typedef enum {
                 bool isRWallet = false;
                 int64_t unlockedBalance = fullAccountState->balance_;
 
-                [subscriber putNext:[[TONAccountState alloc] initWithIsInitialized:false
+                [subscriber putNext:[[TONAccountState alloc] initWithIsInitialized: fullAccountState->code_.size() > 0
                                                                          isRWallet:isRWallet
                                                                            balance:fullAccountState->balance_ unlockedBalance:unlockedBalance seqno:-1 lastTransactionId:lastTransactionId syncUtime:fullAccountState->sync_utime_]];
                 [subscriber putCompletion];
