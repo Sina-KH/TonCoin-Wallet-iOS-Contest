@@ -3,6 +3,16 @@
     {
       "filename" : "TopLeft.pdf",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "TopLeft.png",
+      "idiom" : "universal"
     }
   ],
   "info" : {

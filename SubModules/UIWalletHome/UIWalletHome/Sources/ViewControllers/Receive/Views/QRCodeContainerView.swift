@@ -49,6 +49,8 @@ public class QRCodeContainerView: UIView {
             qrCode.centerXAnchor.constraint(equalTo: centerXAnchor),
             qrCode.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
+        qrCode.layer.cornerRadius = 8
+        qrCode.layer.masksToBounds = true
         // qr code animation
         let qrCodeAnimatedIcon = WAnimatedSticker()
         qrCodeAnimatedIcon.translatesAutoresizingMaskIntoConstraints = false

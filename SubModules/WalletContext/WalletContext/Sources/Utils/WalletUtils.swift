@@ -23,7 +23,7 @@ public func walletVersionString(version: Int) -> String {
 fileprivate let decimalSeparator = "."
 
 public let walletAddressLength: Int = 48
-public let walletTextLimit: Int = 512
+public let walletTextLimit: Int = 120
 
 // format address to 2-line text
 public func formatAddress(_ address: String) -> String {

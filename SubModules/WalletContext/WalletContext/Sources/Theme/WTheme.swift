@@ -51,6 +51,7 @@ public struct WThemeType {
     public var toastView: WThemeToastView
     public var background: UIColor
     public var backgroundReverse: UIColor
+    public var itemBackground: UIColor
     public var groupedBackground: UIColor
     public var primaryLabel: UIColor
     public var secondaryLabel: UIColor
@@ -77,20 +78,32 @@ public struct WThemeType {
 public var WTheme = WThemeType(
     primaryButton: WThemePrimaryButton(background: UIColor.systemBlue,
                                        tint: UIColor.white,
-                                       disabledBackground: _groupedBackground,
+                                       disabledBackground: WColors.secondaryBackground.color,
                                        disabledTint: WColors.secondaryLabel.color),
     accentButton: WThemeAccentButton(background: _accent,
                                      tint: UIColor.white),
     accentLightButton: WThemeAccentButton(background: _accent.withAlphaComponent(0.1),
                                      tint: _accent),
     wordInput: WThemeWordInput(background: WColors.secondaryBackground.color),
-    setPasscodeInput: WThemePasscodeInput(border: _border, empty: _systemBackground, fill: _systemBackgroundReverse),
+    setPasscodeInput: WThemePasscodeInput(border: _border, empty: WColors.background.color, fill: _systemBackgroundReverse),
     unlockPasscodeInput: WThemePasscodeInput(border: .white, empty: .clear, fill: .white),
-    balanceHeaderView: WThemeBackgroundHeaderView(background: .black, headIcons: .white, balance: .white),
-    toastView: WThemeToastView(background: _systemBackgroundReverse.withAlphaComponent(0.82), tint: _systemBackground),
-    background: _systemBackground,
+    balanceHeaderView: WThemeBackgroundHeaderView(background: .black,
+                                                  headIcons: .white,
+                                                  balance: .white),
+    toastView: WThemeToastView(background: _systemBackgroundReverse.withAlphaComponent(0.82), tint: WColors.background.color),
+    
+    // standard background color for view controllers and views
+    background: WColors.background.color,
+
+    // reverse of the theme background color
     backgroundReverse: _systemBackgroundReverse,
-    groupedBackground: _groupedBackground,
+
+    // used for inner rows
+    itemBackground: WColors.itemBackground.color,
+
+    // one level different from background, in dark mode it's 100% black, in light mode it's a little gray
+    groupedBackground: WColors.secondaryBackground.color,
+
     primaryLabel: _systemBackgroundReverse,
     secondaryLabel: WColors.secondaryLabel.color,
     tertiaryLabel: _tertiaryLabel,
@@ -103,27 +116,11 @@ public var WTheme = WThemeType(
     error: .systemRed
 )
 
-fileprivate var _systemBackground: UIColor {
-    if #available(iOS 13.0, *) {
-        return .systemBackground
-    } else {
-        return .white
-    }
-}
-
 fileprivate var _systemBackgroundReverse: UIColor {
     if #available(iOS 13.0, *) {
         return .label
     } else {
         return .black
-    }
-}
-
-fileprivate var _groupedBackground: UIColor {
-    if #available(iOS 13.0, *) {
-        return .systemGroupedBackground
-    } else {
-        return .groupTableViewBackground
     }
 }
 

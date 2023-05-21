@@ -126,6 +126,7 @@ class WalletTransactionCell: UITableViewCell {
     }
     
     func updateTheme() {
+        backgroundColor = WTheme.background
         directionLabel.textColor = WTheme.secondaryLabel
         storageFeeLabel.textColor = WTheme.secondaryLabel
     }

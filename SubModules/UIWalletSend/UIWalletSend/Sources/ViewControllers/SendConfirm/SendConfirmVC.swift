@@ -224,6 +224,12 @@ public class SendConfirmVC: WViewController {
     
     @objc private func continuePressed() {
         view.endEditing(true)
+        
+        if commentInput.text.count > walletTextLimit {
+            errorOccured(error: .messageTooLong)
+            return
+        }
+
         /*UnlockVC.presentAuth(on: self, onAuth: { [weak self] in
             guard let self else {
                 return

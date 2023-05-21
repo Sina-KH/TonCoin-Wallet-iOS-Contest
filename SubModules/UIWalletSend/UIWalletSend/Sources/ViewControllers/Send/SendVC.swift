@@ -122,6 +122,7 @@ public class SendVC: WViewController {
         scanButton.addTarget(self, action: #selector(scanPressed), for: .touchUpInside)
         addressActionsStackView.addArrangedSubview(scanButton)
         let v = UIView()
+        v.backgroundColor = WTheme.background
         v.translatesAutoresizingMaskIntoConstraints = false
         addressActionsStackView.addArrangedSubview(v)
 
@@ -156,6 +157,7 @@ public class SendVC: WViewController {
         recentsTableView.translatesAutoresizingMaskIntoConstraints = false
         recentsTableView.delegate = self
         recentsTableView.dataSource = self
+        recentsTableView.backgroundColor = WTheme.background
         recentsTableView.showsVerticalScrollIndicator = false
         recentsTableView.separatorStyle = .none // we implement it inside cells, to prevent extra lines on older iOS versions
         recentsTableView.register(RecentAddressCell.self, forCellReuseIdentifier: "RecentAddress")

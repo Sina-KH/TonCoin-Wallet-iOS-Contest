@@ -81,7 +81,8 @@ extension WCommentInput: UITextViewDelegate {
         // show exceeded text in red
         if text.count > walletTextLimit {
             let attr = NSMutableAttributedString(string: String(text.prefix(walletTextLimit)), attributes: [
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .regular)
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .regular),
+                NSAttributedString.Key.foregroundColor: textColor
             ])
             attr.append(NSAttributedString(string: String(text.suffix(text.count - walletTextLimit)), attributes: [
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .regular),

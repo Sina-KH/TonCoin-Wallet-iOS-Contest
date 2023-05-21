@@ -229,7 +229,7 @@ class SettingsVC: WViewController {
     private func addItem(position: ItemPosition, title: String, rightView: UIView, selector: Selector) {
         let settingsItemView = WHighlightView()
         settingsItemView.highlightBackgroundColor = WTheme.backgroundReverse.withAlphaComponent(0.1)
-        settingsItemView.backgroundColor = WTheme.background
+        settingsItemView.backgroundColor = WTheme.itemBackground
         settingsItemView.translatesAutoresizingMaskIntoConstraints = false
         stackView.addArrangedSubview(settingsItemView)
         NSLayoutConstraint.activate([

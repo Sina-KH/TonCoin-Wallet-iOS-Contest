@@ -61,6 +61,7 @@ class RecentAddressCell: UITableViewCell {
     }
     
     func updateTheme() {
+        backgroundColor = WTheme.background
         primaryLabel.textColor = WTheme.primaryLabel
         secondaryLabel.textColor = WTheme.secondaryLabel
     }

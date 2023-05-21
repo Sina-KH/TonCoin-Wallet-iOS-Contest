@@ -25,9 +25,11 @@ Other modules like `SwiftyTON` `TON3` and `SwiftyJS` in the project are customiz
 
 :white_check_mark: **Deeplinks:** `ton` and `tc` app schemas are implemented.
 
-:white_check_mark: `iOS 13.0+` support. (If we remove async/await and actor codes used in SwiftyTON, TON3 and SwiftyJS modules, or even remove these modules from the porject, We can even support iOS 12.2+ with the same app size. No other os dependent features limited to iOS 13+ is used in the application.)
+:white_check_mark: `iOS 13+` support. (If we remove async/await and actor codes used in SwiftyTON, TON3 and SwiftyJS modules, or even remove these modules from the porject, We can even support iOS 12.2+ with the same app size. Almost no other os dependent features limited to iOS 13+ is used in the application, even for theming.)
 
 :white_check_mark: App size (the final universal `.ipa file`) is **around 7 megabytes**.
+
+:white_check_mark: **Dark mode** on iOS 13+
 
 ## :exclamation:  Notices
 
