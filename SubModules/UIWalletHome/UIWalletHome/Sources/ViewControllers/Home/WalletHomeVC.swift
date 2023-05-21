@@ -310,15 +310,28 @@ extension WalletHomeVC: WalletHomeVMDelegate {
     }
     
     func reloadTableView(deleteIndices: [HomeDeleteItem], insertIndicesAndItems: [HomeInsertItem], updateIndicesAndItems: [HomeUpdateItem]) {
+        print("APPLYING CHANGES")
+        print("INSERTS")
+        print(insertIndicesAndItems)
+        print("DELETES")
+        print(deleteIndices)
+        print("UPDATES")
+        print(updateIndicesAndItems)
+        print("#####")
         tableView.beginUpdates()
-        // prevent issue if it's empty and empty view cell wants to be deleted. (original app logic)
         tableView.deleteRows(at: deleteIndices.map({ it in
             IndexPath(row: it.index, section: 0)
         }), with: .automatic)
         tableView.insertRows(at: insertIndicesAndItems.map({ it in
             IndexPath(row: it.index, section: 0)
         }), with: .automatic)
-        tableView.reloadRows(at: updateIndicesAndItems.map({ it in
+        tableView.reloadRows(at: updateIndicesAndItems.filter({ it in
+            return !deleteIndices.contains { alreadyDeleted in
+                return it.index == alreadyDeleted.index
+            } && !insertIndicesAndItems.contains { alreadyInserted in
+                return it.index == alreadyInserted.index
+            }
+        }).map({ it in
             IndexPath(row: it.index, section: 0)
         }), with: .automatic)
         tableView.endUpdates()
