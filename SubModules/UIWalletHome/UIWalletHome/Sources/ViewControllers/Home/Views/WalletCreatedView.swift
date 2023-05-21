@@ -54,10 +54,9 @@ public class WalletCreatedView: UIView {
 
         let addressLabel = WAddressLabel()
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
-        addressLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        addressLabel.font = .monospacedSystemFont(ofSize: 17, weight: .regular)
         addressLabel.numberOfLines = 2
         addressLabel.address = address
-        addressLabel.textAlignment = .center
         addSubview(addressLabel)
         NSLayoutConstraint.activate([
             addressLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: isIPhone5s ? 6 : 2),

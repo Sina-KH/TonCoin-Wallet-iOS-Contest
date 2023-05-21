@@ -101,7 +101,7 @@ public class ReceiveVC: WViewController {
         // address label
         let addressLabel = WAddressLabel()
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
-        addressLabel.font = .systemFont(ofSize: 17, weight: .semibold)
+        addressLabel.font = .monospacedSystemFont(ofSize: 17, weight: .semibold)
         addressLabel.numberOfLines = 0
         addressLabel.address = walletInfo.address
         addressStackView.addArrangedSubview(addressLabel)

@@ -14,6 +14,7 @@ class WalletTransactionCell: UITableViewCell {
     
     private static let balanceGem = UIImage(named: "BalanceGem")!
     private static let regular15Font = UIFont.systemFont(ofSize: 15, weight: .regular)
+    private static let monoSpacedRegular15Font = UIFont.monospacedSystemFont(ofSize: 15, weight: .regular)
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -94,7 +95,7 @@ class WalletTransactionCell: UITableViewCell {
         // address
         addressLabel = UILabel()
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
-        addressLabel.font = WalletTransactionCell.regular15Font
+        addressLabel.font = WalletTransactionCell.monoSpacedRegular15Font
         addressLabel.numberOfLines = 0
         verticalStackView.addArrangedSubview(addressLabel)
         

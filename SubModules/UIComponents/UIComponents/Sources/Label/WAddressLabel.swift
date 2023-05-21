@@ -16,8 +16,7 @@ public class WAddressLabel: UILabel {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setupView()
+        fatalError()
     }
 
     private func setupView() {
@@ -45,13 +44,7 @@ public class WAddressLabel: UILabel {
 
     public var address: String = "" {
         didSet {
-            let text: NSMutableAttributedString = NSMutableAttributedString(string: formatAddress(address))
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.alignment = .justified
-            paragraphStyle.baseWritingDirection = .rightToLeft
-            paragraphStyle.lineBreakMode = .byWordWrapping
-            text.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, text.length))
-            attributedText = text
+            text = formatAddress(address)
         }
     }
     

@@ -32,18 +32,18 @@ extension WalletTransaction {
 
         if self.transferredValueWithoutFees < 0 {
             // sent
-            if self.outMessages.isEmpty {
+            if outMessages.isEmpty {
                 if self.isInitialization {
                     addressString = WStrings.Wallet_Home_InitTransaction.localized
                 } else {
                     addressString = WStrings.Wallet_Home_UnknownTransaction.localized
                 }
             } else {
-                for message in self.outMessages {
+                for message in outMessages {
                     if !addressString.isEmpty {
                         addressString.append("\n")
                     }
-                    addressString.append(formatAddress(message.destination))
+                    addressString.append(formatStartEndAddress(message.destination, prefix: 6, suffix: 6))
                     
                     if !descriptionString.isEmpty {
                         descriptionString.append("\n")
@@ -61,7 +61,7 @@ extension WalletTransaction {
             }
         } else {
             // received
-            addressString = formatAddress(self.inMessage?.source ?? "")
+            addressString = formatStartEndAddress(self.inMessage?.source ?? "", prefix: 6, suffix: 6)
             if let contents = self.inMessage?.contents {
                 switch contents {
                 case .raw:
@@ -90,7 +90,7 @@ extension WalletTransaction {
 extension PendingWalletTransaction {
     
     public func extractAddressAndDescription() -> (String, String, Bool) { // address, description, descriptionIsMonospace
-        return (self.address, String(data: self.comment, encoding: .utf8) ?? "", false)
+        return (formatStartEndAddress(address, prefix: 6, suffix: 6), String(data: self.comment, encoding: .utf8) ?? "", false)
     }
     
     public var hashPreview: String {
