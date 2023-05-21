@@ -56,6 +56,7 @@ public class WalletCreatedView: UIView {
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
         addressLabel.font = .monospacedSystemFont(ofSize: 17, weight: .regular)
         addressLabel.numberOfLines = 2
+        addressLabel.textAlignment = .center
         addressLabel.address = address
         addSubview(addressLabel)
         NSLayoutConstraint.activate([

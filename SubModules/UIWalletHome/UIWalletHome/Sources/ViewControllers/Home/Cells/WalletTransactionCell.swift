@@ -240,13 +240,18 @@ class WalletTransactionCell: UITableViewCell {
         // show top section date if it's a new day
         if !(prevItemDate?.isInSameDay(as: itemDate) ?? false) {
             dateLabel.isHidden = false
-            let sameYear = Date().isInSameYear(as: itemDate)
-            if sameYear {
-                dateFormatter.dateFormat = "MMMM d"
+            let now = Date()
+            if now.isInSameDay(as: itemDate) {
+                dateLabel.text = WStrings.Wallet_Time_Today.localized
             } else {
-                dateFormatter.timeStyle = .medium
+                let sameYear = now.isInSameYear(as: itemDate)
+                if sameYear {
+                    dateFormatter.dateFormat = "MMMM d"
+                } else {
+                    dateFormatter.timeStyle = .medium
+                }
+                dateLabel.text = dateFormatter.string(from: itemDate)
             }
-            dateLabel.text = dateFormatter.string(from: itemDate)
             dateLabel.isHidden = false
         } else {
             dateLabel.isHidden = true

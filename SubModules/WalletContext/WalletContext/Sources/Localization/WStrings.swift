@@ -198,6 +198,7 @@ public enum WStrings: String {
     case Wallet_Navigation_Done = "Wallet.Navigation.Done"
     case Wallet_Navigation_Cancel = "Wallet.Navigation.Cancel"
     case Wallet_Alert_OK = "Wallet.Alert.OK"
+    case Wallet_Time_Today = "Wallet.Time.Today"
     case Wallet_Time_PreciseDate_m1 = "Wallet.Time.PreciseDate_m1"
     case Wallet_Time_PreciseDate_m2 = "Wallet.Time.PreciseDate_m2"
     case Wallet_Time_PreciseDate_m3 = "Wallet.Time.PreciseDate_m3"

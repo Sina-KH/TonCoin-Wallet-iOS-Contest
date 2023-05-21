@@ -140,11 +140,11 @@ class SendingVM {
         guard let vc = topViewController() else { return }
         vc.showAlert(title: WStrings.Wallet_Sending_UninitializedTitle.localized,
                      text: WStrings.Wallet_Sending_UninitializedText.localized,
-                     button: WStrings.Wallet_Sending_SendAnyway.localized,
+                     button: WStrings.Wallet_Navigation_Cancel.localized,
                      buttonPressed: { [weak self] in
-            self?.sendNow(sendInstanceData: sendInstanceData, forceIfDestinationNotInitialized: true)
-        }, secondaryButton: WStrings.Wallet_Navigation_Cancel.localized) { [weak self] in
             self?.sendingVMDelegate?.canceled()
-        }
+        }, secondaryButton: WStrings.Wallet_Sending_SendAnyway.localized, secondaryButtonPressed: { [weak self] in
+            self?.sendNow(sendInstanceData: sendInstanceData, forceIfDestinationNotInitialized: true)
+        }, preferPrimary: false)
     }
 }

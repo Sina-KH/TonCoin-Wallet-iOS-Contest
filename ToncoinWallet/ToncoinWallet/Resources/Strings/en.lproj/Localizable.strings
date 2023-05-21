@@ -265,6 +265,7 @@
 "Wallet.Alert.OK" = "OK";
 
 // Time
+"Wallet.Time.Today" = "Today"; // NEW
 "Wallet.Time.PreciseDate_m1" = "Jan %1$@, %2$@ at %3$@";
 "Wallet.Time.PreciseDate_m2" = "Feb %1$@, %2$@ at %3$@";
 "Wallet.Time.PreciseDate_m3" = "Mar %1$@, %2$@ at %3$@";
