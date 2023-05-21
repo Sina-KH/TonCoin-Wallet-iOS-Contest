@@ -219,7 +219,7 @@ public class SendAmountVC: WViewController {
         if let userInfo = notification.userInfo, let balance = userInfo["balance"] as? Int64 {
             if self.balance != balance {
                 self.balance = balance
-                sendAllStackView.isHidden = false
+                sendAllStackView.isHidden = balance <= 0
                 amountChanged()
             }
         }
