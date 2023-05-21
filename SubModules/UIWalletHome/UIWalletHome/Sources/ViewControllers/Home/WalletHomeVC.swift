@@ -35,12 +35,18 @@ public class WalletHomeVC: WViewController {
     lazy var walletHomeVM = WalletHomeVM(walletContext: walletContext, walletInfo: walletInfo, walletHomeVMDelegate: self)
 
     private var popRecognizer: InteractivePopRecognizer?
+    private var belowSafeAreaViewBottomConstraint: NSLayoutConstraint!
     private var tableView: UITableView!
+    private var tableHeaderView: UIView!
+    private var refreshControl: UIRefreshControl!
     private var headerContainerView: UIView!
     private var headerContainerViewHeightConstraint: NSLayoutConstraint? = nil
     private var balanceHeaderView: BalanceHeaderView!
     private var bottomCornersView: ReversedCornerRadiusView!
     private var emptyWalletView: EmptyWalletView? = nil
+
+    // previous update progress to handle ui changes based on previous value
+    private var prevUpdateProgres: Int? = nil
 
     // MARK: - Load and SetupView Functions
     public override func viewDidLoad() {
@@ -60,7 +66,23 @@ public class WalletHomeVC: WViewController {
     
     // MARK: - Setup home views
     func setupViews() {
+        view.backgroundColor = WTheme.background
+
         navigationController?.setNavigationBarHidden(true, animated: false)
+
+        // View under table view to cover under safe area,
+        //  and make black bounce background possible. (we can't use views above table view, because they will block refresh control.
+        let belowSafeAreaView = UIView()
+        belowSafeAreaView.translatesAutoresizingMaskIntoConstraints = false
+        belowSafeAreaView.backgroundColor = WTheme.balanceHeaderView.background
+        view.addSubview(belowSafeAreaView)
+        belowSafeAreaViewBottomConstraint = belowSafeAreaView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0)
+        NSLayoutConstraint.activate([
+            belowSafeAreaView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            belowSafeAreaView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            belowSafeAreaView.topAnchor.constraint(equalTo: view.topAnchor),
+            belowSafeAreaViewBottomConstraint
+        ])
 
         // configure table view
         tableView = UITableView()
@@ -71,11 +93,17 @@ public class WalletHomeVC: WViewController {
         tableView.separatorStyle = .none // we implement it inside cells, to prevent extra lines on older iOS versions
         tableView.register(WalletTransactionCell.self, forCellReuseIdentifier: "Transaction")
         tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.backgroundColor = .clear
+        refreshControl = UIRefreshControl()
+        refreshControl.tintColor = WTheme.balanceHeaderView.balance
+        refreshControl.addTarget(self, action: #selector(refreshTransactions), for: .valueChanged)
+        tableView.refreshControl = refreshControl
 
         // empty header to be behind the balanceHeaderView
-        let tableHeaderView = UIView()
-        tableHeaderView.backgroundColor = .clear
-        tableHeaderView.frame.size = CGSize(width: 10, height: BalanceHeaderView.defaultHeight)
+        tableHeaderView = UIView()
+        tableHeaderView.backgroundColor = WTheme.balanceHeaderView.background
+        tableHeaderView.frame.size = CGSize(width: UIScreen.main.bounds.width, height: BalanceHeaderView.defaultHeight)
+        tableHeaderView.alpha = animateHeaderOnLoad ? 0 : 1 // when animating, header view should not have a color, so animation appears as desired.
         tableView.tableHeaderView = tableHeaderView
 
         view.addSubview(tableView)
@@ -95,10 +123,13 @@ public class WalletHomeVC: WViewController {
             emptyWalletView!.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
 
-        // header container view (covers under the safe area and also used to animate views on start)
+        // header container view (used to make animating views on start, possible)
         headerContainerView = UIView()
         headerContainerView.translatesAutoresizingMaskIntoConstraints = false
-        headerContainerView.backgroundColor = WTheme.balanceHeaderView.background
+        // Should be black only on collapsed header view to make tableview go under it.
+        //  Also, it should be black during the first animation to make black background animation possible.
+        //  If we set it to be black all the time, the refesh control will not be visible.
+        headerContainerView.backgroundColor = animateHeaderOnLoad ? WTheme.balanceHeaderView.background : .clear
         headerContainerView.layer.masksToBounds = true
         view.addSubview(headerContainerView)
         NSLayoutConstraint.activate([
@@ -161,7 +192,7 @@ public class WalletHomeVC: WViewController {
             balanceHeaderView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
             view.layoutIfNeeded()
             DispatchQueue.main.async {
-                UIView.animate(withDuration: 0.5, animations: {
+                UIView.animate(withDuration: 0.5, delay: 0.1, animations: {
                     self.headerContainerViewHeightConstraint?.constant = BalanceHeaderView.defaultHeight + self.view.safeAreaInsets.top
                     self.balanceHeaderView.alpha = 1
                     self.emptyWalletView?.alpha = 1
@@ -169,6 +200,9 @@ public class WalletHomeVC: WViewController {
                     self.view.layoutIfNeeded()
                 }) { _ in
                     self.headerContainerViewHeightConstraint?.isActive = false
+                    // should use table header view as black background provider to let refresh control appear.
+                    self.tableHeaderView.alpha = 1
+                    self.headerContainerView.backgroundColor = .clear
                 }
             }
         }
@@ -191,13 +225,36 @@ public class WalletHomeVC: WViewController {
         let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
         keyWindow?.backgroundColor = WTheme.background
     }
+    
+    @objc func refreshTransactions() {
+        walletHomeVM.refreshTransactions()
+    }
+    
+    func moveRefreshControlTo(y: CGFloat) {
+        refreshControl.bounds = CGRect(x: refreshControl.bounds.origin.x,
+                                       y: y,
+                                       width: refreshControl.bounds.size.width,
+                                       height: refreshControl.bounds.size.height)
+    }
 
 }
 
 // MARK: - UITableView DataSource and Delgate
 extension WalletHomeVC: UITableViewDataSource, UITableViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        balanceHeaderView.updateHeight(scrollOffset: scrollView.contentOffset.y)
+        let newHeight = balanceHeaderView.updateHeight(scrollOffset: scrollView.contentOffset.y)
+        if newHeight <= BalanceHeaderView.minHeight {
+            // make table view go under top bar
+            headerContainerView.backgroundColor = WTheme.balanceHeaderView.background
+        } else {
+            // top bar should clear to show refresh control, if required
+            headerContainerView.backgroundColor = .clear
+        }
+        if scrollView.contentOffset.y < 0 {
+            belowSafeAreaViewBottomConstraint.constant = -scrollView.contentOffset.y
+        } else {
+            belowSafeAreaViewBottomConstraint.constant = 0
+        }
     }
     public func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -235,6 +292,7 @@ extension WalletHomeVC: WalletHomeVMDelegate {
         let diff = Date().timeIntervalSince1970 - Double(timestamp)
         if diff < 60 {
             balanceHeaderView.update(status: .updated)
+            moveRefreshControlTo(y: 0)
         } else {
             // We can show diff like the original app, but it's not in the designs.
         }
@@ -266,18 +324,45 @@ extension WalletHomeVC: WalletHomeVMDelegate {
         tableView.endUpdates()
     }
 
-    func updateUpdateProgress(to progress: Int) {
-        if walletHomeVM.isRefreshing || balanceHeaderView.updateStatusView.state != .updated {
-            balanceHeaderView.update(status: .updating(progress: progress))
+    func hideRefreshing() {
+        refreshControl.endRefreshing()
+    }
+
+    func updateUpdateProgress(to progress: Int?) {
+        if progress == 0 || (prevUpdateProgres == nil && progress == 100) {
+            // we ignore progress 0 because it's handled using refresh logic and progress == nil will be called one time
+            // also, we ignore progress == 100 to prevent jumping from nothing to 100% in UI!
+            return
         }
-        // TODO:: Pull to refresh?
-//                    if strongSelf.headerNode.isRefreshing, strongSelf.isReady, let (_, _) = strongSelf.validLayout {
-//                        strongSelf.headerNode.refreshNode.update(state: .refreshing)
-//                    }
+        prevUpdateProgres = progress
+        if walletHomeVM.isRefreshing || balanceHeaderView.updateStatusView.state != .updated {
+            balanceHeaderView.update(status: .updating(progress: progress), handleAnimation: refreshControl.isRefreshing && progress == nil)
+        }
+        // handle animation of the status view customized, on pull to refresh!
+        if refreshControl.isRefreshing, progress == nil {
+            balanceHeaderView.updateStatusView.alpha = 0
+            UIView.animate(withDuration: 0.15, animations: { [weak self] in
+                guard let self else { return }
+                self.refreshControl.alpha = 0
+            }, completion: { [weak self] _ in
+                guard let self else { return }
+                refreshControl.endRefreshing()
+                if balanceHeaderView.updateStatusView.state != .updated { // check if still updating
+                    moveRefreshControlTo(y: -60)
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+                    self?.refreshControl.alpha = 1
+                }
+            })
+            UIView.animate(withDuration: 0.15, delay: 0.15) {
+                self.balanceHeaderView.updateStatusView.alpha = 1
+            }
+        }
     }
     
     // called when refresh failed with an error
     func refreshErrorOccured(error: GetCombinedWalletStateError) {
+        moveRefreshControlTo(y: -60)
         //let text: String
         switch error {
             case .generic:

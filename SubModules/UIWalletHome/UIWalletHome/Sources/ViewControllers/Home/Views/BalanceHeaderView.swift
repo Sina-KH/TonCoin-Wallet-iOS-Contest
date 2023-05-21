@@ -27,7 +27,7 @@ public class BalanceHeaderView: UIView {
     // gap for the view that have reversed corner radius on the bottom
     public static let bottomGap = CGFloat(0)
 
-    private static let minHeight = minHeightWithoutRadiusView + bottomGap
+    public static let minHeight = minHeightWithoutRadiusView + bottomGap
     public static let defaultHeight = contentHeight + bottomGap
 
     private var walletInfo: WalletInfo
@@ -65,7 +65,9 @@ public class BalanceHeaderView: UIView {
         constraints.append(contentsOf: [
             heightConstraint
         ])
-        backgroundColor = WTheme.balanceHeaderView.background
+        
+        // background should be clear to let refresh control appear
+        backgroundColor = .clear
 
         // scan button
         let scanButton = WBaseButton(type: .system)
@@ -179,7 +181,7 @@ public class BalanceHeaderView: UIView {
     }
 
     // update height
-    func updateHeight(scrollOffset: CGFloat) {
+    func updateHeight(scrollOffset: CGFloat) -> CGFloat {
         var newHeight = BalanceHeaderView.defaultHeight - scrollOffset
 
         // balance header view can not be smaller than 44pt
@@ -205,6 +207,8 @@ public class BalanceHeaderView: UIView {
         
         // show rate value for selected currency if scrolled up
         rateLabel.alpha = scale > 0.9 ? 0 : 1 - (scale - 0.5) * 10 / 4
+
+        return newHeight
     }
     
     func update(balance: Int64) {
@@ -212,8 +216,8 @@ public class BalanceHeaderView: UIView {
         updateRateLabel()
     }
     
-    func update(status: UpdateStatusView.State) {
-        updateStatusView.state = status
+    func update(status: UpdateStatusView.State, handleAnimation: Bool = true) {
+        updateStatusView.setState(newState: status, handleAnimation: handleAnimation)
     }
 
     // pass touch events to below view

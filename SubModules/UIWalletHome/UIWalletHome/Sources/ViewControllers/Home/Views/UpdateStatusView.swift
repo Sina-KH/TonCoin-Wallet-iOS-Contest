@@ -50,41 +50,47 @@ public class UpdateStatusView: UIStackView {
     enum State: Equatable {
         case waitingForNetwork
         case connecting
-        case updating(progress: Int)
+        case updating(progress: Int?)
         case updated
     }
     
-    var state: State = .updated {
-        didSet {
-            let targetAlpha: CGFloat
-            switch state {
-            case .waitingForNetwork:
-                targetAlpha = 1
-                activityIndicator.startAnimating()
-                statusLabel.text = WStrings.Wallet_Home_WaitingForNetwork.localized
-                break
-            case .connecting:
-                targetAlpha = 1
-                activityIndicator.startAnimating()
-                statusLabel.text = WStrings.Wallet_Home_Connecting.localized
-                break
-            case let .updating(progress):
-                targetAlpha = 1
-                activityIndicator.startAnimating()
-                statusLabel.text = WStrings.Wallet_Home_Updating.localized + " (\(progress)%)"
-                break
-            case .updated:
-                targetAlpha = 0
-                break
-            }
+    private(set) var state: State = .updated
+    
+    func setState(newState: State, handleAnimation: Bool) {
+        state = newState
+        let targetAlpha: CGFloat
+        switch newState {
+        case .waitingForNetwork:
+            targetAlpha = 1
+            activityIndicator.startAnimating()
+            statusLabel.text = WStrings.Wallet_Home_WaitingForNetwork.localized
+            break
+        case .connecting:
+            targetAlpha = 1
+            activityIndicator.startAnimating()
+            statusLabel.text = WStrings.Wallet_Home_Connecting.localized
+            break
+        case let .updating(progress):
+            targetAlpha = 1
+            activityIndicator.startAnimating()
+            statusLabel.text = WStrings.Wallet_Home_Updating.localized + (progress == nil ? "" : " (\(progress!)%)")
+            break
+        case .updated:
+            targetAlpha = 0
+            break
+        }
+        if handleAnimation {
             if alpha != targetAlpha {
                 UIView.animate(withDuration: 0.2, animations: {
                     self.alpha = targetAlpha
                 }) { _ in
-                    // set hidden to prevent appearance from header view alpha controls
+                    // set hidden to prevent appearance from header view alpha controls. (We set alpha of the view on scroll to animate it.)
                     self.isHidden = targetAlpha == 0
                 }
             }
+        } else {
+            // set hidden to prevent appearance from header view alpha controls. (We set alpha of the view on scroll to animate it.)
+            isHidden = targetAlpha == 0
         }
     }
 }

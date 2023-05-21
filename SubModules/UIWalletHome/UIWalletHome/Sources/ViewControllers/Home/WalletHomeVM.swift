@@ -17,7 +17,9 @@ protocol WalletHomeVMDelegate: AnyObject {
     func reloadTableView(deleteIndices: [HomeDeleteItem],
                          insertIndicesAndItems: [HomeInsertItem],
                          updateIndicesAndItems: [HomeUpdateItem])
-    func updateUpdateProgress(to progress: Int)
+    // called when home was in refreshing mode, already
+    func hideRefreshing()
+    func updateUpdateProgress(to progress: Int?)
     func refreshErrorOccured(error: GetCombinedWalletStateError)
 }
 
@@ -235,14 +237,18 @@ class WalletHomeVM {
     
     // MARK: - Refresh the transactions
     func refreshTransactions() {
+        if isRefreshing {
+            walletHomeVMDelegate?.hideRefreshing()
+            return
+        }
         self.transactionListDisposable.set(nil)
         self.loadingMoreTransactions = true
         self.reloadingState = true
         self.updateStatePromise()
         
-        // TODO:: pull to refresh required (?)
         isRefreshing = true
-        
+        walletHomeVMDelegate?.updateUpdateProgress(to: nil)
+
         let subject: CombinedWalletStateSubject = .wallet(self.walletInfo)
         
         let transactionDecryptionKey = self.transactionDecryptionKey
@@ -308,6 +314,9 @@ class WalletHomeVM {
             strongSelf.updateCombinedState(combinedState: combinedState, isUpdated: isUpdated)
             
             strongSelf.updateStatePromise()
+            
+            strongSelf.isRefreshing = false
+            
         }, error: { [weak self] error in
             guard let strongSelf = self else {
                 return
