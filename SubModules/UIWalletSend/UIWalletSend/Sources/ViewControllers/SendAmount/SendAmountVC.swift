@@ -211,7 +211,7 @@ public class SendAmountVC: WViewController {
         let amount = amountValue(amountView.text)
 
         let sendConfirmVC = SendConfirmVC(walletContext: walletContext, walletInfo: walletInfo,
-                                          addressToSend: addressToSend, amount: amount, sendMode: sendAllSwitch.isOn ? 1 : 3)
+                                          addressToSend: addressToSend, amount: amount, sendMode: sendAllSwitch.isOn ? 128 : 3)
         navigationController?.pushViewController(sendConfirmVC, animated: true)
     }
     

@@ -67,7 +67,7 @@ class TONQueryHelpers {
                 external: external,
                 workchain: tonToAddress.workchain,
                 address: tonToAddress.hash,
-                amount: amount,
+                amount: sendMode == 3 ? amount : 0,
                 bounceable: !forceIfDestinationNotInitialized,
                 payload: message.bytes,
                 state: nil

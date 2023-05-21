@@ -25,7 +25,7 @@ public class SendConfirmVC: WViewController {
                 walletInfo: WalletInfo,
                 addressToSend: String,
                 amount: Int64,
-                sendMode: Int = 3, // send modes:: 1: fee from sending amount, 3: separated fee payment from balance
+                sendMode: Int = 3, // send modes:: 128: send all amount, 3: separated fee payment from balance
                 defaultComment: String? = nil,
                 addressAlias: String? = nil) { // address alias can be `raw address` or the `dns address`, we store it with address, to show in recents section.
         self.walletContext = walletContext
@@ -180,7 +180,7 @@ public class SendConfirmVC: WViewController {
             labelStackView.bottomAnchor.constraint(equalTo: labelView.bottomAnchor)
         ])
 
-        if sendMode == 1 {
+        if sendMode == 128 {
             let feeFromAmountLabel = UILabel()
             feeFromAmountLabel.translatesAutoresizingMaskIntoConstraints = false
             feeFromAmountLabel.textColor = WTheme.secondaryLabel
