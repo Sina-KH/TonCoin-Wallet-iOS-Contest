@@ -96,10 +96,7 @@ class ImportWalletVC: WViewController {
         wordInputs = []
         let sampleWallet: [String]
         #if DEBUG
-        /*sampleWallet = ["mimic", "unique", "wash", "fly", "gain", "alien", "attract", "insane", "lizard", "month", "mosquito", "tunnel",
-                        "witness", "canvas", "smooth", "hobby", "consider", "chalk", "memory", "vendor", "card", "fold", "choice", "artwork"]*/
-        sampleWallet = ["health", "tent", "buyer", "patient", "elder", "cabbage", "midnight", "menu", "render", "elegant", "liberty", "define",
-                        "glad", "spike", "autumn", "village", "jar", "toddler", "fitness", "virus", "lift", "wear", "business", "oyster"]
+        sampleWallet = []
         #else
         sampleWallet = []
         #endif
