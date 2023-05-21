@@ -103,7 +103,7 @@ class ImportWalletVC: WViewController {
         for i in 0 ..< fieldsCount {
             let wordInput = WWordInput(index: i, wordNumber: i + 1, delegate: self)
             #if DEBUG
-            wordInput.textField.text = sampleWallet[i]
+            //wordInput.textField.text = sampleWallet[i]
             #endif
             if i < fieldsCount - 1 {
                 wordInput.textField.returnKeyType = .next
