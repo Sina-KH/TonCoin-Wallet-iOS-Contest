@@ -15,12 +15,14 @@ public class HeaderView: UIView {
     public init(animationName: String,
                 animationPlaybackMode: AnimatedStickerPlaybackMode,
                 title: String,
-                description: String? = nil) {
+                description: String? = nil,
+                additionalView: UIView? = nil) {
         super.init(frame: CGRect.zero)
         setupView(animationName: animationName,
                   animationPlaybackMode: animationPlaybackMode,
                   title: title,
-                  description: description)
+                  description: description,
+                  additionalView: additionalView)
     }
 
     public init(icon: UIImage,
@@ -62,7 +64,8 @@ public class HeaderView: UIView {
     private func setupView(animationName: String,
                            animationPlaybackMode: AnimatedStickerPlaybackMode,
                            title: String,
-                           description: String? = nil) {
+                           description: String? = nil,
+                           additionalView: UIView? = nil) {
         translatesAutoresizingMaskIntoConstraints = false
         isUserInteractionEnabled = false
         
@@ -81,7 +84,7 @@ public class HeaderView: UIView {
             animatedSticker!.heightAnchor.constraint(equalToConstant: CGFloat(animationSize))
         ])
         
-        addTitleAndDescription(topView: animatedSticker!, title: title, description: description)
+        addTitleAndDescription(topView: animatedSticker!, title: title, description: description, additionalView: additionalView)
     }
     
     // MARK: - HeaderView with Icon
@@ -122,7 +125,8 @@ public class HeaderView: UIView {
     // MARK: - Shared functions to generate required views
     private func addTitleAndDescription(topView: UIView?,
                                         title: String,
-                                        description: String? = nil) {
+                                        description: String? = nil,
+                                        additionalView: UIView? = nil) {
         // title
         lblTitle = UILabel()
         lblTitle.translatesAutoresizingMaskIntoConstraints = false
@@ -148,9 +152,22 @@ public class HeaderView: UIView {
         NSLayoutConstraint.activate([
             lblDescription.topAnchor.constraint(equalTo: lblTitle.bottomAnchor, constant: description != nil ? 12 : 0),
             lblDescription.leftAnchor.constraint(equalTo: leftAnchor),
-            lblDescription.rightAnchor.constraint(equalTo: rightAnchor),
-            lblDescription.bottomAnchor.constraint(equalTo: bottomAnchor)
+            lblDescription.rightAnchor.constraint(equalTo: rightAnchor)
         ])
+        
+        if let additionalView {
+            addSubview(additionalView)
+            NSLayoutConstraint.activate([
+                additionalView.topAnchor.constraint(equalTo: lblDescription.bottomAnchor, constant: 12),
+                additionalView.leftAnchor.constraint(equalTo: leftAnchor),
+                additionalView.rightAnchor.constraint(equalTo: rightAnchor),
+                additionalView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                lblDescription.bottomAnchor.constraint(equalTo: bottomAnchor)
+            ])
+        }
     }
     
 }

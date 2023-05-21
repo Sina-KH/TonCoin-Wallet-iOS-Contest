@@ -55,11 +55,18 @@ public class SentVC: WViewController {
         ])
 
         // header, center of top view
-        let description = "\(WStrings.Wallet_Sent_Text(amount: formatBalanceText(amount)))\n\n\(formatAddress(address))"
+        let description = "\(WStrings.Wallet_Sent_Text(amount: formatBalanceText(amount)))"
+        let addressLabel = WAddressLabel()
+        addressLabel.translatesAutoresizingMaskIntoConstraints = false
+        addressLabel.font = .monospacedSystemFont(ofSize: 17, weight: .regular)
+        addressLabel.numberOfLines = 2
+        addressLabel.textAlignment = .center
+        addressLabel.address = formatAddress(address)
         let headerView = HeaderView(animationName: "Success",
                                     animationPlaybackMode: .loop,
                                     title: WStrings.Wallet_Sent_Title.localized,
-                                    description: description)
+                                    description: description,
+                                    additionalView: addressLabel)
         topView.addSubview(headerView)
         NSLayoutConstraint.activate([
             headerView.leftAnchor.constraint(equalTo: topView.leftAnchor, constant: 32),
