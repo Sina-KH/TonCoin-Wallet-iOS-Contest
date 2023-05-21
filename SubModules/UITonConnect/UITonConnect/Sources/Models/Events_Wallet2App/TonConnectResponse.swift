@@ -10,6 +10,7 @@ import Foundation
 // success response
 public struct TonConnectResponseSuccess: Codable {
     let id: String
+    let boc: String
 }
 
 // error response

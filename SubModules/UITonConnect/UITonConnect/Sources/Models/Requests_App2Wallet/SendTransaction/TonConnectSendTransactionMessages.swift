@@ -8,6 +8,8 @@
 import Foundation
 
 struct TonConnectSendTransactionMessages: Codable {
+    let from: String?
+    let network: String?
     let messages: [TonConnectSendTransaction]
     let valid_until: Int
 }

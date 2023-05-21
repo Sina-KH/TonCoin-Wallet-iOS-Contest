@@ -243,12 +243,13 @@ static TONTransactionMessage * _Nullable parseTransactionMessage(tonlib_api::obj
 
 @implementation TONPreparedSendGramsQuery
 
-- (instancetype)initWithQueryId:(int64_t)queryId validUntil:(int64_t)validUntil bodyHash:(NSData *)bodyHash {
+- (instancetype)initWithQueryId:(int64_t)queryId validUntil:(int64_t)validUntil bodyHash:(NSData *)bodyHash bocData:(NSData *)bocData {
     self = [super init];
     if (self != nil) {
         _queryId = queryId;
         _validUntil = validUntil;
         _bodyHash = bodyHash;
+        _bocData = bocData;
     }
     return self;
 }
@@ -1788,7 +1789,7 @@ typedef enum {
                 [subscriber putError:[[TONError alloc] initWithText:[[NSString alloc] initWithUTF8String:error->message_.c_str()]]];
             } else if (object->get_id() == tonlib_api::query_info::ID) {
                 auto result = tonlib_api::move_object_as<tonlib_api::query_info>(object);
-                TONPreparedSendGramsQuery *preparedQuery = [[TONPreparedSendGramsQuery alloc] initWithQueryId:result->id_ validUntil:result->valid_until_ bodyHash:makeData(result->body_hash_)];
+                TONPreparedSendGramsQuery *preparedQuery = [[TONPreparedSendGramsQuery alloc] initWithQueryId:result->id_ validUntil:result->valid_until_ bodyHash:makeData(result->body_hash_) bocData:body];
                 [subscriber putNext:preparedQuery];
                 [subscriber putCompletion];
             } else {

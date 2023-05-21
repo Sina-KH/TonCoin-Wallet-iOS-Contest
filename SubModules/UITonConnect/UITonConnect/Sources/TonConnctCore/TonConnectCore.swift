@@ -17,7 +17,11 @@ import Sodium
 private let BridgeURL = "https://bridge.tonapi.io/bridge"
 
 public protocol TonConnectCoreDelegate: AnyObject {
-    func tonConnectSendTransaction(dApp: LinkedDApp, requestID: Int64, request: TonConnectSendTransaction)
+    func tonConnectSendTransaction(dApp: LinkedDApp,
+                                   requestID: Int64,
+                                   request: TonConnectSendTransaction,
+                                   fromAddress: String?,
+                                   network: String?)
 }
 
 // Wrapper around Bridge and SessionProtocol, to let wallet communicate dApps.
@@ -184,7 +188,10 @@ public class TonConnectCore {
             }
         }
     }
-    public static func sendResponse(to appID: String, walletVersion: Int, response: TonConnectResponseSuccess, callback: @escaping (Bool) -> Void) {
+    public static func sendResponse(to appID: String,
+                                    walletVersion: Int,
+                                    response: TonConnectResponseSuccess,
+                                    callback: @escaping (Bool) -> Void) {
         let messageJSONObject = try? JSONSerialization.jsonObject(with: JSONEncoder().encode(response))
         guard let messageJSONObject else {
             DispatchQueue.main.async {
@@ -281,7 +288,9 @@ extension TonConnectCore: BridgeListenerDelegate {
                     delegate?.tonConnectSendTransaction(
                         dApp: dApp,
                         requestID: request.id,
-                        request: sendTransactionRequest
+                        request: sendTransactionRequest,
+                        fromAddress: sendTransactionRequests.from,
+                        network: sendTransactionRequests.network
                     )
                 }
             }

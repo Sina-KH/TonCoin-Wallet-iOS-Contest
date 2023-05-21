@@ -218,10 +218,11 @@ extension TonTransferVC: TonTransferVMDelegate {
 //        }
     }
 
-    func transferDone() {
+    func transferDone(bocString: String) {
         TonConnectCore.sendResponse(to: dApp.appPublicKey.toHexString(),
                                     walletVersion: walletInfo.version,
-                                    response: TonConnectResponseSuccess(id: "\(requestID)")) { [weak self] _ in
+                                    response: TonConnectResponseSuccess(id: "\(requestID)",
+                                                                        boc: bocString)) { [weak self] _ in
             guard let self else {
                 return
             }

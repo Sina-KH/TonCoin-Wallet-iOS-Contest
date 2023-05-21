@@ -294,7 +294,11 @@ class SplashVM: NSObject {
 
 // MARK: - TonConnect Core Delegate Functions to handle
 extension SplashVM: TonConnectCoreDelegate {
-    func tonConnectSendTransaction(dApp: LinkedDApp, requestID: Int64, request: TonConnectSendTransaction) {
+    func tonConnectSendTransaction(dApp: LinkedDApp,
+                                   requestID: Int64,
+                                   request: TonConnectSendTransaction,
+                                   fromAddress: String?,
+                                   network: String?) {
         readyWalletInfo?.walletStateInit { [weak self] walletInitialState in
             guard let self, let walletInitialState else {
                 return
@@ -305,23 +309,46 @@ extension SplashVM: TonConnectCoreDelegate {
             guard let walletContext = walletContext, let walletInfo = readyWalletInfo else {
                 return
             }
-            ContextAddressHelpers.toBase64Address(unknownAddress: request.address,
-                                                  walletContext: walletContext) { [weak self] base64Address in
-                guard let self else {
+            
+            // get wallet configuration info
+            let _ = (walletContext.storage.localWalletConfiguration()
+                     |> take(1)
+                     |> deliverOnMainQueue).start(next: { configuration in
+                
+                if let network, network != configuration.testNet.customId {
                     return
                 }
-                guard let base64Address else {
-                    return
+                
+                // same network, process request
+
+                if let fromAddress {
+                    // sender specified, check if sender matches wallet address
+                    if fromAddress.base64URLEscaped() != walletInfo.address &&
+                        fromAddress != walletInfo.rawAddress {
+                        // sender does not match wallet address,
+                        //  normally can not happen because of different keypair used for each wallet version
+                        return
+                    }
                 }
-                DispatchQueue.main.async { [weak self] in
-                    self?.splashVMDelegate?.openTonConnectTransfer(walletContext: walletContext,
-                                                                   walletInfo: walletInfo,
-                                                                   dApp: dApp,
-                                                                   requestID: requestID,
-                                                                   address: base64Address,
-                                                                   amount: Int64(request.amount) ?? 0)
+
+                ContextAddressHelpers.toBase64Address(unknownAddress: request.address,
+                                                      walletContext: walletContext) { [weak self] base64Address in
+                    guard let self else {
+                        return
+                    }
+                    guard let base64Address else {
+                        return
+                    }
+                    DispatchQueue.main.async { [weak self] in
+                        self?.splashVMDelegate?.openTonConnectTransfer(walletContext: walletContext,
+                                                                       walletInfo: walletInfo,
+                                                                       dApp: dApp,
+                                                                       requestID: requestID,
+                                                                       address: base64Address,
+                                                                       amount: Int64(request.amount) ?? 0)
+                    }
                 }
-            }
+            })
         }
     }
 }

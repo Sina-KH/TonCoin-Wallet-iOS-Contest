@@ -56,7 +56,7 @@ class SendingVM {
                                      sendMode: sendInstanceData.sendMode,
                                      timeout: 0,
                                      randomId: sendInstanceData.randomId)
-        |> deliverOnMainQueue).start(next: { [weak self] sentTransaction in
+        |> deliverOnMainQueue).start(next: { [weak self] (sentTransaction, _) in
             guard let self else { return }
 
 //            strongSelf.navigationItem.setRightBarButton(UIBarButtonItem(title: strongSelf.presentationData.strings.Wallet_WordImport_Continue, style: .plain, target: strongSelf, action: #selector(strongSelf.sendGramsContinuePressed)), animated: false)

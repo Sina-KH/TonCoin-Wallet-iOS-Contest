@@ -141,8 +141,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) int64_t queryId;
 @property (nonatomic, readonly) int64_t validUntil;
 @property (nonatomic, strong, readonly) NSData * _Nonnull bodyHash;
+@property (nonatomic, strong, readonly) NSData * _Nonnull bocData;
 
-- (instancetype)initWithQueryId:(int64_t)queryId validUntil:(int64_t)validUntil bodyHash:(NSData *)bodyHash;
+- (instancetype)initWithQueryId:(int64_t)queryId validUntil:(int64_t)validUntil bodyHash:(NSData *)bodyHash bocData:(NSData *)bocData;
 
 @end
 

@@ -14,7 +14,7 @@ protocol TonTransferVMDelegate: AnyObject {
     var isLoading: Bool { get set }
     func feeAmountUpdated(fee: Int64)
     func sendConfirmationRequired(fee: Int64, canNotEncryptComment: Bool)
-    func transferDone()
+    func transferDone(bocString: String)
     func errorOccured(error: SendGramsFromWalletError)
     func errorOccured(error: TonKeychainDecryptDataError)
 }
@@ -180,7 +180,7 @@ class TonTransferVM {
                                          sendMode: 3,
                                          timeout: 0,
                                          randomId: randomId)
-                     |> deliverOnMainQueue).start(next: { [weak self] sentTransaction in
+                     |> deliverOnMainQueue).start(next: { [weak self] (sentTransaction, bocData) in
                 guard let self else { return }
                 
                 //            strongSelf.navigationItem.setRightBarButton(UIBarButtonItem(title: strongSelf.presentationData.strings.Wallet_WordImport_Continue, style: .plain, target: strongSelf, action: #selector(strongSelf.sendGramsContinuePressed)), animated: false)
@@ -211,11 +211,11 @@ class TonTransferVM {
                 actionDisposable.set((check
                                       |> deliverOnMainQueue).start(error: { [weak self] _ in
                     guard let self else { return }
-                }, completed: { [weak self] in
-                    guard let self else { return }
-                    tonTransferVMDelegate?.transferDone()
-                }
-                                                                  ))
+                    }, completed: { [weak self] in
+                        guard let self else { return }
+                        tonTransferVMDelegate?.transferDone(bocString: bocData.base64EncodedString())
+                    }
+                ))
             }, error: { [weak self] error in
                 guard let self else { return }
                 

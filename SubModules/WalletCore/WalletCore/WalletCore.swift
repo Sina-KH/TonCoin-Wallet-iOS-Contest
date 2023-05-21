@@ -623,7 +623,6 @@ public final class TonInstance {
                                 subscriber.putError(.generic)
                             }
                         }, completed: {
-                            prepareSendNow()
                         })
                     } else {
                         prepareSendNow()
@@ -1595,7 +1594,7 @@ public func sendGramsFromWallet(decryptedSecret: Data,
                                 forceIfDestinationNotInitialized: Bool,
                                 sendMode: Int,
                                 timeout: Int32,
-                                randomId: Int64) -> Signal<PendingWalletTransaction, SendGramsFromWalletError> {
+                                randomId: Int64) -> Signal<(PendingWalletTransaction, Data), SendGramsFromWalletError> {
     return tonInstance.prepareSendGramsFromWalletQuery(decryptedSecret: decryptedSecret,
                                                        localPassword: localPassword,
                                                        walletInfo: walletInfo,
@@ -1608,7 +1607,7 @@ public func sendGramsFromWallet(decryptedSecret: Data,
                                                        sendMode: sendMode,
                                                        timeout: timeout,
                                                        randomId: randomId)
-    |> mapToSignal { preparedQuery -> Signal<PendingWalletTransaction, SendGramsFromWalletError> in
+    |> mapToSignal { preparedQuery -> Signal<(PendingWalletTransaction, Data), SendGramsFromWalletError> in
         return tonInstance.commitPreparedSendGramsQuery(preparedQuery)
         |> retryTonRequest(isNetworkError: { error in
             if case .network = error {
@@ -1619,7 +1618,12 @@ public func sendGramsFromWallet(decryptedSecret: Data,
         })
         |> mapToSignal { _ -> Signal<PendingWalletTransaction, SendGramsFromWalletError> in
         }
-        |> then(.single(PendingWalletTransaction(timestamp: Int64(Date().timeIntervalSince1970), validUntilTimestamp: preparedQuery.validUntil, bodyHash: preparedQuery.bodyHash, address: toAddress, value: amount, comment: comment)))
+        |> then(.single(PendingWalletTransaction(timestamp: Int64(Date().timeIntervalSince1970),
+                                                 validUntilTimestamp: preparedQuery.validUntil,
+                                                 bodyHash: preparedQuery.bodyHash,
+                                                 address: toAddress,
+                                                 value: amount,
+                                                 comment: comment)))
         |> mapToSignal { result in
             return storage.updateWalletRecords { records in
                 var records = records
@@ -1636,8 +1640,8 @@ public func sendGramsFromWallet(decryptedSecret: Data,
                 }
                 return records
             }
-            |> map { _ -> PendingWalletTransaction in
-                return result
+            |> map { _ -> (PendingWalletTransaction, Data) in
+                return (result, preparedQuery.bocData)
             }
             |> castError(SendGramsFromWalletError.self)
         }
