@@ -117,7 +117,6 @@
 		275EC58729E8129600EE8B66 /* idea.h in Headers */ = {isa = PBXBuildFile; fileRef = 275EC51D29E8129500EE8B66 /* idea.h */; };
 		275EC58829E8129600EE8B66 /* lhash.h in Headers */ = {isa = PBXBuildFile; fileRef = 275EC51E29E8129500EE8B66 /* lhash.h */; };
 		275EC58929E8129600EE8B66 /* asn1err.h in Headers */ = {isa = PBXBuildFile; fileRef = 275EC51F29E8129500EE8B66 /* asn1err.h */; };
-		275EC5B429E8167800EE8B66 /* libz.1.tbd in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 275EC5B329E8166D00EE8B66 /* libz.1.tbd */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		275EC5B529E816D400EE8B66 /* libz.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 275EC5B329E8166D00EE8B66 /* libz.1.tbd */; };
 		275EC5CA29E81AB600EE8B66 /* libtl-lite-utils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 275EC5B729E81AB600EE8B66 /* libtl-lite-utils.a */; };
 		275EC5CB29E81AB600EE8B66 /* libtdactor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 275EC5B829E81AB600EE8B66 /* libtdactor.a */; };
@@ -175,7 +174,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				275EC5B429E8167800EE8B66 /* libz.1.tbd in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;

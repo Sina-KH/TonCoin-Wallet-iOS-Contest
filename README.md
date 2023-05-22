@@ -1,4 +1,4 @@
-# TON Wallet Contest
+# :gem: TON Wallet Contest :gem:
 
 The `Toncoin Wallet` application re-written from the scratch, while 
 re-using the best of the exiting, original codebase.
@@ -192,7 +192,11 @@ All these modules are used to process wallet related logics (InitStates, diferre
 ### :lock:  Sodium
 
 Sodium is used to implement encryption algorithms in `Bridge API`.
-It includes Clibsodium that can be rebuilt and used, from [libsodium repository](https://github.com/jedisct1/libsodium).
+It includes Clibsodium (.xcframework) that can be rebuilt and used from [libsodium repository](https://github.com/jedisct1/libsodium). I've built the latest commit and added it into the project.
+
+To build latest commit (Clibsodium .xcframework file), you can clone the source code and run `sh autogen.sh -f -s && sh dist-build/apple-xcframework.sh`.
+
+For latest release version (that generates .a file), you can clone it and run `sh autogen.sh && sh dist-build/ios.sh`
 
 ### :hammer: BuildConfig
 

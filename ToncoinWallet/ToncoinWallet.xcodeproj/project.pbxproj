@@ -88,7 +88,6 @@
 		27DB29CF29EC6AC700988800 /* UIPasscode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29CE29EC6AC700988800 /* UIPasscode.framework */; };
 		27DB29D029EC6AC700988800 /* UIPasscode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27DB29CE29EC6AC700988800 /* UIPasscode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		27E93C6E2A1AB45500733E13 /* Clibsodium.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E93C6D2A1AB45500733E13 /* Clibsodium.xcframework */; };
-		27E93C6F2A1AB45500733E13 /* Clibsodium.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27E93C6D2A1AB45500733E13 /* Clibsodium.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,7 +128,6 @@
 				275EC63929E8562700EE8B66 /* UIComponents.framework in Embed Frameworks */,
 				275C585D29E051B6002531AF /* WalletCore.framework in Embed Frameworks */,
 				27A1280A29E0402C002D030A /* UICreateWallet.framework in Embed Frameworks */,
-				27E93C6F2A1AB45500733E13 /* Clibsodium.xcframework in Embed Frameworks */,
 				27DB29D029EC6AC700988800 /* UIPasscode.framework in Embed Frameworks */,
 				275EC63C29E8574D00EE8B66 /* GZip.framework in Embed Frameworks */,
 				2741A94F2A102C4A0075DC56 /* UIQRScan.framework in Embed Frameworks */,
