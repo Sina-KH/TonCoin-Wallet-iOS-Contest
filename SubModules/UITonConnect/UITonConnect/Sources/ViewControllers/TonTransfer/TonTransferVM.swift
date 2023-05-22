@@ -162,65 +162,59 @@ class TonTransferVM {
         actionDisposable.dispose()
     }
     private func transferNow(address: String, amount: Int64, decryptedSecret: Data, serverSalt: Data, randomId: Int64) {
-        let _ = (walletContext.keychain.decrypt(walletInfo.encryptedSecret)
-                 |> deliverOnMainQueue).start(next: { [weak self] decryptedSecret in
-            guard let self else {
-                return
-            }
-            let _ = (sendGramsFromWallet(decryptedSecret: decryptedSecret,
-                                         storage: walletContext.storage,
-                                         tonInstance: walletContext.tonInstance,
-                                         walletInfo: walletInfo,
-                                         localPassword: serverSalt,
-                                         toAddress: address,
-                                         amount: amount,
-                                         comment: "".data(using: .utf8)!,
-                                         encryptComment: false,
-                                         forceIfDestinationNotInitialized: true,
-                                         sendMode: 3,
-                                         timeout: 0,
-                                         randomId: randomId)
-                     |> deliverOnMainQueue).start(next: { [weak self] (sentTransaction, bocData) in
-                guard let self else { return }
-                
-                //            strongSelf.navigationItem.setRightBarButton(UIBarButtonItem(title: strongSelf.presentationData.strings.Wallet_WordImport_Continue, style: .plain, target: strongSelf, action: #selector(strongSelf.sendGramsContinuePressed)), animated: false)
-                
-                let check = getCombinedWalletState(storage: walletContext.storage,
-                                                   subject: .wallet(walletInfo),
-                                                   tonInstance: walletContext.tonInstance,
-                                                   onlyCached: false)
-                |> mapToSignal { state -> Signal<Bool, GetCombinedWalletStateError> in
-                    switch state {
-                    case .cached:
+        let _ = (sendGramsFromWallet(decryptedSecret: decryptedSecret,
+                                     storage: walletContext.storage,
+                                     tonInstance: walletContext.tonInstance,
+                                     walletInfo: walletInfo,
+                                     localPassword: serverSalt,
+                                     toAddress: address,
+                                     amount: amount,
+                                     comment: "".data(using: .utf8)!,
+                                     encryptComment: false,
+                                     forceIfDestinationNotInitialized: true,
+                                     sendMode: 3,
+                                     timeout: 0,
+                                     randomId: randomId)
+                 |> deliverOnMainQueue).start(next: { [weak self] (sentTransaction, bocData) in
+            guard let self else { return }
+            
+            //            strongSelf.navigationItem.setRightBarButton(UIBarButtonItem(title: strongSelf.presentationData.strings.Wallet_WordImport_Continue, style: .plain, target: strongSelf, action: #selector(strongSelf.sendGramsContinuePressed)), animated: false)
+            
+            let check = getCombinedWalletState(storage: walletContext.storage,
+                                               subject: .wallet(walletInfo),
+                                               tonInstance: walletContext.tonInstance,
+                                               onlyCached: false)
+            |> mapToSignal { state -> Signal<Bool, GetCombinedWalletStateError> in
+                switch state {
+                case .cached:
+                    return .complete()
+                case let .updated(state):
+                    if !state.pendingTransactions.contains(where: { $0.bodyHash == sentTransaction.bodyHash }) {
+                        return .single(true)
+                    } else {
                         return .complete()
-                    case let .updated(state):
-                        if !state.pendingTransactions.contains(where: { $0.bodyHash == sentTransaction.bodyHash }) {
-                            return .single(true)
-                        } else {
-                            return .complete()
-                        }
                     }
                 }
-                |> then(
-                    .complete()
-                    |> delay(3.0, queue: .concurrentDefaultQueue())
-                )
-                |> restart
-                |> take(1)
-                
-                actionDisposable.set((check
-                                      |> deliverOnMainQueue).start(error: { [weak self] _ in
-                    guard let self else { return }
-                    }, completed: { [weak self] in
-                        guard let self else { return }
-                        tonTransferVMDelegate?.transferDone(bocString: bocData.base64EncodedString())
-                    }
-                ))
-            }, error: { [weak self] error in
+            }
+            |> then(
+                .complete()
+                |> delay(3.0, queue: .concurrentDefaultQueue())
+            )
+            |> restart
+            |> take(1)
+            
+            actionDisposable.set((check
+                                  |> deliverOnMainQueue).start(error: { [weak self] _ in
                 guard let self else { return }
-                
-                tonTransferVMDelegate?.errorOccured(error: error)
-            })
+                }, completed: { [weak self] in
+                    guard let self else { return }
+                    tonTransferVMDelegate?.transferDone(bocString: bocData.base64EncodedString())
+                }
+            ))
+        }, error: { [weak self] error in
+            guard let self else { return }
+            
+            tonTransferVMDelegate?.errorOccured(error: error)
         })
     }
     
