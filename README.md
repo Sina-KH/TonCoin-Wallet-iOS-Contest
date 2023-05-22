@@ -49,8 +49,8 @@ recommended.
 
 1. Install xcode command-line tools
 
-1. Make sure you have `homebrew` installed and then install cmake, ccache and libmicrohttpd 
-using `brew install cmake ccache libmicrohttpd`
+1. Make sure you have `homebrew` installed and then install cmake, ccache, pkg-config and libmicrohttpd 
+using `brew install cmake ccache pkg-config libmicrohttpd`
 
 1. Clone the repository with submodules with
 `git clone https://github.com/Sina-KH/TonCoin-Wallet-iOS-Contest --recursive`

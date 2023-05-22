@@ -755,6 +755,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = NV933FT9S4;
+				EXCLUDED_ARCHS = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ToncoinWallet/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Toncoin Wallet";
