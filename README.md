@@ -49,8 +49,8 @@ recommended.
 
 1. Install xcode command-line tools
 
-1. Make sure you have `homebrew` installed and then install libmicrohttpd 
-using `brew install libmicrohttpd`
+1. Make sure you have `homebrew` installed and then install cmake, ccache and libmicrohttpd 
+using `brew install cmake ccache libmicrohttpd`
 
 1. Clone the repository with submodules with
 `git clone https://github.com/Sina-KH/TonCoin-Wallet-iOS-Contest --recursive`
@@ -64,6 +64,8 @@ should run successfully with no errors.*** This script ***automatically***
 builds `OpenSSL` and `Tonlib`, create the universal `.a` lib files and put 
 them inside the `TonBinding` project. (The final output will only contain 
 required parts of the libs, btw.)
+
+- If you encountered any errors, Please make sure to install any required/missing libraries mentioned in the error message.
 
 1. Run `ToncoinWallet.xcworkspace` using Xcode, Select `Toncoin Wallet` target and the project should 
 build successfully both on simulator and real devices. If you've faced any build issues, it can be due to xcode's internal issues on first build, related to build race-conditions(!), just try again. :)
