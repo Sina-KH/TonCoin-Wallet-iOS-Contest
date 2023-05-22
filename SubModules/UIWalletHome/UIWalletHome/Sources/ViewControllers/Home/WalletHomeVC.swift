@@ -241,6 +241,11 @@ public class WalletHomeVC: WViewController {
 
 // MARK: - UITableView DataSource and Delgate
 extension WalletHomeVC: UITableViewDataSource, UITableViewDelegate {
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        // on start, set backgrond to clear to let refresh control appear
+        balanceHeaderView.backgroundColor = .clear
+    }
+    
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let newHeight = balanceHeaderView.updateHeight(scrollOffset: scrollView.contentOffset.y)
         if newHeight <= BalanceHeaderView.minHeight {
@@ -331,6 +336,8 @@ extension WalletHomeVC: WalletHomeVMDelegate {
 
     func hideRefreshing() {
         refreshControl.endRefreshing()
+        // set background color of the header view to prevent unwanted main view background color appearance on table view jumps
+        balanceHeaderView.backgroundColor = WTheme.balanceHeaderView.background
     }
 
     func updateUpdateProgress(to progress: Int?) {
@@ -351,7 +358,7 @@ extension WalletHomeVC: WalletHomeVMDelegate {
                 self.refreshControl.alpha = 0
             }, completion: { [weak self] _ in
                 guard let self else { return }
-                refreshControl.endRefreshing()
+                hideRefreshing()
                 if balanceHeaderView.updateStatusView.state != .updated { // check if still updating
                     moveRefreshControlTo(y: -60)
                 }
