@@ -79,7 +79,7 @@ public class RestoreFailedVC: WViewController {
 
     var isLoading = false {
         didSet {
-            bottomActionsView.secondaryButton.showLoading = isLoading
+            //bottomActionsView.secondaryButton.showLoading = isLoading
             view.isUserInteractionEnabled = !isLoading
         }
     }
