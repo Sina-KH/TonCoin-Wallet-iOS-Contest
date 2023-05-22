@@ -94,8 +94,8 @@ class PasscodeScreenView: UIView {
                     button.heightAnchor.constraint(equalToConstant: 78)
                 ])
                 button.layer.cornerRadius = 39
-                button.backgroundColor = WTheme.background.withAlphaComponent(0.12)
-                button.highlightBackgroundColor = WTheme.background.withAlphaComponent(0.4)
+                button.backgroundColor = .white.withAlphaComponent(0.12)
+                button.highlightBackgroundColor = .white.withAlphaComponent(0.4)
                 button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
                 button.tag = r * 3 + c
                 // check if button should contain a number label on top and a alphabet label on bottom
@@ -104,7 +104,7 @@ class PasscodeScreenView: UIView {
                     let buttonTitleLabel = UILabel()
                     buttonTitleLabel.translatesAutoresizingMaskIntoConstraints = false
                     buttonTitleLabel.font = .boldSystemFont(ofSize: 37)
-                    buttonTitleLabel.textColor = WTheme.background
+                    buttonTitleLabel.textColor = .white
                     let num: Int
                     if r < 3 {
                         // numbers between 1 and 9
@@ -123,7 +123,7 @@ class PasscodeScreenView: UIView {
                     let buttonAlphabetLabel = UILabel()
                     buttonAlphabetLabel.translatesAutoresizingMaskIntoConstraints = false
                     buttonAlphabetLabel.font = .boldSystemFont(ofSize: num > 0 ? 10 : 16)
-                    buttonAlphabetLabel.textColor = WTheme.background
+                    buttonAlphabetLabel.textColor = .white
                     buttonAlphabetLabel.text = alphabetText(forNum: num)
                     button.addSubview(buttonAlphabetLabel)
                     NSLayoutConstraint.activate([
