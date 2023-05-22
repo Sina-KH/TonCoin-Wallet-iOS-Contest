@@ -284,10 +284,16 @@ class TransactionVC: WViewController {
         case .pending(let pendingWalletTransaction):
             addressString = pendingWalletTransaction.address
         }
-        let vc = SendAmountVC(walletContext: walletContext,
-                              walletInfo: walletInfo,
-                              addressToSend: addressString,
-                              balance: homeVC?.walletHomeVM.combinedState?.walletState.effectiveAvailableBalance)
-        present(UINavigationController(rootViewController: vc), animated: true)
+        let sendVC = SendVC(walletContext: walletContext,
+                            walletInfo: walletInfo,
+                            balance: nil,
+                            defaultAddress: addressString)
+        let sendAmountVC = SendAmountVC(walletContext: walletContext,
+                                        walletInfo: walletInfo,
+                                        addressToSend: addressString,
+                                        balance: homeVC?.walletHomeVM.combinedState?.walletState.effectiveAvailableBalance)
+        let nav = UINavigationController()
+        nav.viewControllers = [sendVC, sendAmountVC]
+        present(nav, animated: true)
     }
 }
