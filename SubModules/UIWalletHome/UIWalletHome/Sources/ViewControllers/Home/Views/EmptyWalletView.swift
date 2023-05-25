@@ -9,13 +9,13 @@ import UIKit
 import UIComponents
 import WalletContext
 
-public class EmptyWalletView: UIView {
-        
+public class EmptyWalletView: WTouchPassView {
+    
     public init() {
         super.init(frame: CGRect.zero)
         setupView()
     }
-
+    
     override public init(frame: CGRect) {
         fatalError()
     }
@@ -23,12 +23,12 @@ public class EmptyWalletView: UIView {
     required public init?(coder: NSCoder) {
         fatalError()
     }
-
+    
     var loadingView: WalletLoadingView!
-
+    
     private func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
-
+        
         // loading wallet view
         loadingView = WalletLoadingView()
         addSubview(loadingView)
@@ -46,7 +46,7 @@ public class EmptyWalletView: UIView {
         if loadingView.alpha == 0 {
             return
         }
-
+        
         // created wallet view
         let walletCreatedView = WalletCreatedView(address: address)
         walletCreatedView.alpha = 0
@@ -57,7 +57,7 @@ public class EmptyWalletView: UIView {
             walletCreatedView.topAnchor.constraint(equalTo: loadingView.topAnchor)
         ])
         layoutIfNeeded()
-
+        
         // by activating centerYConstraint on wallet created view, it will make loading view come up with it, animated.
         let centerYConstraint = walletCreatedView.centerYAnchor.constraint(equalTo: centerYAnchor)
         UIView.animate(withDuration: 0.4) {
@@ -78,14 +78,5 @@ public class EmptyWalletView: UIView {
             self.removeFromSuperview()
         }
     }
-
-    // pass touch events to below view
-    public override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        let hitView = super.hitTest(point, with: event)
-        if hitView == self {
-            return nil
-        } else {
-            return hitView
-        }
-    }
+    
 }

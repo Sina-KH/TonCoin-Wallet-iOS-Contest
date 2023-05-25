@@ -56,6 +56,7 @@
 		27DC89B12A1FF96C004F5A91 /* LTCharacterDiffResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DC899F2A1FF96B004F5A91 /* LTCharacterDiffResult.swift */; };
 		27DC89B22A1FF96C004F5A91 /* LTEasing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DC89A02A1FF96B004F5A91 /* LTEasing.swift */; };
 		27DC89B42A1FFD05004F5A91 /* WAnimatedBalanceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DC89B32A1FFD05004F5A91 /* WAnimatedBalanceLabel.swift */; };
+		27DC89B72A202741004F5A91 /* WTouchPassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DC89B62A202741004F5A91 /* WTouchPassView.swift */; };
 		27E643D129F41E0D006B20FC /* QrCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643D029F41E0D006B20FC /* QrCode.swift */; };
 		27E643D329F41E59006B20FC /* TransformImageArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643D229F41E59006B20FC /* TransformImageArguments.swift */; };
 		27E643D529F41E85006B20FC /* ImageCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643D429F41E85006B20FC /* ImageCorners.swift */; };
@@ -126,6 +127,7 @@
 		27DC899F2A1FF96B004F5A91 /* LTCharacterDiffResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTCharacterDiffResult.swift; sourceTree = "<group>"; };
 		27DC89A02A1FF96B004F5A91 /* LTEasing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTEasing.swift; sourceTree = "<group>"; };
 		27DC89B32A1FFD05004F5A91 /* WAnimatedBalanceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WAnimatedBalanceLabel.swift; sourceTree = "<group>"; };
+		27DC89B62A202741004F5A91 /* WTouchPassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTouchPassView.swift; sourceTree = "<group>"; };
 		27E643D029F41E0D006B20FC /* QrCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCode.swift; sourceTree = "<group>"; };
 		27E643D229F41E59006B20FC /* TransformImageArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformImageArguments.swift; sourceTree = "<group>"; };
 		27E643D429F41E85006B20FC /* ImageCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCorners.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				2749340629F53CF9009976B5 /* TextInput */,
 				27CFA28A29FDA5E400A65283 /* NavigationBar */,
 				275C09F22A039C2100CBB232 /* HighlightView */,
+				27DC89B52A202711004F5A91 /* View */,
 				273521CB29E94D3B007C4E96 /* ViewController */,
 				273A60AF29E0324D007CA6F0 /* Utils */,
 			);
@@ -340,6 +343,14 @@
 				27DC89952A1FF96A004F5A91 /* LTStringDiffResult.swift */,
 			);
 			path = LTMorphingLabel;
+			sourceTree = "<group>";
+		};
+		27DC89B52A202711004F5A91 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				27DC89B62A202741004F5A91 /* WTouchPassView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		27E643CF29F41E02006B20FC /* QR */ = {
@@ -525,6 +536,7 @@
 				2777555929EB37660098DE68 /* WKeyboardObserver.swift in Sources */,
 				2786FB5729E874060023FE21 /* CAAnimationUtils.swift in Sources */,
 				27DC89A12A1FF96C004F5A91 /* LTEmitterView.swift in Sources */,
+				27DC89B72A202741004F5A91 /* WTouchPassView.swift in Sources */,
 				2786FB5B29E876420023FE21 /* UIKitRuntimeUtils.swift in Sources */,
 				2749340E29F5CB80009976B5 /* WAmountInput.swift in Sources */,
 				2786FB5929E874A80023FE21 /* UIKitUtils.swift in Sources */,

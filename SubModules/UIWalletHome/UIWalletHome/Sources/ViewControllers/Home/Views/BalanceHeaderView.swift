@@ -18,7 +18,7 @@ public protocol BalanceHeaderViewDelegate: AnyObject {
     func sendPressed()
 }
 
-public class BalanceHeaderView: UIView {
+public class BalanceHeaderView: WTouchPassView {
     
     // minimum height to show collapsed mode
     private static let minHeightWithoutRadiusView = CGFloat(44)
@@ -215,7 +215,9 @@ public class BalanceHeaderView: UIView {
     }
     
     func update(balance: Int64) {
-        balanceView.balance = balance
+        if balanceView.balance != balance {
+            balanceView.balance = balance
+        }
         updateRateLabel()
     }
     
@@ -223,16 +225,6 @@ public class BalanceHeaderView: UIView {
         updateStatusView.setState(newState: status, handleAnimation: handleAnimation)
     }
 
-    // pass touch events to below view
-    public override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        let hitView = super.hitTest(point, with: event)
-        if hitView == self {
-            return nil
-        } else {
-            return hitView
-        }
-    }
-    
     @objc func scanPressed() {
         delegate?.scanPressed()
     }

@@ -9,7 +9,7 @@ import UIKit
 import UIComponents
 import WalletContext
 
-public class WalletCreatedView: UIView {
+public class WalletCreatedView: WTouchPassView {
 
     public init(address: String) {
         super.init(frame: CGRect.zero)
@@ -73,13 +73,4 @@ public class WalletCreatedView: UIView {
         titleLabel.textColor = WTheme.secondaryLabel
     }
 
-    // pass touch events to below view
-    public override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        let hitView = super.hitTest(point, with: event)
-        if hitView == self {
-            return nil
-        } else {
-            return hitView
-        }
-    }
 }

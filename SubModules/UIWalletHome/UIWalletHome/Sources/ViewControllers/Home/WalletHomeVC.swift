@@ -39,7 +39,7 @@ public class WalletHomeVC: WViewController {
     private var tableView: UITableView!
     private var tableHeaderView: UIView!
     private var refreshControl: UIRefreshControl!
-    private var headerContainerView: UIView!
+    private var headerContainerView: WTouchPassView!
     private var headerContainerViewHeightConstraint: NSLayoutConstraint? = nil
     private var balanceHeaderView: BalanceHeaderView!
     private var bottomCornersView: ReversedCornerRadiusView!
@@ -124,7 +124,7 @@ public class WalletHomeVC: WViewController {
         ])
 
         // header container view (used to make animating views on start, possible)
-        headerContainerView = UIView()
+        headerContainerView = WTouchPassView()
         headerContainerView.translatesAutoresizingMaskIntoConstraints = false
         // Should be black only on collapsed header view to make tableview go under it.
         //  Also, it should be black during the first animation to make black background animation possible.
