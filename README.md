@@ -10,7 +10,7 @@ re-using the best of the exiting, original codebase.
 :white_check_mark: **Backward-compatible:** All the `wallet storage logic` 
 is backward compatible and almost reused. Only a few changes applied to support new flows.
 
-:white_check_mark: **Support Ton Wallet v3R1, v3R2 and v4R1**: The application is now using the latest version of the [
+:white_check_mark: **Support Ton Wallet v3R1, v3R2 and v4R2**: The application is now using the latest version of the [
 ADNL TonLib Repository](https://github.com/ton-blockchain/ton) (2023.03, because 2023.04 was leading to crash on parsing list of transactions). To support switching between wallet versions, the new address is created based on selected wallet version and all the tonlib function calls use the new address.
 
 :white_check_mark: **TON Connect 2 Support** as documented in [Ton-Connect Repository](https://github.com/ton-blockchain/ton-connect). `Bridge` and `Session Protocol` are implemented. `tc://` is available as unified deeplink of the ton connect. `Universal Link` is also support and can be set after deploying the `Bridge instance`. **To test this feature, it's possible to use in-app qr scanner [here](https://ton-connect.github.io/demo-dapp/). It's using `TonKeeper Bridge` for development tests**
