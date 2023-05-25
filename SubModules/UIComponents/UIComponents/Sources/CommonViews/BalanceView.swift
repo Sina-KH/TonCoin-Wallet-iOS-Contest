@@ -39,7 +39,11 @@ public class BalanceView: UIView {
     // -2: not loaded, -1: empty
     public var balance: Int64 = -2 {
         didSet {
-            balanceLabel.amount = balance
+            if balance == -2 {
+                balanceLabel.amount = nil
+            } else {
+                balanceLabel.amount = max(0, balance) // -1 is empty wallet
+            }
         }
     }
 
@@ -76,6 +80,7 @@ public class BalanceView: UIView {
             balanceLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
 
+        update(scale: 1)
     }
 
     /// Update scale of the balance view.
@@ -97,7 +102,6 @@ public class BalanceView: UIView {
     
     private func updateBalanceLabelFont() {
         if balance == -2 {
-            balanceLabel.amount = nil
             spacingConstraint.constant = 0
             return
         } else {
