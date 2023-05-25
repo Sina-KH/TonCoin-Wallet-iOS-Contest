@@ -10,8 +10,8 @@ import WalletContext
 
 public class WAnimatedBalanceLabel: UIView {
     
-    private static let defaultNumberFont = UIFont.systemFont(ofSize: 78, weight: .semibold)
-    private static let defaultDecimalsFont = UIFont.systemFont(ofSize: 43, weight: .regular)
+    private static let defaultNumberFont = UIFont.systemFont(ofSize: 48, weight: .semibold)
+    private static let defaultDecimalsFont = UIFont.systemFont(ofSize: 30, weight: .semibold)
     
     private let numberFont: UIFont
     private let decimalsFont: UIFont
@@ -120,6 +120,11 @@ public class WAnimatedBalanceLabel: UIView {
             numberLabel.textColor = textColor
             decimalsLabel.textColor = textColor
         }
+    }
+
+    // called to update width on font updates
+    public func updateWidth() {
+        widthConstraint.constant = CGFloat(numberLabel.totalWidth + decimalsLabel.totalWidth)
     }
     
 }

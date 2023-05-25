@@ -39,7 +39,7 @@ public class BalanceView: UIView {
     // -2: not loaded, -1: empty
     public var balance: Int64 = -2 {
         didSet {
-            updateBalanceLabel()
+            balanceLabel.amount = balance
         }
     }
 
@@ -92,10 +92,10 @@ public class BalanceView: UIView {
                                                       y: transformScale)
         animatedStickerWidthConstraint.constant = 16 + 56 * (scale - 0.5)
         heightConstraint.constant = 22 + 112 * (scale - 0.5)
-        updateBalanceLabel()
+        updateBalanceLabelFont()
     }
     
-    private func updateBalanceLabel() {
+    private func updateBalanceLabelFont() {
         if balance == -2 {
             balanceLabel.amount = nil
             spacingConstraint.constant = 0
@@ -105,6 +105,6 @@ public class BalanceView: UIView {
         }
         balanceLabel.numberLabel.font = .systemFont(ofSize: 17 + 62 * ((scale ?? 1) - 0.5), weight: .semibold)
         balanceLabel.decimalsLabel.font = .systemFont(ofSize: 17 + 26 * ((scale ?? 1) - 0.5), weight: .semibold)
-        balanceLabel.amount = balance
+        balanceLabel.updateWidth()
     }
 }
