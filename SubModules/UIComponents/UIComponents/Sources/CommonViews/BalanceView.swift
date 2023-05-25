@@ -26,7 +26,7 @@ public class BalanceView: UIView {
     }
     
     private var animatedSticker: WAnimatedSticker!
-    private var balanceLabel: UILabel!
+    private var balanceLabel: WAnimatedBalanceLabel!
     // height of the view
     private var heightConstraint: NSLayoutConstraint!
     // width of aniamted sticker, it's used to make animated sticker frame smaller when transforming it
@@ -66,9 +66,8 @@ public class BalanceView: UIView {
             animatedSticker.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
 
-        balanceLabel = UILabel()
+        balanceLabel = WAnimatedBalanceLabel()
         balanceLabel.textColor = textColor ?? WTheme.primaryLabel
-        balanceLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(balanceLabel)
         spacingConstraint = balanceLabel.leftAnchor.constraint(equalTo: animatedSticker.rightAnchor, constant: 8)
         NSLayoutConstraint.activate([
@@ -98,24 +97,14 @@ public class BalanceView: UIView {
     
     private func updateBalanceLabel() {
         if balance == -2 {
-            balanceLabel.text = nil
+            balanceLabel.amount = nil
             spacingConstraint.constant = 0
             return
         } else {
             spacingConstraint.constant = 8
         }
-        // TODO:: Balance label component required
-        let components = formatBalanceText(balance > -1 ? balance : 0).components(separatedBy: ".")
-        let attr = NSMutableAttributedString(string: "\(components[0])", attributes: [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17 + 62 * ((scale ?? 1) - 0.5), weight: .semibold),
-            NSAttributedString.Key.foregroundColor: textColor ?? WTheme.primaryLabel
-        ])
-        if components.count > 1 {
-            attr.append(NSAttributedString(string: ".\(components[1])", attributes: [
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17 + 26 * ((scale ?? 1) - 0.5), weight: .semibold),
-                NSAttributedString.Key.foregroundColor: textColor ?? WTheme.primaryLabel
-            ]))
-        }
-        balanceLabel.attributedText = attr
+        balanceLabel.numberLabel.font = .systemFont(ofSize: 17 + 62 * ((scale ?? 1) - 0.5), weight: .semibold)
+        balanceLabel.decimalsLabel.font = .systemFont(ofSize: 17 + 26 * ((scale ?? 1) - 0.5), weight: .semibold)
+        balanceLabel.amount = balance
     }
 }

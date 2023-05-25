@@ -48,6 +48,14 @@
 		27B65D1129EC567A00D47112 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B65D1029EC567A00D47112 /* HeaderView.swift */; };
 		27CFA28929FD8FE400A65283 /* WBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CFA28829FD8FE400A65283 /* WBottomSheetViewController.swift */; };
 		27CFA28C29FDA5FA00A65283 /* WNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CFA28B29FDA5FA00A65283 /* WNavigationBar.swift */; };
+		27DC89A12A1FF96C004F5A91 /* LTEmitterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DC898E2A1FF968004F5A91 /* LTEmitterView.swift */; };
+		27DC89A32A1FF96C004F5A91 /* LTMorphingEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DC89902A1FF969004F5A91 /* LTMorphingEffect.swift */; };
+		27DC89A42A1FF96C004F5A91 /* LTMorphingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DC89912A1FF969004F5A91 /* LTMorphingLabel.swift */; };
+		27DC89A62A1FF96C004F5A91 /* LTCharacterLimbo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DC89932A1FF969004F5A91 /* LTCharacterLimbo.swift */; };
+		27DC89A82A1FF96C004F5A91 /* LTStringDiffResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DC89952A1FF96A004F5A91 /* LTStringDiffResult.swift */; };
+		27DC89B12A1FF96C004F5A91 /* LTCharacterDiffResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DC899F2A1FF96B004F5A91 /* LTCharacterDiffResult.swift */; };
+		27DC89B22A1FF96C004F5A91 /* LTEasing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DC89A02A1FF96B004F5A91 /* LTEasing.swift */; };
+		27DC89B42A1FFD05004F5A91 /* WAnimatedBalanceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DC89B32A1FFD05004F5A91 /* WAnimatedBalanceLabel.swift */; };
 		27E643D129F41E0D006B20FC /* QrCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643D029F41E0D006B20FC /* QrCode.swift */; };
 		27E643D329F41E59006B20FC /* TransformImageArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643D229F41E59006B20FC /* TransformImageArguments.swift */; };
 		27E643D529F41E85006B20FC /* ImageCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E643D429F41E85006B20FC /* ImageCorners.swift */; };
@@ -110,6 +118,14 @@
 		27B65D1029EC567A00D47112 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		27CFA28829FD8FE400A65283 /* WBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBottomSheetViewController.swift; sourceTree = "<group>"; };
 		27CFA28B29FDA5FA00A65283 /* WNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WNavigationBar.swift; sourceTree = "<group>"; };
+		27DC898E2A1FF968004F5A91 /* LTEmitterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTEmitterView.swift; sourceTree = "<group>"; };
+		27DC89902A1FF969004F5A91 /* LTMorphingEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTMorphingEffect.swift; sourceTree = "<group>"; };
+		27DC89912A1FF969004F5A91 /* LTMorphingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTMorphingLabel.swift; sourceTree = "<group>"; };
+		27DC89932A1FF969004F5A91 /* LTCharacterLimbo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTCharacterLimbo.swift; sourceTree = "<group>"; };
+		27DC89952A1FF96A004F5A91 /* LTStringDiffResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTStringDiffResult.swift; sourceTree = "<group>"; };
+		27DC899F2A1FF96B004F5A91 /* LTCharacterDiffResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTCharacterDiffResult.swift; sourceTree = "<group>"; };
+		27DC89A02A1FF96B004F5A91 /* LTEasing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTEasing.swift; sourceTree = "<group>"; };
+		27DC89B32A1FFD05004F5A91 /* WAnimatedBalanceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WAnimatedBalanceLabel.swift; sourceTree = "<group>"; };
 		27E643D029F41E0D006B20FC /* QrCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCode.swift; sourceTree = "<group>"; };
 		27E643D229F41E59006B20FC /* TransformImageArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformImageArguments.swift; sourceTree = "<group>"; };
 		27E643D429F41E85006B20FC /* ImageCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCorners.swift; sourceTree = "<group>"; };
@@ -145,7 +161,9 @@
 		2719621E29F1BD6200B5B59F /* Label */ = {
 			isa = PBXGroup;
 			children = (
+				27DC898D2A1FF955004F5A91 /* LTMorphingLabel */,
 				2719621F29F1BD6F00B5B59F /* WAmountLabel.swift */,
+				27DC89B32A1FFD05004F5A91 /* WAnimatedBalanceLabel.swift */,
 				2740809A2A0C15A60098838D /* WAddressLabel.swift */,
 			);
 			path = Label;
@@ -310,6 +328,20 @@
 			path = NavigationBar;
 			sourceTree = "<group>";
 		};
+		27DC898D2A1FF955004F5A91 /* LTMorphingLabel */ = {
+			isa = PBXGroup;
+			children = (
+				27DC899F2A1FF96B004F5A91 /* LTCharacterDiffResult.swift */,
+				27DC89932A1FF969004F5A91 /* LTCharacterLimbo.swift */,
+				27DC89A02A1FF96B004F5A91 /* LTEasing.swift */,
+				27DC898E2A1FF968004F5A91 /* LTEmitterView.swift */,
+				27DC89902A1FF969004F5A91 /* LTMorphingEffect.swift */,
+				27DC89912A1FF969004F5A91 /* LTMorphingLabel.swift */,
+				27DC89952A1FF96A004F5A91 /* LTStringDiffResult.swift */,
+			);
+			path = LTMorphingLabel;
+			sourceTree = "<group>";
+		};
 		27E643CF29F41E02006B20FC /* QR */ = {
 			isa = PBXGroup;
 			children = (
@@ -454,6 +486,7 @@
 				273A5CB429E02000007CA6F0 /* WAnimatedSticker.swift in Sources */,
 				27E643D329F41E59006B20FC /* TransformImageArguments.swift in Sources */,
 				275C09FD2A03BA1100CBB232 /* WordListItemView.swift in Sources */,
+				27DC89A42A1FF96C004F5A91 /* LTMorphingLabel.swift in Sources */,
 				273A608F29E030CA007CA6F0 /* AnimationRenderer.swift in Sources */,
 				2749340829F53D13009976B5 /* WAddressInput.swift in Sources */,
 				273F474C2A09B6B2000C5263 /* UIImageViewUtils.swift in Sources */,
@@ -464,14 +497,19 @@
 				2719622029F1BD6F00B5B59F /* WAmountLabel.swift in Sources */,
 				27E643D529F41E85006B20FC /* ImageCorners.swift in Sources */,
 				27CFA28C29FDA5FA00A65283 /* WNavigationBar.swift in Sources */,
+				27DC89B22A1FF96C004F5A91 /* LTEasing.swift in Sources */,
+				27DC89A32A1FF96C004F5A91 /* LTMorphingEffect.swift in Sources */,
+				27DC89A62A1FF96C004F5A91 /* LTCharacterLimbo.swift in Sources */,
 				273A609129E0310C007CA6F0 /* GenerateImage.swift in Sources */,
 				27B65D1129EC567A00D47112 /* HeaderView.swift in Sources */,
 				275C09F42A039C3000CBB232 /* WHighlightView.swift in Sources */,
 				275C09FE2A03BA1100CBB232 /* WordListView.swift in Sources */,
+				27DC89B42A1FFD05004F5A91 /* WAnimatedBalanceLabel.swift in Sources */,
 				27E643D929F42269006B20FC /* WQrCode.swift in Sources */,
 				274080A92A0C399A0098838D /* BalanceView.swift in Sources */,
 				2779A85029FC17F100E39FF5 /* WBaseButton.swift in Sources */,
 				274D3EFD29D61CC4007C47AE /* UIComponents.docc in Sources */,
+				27DC89B12A1FF96C004F5A91 /* LTCharacterDiffResult.swift in Sources */,
 				273A608D29E030B5007CA6F0 /* SoftwareAnimationRenderer.swift in Sources */,
 				2740809B2A0C15A60098838D /* WAddressLabel.swift in Sources */,
 				27EBE5AA29EDE6C9006ECFFB /* UINavigationControllerUtils.swift in Sources */,
@@ -483,8 +521,10 @@
 				270CDAFC29FAD55900308DFF /* TitleValueRowView.swift in Sources */,
 				273F7FF229F9C1BF0075E2E8 /* WCommentInput.swift in Sources */,
 				2749340A29F54530009976B5 /* ToastView.swift in Sources */,
+				27DC89A82A1FF96C004F5A91 /* LTStringDiffResult.swift in Sources */,
 				2777555929EB37660098DE68 /* WKeyboardObserver.swift in Sources */,
 				2786FB5729E874060023FE21 /* CAAnimationUtils.swift in Sources */,
+				27DC89A12A1FF96C004F5A91 /* LTEmitterView.swift in Sources */,
 				2786FB5B29E876420023FE21 /* UIKitRuntimeUtils.swift in Sources */,
 				2749340E29F5CB80009976B5 /* WAmountInput.swift in Sources */,
 				2786FB5929E874A80023FE21 /* UIKitUtils.swift in Sources */,
