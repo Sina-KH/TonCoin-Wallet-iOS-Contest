@@ -41,8 +41,10 @@ public class BalanceView: UIView {
         didSet {
             if balance == -2 {
                 balanceLabel.amount = nil
+                spacingConstraint.constant = 0
             } else {
                 balanceLabel.amount = max(0, balance) // -1 is empty wallet
+                spacingConstraint.constant = 8
             }
         }
     }
@@ -101,12 +103,6 @@ public class BalanceView: UIView {
     }
     
     private func updateBalanceLabelFont() {
-        if balance == -2 {
-            spacingConstraint.constant = 0
-            return
-        } else {
-            spacingConstraint.constant = 8
-        }
         balanceLabel.numberLabel.font = .systemFont(ofSize: 17 + 62 * ((scale ?? 1) - 0.5), weight: .semibold)
         balanceLabel.decimalsLabel.font = .systemFont(ofSize: 17 + 26 * ((scale ?? 1) - 0.5), weight: .semibold)
         balanceLabel.updateWidth()
