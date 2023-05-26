@@ -512,6 +512,10 @@ class WalletHomeVM {
             }
         }
 
+        if transaction.deletions.isEmpty && transaction.insertions.isEmpty && transaction.updates.isEmpty {
+            // nothing changed
+            return
+        }
         self.enqueuedTransactions.append(transaction)
         self.dequeueTransaction()
     }
