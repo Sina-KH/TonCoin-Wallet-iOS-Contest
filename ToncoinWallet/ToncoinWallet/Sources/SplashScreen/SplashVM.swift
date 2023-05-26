@@ -217,6 +217,7 @@ class SplashVM: NSObject {
                                         deleteAndReset()
                                     }
                                 }, completed: { [weak self] in
+                                    KeychainHelper.deleteWallet()
                                     // start app again
                                     self?.splashVMDelegate?.restartApp()
                                 })
