@@ -14,6 +14,7 @@ import UIComponents
 import WalletContext
 import WalletCore
 import SwiftSignalKit
+import UIPasscode
 
 class SplashVC: WViewController {
 
@@ -30,6 +31,7 @@ class SplashVC: WViewController {
     }
 
     private var topAnchorConstraint: NSLayoutConstraint!
+    private var heightAnchorConstraint: NSLayoutConstraint!
 
     private func setupViews() {
         let balanceHeaderBackground = UIView()
@@ -37,11 +39,12 @@ class SplashVC: WViewController {
         balanceHeaderBackground.backgroundColor = WTheme.balanceHeaderView.background
         view.addSubview(balanceHeaderBackground)
         topAnchorConstraint = balanceHeaderBackground.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+        heightAnchorConstraint = balanceHeaderBackground.heightAnchor.constraint(equalToConstant: BalanceHeaderView.defaultHeight)
         NSLayoutConstraint.activate([
             topAnchorConstraint,
             balanceHeaderBackground.leftAnchor.constraint(equalTo: view.leftAnchor),
             balanceHeaderBackground.rightAnchor.constraint(equalTo: view.rightAnchor),
-            balanceHeaderBackground.heightAnchor.constraint(equalToConstant: BalanceHeaderView.defaultHeight)
+            heightAnchorConstraint
         ])
 
         let underSafeAreaView = UIView()
@@ -66,22 +69,28 @@ class SplashVC: WViewController {
             bottomCornersView.heightAnchor.constraint(equalToConstant: ReversedCornerRadiusView.radius)
         ])
     }
-
-    public override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    private var firstTime = true
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        startApp()
+        if firstTime {
+            firstTime = false
+            afterUnlock { [weak self] in
+                self?.splashVM.startApp()
+            }
+        }
     }
 
-    func replaceVC(with vc: WViewController, animateOutBlackHeader: Bool) {
+    func replaceVC(with vc: WViewController, animateOutBlackHeader: Bool, animated: Bool = true) {
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         navVC.modalTransitionStyle = .crossDissolve
         func presentNav() {
-            present(navVC, animated: true)
+            present(navVC, animated: animated)
         }
         if animateOutBlackHeader {
-            UIView.animate(withDuration: 0.3, animations: {
+            UIView.animate(withDuration: 0.2, animations: {
                 self.topAnchorConstraint.constant = -BalanceHeaderView.defaultHeight - self.view.safeAreaInsets.top - 16
                 self.view.layoutIfNeeded()
             }) { finished in
@@ -95,6 +104,39 @@ class SplashVC: WViewController {
     // start the app by initializing the wallet context and getting the wallet info
     private func startApp() {
         splashVM.startApp()
+    }
+
+    // present unlockVC if required and continue tasks assigned, after unlock
+    func afterUnlock(completion: @escaping () -> Void) {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        if KeychainHelper.passcode() != nil && KeychainHelper.isAppLockActivated() {
+            // should unlock
+            let unlockVC = UnlockVC(animatedPresentation: true) {
+                // unlocked, animate back and load
+                UIView.animate(withDuration: 0.2) { [weak self] in
+                    self?.heightAnchorConstraint.constant = BalanceHeaderView.defaultHeight
+                    self?.view.layoutIfNeeded()
+                } completion: { _ in
+                    appDelegate?.appUnlocked = true
+                    completion()
+                }
+            }
+            unlockVC.modalPresentationStyle = .fullScreen
+            // present unlock animated
+            UIView.animate(withDuration: 0.2, animations: { [weak self] in
+                guard let self else { return }
+                heightAnchorConstraint.constant = view.frame.height
+                view.layoutIfNeeded()
+            }) { [weak self] _ in
+                self?.present(unlockVC, animated: false, completion: {
+                    unlockVC.tryBiometric()
+                })
+            }
+        } else {
+            // app is not locked
+            appDelegate?.appUnlocked = true
+            completion()
+        }
     }
 }
 
@@ -117,7 +159,7 @@ extension SplashVC: SplashVMDelegate {
     }
 
     func navigateToHome(walletContext: WalletContext, walletInfo: WalletInfo) {
-        replaceVC(with: WalletHomeVC(walletContext: walletContext, walletInfo: walletInfo, animateHeaderOnLoad: false), animateOutBlackHeader: false)
+        replaceVC(with: WalletHomeVC(walletContext: walletContext, walletInfo: walletInfo, animateHeaderOnLoad: false), animateOutBlackHeader: false, animated: false)
     }
     
     func openTonConnectTransfer(walletContext: WalletContext,
@@ -210,10 +252,12 @@ extension SplashVC: DeeplinkNavigator {
                 if let navVC = topVC as? UINavigationController {
                     topVC = navVC.topViewController
                 }
-                if let topVC = topVC as? WViewController {
-                    topVC.present(bottomSheet: tonConnectVC)
-                } else {
-                    topVC?.present(tonConnectVC, animated: true)
+                afterUnlock {
+                    if let topVC = topVC as? WViewController {
+                        topVC.present(bottomSheet: tonConnectVC)
+                    } else {
+                        topVC?.present(tonConnectVC, animated: true)
+                    }
                 }
                 break
                 
@@ -243,7 +287,10 @@ extension SplashVC: DeeplinkNavigator {
                     } else {
                         nav.viewControllers = [sendVC, sendAmountVC]
                     }
-                    topViewController()?.present(nav, animated: true)
+                    afterUnlock { [weak self] in
+                        guard let self else {return}
+                        topViewController()?.present(nav, animated: true)
+                    }
                 }
                 break
 

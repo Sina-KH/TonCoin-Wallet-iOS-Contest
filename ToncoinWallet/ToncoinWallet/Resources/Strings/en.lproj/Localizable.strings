@@ -220,6 +220,7 @@
 "Wallet.Settings.Security" = "SECURITY"; // NEW
 "Wallet.Settings.ShowRecoveryPhrase" = "Show recovery phrase"; // NEW
 "Wallet.Settings.ChangePasscode" = "Change passcode"; // NEW
+"Wallet.Settings.AppLock" = "App-Lock on start"; // NEW
 "Wallet.Settings.TouchID" = "Touch ID"; // NEW
 "Wallet.Settings.FaceID" = "Face ID"; // NEW
 "Wallet.Settings.DeleteWallet" = "Delete Wallet"; // Updated

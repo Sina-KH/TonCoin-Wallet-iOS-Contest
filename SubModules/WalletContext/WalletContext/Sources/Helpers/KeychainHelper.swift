@@ -43,6 +43,14 @@ public struct KeychainHelper {
     public static func isBiometricActivated() -> Bool {
         KeychainHelper.load(withKey: KeychainHelper.biometricKey) == "1"
     }
+    // MARK: - AppLock
+    private static let appLockKey = "appLock"
+    public static func save(appLock: Bool) {
+        KeychainHelper.save(appLock ? "1" : "0", forKey: appLockKey)
+    }
+    public static func isAppLockActivated() -> Bool {
+        KeychainHelper.load(withKey: KeychainHelper.appLockKey) != "0"
+    }
 
     // MARK: - Ton Connect DApps
     private static var tonConnectDApps = "tonConnectDApps"
@@ -67,6 +75,7 @@ public struct KeychainHelper {
         KeychainHelper.save(walletVersion: nil)
         KeychainHelper.save(passcode: nil)
         KeychainHelper.save(biometric: nil)
+        KeychainHelper.save(appLock: true)
         for walletVersion in [31, 32, 42] {
             KeychainHelper.save(DApps: nil, walletVersion: walletVersion)
             KeychainHelper.save(recentAddresses: nil, walletVersion: walletVersion)

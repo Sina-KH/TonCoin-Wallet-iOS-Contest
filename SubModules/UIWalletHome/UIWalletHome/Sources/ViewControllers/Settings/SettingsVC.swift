@@ -46,6 +46,7 @@ class SettingsVC: WViewController {
     private var scrollView: UIScrollView!
     private var stackView: UIStackView!
     private var notificationsSwitch: UISwitch!
+    private var appLockSwitch: UISwitch!
     private var biometricSwitch: UISwitch!
     private var addressPicker: PickerView!
     private var currencyPicker: PickerView!
@@ -127,6 +128,12 @@ class SettingsVC: WViewController {
         addNavigationItem(position: .middle,
                           title: WStrings.Wallet_Settings_ChangePasscode.localized,
                           selector: #selector(changePasscodePressed))
+        // app lock
+        appLockSwitch = addSwitchItem(position: .middle,
+                                      title: WStrings.Wallet_Settings_AppLock.localized,
+                                      switchSelector: #selector(appLockPressed))
+        appLockSwitch.isOn = KeychainHelper.isAppLockActivated()
+
         // faceID / touchID
         let biometricString: String?
         switch BiometricHelper.biometricType() {
@@ -322,6 +329,25 @@ class SettingsVC: WViewController {
     @objc func addressSelected(sender: Any) {
         addressPicker.pickerPressed()
     }
+    
+    @objc func appLockPressed(sender: AnyObject) {
+        if (sender as? UISwitch) != appLockSwitch {
+            appLockSwitch.setOn(!appLockSwitch.isOn, animated: true)
+        }
+        if appLockSwitch.isOn {
+            KeychainHelper.save(appLock: appLockSwitch.isOn)
+        } else {
+            UnlockVC.presentAuth(on: self, onAuth: {
+                KeychainHelper.save(appLock: false)
+            }, cancellable: true, onCancel: { [weak self] in
+                guard let self else {
+                    return
+                }
+                appLockSwitch.setOn(true, animated: true)
+            })
+        }
+    }
+
     @objc func onAddressChanged() {
         // Notify home to stop using previous wallet, instantly.
         disposeAllDisposables()

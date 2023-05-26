@@ -169,6 +169,7 @@ public enum WStrings: String {
     case Wallet_Settings_Security = "Wallet.Settings.Security"
     case Wallet_Settings_ShowRecoveryPhrase = "Wallet.Settings.ShowRecoveryPhrase"
     case Wallet_Settings_ChangePasscode = "Wallet.Settings.ChangePasscode"
+    case Wallet_Settings_AppLock = "Wallet.Settings.AppLock"
     case Wallet_Settings_TouchID = "Wallet.Settings.TouchID"
     case Wallet_Settings_FaceID = "Wallet.Settings.FaceID"
     case Wallet_Settings_DeleteWallet = "Wallet.Settings.DeleteWallet"

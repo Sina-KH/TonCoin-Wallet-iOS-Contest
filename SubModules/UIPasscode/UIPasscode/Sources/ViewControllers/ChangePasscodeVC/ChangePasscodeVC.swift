@@ -106,7 +106,7 @@ extension ChangePasscodeVC: PasscodeScreenViewDelegate {
         }
     }
     
-    func onAuth() {
+    func onAuthenticated() {
         
     }
 }

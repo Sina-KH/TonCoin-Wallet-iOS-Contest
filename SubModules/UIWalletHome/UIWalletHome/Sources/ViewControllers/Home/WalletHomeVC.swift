@@ -134,7 +134,7 @@ public class WalletHomeVC: WViewController {
         // Should be black only on collapsed header view to make tableview go under it.
         //  Also, it should be black during the first animation to make black background animation possible.
         //  If we set it to be black all the time, the refesh control will not be visible.
-        headerContainerView.backgroundColor = animateHeaderOnLoad ? WTheme.balanceHeaderView.background : .clear
+        headerContainerView.backgroundColor = WTheme.balanceHeaderView.background
         headerContainerView.layer.masksToBounds = true
         view.addSubview(headerContainerView)
         NSLayoutConstraint.activate([
@@ -209,6 +209,17 @@ public class WalletHomeVC: WViewController {
                     self.tableHeaderView.alpha = 1
                     self.headerContainerView.backgroundColor = .clear
                 }
+            }
+        } else {
+            emptyWalletView?.alpha = 0
+            balanceHeaderView.alpha = 0
+            tableView.alpha = 0
+            UIView.animate(withDuration: 0.3) {
+                self.emptyWalletView?.alpha = 1
+                self.balanceHeaderView.alpha = 1
+                self.tableView.alpha = 1
+            } completion: { _ in
+                self.headerContainerView.backgroundColor = .clear
             }
         }
     }

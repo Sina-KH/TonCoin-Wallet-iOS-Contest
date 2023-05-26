@@ -27,17 +27,18 @@ Other modules like `SwiftyTON` `TON3` and `SwiftyJS` in the project are customiz
 
 :white_check_mark: `iOS 13+` support. (If we remove async/await and actor codes used in SwiftyTON, TON3 and SwiftyJS modules, or even remove these modules from the porject, We can even support iOS 12.2+ with the same app size. Almost no other os dependent features limited to iOS 13+ is used in the application, even for theming.)
 
-:white_check_mark: App size (the final download size for `.ipa file`) is **around 6.5 megabytes**. And the app install size on test flight is around 22 megabytes.
+:white_check_mark: **App size** (the final download size for `.ipa file`) is **around 6.5 megabytes**. And the app install size on test flight is around 22 megabytes.
 
 :white_check_mark: **Dark mode** on iOS 13+
+
+:white_check_mark: **AppLock** Feature to let user lock the app using passcode and FaceID/TouchID.
 
 ## :exclamation:  Notices
 
 - [ ] **PushNotifications:** Push Notification implementation should be done by developing a back-end server for the application.
 - [ ] **Bridge's exclusive instance:** Wallet's bridge instance should be deployed on the back-end, for now it uses ton keeper's wallet url.
 - [ ] **Wallet listings:** Wallet should be listed in the toncoin wallet listings.
-- [ ] **Lock:** I've implemented lock screen, but because the original logic of the app uses keychain hardware encryption, so for lower-level access (accessing private key), like showing the recovery phrase or sending TON, the app still depends on the iOS unlock mechanism. *We can store the keys another way to let it unlock using our custom `UnlockVC` instead of iOS unlock, or even force migrate the storage data on application update.*
-Auto-lock feature can be activated, easily, also!
+- [ ] **Lock:** I've implemented lock screen and app-lock, but the app uses keychain hardware encryption (same as the original version), so for lower-level actions (accessing private key), like showing the recovery phrase or sending TON, the app still depends on the iOS unlock mechanism. *We can store the keys another way to let it unlock using our custom `UnlockVC` instead of iOS unlock, or even force migrate the storage data on application update, But It will NOT be as safe as it is now!*
 - [ ] **Check TODOs:** Some small details of the application needs to be double-checked. For example if the DApp requests more than 1 message in sendTransaction request, how should the app present the ton transfer popup? These details are flaged using TODO:: comments in code.
 - [x] **Fixed:** If you change/remove passcode of the device, because of the keychain hardware encryption, the app forces you to re-import or create a new wallet, but after that, on restarts, the app still shows the same error. This issue exists from the original application wallet record checks.
 **Solution:** Fixed by using latest records from the storage to check wallet status! We can consider removing old records, also.

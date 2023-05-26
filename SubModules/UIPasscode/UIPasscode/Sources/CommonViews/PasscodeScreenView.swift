@@ -11,7 +11,7 @@ import WalletContext
 import LocalAuthentication
 
 protocol PasscodeScreenViewDelegate: PasscodeInputViewDelegate {
-    func onAuth()
+    func onAuthenticated()
 }
 
 class PasscodeScreenView: UIView {
@@ -200,28 +200,7 @@ class PasscodeScreenView: UIView {
     @objc func buttonPressed(button: UIButton) {
         switch button.tag {
         case 10:    // touchID / faceID
-            let context = LAContext()
-            var error: NSError?
-
-            if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-                let reason = WStrings.Wallet_Biometric_Reason.localized
-
-                context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) {
-                    [weak self] success, authenticationError in
-
-                    DispatchQueue.main.async { [weak self] in
-                        if success {
-                            self?.delegate?.onAuth()
-                        } else {
-                        }
-                    }
-                }
-            } else {
-                let topVC = topViewController() as? WViewController
-                topVC?.showAlert(title: WStrings.Wallet_Biometric_NotAvailableTitle.localized,
-                                 text: WStrings.Wallet_Biometric_NotAvailableText.localized,
-                                 button: WStrings.Wallet_Alert_OK.localized)
-            }
+            tryBiometric()
             break
         case 11:    // 0 number
             passcodeInputView.currentPasscode += "0"
@@ -233,4 +212,32 @@ class PasscodeScreenView: UIView {
         }
     }
 
+    func tryBiometric() {
+        if !biometricPassAllowed {
+            return
+        }
+
+        let context = LAContext()
+        var error: NSError?
+
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            let reason = WStrings.Wallet_Biometric_Reason.localized
+
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) {
+                [weak self] success, authenticationError in
+
+                DispatchQueue.main.async { [weak self] in
+                    if success {
+                        self?.delegate?.onAuthenticated()
+                    } else {
+                    }
+                }
+            }
+        } else {
+            let topVC = topViewController() as? WViewController
+            topVC?.showAlert(title: WStrings.Wallet_Biometric_NotAvailableTitle.localized,
+                             text: WStrings.Wallet_Biometric_NotAvailableText.localized,
+                             button: WStrings.Wallet_Alert_OK.localized)
+        }
+    }
 }
