@@ -37,11 +37,16 @@ public class WalletHomeVC: WViewController {
     private var popRecognizer: InteractivePopRecognizer?
     private var belowSafeAreaViewBottomConstraint: NSLayoutConstraint!
     private var tableView: UITableView!
+    // We use tableHeaderView to make a gap on the top of tableView, to let `balanceHeaderView` appear on the top of tableView in view hireachey.
     private var tableHeaderView: UIView!
     private var refreshControl: UIRefreshControl!
+    // `headerContainerView` is used to set black background under safe area and also under tableView when scrolling down. (bounce mode)
     private var headerContainerView: WTouchPassView!
+    // `headerContainerViewHeightConstraint` is used to animate the black background on the first load's animation.
     private var headerContainerViewHeightConstraint: NSLayoutConstraint? = nil
+    // The header containing balance and other actions like send/receive/scan/settings and balance in other currencies.
     private var balanceHeaderView: BalanceHeaderView!
+    // The `bottomCornersView` is used to let reverse rounded corners appear bottom of the `balanceHeaderView`.
     private var bottomCornersView: ReversedCornerRadiusView!
     private var emptyWalletView: EmptyWalletView? = nil
 
