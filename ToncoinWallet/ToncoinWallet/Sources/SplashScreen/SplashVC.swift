@@ -109,6 +109,12 @@ class SplashVC: WViewController {
     // present unlockVC if required and continue tasks assigned, after unlock
     func afterUnlock(completion: @escaping () -> Void) {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
+
+        if appDelegate?.appUnlocked ?? false {
+            completion()
+            return
+        }
+
         if KeychainHelper.passcode() != nil && KeychainHelper.isAppLockActivated() {
             // should unlock
             let unlockVC = UnlockVC(animatedPresentation: true) {
@@ -129,6 +135,7 @@ class SplashVC: WViewController {
                 view.layoutIfNeeded()
             }) { [weak self] _ in
                 self?.present(unlockVC, animated: false, completion: {
+                    // try biometric unlock after appearance of the `UnlockVC`
                     unlockVC.tryBiometric()
                 })
             }
@@ -203,7 +210,9 @@ extension SplashVC: SplashVMDelegate {
     func setWalletReadyWalletInfo(walletInfo: WalletCore.WalletInfo) {
         splashVM.readyWalletInfo = walletInfo
         if let nextDeeplink {
-            self.handle(deeplink: nextDeeplink)
+            DispatchQueue.main.async {
+                self.handle(deeplink: nextDeeplink)
+            }
         }
         // connect the application to the wallet applications
         //  it generates new keys if not exists (or deleted before)
@@ -248,11 +257,11 @@ extension SplashVC: DeeplinkNavigator {
                                            walletInfo: walletInfo,
                                            tonConnectRequestLink: requestLink)
                 
-                var topVC = topViewController()
-                if let navVC = topVC as? UINavigationController {
-                    topVC = navVC.topViewController
-                }
                 afterUnlock {
+                    var topVC = topViewController()
+                    if let navVC = topVC as? UINavigationController {
+                        topVC = navVC.topViewController
+                    }
                     if let topVC = topVC as? WViewController {
                         topVC.present(bottomSheet: tonConnectVC)
                     } else {
@@ -268,7 +277,7 @@ extension SplashVC: DeeplinkNavigator {
                                     balance: nil,
                                     defaultAddress: address)
                 ContextAddressHelpers.toBase64Address(unknownAddress: address,
-                                                                          walletContext: splashVM.walletContext!) { [weak self] addressBase64 in
+                                                      walletContext: splashVM.walletContext!) { [weak self] addressBase64 in
                     guard let self, let addressBase64 else {
                         return
                     }
@@ -287,8 +296,7 @@ extension SplashVC: DeeplinkNavigator {
                     } else {
                         nav.viewControllers = [sendVC, sendAmountVC]
                     }
-                    afterUnlock { [weak self] in
-                        guard let self else {return}
+                    afterUnlock {
                         topViewController()?.present(nav, animated: true)
                     }
                 }
