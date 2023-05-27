@@ -47,6 +47,7 @@ public class WAmountInput: UITextView {
             widthAnchor.constraint(greaterThanOrEqualToConstant: 83)
         ])
         isScrollEnabled = false
+        keyboardType = .decimalPad
 
         delegate = self
 

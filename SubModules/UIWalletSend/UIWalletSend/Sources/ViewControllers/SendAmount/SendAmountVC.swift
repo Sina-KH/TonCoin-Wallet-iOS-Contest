@@ -244,11 +244,16 @@ extension SendAmountVC: WKeyboardObserverDelegate {
 
 extension SendAmountVC: WAmountInputDelegate {
     public func amountChanged() {
+        if amountView.text.hasPrefix(".") {
+            amountView.text = "0\(amountView.text!)"
+        }
         let amount = amountValue(amountView.text)
-        if let balance, amount > balance {
-            insufficientFundsLabel.isHidden = false
-            amountView.textColor = WTheme.error
+        // check if amount is acceptable
+        if amount <= 0 || (balance != nil && amount > balance!) {
             continueButton.isEnabled = false
+            // check if it's insufficient funds error
+            insufficientFundsLabel.isHidden = amount <= 0
+            amountView.textColor = amount <= 0 ? WTheme.primaryLabel : WTheme.error
         } else {
             insufficientFundsLabel.isHidden = true
             amountView.textColor = WTheme.primaryLabel
