@@ -23,7 +23,7 @@ class ImportSuccessVM {
         self.importSuccessVMDelegate = importSuccessVMDelegate
     }
     
-    // TODO:: Handle adnl timeout errors! Sometimes lite client receives errors that are not handled!
+    // TODO:: Handle adnl timeout errors! Sometimes lite client receives errors on unstable networks, that may be not handled!
     public func loadWalletInfo(walletContext: WalletContext, importedInfo: ImportedWalletInfo) {
         if importSuccessVMDelegate?.isLoading ?? true {
             return
@@ -34,8 +34,6 @@ class ImportSuccessVM {
             switch error {
             case .generic:
                 return .generic
-            case .network:
-                return .network
             }
         }
         |> mapToSignal { walletInfo -> Signal<WalletCreatedPreloadState?, GetCombinedWalletStateError> in

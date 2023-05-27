@@ -189,7 +189,7 @@ public final class TonInstance {
         }
     }
     
-    fileprivate func createWallet(keychain: TonKeychain, localPassword: Data) -> Signal<(WalletInfo, [String]), CreateWalletError> {
+    fileprivate func createWallet(tonInstance: TonInstance, keychain: TonKeychain, localPassword: Data) -> Signal<(WalletInfo, [String]), CreateWalletError> {
         return Signal { subscriber in
             let disposable = MetaDisposable()
             self.impl.with { impl in
@@ -201,12 +201,21 @@ public final class TonInstance {
                         }
                         let _ = keychain.encrypt(key.secret).start(next: { encryptedSecretData in
                             let _ = self.exportKey(key: key, localPassword: localPassword).start(next: { wordList in
-                                
                                 let publicKey = WalletPublicKey(rawValue: key.publicKey)
-                                let _ = self.createdWalletAddress(publicKey: publicKey).start(next: { address in
+                                // get wallet info using the new algorithm
+                                _ = tonInstance.setWalletVersion(to: 32,
+                                                 walletInfo: WalletInfo(publicKey: publicKey, address: "", encryptedSecret: encryptedSecretData),
+                                                             storage: nil).start(next: { newWalletInfo in
+                                    subscriber.putNext((newWalletInfo, wordList))
+                                    subscriber.putCompletion()
+                                }, error: { error in
+                                    subscriber.putError(.generic)
+                                }, completed: {
+                                })
+                                /*let _ = self.createdWalletAddress(publicKey: publicKey).start(next: { address in
                                     subscriber.putNext((WalletInfo(publicKey: publicKey, address: address, encryptedSecret: encryptedSecretData), wordList))
                                     subscriber.putCompletion()
-                                })
+                                })*/
                             }, error: { error in
                                 subscriber.putError(.generic)
                             })
@@ -291,7 +300,7 @@ public final class TonInstance {
         }
     }
     
-    fileprivate func createdWalletAddress(publicKey: WalletPublicKey) -> Signal<String, NoError> {
+    /*fileprivate func createdWalletAddress(publicKey: WalletPublicKey) -> Signal<String, NoError> {
         return self.getInitialWalletId()
         |> `catch` { _ -> Signal<Int64, NoError> in
             return .single(0)
@@ -322,9 +331,9 @@ public final class TonInstance {
                 return disposable
             }
         }
-    }
+    }*/
     
-    fileprivate func guessImportedWalletAddress(publicKey: WalletPublicKey) -> Signal<String, GetWalletInfoError> {
+    /*fileprivate func guessImportedWalletAddress(publicKey: WalletPublicKey) -> Signal<String, GetWalletInfoError> {
         return Signal { subscriber in
             let disposable = MetaDisposable()
             
@@ -357,7 +366,7 @@ public final class TonInstance {
             
             return disposable
         }
-    }
+    }*/
     
     private func getWalletStateRaw(address: String) -> Signal<TONAccountState, GetWalletStateError> {
         return Signal { subscriber in
@@ -982,7 +991,7 @@ public final class TonInstance {
         }
     }
     
-    fileprivate func setWalletVersion(to walletVersion: Int, walletInfo: WalletInfo, storage: WalletStorageInterface) -> Signal<WalletInfo, ChangeVersionError> {
+    fileprivate func setWalletVersion(to walletVersion: Int, walletInfo: WalletInfo, storage: WalletStorageInterface?) -> Signal<WalletInfo, ChangeVersionError> {
         // create candidate new wallet info
         var newWalletInfo = WalletInfo(publicKey: walletInfo.publicKey, address: "", encryptedSecret: walletInfo.encryptedSecret, version: walletVersion)
         return Signal { subscriber in
@@ -1009,13 +1018,18 @@ public final class TonInstance {
                                                        address: address,
                                                        encryptedSecret: newWalletInfo.encryptedSecret,
                                                        version: newWalletInfo.version)
-                            _ = updateWalletInfo(newWalletInfo: newWalletInfo,
-                                                 storage: storage).start(next: { result in
-                                subscriber.putNext(result)
-                            }, error: { _ in
-                            }, completed: {
+                            if let storage {
+                                _ = updateWalletInfo(newWalletInfo: newWalletInfo,
+                                                     storage: storage).start(next: { result in
+                                    subscriber.putNext(result)
+                                }, error: { _ in
+                                }, completed: {
+                                    subscriber.putCompletion()
+                                })
+                            } else {
+                                subscriber.putNext(newWalletInfo)
                                 subscriber.putCompletion()
-                            })
+                            }
                         } error: { err in
                             subscriber.putError(.generic)
                         } completed: {
@@ -1212,7 +1226,7 @@ public func tonlibDecrypt(tonInstance: TonInstance, encryptedData: Data, secret:
 }
 
 public func createWallet(storage: WalletStorageInterface, tonInstance: TonInstance, keychain: TonKeychain, localPassword: Data) -> Signal<(WalletInfo, [String]), CreateWalletError> {
-    return tonInstance.createWallet(keychain: keychain, localPassword: localPassword)
+    return tonInstance.createWallet(tonInstance: tonInstance, keychain: keychain, localPassword: localPassword)
     |> mapToSignal { walletInfo, wordList -> Signal<(WalletInfo, [String]), CreateWalletError> in
         return storage.updateWalletRecords({ records in
             var records = records
@@ -1239,7 +1253,7 @@ private func updateWalletInfo(newWalletInfo walletInfo: WalletInfo,
     |> castError(NoError.self)
 }
 
-public func setWalletVersion(to walletVersion: Int, tonInstance: TonInstance, walletInfo: WalletInfo, storage: WalletStorageInterface) -> Signal<WalletInfo, ChangeVersionError> {
+public func setWalletVersion(to walletVersion: Int, tonInstance: TonInstance, walletInfo: WalletInfo, storage: WalletStorageInterface?) -> Signal<WalletInfo, ChangeVersionError> {
     return tonInstance.setWalletVersion(to: walletVersion, walletInfo: walletInfo, storage: storage)
 }
 
@@ -1364,18 +1378,11 @@ public enum GetWalletInfoError {
     case network
 }
 
-public func getWalletInfo(importedInfo: ImportedWalletInfo, tonInstance: TonInstance) -> Signal<WalletInfo, GetWalletInfoError> {
-    return tonInstance.guessImportedWalletAddress(publicKey: importedInfo.publicKey)
-    |> retryTonRequest(isNetworkError: { error in
-        if case .network = error {
-            return true
-        } else {
-            return false
-        }
-    })
-    |> mapToSignal { address -> Signal<WalletInfo, GetWalletInfoError> in
-        return .single(WalletInfo(publicKey: importedInfo.publicKey, address: address, encryptedSecret: importedInfo.encryptedSecret))
-    }
+public func getWalletInfo(importedInfo: ImportedWalletInfo, tonInstance: TonInstance) -> Signal<WalletInfo, ChangeVersionError> {
+    // get wallet info using the new algorithm
+    return tonInstance.setWalletVersion(to: 32,
+                                 walletInfo: WalletInfo(publicKey: importedInfo.publicKey, address: "", encryptedSecret: importedInfo.encryptedSecret),
+                                 storage: nil)
 }
 
 public func getCombinedWalletState(storage: WalletStorageInterface,
