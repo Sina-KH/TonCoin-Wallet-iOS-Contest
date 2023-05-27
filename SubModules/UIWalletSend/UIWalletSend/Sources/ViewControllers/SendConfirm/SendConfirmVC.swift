@@ -390,6 +390,8 @@ extension SendConfirmVC: SendConfirmVMDelegate {
 
     // error occured
     func errorOccured(error: SendGramsFromWalletError) {
+        isLoading = false
+
         var title: String? = nil
         var text = ""
         switch error {
