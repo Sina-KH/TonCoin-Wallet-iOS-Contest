@@ -187,6 +187,10 @@ public class SendVC: WViewController {
             addressField.text = defaultAddress
             addressField.textViewDidChange(self.addressField)
         }
+
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backgroundPressed))
+        gestureRecognizer.cancelsTouchesInView = false
+        view.addGestureRecognizer(gestureRecognizer)
     }
     
     func updateTheme() {
@@ -211,6 +215,10 @@ public class SendVC: WViewController {
     // MARK: - Actions
     @objc func cancelPressed() {
         dismiss(animated: true)
+    }
+    
+    @objc func backgroundPressed() {
+        view.endEditing(true)
     }
     
     @objc func pastePressed() {
