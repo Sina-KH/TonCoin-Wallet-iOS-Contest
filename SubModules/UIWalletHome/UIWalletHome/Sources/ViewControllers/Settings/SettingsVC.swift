@@ -94,6 +94,7 @@ class SettingsVC: WViewController {
         notificationsSwitch = addSwitchItem(position: .top,
                       title: WStrings.Wallet_Settings_Notifications.localized,
                       switchSelector: #selector(notificationsPressed))
+        notificationsSwitch.isOn = KeychainHelper.isNotificationActivated()
         // active address
         addressPicker = addPickerItem(position: .middle,
                                       title: WStrings.Wallet_Settings_ActiveAddress.localized,
@@ -293,6 +294,7 @@ class SettingsVC: WViewController {
         if (sender as? UISwitch) != notificationsSwitch {
             notificationsSwitch.setOn(!notificationsSwitch.isOn, animated: true)
         }
+        KeychainHelper.save(notifications: notificationsSwitch.isOn)
     }
     
     private var activatingBiometricInProgress = false

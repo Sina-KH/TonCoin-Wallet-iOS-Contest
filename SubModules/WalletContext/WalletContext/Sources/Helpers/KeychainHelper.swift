@@ -51,6 +51,14 @@ public struct KeychainHelper {
     public static func isAppLockActivated() -> Bool {
         KeychainHelper.load(withKey: KeychainHelper.appLockKey) != "0"
     }
+    // MARK: - Notifications
+    private static let notificationsKey = "notifications"
+    public static func save(notifications: Bool) {
+        KeychainHelper.save(notifications ? "1" : "0", forKey: notificationsKey)
+    }
+    public static func isNotificationActivated() -> Bool {
+        KeychainHelper.load(withKey: KeychainHelper.notificationsKey) != "0"
+    }
 
     // MARK: - Ton Connect DApps
     private static var tonConnectDApps = "tonConnectDApps"
