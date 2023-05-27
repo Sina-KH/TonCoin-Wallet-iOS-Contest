@@ -208,7 +208,7 @@ public class SendAmountVC: WViewController {
     }
     
     @objc func continuePressed() {
-        let amount = amountValue(amountView.text)
+        let amount = amountValue(amountView.text.normalizeArabicPersianNumeralStringToWestern())
 
         let sendConfirmVC = SendConfirmVC(walletContext: walletContext, walletInfo: walletInfo,
                                           addressToSend: addressToSend, amount: amount, sendMode: sendAllSwitch.isOn ? 128 : 3)
@@ -247,7 +247,7 @@ extension SendAmountVC: WAmountInputDelegate {
         if amountView.text.hasPrefix(".") {
             amountView.text = "0\(amountView.text!)"
         }
-        let amount = amountValue(amountView.text)
+        let amount = amountValue(amountView.text.normalizeArabicPersianNumeralStringToWestern())
         // check if amount is acceptable
         if amount <= 0 || (balance != nil && amount > balance!) {
             continueButton.isEnabled = false
