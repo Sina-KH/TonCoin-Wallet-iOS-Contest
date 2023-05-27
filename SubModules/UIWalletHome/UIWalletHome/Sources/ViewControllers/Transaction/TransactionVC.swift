@@ -140,7 +140,7 @@ class TransactionVC: WViewController {
             break
         case .pending(let trn):
             (addressString, descriptionString, _) = trn.extractAddressAndDescription()
-            amountLabel.amount = trn.value
+            amountLabel.amount = -trn.value
             // TODO:: Fee should be added to the logic
             transactionFeeLabel.text = nil
             dateTimeLabel.text = WStrings.Wallet_TransactionInfo_Pending.localized
