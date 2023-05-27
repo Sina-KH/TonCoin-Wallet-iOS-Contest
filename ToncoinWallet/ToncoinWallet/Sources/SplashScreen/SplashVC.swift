@@ -129,7 +129,7 @@ class SplashVC: WViewController {
             }
             unlockVC.modalPresentationStyle = .fullScreen
             // present unlock animated
-            UIView.animate(withDuration: 0.2, animations: { [weak self] in
+            UIView.animate(withDuration: 0.2, delay: 0.1, animations: { [weak self] in
                 guard let self else { return }
                 heightAnchorConstraint.constant = view.frame.height
                 view.layoutIfNeeded()
