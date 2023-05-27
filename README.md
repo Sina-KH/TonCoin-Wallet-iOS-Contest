@@ -19,7 +19,7 @@ ADNL TonLib Repository](https://github.com/ton-blockchain/ton) (2023.03, because
 
 :white_check_mark: **Only ADNL is being used:** All the communications to TON Blockchain is through ADNL and `tonlib`. The main wrapper that connects the app to the network, is `TonBinding`, just like the original app, plus some modifications to make it support new features.
 
-Other modules like `SwiftyTON` `TON3` and `SwiftyJS` in the project are customized for this repository and responsible for local logics like providing wallet initial state and creating BOC, and can be ported into our main codebase. GlossyTON is removed from these modules and they has nothing to do with the network. *We can consider switching to migrate to SwiftyTON in the future, but for now, It is not 100% complete and perfect yet, so I preferred to stay with least changes and original implementation of tonlib.*
+Other modules like `SwiftyTON` `TON3` and `SwiftyJS` in the project are customized for this repository and responsible for local logics like providing wallet initial state and creating BOC, and can be ported into our main codebase. GlossyTON is removed from these modules and they has nothing to do with the network. *We probably can NOT consider migrating to SwiftyTON in the future, It is not complete and perfect, specially in error handling. And unfortunately, its repository is archived by the contributer at May 22, 2023. (Unless we fork and develop it, ourselves. It seems very modern and clean, btw.) So, For now, I prefer to stay with least changes and original implementation of tonlib.*
 
 :white_check_mark: **DNS and raw addresses:** Both `DNS` and `Raw` addresses are supported.
 
@@ -27,7 +27,7 @@ Other modules like `SwiftyTON` `TON3` and `SwiftyJS` in the project are customiz
 
 :white_check_mark: `iOS 13+` support. (If we remove async/await and actor codes used in SwiftyTON, TON3 and SwiftyJS modules, or even remove these modules from the porject, We can even support iOS 12.2+ with the same app size. Almost no other os dependent features limited to iOS 13+ is used in the application, even for theming.)
 
-:white_check_mark: **App size** (the final download size for `.ipa file`) is **around 6.5 megabytes**. And the app install size on test flight is around 22 megabytes.
+:white_check_mark: **App size** (the final download size for `.ipa file`) is **around 6.5 megabytes**. And the app install size on the test flight is around 22 megabytes.
 
 :white_check_mark: **Dark mode** on iOS 13+
 
@@ -58,7 +58,7 @@ using `brew install cmake ccache pkg-config libmicrohttpd`
 
 1. Install `openssl` on your system, and set it's path inside `Prepare/scripts/build-ton.sh` file like:
 ```export OPENSSL_ROOT_DIR=/usr/local/opt/openssl@3/```
-This is the default path, set in this file, so you don't need to change it if your openssl is installed in this path.
+This is the default path, already set in this file, so you don't need to change it if your openssl is installed in this path.
 
 1. Run the Prepare.sh script with `cd Prepare && sh prepare.sh`, ***This command 
 should run successfully with no errors.*** This script ***automatically*** 
@@ -68,7 +68,7 @@ required parts of the libs, btw.)
 *If you encountered any errors, Please make sure to install any required/missing libraries mentioned in the error message.*
 
 1. Run `ToncoinWallet.xcworkspace` using Xcode, Select `Toncoin Wallet` target and the project should 
-build successfully both on simulator and real devices. If you've faced any build issues, it can be due to xcode's internal issues on first build, related to build race-conditions(!), just try again. :)
+build successfully both on simulator and real devices. If you've faced any build issues, it can be due to xcode's internal issues on first build, related to build race-conditions(!), just try again. :) I've tested both mainnet and testnet on both M1 and Intel processors, on simulator and real-device, so It should just work. :)
 
 ## :cat:  Technical Considerations
 
@@ -234,6 +234,6 @@ This logic module is used by WalletContext module.
 
 :technologist: Feel free to contact me:
 
-mr.sina.khalili@gmail.com
+**mr.sina.khalili@gmail.com**
 
 :gem: And finally, I'm glad I could join this contest, be a part of the Toncoin community, and learn more about encryption and crypto wallets, especially **Toncoin**. :gem:
