@@ -216,7 +216,7 @@ class TransactionVC: WViewController {
 
         // bottom button
         let bottomButton = WButton.setupInstance(.primary)
-        // TODO:: Retry button if transaction is canceled
+        // TODO:: Retry button if transaction is canceled (?)
         switch transaction {
         case .completed(let walletTransaction):
             if walletTransaction.extractAddress() == nil {
@@ -284,6 +284,9 @@ class TransactionVC: WViewController {
         case .pending(let pendingWalletTransaction):
             addressString = pendingWalletTransaction.address
         }
+        RecentAddressesHelpers.saveRecentAddress(recentAddress: RecentAddress(address: addressString,
+                                                                              addressAlias: nil,
+                                                                              timstamp: Date().timeIntervalSince1970), walletVersion: walletInfo.version)
         let sendVC = SendVC(walletContext: walletContext,
                             walletInfo: walletInfo,
                             balance: nil,

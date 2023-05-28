@@ -281,11 +281,16 @@ extension SplashVC: DeeplinkNavigator {
                     guard let self, let addressBase64 else {
                         return
                     }
+                    let addressAlias = addressBase64 == address.base64URLEscaped() ? nil : address
                     let sendAmountVC = SendAmountVC(walletContext: splashVM.walletContext!,
                                                     walletInfo: walletInfo,
                                                     addressToSend: addressBase64,
                                                     balance: nil,
-                                                    addressAlias: addressBase64 == address.base64URLEscaped() ? nil : address)
+                                                    addressAlias: addressAlias)
+                    RecentAddressesHelpers.saveRecentAddress(recentAddress: RecentAddress(address: addressBase64,
+                                                                                          addressAlias: addressAlias,
+                                                                                          timstamp: Date().timeIntervalSince1970),
+                                                             walletVersion: walletInfo.version)
                     if let amount = amount {
                         let sendConfirmVC = SendConfirmVC(walletContext: splashVM.walletContext!,
                                                     walletInfo: walletInfo,

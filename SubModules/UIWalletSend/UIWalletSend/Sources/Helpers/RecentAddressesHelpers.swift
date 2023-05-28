@@ -8,7 +8,7 @@
 import Foundation
 import WalletContext
 
-class RecentAddressesHelpers {
+public class RecentAddressesHelpers {
     private init() {}
     
     static func recentAddresses(walletVersion: Int) -> [RecentAddress] {
@@ -19,7 +19,7 @@ class RecentAddressesHelpers {
         return recentAddresses ?? []
     }
     
-    static func saveRecentAddress(recentAddress: RecentAddress, walletVersion: Int) {
+    public static func saveRecentAddress(recentAddress: RecentAddress, walletVersion: Int) {
         var arrRecents = recentAddresses(walletVersion: walletVersion)
         arrRecents.removeAll { it in
             it.address == recentAddress.address && it.addressAlias == recentAddress.addressAlias
