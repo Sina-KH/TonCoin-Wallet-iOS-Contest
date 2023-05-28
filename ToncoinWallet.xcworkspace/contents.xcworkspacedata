@@ -76,7 +76,4 @@
    <FileRef
       location = "group:SubModules/YuvConversion/YuvConversion.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:SubModules/NumberPluralizationForm/NumberPluralizationForm.xcodeproj">
-   </FileRef>
 </Workspace>

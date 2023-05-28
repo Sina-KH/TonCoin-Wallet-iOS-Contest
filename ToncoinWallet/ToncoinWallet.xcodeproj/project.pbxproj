@@ -74,8 +74,6 @@
 		27764E4B29F135F600A45DAF /* UIWalletHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27764E4A29F135F600A45DAF /* UIWalletHome.framework */; };
 		27764E4C29F135F600A45DAF /* UIWalletHome.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27764E4A29F135F600A45DAF /* UIWalletHome.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		27764E5F29F1751700A45DAF /* UIWalletHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27764E4A29F135F600A45DAF /* UIWalletHome.framework */; };
-		2786FB4629E8641D0023FE21 /* NumberPluralizationForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275EC68129E863F300EE8B66 /* NumberPluralizationForm.framework */; };
-		2786FB4729E8641D0023FE21 /* NumberPluralizationForm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 275EC68129E863F300EE8B66 /* NumberPluralizationForm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2786FB4A29E866380023FE21 /* WalletStorageInterfaceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB4929E866380023FE21 /* WalletStorageInterfaceImpl.swift */; };
 		2786FB4C29E866670023FE21 /* FileBackedStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2786FB4B29E866670023FE21 /* FileBackedStorage.swift */; };
 		278C3A1429F1839C00BD16E8 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27764E5729F16E6E00A45DAF /* SplashVC.swift */; };
@@ -115,7 +113,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				2730412F2A12663E00C8B9F9 /* CryptoSwift.framework in Embed Frameworks */,
-				2786FB4729E8641D0023FE21 /* NumberPluralizationForm.framework in Embed Frameworks */,
 				27764E4C29F135F600A45DAF /* UIWalletHome.framework in Embed Frameworks */,
 				273041DE2A127B3D00C8B9F9 /* CryptoSwift.framework in Embed Frameworks */,
 				275EC64229E857D300EE8B66 /* RLottieBinding.framework in Embed Frameworks */,
@@ -213,7 +210,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2786FB4629E8641D0023FE21 /* NumberPluralizationForm.framework in Frameworks */,
 				27764E4B29F135F600A45DAF /* UIWalletHome.framework in Frameworks */,
 				27764E5F29F1751700A45DAF /* UIWalletHome.framework in Frameworks */,
 				275EC64129E857D300EE8B66 /* RLottieBinding.framework in Frameworks */,

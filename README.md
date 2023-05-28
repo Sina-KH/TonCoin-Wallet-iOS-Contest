@@ -17,7 +17,7 @@ ADNL TonLib Repository](https://github.com/ton-blockchain/ton) (2023.03, because
 
 :white_check_mark: **Wallet Balance (in USD, EUR and RUB)** is also shown for the `selected currency` when home screen's header is scrolled and collapsed, like the design. (using [tonapi.io](https://tonapi.io))
 
-:white_check_mark: **Only ADNL is being used:** All the communications to TON Blockchain is through ADNL and `tonlib`. The main wrapper that connects the app to the network, is `TonBinding`, just like the original app, plus some modifications to make it support new features.
+:white_check_mark: **Only ADNL is being used:** All the communications to the TON Blockchain are through ADNL and `tonlib`. The main wrapper that connects the app to the network, is `TonBinding` module, just like the original app, plus some modifications to make it support new features.
 
 Other modules like `SwiftyTON` `TON3` and `SwiftyJS` in the project are customized for this repository and responsible for local logics like providing wallet initial state and creating BOC, and can be ported into our main codebase. GlossyTON is removed from these modules and they has nothing to do with the network. *We probably can NOT consider migrating to SwiftyTON in the future, It is not complete and perfect, specially in error handling. And unfortunately, its repository is archived by the contributer at May 22, 2023. (Unless we fork and develop it, ourselves. It seems very modern and clean, btw.) So, For now, I prefer to stay with least changes and original implementation of tonlib.*
 
@@ -58,7 +58,7 @@ using `brew install cmake ccache pkg-config libmicrohttpd`
 
 1. Install `openssl` on your system, and set it's path inside `Prepare/scripts/build-ton.sh` file like:
 ```export OPENSSL_ROOT_DIR=/usr/local/opt/openssl@3/```
-This is the default path, already set in this file, so you don't need to change it if your openssl is installed in this path.
+This is the default path, already set in this file, so you don't need to change it if your openssl is installed in this path. *If you've installed openssl through homebrew, you may need to change it.*
 
 1. Run the Prepare.sh script with `cd Prepare && sh prepare.sh`, ***This command 
 should run successfully with no errors.*** This script ***automatically*** 
@@ -225,10 +225,6 @@ original wallet repository.
 ### :city_sunset: YuvConversion
 
 YuvConversion library is used inside the animation player logic.
-
-### :1st_place_medal: NumberPluralizationForm
-
-This logic module is used by WalletContext module.
 
 ---
 
